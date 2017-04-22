@@ -1,126 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>球球来回弹</title>
 </head>
+<style type="text/css">
+    body{position:relative;}
+    .box{width:200px;height:200px;border:1px solid black;position:absolute;top:100px;left:40px;}
+    .box .ball{background:red;width:20px;height:20px;border-radius:50%;position:absolute;left:100px;top:10px;display:none;}
+    .boxtwo{width:400px;height:400px;border:1px solid black;position:absolute;top:100px;left:340px;}
+    .boxtwo .balltwo{background:red;width:20px;height:20px;border-radius:50%;position:absolute;left:100px;top:0px;display:none;}
+</style>
 <body>
 
 </body>
 <script>
-////    //    1.
-//    function func(){
-//        this.aa = "cc"
-//    }
-//    func.prototype.init =  "bb";;
-//    var cc = new func();
-//    console.log(cc.aa)
+//    1.产生随机数，让球来回滚动
 
-
-//        function People(){
-////            alert(this.aa)
-//            this.init()
-//        };
-//        People.prototype.init = function(){
-//            this.aa = "bb";
-//            this.cc = "dd";
-//        }
-//        var ee = new People();
-//    console.log(ee.aa)
-//    function Student(){
-//
-//    }
-//    Student.prototype.People = function(){
-//
-//    }
-//    var ff = new Student();
-//    console.log(ff)
-
-//    22222:继承;首先定义构造函数，然后在定义一个构造函数，将第二个构造函数的原型===》等于第一个构造函数的实例，此时打印第二个构造函数里没有但是第一个函数里有的值，打印出来说明继承成功！这个就叫做继承
-
-
-//    这种是最简单的继承，这种继承能继承父元素内的内容，但不引用不会显示出来
-//    function Family(dad,mom){
-//        this.father = dad;
-//        this.mother = mom;
-//    }
-//    var yueliang = new Family("dad","mom");
-//    function Family2(){
-//        this.son = "son";
-//        this.sister = "sister";
-//        this.mother = "hahaha"
-//    }
-//    Family2.prototype.name = "123";
-//    Family2.prototype = new Family("dad","mom");
-//    Family2.prototype.brother = "123";
-//    var xingxing = new Family2();
-//    console.log(xingxing.father)
-//    console.log(xingxing.name)
-//    console.log(xingxing.brother)
-//    console.log(yueliang)
-
-//    借用式继承：通过apply 和call；这种继承会将父元素内的内容显示出来，不需要特意引用
-//    function Star(){
-//        this.movestar = "father";
-//    }
-//    Star.prototype.house = "bigbigbig";
-////    var Moonstar = new Star("aa");
-////    console.log(Moonstar);
-//
-//    function Moon(){
-//        Star.apply(this);
-//        this.weather = "colder";
-//    }
-//    var sun = new Moon();
-//    console.log(sun)
-
-
-//    通过原型构造来获取父元素里的内容，首先让子元素的原型等于父元素，然后将父元素的构造函数指向子元素======》通过这个方法可以获取父元素内的内容
-//    function Weather(){
-//        this.tianqi = "sunshine";
-//        this.init();
-//    };
-//    Weather.prototype.init = function(){
-//        this.bbbbbbb = "sunshine";
-//    }
-//    Weat.prototype = new Weather();
-//    console.log(water.bbbbbbb)
-//    function Weat(){
-//        this.constructor.apply(this)
-//    }
-//    var wea = new Weat();
-//    console.log(wea)
-//    通过原型构造来获取父元素里的内容，首先让子元素的原型等于父元素，然后将父元素的构造函数指向子元素======》通过这个方法可以获取父元素内的内容
-//    function Weather(){
-//        this.today = "sunshine";
-//        this.yesterday = "colder";
-//        this.tomorrow = "rain";
-//        this.init();
-//    }
-//    Weather.prototype.init = function(){
-//        this.weather = "i like cloudy";
-//    }
-//    function Star(){
-//        this.family = "five";
-//        this.constructor.apply(this);
-//    }
-//    Star.__proto__ = new Weather();
-//    var star = new Star();
-//    console.log(Star.__proto__)
-//    console.log(star)
-
-    function Weather(){
-        this.init();
+    function Balloon(){
+        var that = this;
+        that.box = document.createElement("div");
+        that.box.className = "box";
+        that.ball = document.createElement("div");
+        that.ball.className = "ball";
+        document.body.appendChild(that.box);
+        that.box.appendChild(that.ball);
+        that.move();
     }
-    Weather.prototype.init = function(){
-        this.bb = "bb";
+    Balloon.prototype.move = function(){
+        var that = this;
+        var randomx = parseInt(Math.random() * (parseInt(getComputedStyle(that.box,false)["width"]) - parseInt(getComputedStyle(that.ball,false)["width"])));
+        var randomy = parseInt(Math.random() * (parseInt(getComputedStyle(that.box,false)["width"]) - parseInt(getComputedStyle(that.ball,false)["height"])));
+        that.ball.style.display = "block";
+        var oleft = parseInt(getComputedStyle(that.ball,false).left);
+        var otop = parseInt(getComputedStyle(that.ball,false).top);
+        that.timer =  setInterval(function(){
+            if(oleft < randomx){
+                 oleft += 1;
+            }else if(oleft > randomx){
+                oleft -= 1;
+            }else if (oleft == randomx){
+                randomx = parseInt(Math.random() * (parseInt(getComputedStyle(that.box,false)["width"]) - parseInt(getComputedStyle(that.ball,false)["width"]))) + 1;
+            };
+            if(otop < randomy){
+                otop += 1;
+            }else if(otop > randomy){
+                otop -= 1;
+            }else if (otop == randomy){
+                randomy = parseInt(Math.random() * (parseInt(getComputedStyle(that.box,false)["width"]) - parseInt(getComputedStyle(that.ball,false)["height"]))) + 1;
+            };
+            that.ball.style.left = oleft + "px";
+            that.ball.style.top = otop + "px";
+       },30)
     }
-    function Star(){
-        return "aa";
+    var running = new Balloon();
+
+//    2.球撞到盒子边缘产生随机数，紧贴边缘；
+    function Balltwo(){
+        var that = this;
+        that.box = document.createElement("div");
+        that.box.className = "boxtwo";
+        that.ball = document.createElement("div");
+        that.ball.className = "balltwo";
+        document.body.appendChild(this.box);
+        this.box.appendChild(this.ball);
+        that.move();
     }
-    Star.__proto__ = new Weather();
-//    console.log(Star.prototype)
-//    var moon = new Star();
-    console.log(Star)
+    Balltwo.prototype.move = function(){
+        var that = this;
+        that.ball.style.left = parseInt(Math.random() * 300) + "px";
+        that.ball.style.top =  parseInt(Math.random() * 300) + "px";
+        that.top = parseInt(that.ball.style.top);
+        that.left = parseInt(that.ball.style.left);
+        that.ball.style.display = "block";
+        that.lbl = parseInt(Math.random() * 2)==1?true:false;
+        that.tbl = parseInt(Math.random() * 2)==1?true:false;
+        that.w = that.box.offsetWidth - that.ball.offsetWidth;
+        that.h = that.box.offsetHeight - that.ball.offsetHeight;
+        that.timer = setInterval(function(){
+            if(that.lbl == true){
+                if(that.left < that.w) {
+                    that.left+=2;
+                }else{
+                    that.lbl = false;
+                }
+            }else{
+                if(that.left > 0){
+                    that.left-=2;
+                }else{
+                    that.lbl = true;
+                }
+            }
+            if(that.tbl == true){
+                if(that.top < that.h) {
+                    that.top+=2;
+                }else{
+                    that.tbl = false;
+                }
+            }else{
+                if(that.top > 0){
+                    that.top-=2;
+                }else{
+                    that.tbl = true;
+                }
+            }
+            that.ball.style.top = that.top + "px";
+            that.ball.style.left = that.left + "px";
+        },10);
+    };
+    function Ballthr(){
+        this.ball.style.background = "green";
+    }
+    function Ballfour(){
+        this.ball.style.background = "blue";
+    }
+    function Ballfive(){
+        this.ball.style.background = "greenyellow";
+    }
+    function Ballsix(){
+        this.ball.style.background = "violet";
+    }
+    Ballthr.prototype = new Balltwo();
+    Ballfour.prototype = new Balltwo();
+    Ballfive.prototype = new Balltwo();
+    Ballsix.prototype = new Balltwo();
+    var run1 = new Balltwo();
+    var run2 = new Ballthr();
+    var run3 = new Ballfour();
+    var run4 = new Ballfive();
+    var run5 = new Ballsix();
 </script>
 </html>
