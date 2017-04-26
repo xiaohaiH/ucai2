@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>贪吃蛇游戏</title>
+</head>
+<style type="text/css">
+    table,tr,td{border:1px solid black;border-spacing:0;border-collapse:collapse;}
+    td{width:20px;height:20px;}
+    .violet{background:darkviolet;}
+    .food{background:red;border-radius:50%;}
+</style>
+<body>
+
+</body>
+<script>
+    function Snake(){
+        var that = this;
+        that.table = document.createElement("table");
+        that.arr = [];
+        for(var i = 0;i < 20;i++){
+            that.tr = document.createElement("tr");
+            that.arrtr = [];
+            for(var j = 0;j < 20;j++){
+                that.td = document.createElement("td");
+                that.tr.appendChild(that.td);
+                that.arrtr.push(that.td);
+            };
+            that.arr.push(that.arrtr)
+            that.table.appendChild(that.tr);
+        }
+        document.body.appendChild(that.table);
+        that.snakeinit();
+        that.snakemove();
+        that.snakedirection();
+        that.snakefood();
+        console.log(that.arr)
+    };
+    Snake.prototype.snakeinit = function(){
+        var that = this;
+        that.left = parseInt(Math.random() * (that.arrtr.length-5));
+        that.top = parseInt(Math.random() * (that.arr.length-5));
+        for(var i=0;i<that.arr.length;i++){
+            for(var j=0;j<that.arrtr.length;j++){
+                that.arr[i][j].className = "";
+            };
+        };
+
+        that.snake = [
+            that.arr[that.top][that.left].className = "violet",
+            that.arr[that.top][++that.left].className = "violet"
+        ];
+    };
+    Snake.prototype.snakemove = function(){
+        var that = this;
+        that.decoration = 39;
+        that.timer = setInterval(function(){
+            switch(that.decoration){
+                case 37 :
+                    if(that.left == 0)++that.left;
+                        for(var i=0;i<that.arr.length;i++){
+                            that.arr[that.top][that.left].className = "";
+                            that.arr[that.top][--that.left].className = "violet";
+                        }
+                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+                        that.arr[that.top].unshift(1);
+                        console.log("吃掉了")
+                    };
+                    break;
+                case 38 :
+                    if(that.top == 0)++that.top;
+                    for(var i=0;i<that.arr.length;i++){
+                        that.arr[that.top][that.left].className = "";
+                       that.arr[--that.top][that.left].className = "violet";
+                    }
+                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+                        that[that.top][that.left+1];
+                        console.log("吃掉了")
+                    };
+                    break;
+                case 39 :
+                    if(that.left == that.arrtr.length-1)--that.left;
+//                    that.snake.pop();
+//                        console.log(that.snake)
+                    for(var i=0;i<that.arr.length;i++){
+                        for(var j=0;j<that.arrtr.length;j++){
+                            that.arr[i][j].className = "";
+                            if(that.arr[i][j]==that.arr[that.x][that.y]){that.arr[i][j].className="food"};
+                        };
+                    };
+                    that.snake = [
+                        that.arr[that.top][that.left].className = "violet",
+                        that.arr[that.top][++that.left].className = "violet"
+                    ];
+//                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+//                        that.arr[that.top].unshift();
+//                        console.log("吃掉了")
+//                    };
+                    break;
+                case 40 :
+                    if(that.top == that.arr.length-1)--that.top;
+                    for(var i=0;i<that.arr.length;i++){
+                        that.arr[that.top][that.left].className = "";
+                        that.arr[++that.top][that.left].className = "violet";
+                    }
+
+                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+                        that.arr[that.top].unshift();
+                        console.log("吃掉了")
+                    };
+                    break;
+                default :
+                    break;
+            }
+            if(that.sure){
+                that.x = parseInt(Math.random() * (that.arrtr.length));
+                that.y = parseInt(Math.random() * (that.arr.length));
+                that.food = that.arr[that.x][that.y];
+                that.food.className = "food";
+            };
+        },1000);
+    };
+    Snake.prototype.snakedirection = function(){
+        var that = this;
+        document.onkeyup = function(event){
+            event = window.event || event;
+            if(event.keyCode == 37){
+                that.decoration = 37;
+            }else if(event.keyCode == 38){
+                that.decoration = 38;
+            }else if(event.keyCode == 39){
+                that.decoration = 39;
+            }else if(event.keyCode == 40){
+                that.decoration = 40;
+            }
+        };
+    };
+    Snake.prototype.snakefood = function(){
+        var that = this;
+        for(var i=0;i<that.arr.length;i++){
+            for(var j=0;j<that.arrtr.length;j++){
+                if(that.arr[i][j].className=="food"){that.arr[i][j].className=""};
+            };
+        };
+        that.x = parseInt(Math.random() * (that.arrtr.length));
+        that.y = parseInt(Math.random() * (that.arr.length));
+        that.food = that.arr[that.x][that.y];
+        that.food.className = "food";
+        setInterval(function(){
+            that.sure = true;
+            for(var i=0;i<that.arr.length;i++){
+                for(var j=0;j<that.arrtr.length;j++){
+                    if(that.arr[i][j].className=="food"){
+                            that.sure = false;
+                        break;
+                    };
+                };
+                if(!that.sure){;break};
+            };
+        },100);
+    };
+
+    var snake = new Snake();
+</script>
+</html>
