@@ -5,26 +5,34 @@
     <title>邮箱验证 + 电话号码验证</title>
 </head>
 <body>
-
+    <input id="telephone" placeholder="请输入您的电话号码"/><button id="btn">点击验证</button>
+    <br/>
+    <input id="Email" placeholder="请输入您的邮箱"/><button id="btn2">点击验证</button>
 </body>
 <script>
-    var telephone = prompt("请输入您的电话号码");
+    var telephone = document.getElementById("telephone");
+    var btn = document.getElementById("btn");
     var reg =/^1\d{10}$/;
     var reg2 =/^\d{4}-\d{7}$/;
-    if(reg.test(telephone)){
-        document.write("这个是手机号码"+"<br />");
-    }else if(reg2.test(telephone)){
-        document.write("这个是座机号码"+"<br />");
-    }else{
-        document.write("请重新输入"+"<br />");
-    }
+    btn.onclick = function(){
+        if(reg.test(telephone)){
+           alert("这个是手机号码");
+        }else if(reg2.test(telephone)){
+            alert("这个是座机号码");
+        }else{
+            alert("请重新输入");
+        }
+    };
 
-    var Email = prompt("请输入您的邮箱");
+    var Email = document.getElementById("Email");
+    var btn2 = document.getElementById("btn2");
     var reg3 =/^\w{6,18}@\w{2,4}\.\w{3}/g;
-    if(reg3.test(Email)){
-        document.write("邮箱注册成功"+"<br />");
-    }else{
-        document.write("邮箱注册失败"+"<br />");
-    }
+    btn2.onclick = function() {
+        if (reg3.test(Email)) {
+            alert("邮箱注册成功");
+        } else {
+            alert("邮箱注册失败");
+        }
+    };
 </script>
 </html>
