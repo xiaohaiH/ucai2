@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+////    //    1.
+//    function func(){
+//        this.aa = "cc"
+//    }
+//    func.prototype.init =  "bb";;
+//    var cc = new func();
+//    console.log(cc.aa)
+
+
+//        function People(){
+////            alert(this.aa)
+//            this.init()
+//        };
+//        People.prototype.init = function(){
+//            this.aa = "bb";
+//            this.cc = "dd";
+//        }
+//        var ee = new People();
+//    console.log(ee.aa)
+//    function Student(){
+//
+//    }
+//    Student.prototype.People = function(){
+//
+//    }
+//    var ff = new Student();
+//    console.log(ff)
+
+//    22222:继承;首先定义构造函数，然后在定义一个构造函数，将第二个构造函数的原型===》等于第一个构造函数的实例，此时打印第二个构造函数里没有但是第一个函数里有的值，打印出来说明继承成功！这个就叫做继承
+
+
+//    这种是最简单的继承，这种继承能继承父元素内的内容，但不引用不会显示出来
+//    function Family(dad,mom){
+//        this.father = dad;
+//        this.mother = mom;
+//    }
+//    var yueliang = new Family("dad","mom");
+//    function Family2(){
+//        this.son = "son";
+//        this.sister = "sister";
+//        this.mother = "hahaha"
+//    }
+//    Family2.prototype.name = "123";
+//    Family2.prototype = new Family("dad","mom");
+//    Family2.prototype.brother = "123";
+//    var xingxing = new Family2();
+//    console.log(xingxing.father)
+//    console.log(xingxing.name)
+//    console.log(xingxing.brother)
+//    console.log(yueliang)
+
+//    借用式继承：通过apply 和call；这种继承会将父元素内的内容显示出来，不需要特意引用
+//    function Star(){
+//        this.movestar = "father";
+//    }
+//    Star.prototype.house = "bigbigbig";
+////    var Moonstar = new Star("aa");
+////    console.log(Moonstar);
+//
+//    function Moon(){
+//        Star.apply(this);
+//        this.weather = "colder";
+//    }
+//    var sun = new Moon();
+//    console.log(sun)
+
+
+//    通过原型构造来获取父元素里的内容，首先让子元素的原型等于父元素，然后将父元素的构造函数指向子元素======》通过这个方法可以获取父元素内的内容
+//    function Weather(){
+//        this.tianqi = "sunshine";
+//        this.init();
+//    };
+//    Weather.prototype.init = function(){
+//        this.bbbbbbb = "sunshine";
+//    }
+//    Weat.prototype = new Weather();
+//    console.log(water.bbbbbbb)
+//    function Weat(){
+//        this.constructor.apply(this)
+//    }
+//    var wea = new Weat();
+//    console.log(wea)
+//    通过原型构造来获取父元素里的内容，首先让子元素的原型等于父元素，然后将父元素的构造函数指向子元素======》通过这个方法可以获取父元素内的内容
+//    function Weather(){
+//        this.today = "sunshine";
+//        this.yesterday = "colder";
+//        this.tomorrow = "rain";
+//        this.init();
+//    }
+//    Weather.prototype.init = function(){
+//        this.weather = "i like cloudy";
+//    }
+//    function Star(){
+//        this.family = "five";
+//        this.constructor.apply(this);
+//    }
+//    Star.__proto__ = new Weather();
+//    var star = new Star();
+//    console.log(Star.__proto__)
+//    console.log(star)
+
+    function Weather(){
+        this.init();
+    }
+    Weather.prototype.init = function(){
+        this.bb = "bb";
+    }
+    function Star(){
+        return "aa";
+    }
+    Star.__proto__ = new Weather();
+//    console.log(Star.prototype)
+//    var moon = new Star();
+    console.log(Star)
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    function Checkobj(name,email,password){
+//        this.name;
+//        this.email;
+//        this.password;
+        this.name("123")
+    };
+    Checkobj.prototype = {
+        name:function (name){
+           return name;
+        },
+        email:function (email){
+            this.email = email;
+        },
+        password:function (password) {
+            this.password = password;
+        }
+    }
+    var newcheck = new Checkobj("小明","45678@qq.com","不告你");
+    console.log(newcheck)
+
+    var newcheck2 = new Checkobj("小白","4567894@qq.com","想知道？");
+    console.log(newcheck2)
+    var aa = {
+        bb:function(){
+            alert("aa")
+        }
+    };
+</script>
+
+<!--<script>
+//    function Weather(){
+//        this.aa = "aa";
+//        this.init();
+//    }
+//    Weather.prototype.init = function(){
+//        this.bb = "bb"
+//    };
+//    function Star(){
+//        this.constructor.call(this);
+////        Weather.apply(this);
+//        this.sun();
+//    }
+////    Star.prototype = Weather.prototype;
+//    Star.prototype = new Weather();
+//    Star.prototype.sun = function(){
+//        this.sun = "money";
+//    };
+//    var moon = new Star();
+//    console.log(new Weather())
+//    console.log(moon.bb)
+
+    <!--function Weather(){-->
+        <!--this.name = "海"-->
+    <!--}-->
+    <!--function Star(){-->
+        <!--this.moon = "ball";-->
+    <!--}-->
+    <!--Star.prototype = new Weather();-->
+    <!--var newstar = new Star()-->
+    <!--console.log(newstar.name)-->
+<!--</script>-->
+</html>

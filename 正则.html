@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>正则</title>
+</head>
+<body>
+
+</body>
+<script>
+//    正则有两种创建方式
+//        1.字面量方式 ： var reg = /abc/g;
+//        2.实例化方式 ： var reg = new RegExp("abc",g);
+
+//    正则：直接量语法  var aa = /正则/;
+//        1.\s 查找非空白字符  +  代表至少一个或以上 *代表至少0个或一个, g 代表检索全局；
+//        2. search(/正则/)：检测并匹配字符串，有返回下标，没有返回-1，用法跟indexOf一样；
+//        3. match(/正则/)：检测并匹配字符串，有则返回检索的值，没有返回null
+//        4. /正则/.test(字符串) ：检测并匹配字符串，有则返回true，没有返回false;
+//        5. replace(查找的字符,替换的字符);替换的内容可以是函数function(){},但必须有返回值
+//        6. 正则.exec(字符串):匹配字符串，找到返回该字符串的下标和数组,没找到返回null
+//        7.正则.source ：获取正则内的文本;
+//        8./t : 制表符
+//        9./n : 回车符
+    var str = "sdabjkl aaf jdsljfdkaafds";
+    var str2 = "fd  dsfds   fsfd    fdf";
+    var str3 = "Hello World 视界,我来啦,Hello World 视界,我来啦"
+    var par = /sdab/g;
+    var par2 = /World/g;
+    console.log(str2.split(/\s+/))
+    console.log(str.split(/a+/));
+    console.log(str.search("aa"));
+    console.log(str.search(/\aa/));
+    console.log(str.search(/\aa */))
+    console.log(str.match(par))
+    console.log(/sdab/.test(str))
+    console.log(par.test(str))
+    var aa = str.replace(function(){return "aafds"},"hahaha");
+    console.log(aa);
+    console.log(par2.exec(str3))
+    console.log(par2.source)
+    var str4 = "aa\tbb";
+    console.log(str4);
+    var str5 = "DFDSAf    dsfadDAFDFDS";
+    var par3 = /[A~Z]||[a~z]/g;
+    var par4 = /\s\s?/g;
+    console.log(par3.test(str5))
+    console.log(par4.test(str5))
+
+
+    var aa = "afdbfdb";
+    console.log(/aa||bb/.test(aa))
+
+//    var str = prompt();
+//    if(/^\w+@\w+/){
+//        alert("aa");
+//    }else{
+//        alert("bb")
+//    }
+</script>
+</html>

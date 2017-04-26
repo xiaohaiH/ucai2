@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>邮箱验证 + 电话号码验证</title>
+</head>
+<body>
+
+</body>
+<script>
+    var telephone = prompt("请输入您的电话号码");
+    var reg =/^1\d{10}$/;
+    var reg2 =/^\d{4}-\d{7}$/;
+    if(reg.test(telephone)){
+        document.write("这个是手机号码"+"<br />");
+    }else if(reg2.test(telephone)){
+        document.write("这个是座机号码"+"<br />");
+    }else{
+        document.write("请重新输入"+"<br />");
+    }
+
+    var Email = prompt("请输入您的邮箱");
+    var reg3 =/^\w{6,18}@\w{2,4}\.\w{3}/g;
+    if(reg3.test(Email)){
+        document.write("邮箱注册成功"+"<br />");
+    }else{
+        document.write("邮箱注册失败"+"<br />");
+    }
+</script>
+</html>

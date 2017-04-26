@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<!--   getter  setter   -->
+<script>
+
+//   1. getter 和 setter 属性   getter获取外部属性，setter接收属性并返回内部值
+    var person = {
+        get age(){
+            if(this._age > 18){
+                return "呃呃呃"+this._age;
+            }else{
+                return "呵呵呵"+this._age;
+            }
+        },
+        set age(val){
+          this._age = val;
+        }
+    }
+    person.age = 19;
+    console.log(person.age)
+
+//    2. in 操作符和 obj.hasOwnProperty()操作符  * in obj：检测是否是这个对象的属性,包括检查原型链 ;;; obj.hasOwnproperty(*)只检测本身，不检查原型链
+    var detection = {
+        a : "你好",
+        b : "不好",
+    };
+    detection.prototype = {
+        c :  "123"
+    }
+    detection.__proto__ = {
+        d : "星星"
+    }
+    console.log("a" in detection);//true
+    console.log("b" in detection);//true
+    console.log("c" in detection);//false------这个是实例,不是对象，所以为false
+    console.log("d" in detection);//true
+    console.log(detection.hasOwnProperty("a"));//true
+    console.log(detection.hasOwnProperty("b"));//true
+    console.log(detection.hasOwnProperty("c"));//false
+    console.log(detection.hasOwnProperty("d"));//false
+
+//    3.属性的类型
+//      (1):数据属性：修改数据的默认属性，必须用object.defineProperty(对象,"属性名",{描述符})方法来进行修改
+        var obj = {
+            sex : "xiaohai"
+        };
+        Object.defineProperty(obj,"sex",{
+            configurable : false,//false禁止删除sex属性
+            writable : true,//可以修改里面的值
+            value : "xingxing",//直接修改sex的值，后面不能再重新定义它的值，不然会覆盖
+            enumerable : true,//设置是否能够被遍历，false为禁止被遍历
+        })
+        delete obj.sex;
+        obj.sex = "nan";
+        console.log(obj.sex);
+        for(var a in obj){
+            console.log(obj[a])
+        }
+//      (2)访问器属性：访问器属性不包含数据值，包含一对 getter 和 setter 函数；
+//        1.getter ---  获取函数,获取外部数据
+//        2.setter ---  接收函数,接收并修改返回内部数据
+            var people = {   //  get 和 set 必须是get写在前面，set写在后面   函数里面顺序，判断随意在哪个位置
+                name : "xiaohai",
+                get name(){
+                    if(this._name == "xiaohei"){
+                        return "aabb";
+                    }else{
+                        return "ccdd";
+                    }
+                },
+                set (val){
+                    this._name = val;
+                }
+            };
+            console.log(people.name)
+
+
+    var people2 = {};
+    Object.defineProperties(people2, {
+        name : {
+            set: function (val) {
+                if (val == "xiaobai") {
+                    this._name = "对的";
+                } else {
+                    this._name = "答错咯";
+                }
+            },
+            get : function () {
+                return this._name;
+            }
+        },
+        age : {
+            get : function (){
+                if(this._age < 15){
+                    return "哈哈哈";
+                }else{
+                    return "hehehe";
+                }
+            },
+            set : function (val){
+                this._age = val;
+            }
+        }
+    });
+    people2.name = "小黑";
+    people2.age = 14;
+    console.log(people2.name)
+    console.log(people2.age)
+
+//    4.构造.prototype.isPrototypeOf(实例) 和 实例 instanceof 构造  判断原型链是否有这个实例和判断实例是否属于原型链
+        function Star(){
+            this.aa = "aa";
+        };
+        function Moon(){
+            this.bb = "bb";
+        };
+        Moon.prototype = new Star();
+        var star = new Star();
+        var moon = new Moon();
+        console.log(Moon.prototype.isPrototypeOf(moon) );
+        console.log(moon instanceof Star)
+
+//    function Moon(){}
+//    function Star(){};
+//    Star.prototype = new Moon();
+//    var moon =new Moon();
+//    var star = new Star();
+//    console.log(star instanceof Moon);
+//    console.log(moon instanceof Star);
+//    console.log(Moon.prototype.isPrototypeOf(star));
+</script>
+</html>
