@@ -38,19 +38,19 @@
         that.snakemove();
     };
     Snake.prototype.snakeinit = function(){
-            var that = this;
-            that.snake = [
-                {x : that.top,y : that.left++},
-                {x : that.top,y : that.left}
-            ];
-            for(var k=0;k<that.snake.length;k++){
-                that.arr[that.snake[k].x][that.snake[k].y].className = "violet";
-            }
+        var that = this;
+        that.snake = [
+            {x : that.top,y : that.left++},
+            {x : that.top,y : that.left}
+        ];
+        for(var k=0;k<that.snake.length;k++){
+            console.log(that.snake[k],that.snake[k].x,that.snake[k].y)
+            that.arr[that.snake[k].x][that.snake[k].y].className = "violet";
+        }
     };
     Snake.prototype.snakemove = function(){
         var that = this;
         that.decoration = "right";
-        this.last=this.snake[0];
         function thatclear(){
             for(var i=0;i<that.arr.length;i++){
                 for(var j=0;j<that.arrtr.length;j++){
@@ -62,38 +62,59 @@
             };
         };
         that.timer = setInterval(function(){
+            thatclear();
             that.snake.shift();
             switch (that.decoration) {
                 case "left":
-                        that.snake.push({
-                            x : that.snake[that.snake.length-1].x,
-                            y : that.snake[that.snake.length-1].y-1
-                        });
+//                    if(that.snake[0].y<=0){
+//                        clearInterval(that.timer);
+////                        alert("啊哦，撞到了诶");
+//                    }else{
+                    that.snake.push({
+                        x : that.snake[0].x,
+                        y : that.snake[0].y-1
+                    });
+//                    }
                     break;
                 case "right":
-                        that.snake.push({
-                            x : that.snake[that.snake.length-1].x,
-                            y : that.snake[that.snake.length-1].y+1
-                        });
+                    console.log(that.snake[that.snake.length-1].y)
+//                    if(that.snake[that.snake.length-1].y >= that.arrtr.length-1&&that.decoration == "right"){
+//                        clearInterval(that.timer);
+//                        alert("啊哦，撞到了诶");
+//                    }else{
+                    that.snake.push({
+                        x : that.snake[0].x,
+                        y : that.snake[0].y+1
+                    });
+//                    }
 //                    console.log(that.snake[that.snake.length-1].y)
                     break;
                 case "up":
-                        that.snake.push({
-                            x: that.snake[that.snake.length-1].x - 1,
-                            y: that.snake[that.snake.length-1].y
-                        });
+//                    if(that.snake[0].x<=0){
+//                        clearInterval(that.timer);
+////                        alert("啊哦，撞到了诶");
+//                    }else {
+                    that.snake.push({
+                        x: that.snake[0].x - 1,
+                        y: that.snake[0].y
+                    });
+//                    }
                     break;
                 case "down":
-                        that.snake.push({
-                            x: that.snake[that.snake.length - 1].x + 1,
-                            y: that.snake[that.snake.length-1].y
-                        });
+//                    if(that.snake[that.snake.length-1].x >= that.arrtr.length-1&&that.decoration == "down"){
+//                        clearInterval(that.timer);
+////                        alert("啊哦，撞到了诶");
+//                    }else {
+                    that.snake.push({
+                        x: that.snake[that.snake.length - 1].x + 1,
+                        y: that.snake[0].y
+                    });
+//                    }
                     break;
             };
-            thatclear();
-            if(that.snake[that.snake.length-1].y<=-1||that.snake[that.snake.length-1].x<=-1||that.snake[that.snake.length-1].y >= that.arrtr.length-1||that.snake[that.snake.length-1].x >= that.arrtr.length-1){
+            if(that.snake[0].y<=0||that.snake[0].x<=0||that.snake[that.snake.length-1].y >= that.arrtr.length&&that.decoration == "right"||that.snake[that.snake.length-1].x >= that.arrtr.length&&that.decoration == "down"){
                 clearInterval(that.timer);
-                alert("啊哦，撞到了诶");
+//              alert("啊哦，撞到了诶");
             }
         },100);
     };
@@ -136,16 +157,30 @@
                 console.log("啊啊啊")
                 switch (that.decoration) {
                     case "left":
-                        that.snake.unshift(that.last);
+                        that.snake.push({
+                            x : that.snake[0].x,
+                            y : that.snake[0].y-1
+                        });
+                        console.log(that.snake.length)
+                        console.log(that.snake)
                         break;
                     case "right":
-                        that.snake.unshift(that.last);
+                        that.snake.push({
+                            x : that.snake[0].x,
+                            y : that.snake[0].y+1
+                        });
                         break;
                     case "up":
-                        that.snake.unshift(that.last);
+                        that.snake.push({
+                            x : that.snake[0].x-1,
+                            y : that.snake[0].y
+                        });
                         break;
                     case "down":
-                        that.snake.unshift(that.last);
+                        that.snake.push({
+                            x : that.snake[0].x+1,
+                            y : that.snake[0].y
+                        });
                         break;
                 };
                 that.x = parseInt(Math.random() * (that.arrtr.length));
@@ -153,7 +188,7 @@
                 that.food = that.arr[that.x][that.y];
                 that.food.className = "food";
             };
-        },100);
+        },400);
     };
     var snake = new Snake();
 </script>
