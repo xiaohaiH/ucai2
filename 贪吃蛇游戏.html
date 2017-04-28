@@ -5,7 +5,7 @@
     <title>贪吃蛇游戏</title>
 </head>
 <style type="text/css">
-    table,tr,td{border:1px solid black;border-spacing:0;border-collapse:collapse;}
+    table{border:1px solid black;border-spacing:0;border-collapse:collapse;}
     td{width:20px;height:20px;}
     .violet{background:darkviolet;}
     .food{background:red;border-radius:50%;}
@@ -34,8 +34,8 @@
         that.top = parseInt(Math.random() * (that.arr.length-5));
         that.snakeinit();
         that.snakefood();
-        that.snakedirection();
         that.snakemove();
+        that.snakedirection();
     };
     Snake.prototype.snakeinit = function(){
         var that = this;
@@ -97,10 +97,13 @@
                     break;
             };
             thatclear();
-            if(that.snake[that.snake.length-1].y<=-1||that.snake[that.snake.length-1].x<=-1||that.snake[that.snake.length-1].y > that.arrtr.length-1||that.snake[that.snake.length-1].x > that.arrtr.length-1){
-                clearInterval(that.timer);
-                alert("啊哦，撞到了诶");
-            }
+            for(var s=0;s<that.snake.length-1;s++){
+                console.log(that.snake[that.snake.length],that.snake[s])
+                if(that.snake[that.snake.length-1].y<=-1||that.snake[that.snake.length-1].x<=-1||that.snake[that.snake.length-1].y > that.arrtr.length-1||that.snake[that.snake.length-1].x > that.arrtr.length-1||that.snake[that.snake.length-1].x==that.snake[s].x&&that.snake[that.snake.length-1].y==that.snake[s].y){
+                    clearInterval(that.timer);
+                    alert("啊哦，撞到了诶");
+                };
+            };
         },100);
     };
     Snake.prototype.snakedirection = function(){
