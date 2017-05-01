@@ -47,22 +47,38 @@
         };
 
         that.snake = [
-            that.arr[that.top][that.left].className = "violet",
-            that.arr[that.top][++that.left].className = "violet"
+            that.arr[that.top][that.left],
+            that.arr[that.top][++that.left]
         ];
     };
     Snake.prototype.snakemove = function(){
         var that = this;
         that.decoration = 39;
+        var s=1;
         that.timer = setInterval(function(){
             switch(that.decoration){
                 case 37 :
                     if(that.left == 0)++that.left;
                         for(var i=0;i<that.arr.length;i++){
                             that.arr[that.top][that.left].className = "";
-                            that.arr[that.top][--that.left].className = "violet";
                         }
-                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+                    for(var i=0;i<that.arr.length;i++){
+                        for(var j=0;j<that.arrtr.length;j++){
+                            that.arr[i][j].className = "";
+                            if(that.arr[i][j]==that.arr[that.x][that.y]){that.arr[i][j].className="food"};
+                        };
+                    };
+
+						                    that.snake = [
+
+		                        that.arr[that.top][that.left--],
+		                        that.arr[that.top][that.left]
+		                    ];
+
+        for(var j=0;j<that.snake.length;j++){
+        	that.snake[j].className = "violet";
+        }
+						if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
                         that.arr[that.top].unshift(1);
                         console.log("吃掉了")
                     };
@@ -71,15 +87,29 @@
                     if(that.top == 0)++that.top;
                     for(var i=0;i<that.arr.length;i++){
                         that.arr[that.top][that.left].className = "";
-                       that.arr[--that.top][that.left].className = "violet";
                     }
+                    for(var i=0;i<that.arr.length;i++){
+                        for(var j=0;j<that.arrtr.length;j++){
+                            that.arr[i][j].className = "";
+                            if(that.arr[i][j]==that.arr[that.x][that.y]){that.arr[i][j].className="food"};
+                        };
+                    };
+                    that.snake = [
+
+		                        that.arr[that.top--][that.left],
+		                        that.arr[that.top][that.left]
+		                    ];
+		                    
+        for(var j=0;j<that.snake.length;j++){
+        	that.snake[j].className = "violet";
+        }
                     if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
                         that[that.top][that.left+1];
                         console.log("吃掉了")
                     };
                     break;
                 case 39 :
-                    if(that.left == that.arrtr.length-1)--that.left;
+                    if(that.left == that.arrtr.length-1)that.left-=that.snake.length-1;
 //                    that.snake.pop();
 //                        console.log(that.snake)
                     for(var i=0;i<that.arr.length;i++){
@@ -88,22 +118,67 @@
                             if(that.arr[i][j]==that.arr[that.x][that.y]){that.arr[i][j].className="food"};
                         };
                     };
+                      if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
+//							that.snake.length+=1;
+
+		                    that.left-=snake.length;
+		                    that.snake.unshift(that.arr[that.top][that.left++])
+		                    console.log(that.snake)
+//		                    that.left-=that.snake.length;
+		                    that.left+=snake.length-1;
+							that.arr[that.x][that.y].class = "";
+                          console.log("吃掉了")
+                          
+                      };
+                    if(that.snake.length==2){
                     that.snake = [
-                        that.arr[that.top][that.left].className = "violet",
-                        that.arr[that.top][++that.left].className = "violet"
+                        that.arr[that.top][that.left],
+                        that.arr[that.top][++that.left]
                     ];
-//                    if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
-//                        that.arr[that.top].unshift();
-//                        console.log("吃掉了")
-//                    };
+                    }else{
+                    	for(;s<that.snake.length;s++){
+		                    	
+		                    that.snake = [
+		                        that.arr[that.top][++that.left],
+//		                        that.arr[that.top][that.left]
+		                    ];
+		                    that.left-=snake.length;
+		                    that.snake.unshift(that.arr[that.top][that.left++])
+		                    console.log(that.snake)
+//		                    that.left-=that.snake.length;
+		                    that.left+=snake.length-1;
+		                    that.snake[0].className = "violet";
+		                    console.log(that.snake.length,that.snake)
+                    	}
+                    }
+//      
+        for(var j=0;j<that.snake.length;j++){
+        	that.snake[j].className = "violet";
+//      	console.log(that.snake)
+        }
                     break;
                 case 40 :
                     if(that.top == that.arr.length-1)--that.top;
-                    for(var i=0;i<that.arr.length;i++){
-                        that.arr[that.top][that.left].className = "";
-                        that.arr[++that.top][that.left].className = "violet";
-                    }
+//                  for(var i=0;i<that.arr.length;i++){
+//                      that.arr[that.top][that.left].className = "";
+//                      that.arr[++that.top][that.left].className = "violet";
+//                  }
+for(var i=0;i<that.arr.length;i++){
+                        for(var j=0;j<that.arrtr.length;j++){
+                            that.arr[i][j].className = "";
+                            if(that.arr[i][j]==that.arr[that.x][that.y]){that.arr[i][j].className="food"};
+                        };
+                    };
 
+						                    that.snake = [
+
+		                        that.arr[that.top++][that.left],
+		                        that.arr[that.top][that.left]
+		                    ];
+
+        for(var j=0;j<that.snake.length;j++){
+        	that.snake[j].className = "violet";
+        }
                     if(that.arr[that.top][that.left] == that.arr[that.x][that.y]){
                         that.arr[that.top].unshift();
                         console.log("吃掉了")
@@ -118,7 +193,7 @@
                 that.food = that.arr[that.x][that.y];
                 that.food.className = "food";
             };
-        },1000);
+        },300);
     };
     Snake.prototype.snakedirection = function(){
         var that = this;
