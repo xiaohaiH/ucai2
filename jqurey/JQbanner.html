@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style type="text/css">
+    body,ul,li{margin:0;padding:0;}
+    li{list-style:none;}
+    .box{width:990px;height:460px;overflow:hidden;position:relative;}
+    .box ul{width:5940px;height:460px;position:absolute;}
+    .box ul li{width:990px;height:460px;float:left;}
+    .box ul li img{width:990px;height:460px;}
+    .box .btn{position:absolute;width:50px;height:50px;top:0;bottom:0;margin:auto;background:rgba(0,255,0,.5);text-align:center;line-height:50px;font-size:40px;color:white;cursor:pointer;}
+    .box .toleft{left:0;}
+    .box .toright{right:0;}
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li><a href="#"><img src="./img/1.jpg"/> </a></li>
+            <li><a href="#"><img src="./img/2.jpg"/> </a></li>
+            <li><a href="#"><img src="./img/3.jpg"/> </a></li>
+            <li><a href="#"><img src="./img/4.jpg"/> </a></li>
+            <li><a href="#"><img src="./img/5.jpg"/> </a></li>
+            <li><a href="#"><img src="./img/1.jpg"/> </a></li>
+        </ul>
+        <div class="toleft btn">&lt;</div>
+        <div class="toright btn">&gt;</div>
+    </div>
+</body>
+<script src="./js/jquery.js" type="text/javascript"></script>
+<script>
+    var i = 1;
+    var timer = setInterval(bannermove,3000);
+    $(".box ul:first").mouseenter(function(){
+        clearInterval(timer);
+    });
+    $(".box ul:first").mouseleave(function(){
+        timer = setInterval(bannermove,3000);
+    });
+    $(".box div:first").click(function(){
+        clearInterval(timer);
+        bannermovemin();
+        timer = setInterval(bannermove,3000);
+    });
+    $(".box div:last").click(function(){
+        clearInterval(timer);
+        bannermove();
+        timer = setInterval(bannermove,3000);
+    });
+    function bannermove() {
+        if (i >= $(".box ul li").length) {
+            i = 1;
+            $(".box ul:first").css("marginLeft","0");
+        } else {
+            $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
+            i++;
+        }
+    }
+    function bannermovemin() {
+        i--;
+        if (i < 1) {
+            i = $(".box ul li").length-1;
+            $(".box ul:first").css("marginLeft",i * "-990");
+        } else {
+            $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
+        }
+    }
+</script>
+</html>
