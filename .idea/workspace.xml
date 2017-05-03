@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d673d278-5a5a-4b86-bd26-7965b2e46a46" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jqurey/JQbanner.html" afterPath="$PROJECT_DIR$/jqurey/JQbanner.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="d673d278-5a5a-4b86-bd26-7965b2e46a46" name="Default" comment="" />
     <ignored path="ucai2.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +24,9 @@
       <file leaf-file-name="JQbanner.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jqurey/JQbanner.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.937833">
+            <state vertical-scroll-proportion="0.8596803">
               <caret line="45" column="7" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+              <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -602,8 +600,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jqurey/JQbanner.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.937833">
+        <state vertical-scroll-proportion="0.8596803">
           <caret line="45" column="7" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
           <folding />
         </state>
       </provider>
