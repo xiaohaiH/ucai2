@@ -53,6 +53,7 @@
         if (i >= $(".box ul li").length) {
             i = 1;
             $(".box ul:first").css("marginLeft","0");
+            $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
         } else {
             $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
             i++;

@@ -13,15 +13,13 @@
 </body>
 <script src="./js/jquery.js"></script>
 <script>
-    $("div:first button:eq(0)").click(function(){
-        if($("div:first input:eq(0)").attr("checked","")==undefined){
-            alert("请先阅读同意须知并勾选")
-        }
-    });
+    var boo = false;
     $("div:first input:eq(0)").click(function(){
-        if($(this).attr("checked")==undefined) {
-            $(this).attr("checked", "checked")
-        }
+        boo?boo=false:boo=true;
+        console.log(boo)
+    });
+    $("div:first button:eq(0)").click(function(){
+        !boo?alert("请先阅读同意须知并勾选"):alert("提交成功")
     });
 </script>
 </html>
