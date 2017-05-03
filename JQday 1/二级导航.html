@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="./js/jquery.js"></script>
+<style type="text/css">
+    body,ul{margin:0;padding:0;}
+    body{background:black;}
+    ul li{list-style:none;}
+    a{text-decoration:none;color:blueviolet;}
+    .box>ul{margin:200px 100px;text-align:center;}
+    .box>ul>li{float:left;width:200px;}
+    .box>ul>li>ul{background:greenyellow;display:none;}
+    /*.box>ul>li:nth-child(2)>ul{background:greenyellow;display:block;}*/
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <a href="#">手机 电话卡</a>
+                <ul>
+                    <li><a href="#">米家扫地机器人及配件</a></li>
+                    <li><a href="#">九号平衡车</a></li>
+                    <li><a href="#">电助力折叠自行车</a></li>
+                    <li><a href="#">米家恒温电水壶</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">笔记本 平板</a>
+                <ul>
+                    <li><a href="#">米家扫地机器人及配件</a></li>
+                    <li><a href="#">九号平衡车</a></li>
+                    <li><a href="#">电助力折叠自行车</a></li>
+                    <li><a href="#">米家恒温电水壶</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">电视 盒子</a>
+                <ul>
+                    <li><a href="#">米家扫地机器人及配件</a></li>
+                    <li><a href="#">九号平衡车</a></li>
+                    <li><a href="#">电助力折叠自行车</a></li>
+                    <li><a href="#">米家恒温电水壶</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">路由器 智能硬件</a>
+                <ul>
+                    <li><a href="#">米家扫地机器人及配件</a></li>
+                    <li><a href="#">九号平衡车</a></li>
+                    <li><a href="#">电助力折叠自行车</a></li>
+                    <li><a href="#">米家恒温电水壶</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+//    $(".box>ul>li").mouseenter(function(){
+//        find是寻找当前元素下的某个元素
+//        is是判断 ---->判断动画是否在运动,是返回true；
+//        siblings()  ----->  查找除本身外的同辈元素;
+//        prop  等同于 attr   ---> 查找或设置元素属性
+//        $(this).siblings().find("ul").prop("style","display:none");//
+//        $(this).find("ul").prop("style","display:block");
+//    });
+    $(".box>ul>li").mouseenter(function(){
+        //find是寻找当前元素下的某个元素
+        //is是判断 ---->判断动画是否在运动,是返回true
+        if($(this).find("ul").is(":animated"))return;  //判断如果动画还在运动中，则不执行下面的函数
+        $(this).find("ul").slideDown();//利用jq方法向下展示导航栏
+    });
+    $(".box>ul>li").mouseleave(function(){
+        $(this).find("ul").slideUp();//利用jq方法向上收起导航栏
+    });
+</script>
+</html>
