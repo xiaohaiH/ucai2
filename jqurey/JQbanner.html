@@ -33,7 +33,7 @@
 <script>
     var i = 1;
     var timer = setInterval(bannermove,3000);
-    $(".box ul:first").mouseenter(function(){
+    $(".box ul:first").mouseover(function(){
         clearInterval(timer);
     });
     $(".box ul:first").mouseleave(function(){
@@ -52,21 +52,19 @@
     function bannermove() {
         if (i >= $(".box ul li").length) {
             i = 1;
-            $(".box ul:first").css("marginLeft","0");
-            $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
-        } else {
+            $(".box ul:first").css("marginLeft", "0");
+//            $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
+        };
             $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
             i++;
-        }
     }
     function bannermovemin() {
         i--;
         if (i < 1) {
-            i = $(".box ul li").length-1;
-            $(".box ul:first").css("marginLeft",i * "-990");
-        } else {
+            i = $(".box ul li").length - 1;
+            $(".box ul:first").css("marginLeft", i * "-990");
+        };
             $(".box ul:first").animate({"marginLeft": i * "-990"}, 1000);
-        }
     }
 </script>
 </html>
