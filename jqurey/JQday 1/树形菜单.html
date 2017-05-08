@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>树形菜单</title>
+</head>
+<style type="text/css">
+    body,ul,li{margin: 0;padding:0;}
+    body{background:blueviolet;}
+    ul li{list-style:none;}
+    a{color:#dddddd}
+    .box>ul{margin:100px 200px;}
+    .box>ul>li ul{display:none;margin-left:20px;}
+    .hover{background:yellowgreen;}
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li>
+                <a href="javascript:;">手机</a>
+                <ul>
+                    <li><a href="####">正则表达式</a></li>
+                    <li><a href="####">HTML5速查表</a></li>
+                    <li><a href="####">信用卡优惠</a></li>
+                    <li><a href="####">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">荣耀 HUAWEI P系列</a>
+                <ul>
+                    <li><a href="####">正则表达式</a></li>
+                    <li><a href="####">HTML5速查表</a></li>
+                    <li><a href="####">信用卡优惠</a></li>
+                    <li><a href="####">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">笔记本 & 平板</a>
+                <ul>
+                    <li><a href="####">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">平板电脑 笔记本电脑</a>
+                <ul>
+                    <li><a href="#">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">手环 手表</a>
+                <ul>
+                    <li><a href="#">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">手环 手表</a>
+                <ul>
+                    <li><a href="#">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">智能家居</a>
+                <ul>
+                    <li><a href="#">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">子母路由 电视盒子 路由器</a>
+                <ul>
+                    <li><a href="#">正则表达式</a></li>
+                    <li><a href="#">HTML5速查表</a></li>
+                    <li><a href="#">信用卡优惠</a></li>
+                    <li><a href="#">源码下载</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    $(".box>ul>li").click(function(){
+        //find 是查找元素
+//        $(".box>ul>li").find("ul").slideUp();//这个是先将所有的二级导航收起来    slideUp是收起的时候产生动画；
+//        $(".box>ul>li").find("ul").slideToggle();//这个是单独将这个二级菜单给展开       slideToggle是收起和展开， 并且产生动画效果
+//        上面这个有bug
+        $(this).find("ul").slideToggle().parent().siblings().find("ul").slideUp();//这个是将点击的元素展开或收起，并将父级的同级下的ul菜单收起！
+    });
+    $(".box>ul>li").find("ul li").mouseenter(function(){
+        $(this).addClass("hover");//鼠标进入二级菜单li 的时候添加class      addClass  是给元素添加class类名
+    });
+    $(".box>ul>li").find("ul li").mouseleave(function(){
+        $(this).removeClass();//鼠标移开二级菜单li 的时候移除class      addClass  是给元素移除class类名
+    });
+    $(".box>ul>li").find("ul li").click(function(e){
+        var e = event || window.event;
+        e.stopPropagation(); // 这个是通过阻止事件冒泡来让他不收起来
+//        $(this).parent().slideUp(); //这个跟事件冒泡有关，先执行点击的，在层级往上，所以是slideUp而不是slideDown   阻止事件冒泡和这个二选一即可
+    });
+</script>
+</html>

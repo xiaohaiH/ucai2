@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+        <input type="checkbox" id="agree"  /><label for="agree">我同意</label>
+        <br/>
+        <button>提交</button>
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    var boo = false;
+    $("div:first input:eq(0)").click(function(){
+        boo?boo=false:boo=true;
+        console.log(boo)
+    });
+    $("div:first button:eq(0)").click(function(){
+        !boo?alert("请先阅读同意须知并勾选"):alert("提交成功")
+    });
+</script>
+</html>

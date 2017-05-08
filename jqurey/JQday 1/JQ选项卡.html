@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style type="text/css">
+    body,ul,li{margin:0;padding:0;}
+    li{list-style:none;}
+    a{text-decoration: none;}
+    .box{margin:100px;border:1px solid red;overflow:hidden;width:300px;}
+    .box ul li{float:left;font-size:18px;font-weight:bolder;width:100px;}
+    .box ul li a{float:left;color:black;}
+    .box div{height:40px;line-height:40px;width:300px;clear:both;display:none;}
+    .box div:nth-child(2){display:block;}
+    .controlcolor{color:#28A8E3!important;}
+</style>
+<body>
+    <div class="box">
+        <ul>
+            <li num="0"><a class="controlcolor" href="#">热门主题</a></li>
+            <li num="1"><a href="#">我要解答</a></li>
+            <li num="2"><a href="#">第三个</a></li>
+        </ul>
+        <div>aaa</div>
+        <div>bbb</div>
+        <div>ccc</div>
+    </div>
+</body>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script>
+    $("ul li").mouseenter(function(){
+        $(".box div").css("display","none");
+        $(".box ul li a").attr("class","");
+        $(".box ul li a:eq("+$(this).attr("num")+")").attr("class","controlcolor");
+        $(".box div:eq("+$(this).attr("num")+")").css("display","block");
+    });
+    $("ul li").click(function(){
+        $(".box div").css("display","none");
+        $(".box ul li a").css("color","");
+        $(".box ul li a").attr("class","");
+        $(".box ul li a:eq("+$(this).attr("num")+")").css("color","greenyellow");
+        $(".box div:eq("+$(this).attr("num")+")").css("display","block");
+    })
+</script>
+</html>
