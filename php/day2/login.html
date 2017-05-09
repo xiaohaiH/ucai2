@@ -4,13 +4,20 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+<style type="text/css">
+	body,p{margin:0;padding:0;}
+	.login{height:50px;background: violet;line-height: 50px;padding-left: 20px;}
+	.login p:nth-child(1){float: left;width: 200px;}
+</style>
 <body>
+	<div class="login">
+		<p>用户名：</p>
+		<p>退出登录</p>
+	</div>
 	<form action="login.php" method="post">
 		<p><label>用户名:<input type="text" name="name"></label></p>
 		<p><label>密码:<input type="password" name="pass"></label></p>
 		<p>性别<label><input type="radio" name="sex" value="1">男</label><label><input type="radio" name="sex" value="2">女</label></p>
-		<p><label>年龄:<input type="num" name="age"></label></p>
-		<p><label>邮箱:<input type="email" name="email"></label></p>
 		<p><input type="submit" name=""></p>
 	</form>
 </body>
