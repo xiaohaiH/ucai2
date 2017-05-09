@@ -9,7 +9,7 @@ $password = md5($password);
 
 
 $charsql = "SELECT * FROM `user` WHERE name =".$name;
-$charstart = $dbh -> exec($charsql);
+$charstart = $dbh -> query($charsql);
 $_SESSION['name'] = $name;
 
 $insertsql = "INSERT INTO user (

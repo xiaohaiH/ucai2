@@ -3,6 +3,7 @@
 
 	if(empty($_SESSION['name'])){
 			header("location:sign.php");
+			exit;
 	};
 ?>
 <!DOCTYPE html>

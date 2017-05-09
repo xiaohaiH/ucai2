@@ -16,13 +16,22 @@
 </style>
 <body>
 	<form action="login.php" method="post">
-		<p><label>用户名：<input type="text" name="user"></label><span><?php echo $_SESSION['error']; ?></span></p>
-		<p><label>密　码：<input type="password" name="password"></label></p>
-		<p><input type="submit" value="登录" name=""><a href="javascript:;">注册</a></p>
+		<p><label>用户名：<input type="text" name="user" placeholder="请输入用户名"></label><span>
+		<?php
+			if(empty($_SESSION['error'])){
+				echo "";
+			}else{
+				echo $_SESSION['error'];
+			};
+		 // echo $_SESSION['error'];
+		 ?>
+		 </span></p>
+		<p><label>密　码：<input type="password" name="password" placeholder="请输入密码"></label></p>
+		<p><input type="submit" value="登录" name="" ><a href="javascript:;">注册</a></p>
 	</form>
 	<form action="update.php" method="post">
-		<p><label>用户名：<input type="text" name="user"></label></p>
-		<p><label>密　码：<input type="password" name="password"></label></p>
+		<p><label>用户名：<input type="text" placeholder="请输入用户名" name="user"></label></p>
+		<p><label>密　码：<input type="password" placeholder="请输入密码" name="password"></label></p>
 		<p><button type="submit">注册</button></p>
 	</form>
 </body>
