@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言板</title>
+	<style type="text/css">
+		body,p,ul,li{margin:0;padding:0;}
+		li{list-style:none;}
+		.box{width:500px;height:450px;border:1px solid greenyellow;margin:0 auto;}
+		.notes{width:500px;height:400px;background: violet;margin:0 auto;overflow-y: scroll;}
+		p{text-align:center;background: #666;line-height: 40px;height: 40px;color:greenyellow;font-weight: bloder;font-size:20px;letter-spacing:4px;}
+		li{width:40%;background:#eee;color:orange;font-weight: bloder;font-size:20px;letter-spacing:4px;border-radius:20px;margin: 4px;padding-left:20px;}
+		.box button:nth-child(2){margin-left:120px;}
+		.box button{padding:5px 10px;margin:10px 0 10px 40px;}
+		.note{position:fixed;background: rgba(0,0,0,.4);width:100%;height:100%;left:0;top:0;display: none;}
+		form{position: absolute;left: 0;right:0;margin:0 auto;top:70px;width:300px;height:260px;}
+		textarea{width:300px;height:260px;resize: none;}
+		form button{padding:5px 10px;display: block;margin:10px auto;}
+
+		.changebg{background:greenyellow;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="notes">
+			<p>留言板</p>
+			<ul></ul>
+		</div>
+		<button>添加留言</button>
+		<button>删除留言</button>
+	</div>
+	<div class="note">
+		<form>
+			<textarea>留言：</textarea>
+			<button>提交留言</button>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+
+	var oul = document.getElementsByClassName("notes")[0].children[1];
+	var oli = document.getElementsByClassName("notes")[0].children[1].children;
+	var obtn1 = document.getElementsByTagName("button")[0];
+	var onote = document.getElementsByClassName("note")[0];
+	var obtn2 = document.getElementsByTagName("button")[2];
+	var obtn3 = document.getElementsByTagName("button")[1];
+	var oval = document.getElementsByTagName("textarea")[0];
+	var odel = document.getElementsByClassName("changebg");
+
+
+	window.onload = function(){
+		GET();
+		setTimeout(function(){
+			for(var j=0;j<oli.length;j++){
+				oli[j].index = j;
+				oli[j].onclick = function(){
+					oli[this.index].className = "changebg";
+				};
+			};
+		},400)
+	};
+
+
+	obtn1.onclick = function(){
+		onote.style.display = "block";
+		oval.value = "留言:";
+
+	};
+	obtn2.onclick = function(){
+		var ogetval =  oval.value;
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function (){
+			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
+				var text = xhr.responseText;
+				var otext = text.split(" ");
+				otext.pop();
+				for(var i=0;i < otext.length;i++){
+					create(otext[i]);
+				};
+			};
+		};
+		xhr.open("GET","val.php?val="+ogetval,true);
+		xhr.send(null);
+		create(oval.value);
+		onote.style.display = "none";
+
+		for(var j=0;j<oli.length;j++){
+			oli[j].index = j;
+			oli[j].onclick = function(){
+				oli[this.index].className = "changebg";
+			};
+		};
+		return false;
+	};
+
+	obtn3.onclick = function(){
+		for(var i=0;i<odel.length;){
+			var otext = odel[i].innerHTML;
+			oul.removeChild(odel[0]);
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
+					// console.log("aa");
+				};
+			};
+			xhr.open("GET","update.php?val="+otext,true);
+			xhr.send(null);
+		};
+		compose();
+	};
+
+
+
+	function GET(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function (){
+			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
+				var text = xhr.responseText;
+				var otext = text.split(" ");
+				otext.pop();
+				// console.log(otext)
+				for(var i=0;i < otext.length;i++){
+					create(otext[i]);
+				};
+			};
+		};
+		xhr.open("GET","val.php",true);
+		xhr.send(null);
+	};
+
+	function create(val){
+		if(!val)val = oval.value;
+		var cli = document.createElement("li");
+		cli.innerHTML = val;
+		oul.appendChild(cli);
+		compose();
+	};
+
+
+
+	function compose(){
+		var olil = oli.length;
+		for(var i=0;i<olil;i++){
+			if(i%2==0){
+				oli[i].style.float = "left";
+				oli[i].style.clear = "both";
+			}else{
+				oli[i].style.float = "right";
+				oli[i].style.clear = "both";
+			};
+		};
+	};
+</script>
+</html>
