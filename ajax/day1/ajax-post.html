@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p></p>
+	<div>
+		<button>点击</button>
+	</div>
+</body>
+<script type="text/javascript">
+	var obtn = document.getElementsByTagName("button")[0];
+	var otext = document.getElementsByTagName("p")[0];
+	obtn.onclick = function(){
+		// 以下是ajax的书写
+		// var xhr = new XMLHttpRequest();
+		if(window.XMLHttpRequest){ // 兼容ie6版本
+			var xhr = new XMLHttpRequest();// 正常方式书写
+		}else{
+			var xhr = new ActiveXObject("microsoft.XMLHTTP");// 兼容ie6版本
+		};
+		xhr.onreadystatechange = function(){//状态监听
+			//onreadystatechange 共有5个状态
+			//0 请求未初始化
+			//1 服务器已建立连接
+			//2 请求已接收
+			//3 请求处理中
+			//4 请求已完成且已响应就绪--------------->这几个状态一般只用这个，一般是在写进度条的时候5个状态才全用。
+			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
+				//状态为4时，且状态码为200~300之间或者等于304为正常(成功)状态码；
+				//304代表是读取的本地缓存内的内容；
+				//**代表~~之间；例1**代表 1~200之间；
+				//1** : 信息，服务器收到请求,需请求者继续执行操作；
+				//2** : 成功；
+				//3** : 重定向(自动跳转):在网页上设置一个约束条件，条件满足，就自动转入到其它网页、网址9；
+				//4** : 客户端有错误；
+				//5** : 服务器端有错误；
+				var val = xhr.responseText;//将响应的值赋值到变量中；
+				if(val == 1){//php中定义1为用户名密码正确； 0 为账号或密码错误；
+					otext.innerHTML = "用户名和密码正确";
+				}else{
+					otext.innerHTML = "用户名不存在";
+				};
+			}else{//如果说状态不对或者状态码不对则返回value。
+				otext.innerHTML = "娃哈哈服务器爆炸了";
+			};
+		};
+		xhr.open("POST","login-post.php",true);//设置连接的方式信息等；
+		// 参数一：传输方式；
+		// 参数二：连接地址；get方式中将传送的值写在地址后面?name=aa&pass=bb;用? & 来连接；
+		// 参数三：是否异步；true-->异步；  false-->不异步(同步)；
+		// 
+		// post和get的区别
+		// post--->保密性强，传输稳定，总传输文件大小不限制；
+		// get--->传输速度快，这个方式会限制总传输的大小；
+		xhr.setRequestHeader("content-type","application/x-www-form-urlencoded;charset=utf-8");//这个只有在post传输才需要写，是模拟form表单的传输方式
+		xhr.send("name=小海&password=liuxingyu");//发送数据------>get方式写null，post方式写你要传输的值;
+	};
+</script>
+</html>

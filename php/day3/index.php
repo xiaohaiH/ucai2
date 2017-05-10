@@ -22,8 +22,14 @@
 </style>
 <body>
 	<header>
-		<p><span>用户名：<?php echo $_SESSION['name']; ?></span><a href="update.php">退出</a></p>
-		<p>今天的天气：<?php echo $_SESSION['num']; ?></p>
+		<p><span>用户名：<?php echo $_SESSION['name']; ?></span><a href="exit.php">退出</a></p>
+		<p>今天的天气：<?php 
+			if(empty($_SESSION['num'])){
+				echo "";
+			}else{
+				echo $_SESSION['num']; 
+			};
+		?></p>
 	</header>
 	<form action="login.php" method="post">
 		<p><label><input type="radio" value="1" name="mood">晴天</label></p>
