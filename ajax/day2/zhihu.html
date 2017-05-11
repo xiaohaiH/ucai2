@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="js/jquery.js"></script>
+<body>
+	<button>获取图片</button>
+</body>
+<script type="text/javascript">
+	$("button").click(function(){
+		getajax("gain.php",function(data){
+			var getdata = JSON.parse(data);
+			console.log(getdata)
+		});
+		return false;
+	});
+
+
+
+	function getajax(url,fn,getdata){//url发送给服务器的地址;data:获取到的值;fn是回调函数;
+		var xhr = "";
+		window.XMLHttpRequest? xhr = new XMLHttpRequest(): xhr = new ActiveXObject("microsoft.XMLHTTP");//兼容IE6;
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status >= 200&&(xhr.status < 300||xhr.status == 304)){
+					fn(xhr.responseText);//第一个参数代表获取的值;
+				}else{
+					console.log(xhr.status,xhr.readyState)
+					alert("数据获取失败");
+				};
+			};
+		};
+		xhr.open("GET",url,true);
+		xhr.send(null);
+	}
+</script>
+</html>
