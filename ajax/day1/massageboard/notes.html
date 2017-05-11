@@ -51,9 +51,8 @@
 	var odel = document.getElementsByClassName("changebg");
 
 
-	window.onload = function(){
-		GET();
-		setTimeout(function(){
+	window.onload = function(){//在页面加载完成后获取留言板的内容，然后延时获取页面中的li标签，当被点击时添加或删除样式.
+		GET(function (){
 			for(var j=0;j<oli.length;j++){
 				oli[j].index = j;
 				oli[j].onclick = function(){
@@ -64,16 +63,16 @@
 					};
 				};
 			};
-		},400)
+		});
 	};
 
 
-	obtn1.onclick = function(){
+	obtn1.onclick = function(){//点击添加留言时，显示并重置文本域的内容;
 		onote.style.display = "block";
 		oval.value = "留言:";
 
 	};
-	obtn2.onclick = function(){
+	obtn2.onclick = function(){//点击提交留言到数据库，成功则创建这条留言;点击提交数据就将文本域隐藏;
 		if(oval.value == "留言:"){
 			alert("请输入留言信息");
 			return false;
@@ -82,36 +81,37 @@
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function (){
 			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
-				var text = xhr.responseText;
-				var otext = text.split("!@#$");
-				console.log(otext);
-				otext.pop();
-				for(var i=0;i < otext.length;i++){
-					create(otext[i]);
+				// var text = xhr.responseText;
+				// var otext = text.split("!@#$");
+				// // console.log(otext);
+				// otext.pop();
+				// for(var i=0;i < otext.length;i++){
+				// 	create(otext[i]);
+				// };
+				create(oval.value);
+				for(var j=0;j<oli.length;j++){//点击留言(li)时，存在则添加样式，否则就删删除样式。
+					oli[j].index = j;
+					oli[j].onclick = function(){
+						if(oli[this.index].className == "changebg"){
+							oli[this.index].className = "";
+						}else{
+							oli[this.index].className = "changebg";
+						};
+					};
 				};
-			};
+			}
 		};
 		xhr.open("GET","val.php?val="+ogetval,true);
 		xhr.send(null);
-		create(oval.value);
 		onote.style.display = "none";
-		for(var j=0;j<oli.length;j++){
-			oli[j].index = j;
-			oli[j].onclick = function(){
-				if(oli[this.index].className == "changebg"){
-					oli[this.index].className = "";
-				}else{
-					oli[this.index].className = "changebg";
-				};
-			};
-		};
+		
 		return false;
 	};
 
-	obtn3.onclick = function(){
+	obtn3.onclick = function(){//点击删除按钮的时候，先删除本地的li，然后将需要删除的值提交到数据库
 		for(var i=0;i<odel.length;){
 			var otext = odel[i].innerHTML;
-			oul.removeChild(odel[0]);
+			oul.removeChild(odel[i]);
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
@@ -131,7 +131,7 @@
 	};
 
 
-	function GET(){
+	function GET(fn){//利用ajax获取到内容  并将他封装起来
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function (){
 			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
@@ -139,16 +139,17 @@
 				var otext = text.split("!@#$");
 				otext.pop();
 				// console.log(otext)
-				for(var i=0;i < otext.length;i++){
+				for(var i=0;i < otext.length;i++){//将获取到的留言遍历出来，并创建
 					create(otext[i]);
 				};
+				fn();
 			};
 		};
 		xhr.open("GET","val.php",true);
 		xhr.send(null);
 	};
 
-	function create(val){
+	function create(val){//这个是创建li标签,如果需要更改的值则获取更改的值，没有值则就获取文本域里面的内容，在添加到ul中
 		if(!val)val = oval.value;
 		var cli = document.createElement("li");
 		cli.innerHTML = val;
@@ -158,7 +159,7 @@
 
 
 
-	function compose(){
+	function compose(){ //这个是将li进行排版(左右对话式),获取长度然后利用奇偶来进行排序
 		var olil = oli.length;
 		for(var i=0;i<olil;i++){
 			if(i%2==0){

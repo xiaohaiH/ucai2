@@ -1,4 +1,5 @@
 <?php
+	//连接数据库并设置编码
 	header("Content-type:text/html;charset=utf-8");
 	$host = "localhost";
 	$dbname = 'notes';
