@@ -52,7 +52,7 @@
 
 
 	window.onload = function(){//在页面加载完成后获取留言板的内容，然后延时获取页面中的li标签，当被点击时添加或删除样式.
-		GET(function (){
+		GET(function (){ //这个写在回调函数的内部;
 			for(var j=0;j<oli.length;j++){
 				oli[j].index = j;
 				oli[j].onclick = function(){
