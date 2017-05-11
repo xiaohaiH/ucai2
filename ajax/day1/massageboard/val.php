@@ -9,7 +9,7 @@ if(empty($get['val'])){
 	foreach($inquiresql as $key){
 	// array_push($arr, $key['note']);
 		echo $key['note'];
-		echo " ";
+		echo "!@#$";
 	};
 }else{
 	$val = $get['val'];

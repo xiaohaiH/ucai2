@@ -10,12 +10,13 @@
 		.notes{width:500px;height:400px;background: violet;margin:0 auto;overflow-y: scroll;}
 		p{text-align:center;background: #666;line-height: 40px;height: 40px;color:greenyellow;font-weight: bloder;font-size:20px;letter-spacing:4px;}
 		li{width:40%;background:#eee;color:orange;font-weight: bloder;font-size:20px;letter-spacing:4px;border-radius:20px;margin: 4px;padding-left:20px;}
-		.box button:nth-child(2){margin-left:120px;}
-		.box button{padding:5px 10px;margin:10px 0 10px 40px;}
+		button:nth-child(2){margin-left:120px;}
+		button{padding:5px 10px;margin:10px 0 10px 40px;}
 		.note{position:fixed;background: rgba(0,0,0,.4);width:100%;height:100%;left:0;top:0;display: none;}
 		form{position: absolute;left: 0;right:0;margin:0 auto;top:70px;width:300px;height:260px;}
 		textarea{width:300px;height:260px;resize: none;}
-		form button{padding:5px 10px;display: block;margin:10px auto;}
+		form button:nth-child(2){margin-left:80px;}
+		form button{padding:5px 10px;margin:10px auto;}
 
 		.changebg{background:greenyellow;}
 	</style>
@@ -33,6 +34,7 @@
 		<form>
 			<textarea>留言：</textarea>
 			<button>提交留言</button>
+			<button>关闭窗口</button>
 		</form>
 	</div>
 </body>
@@ -44,6 +46,7 @@
 	var onote = document.getElementsByClassName("note")[0];
 	var obtn2 = document.getElementsByTagName("button")[2];
 	var obtn3 = document.getElementsByTagName("button")[1];
+	var obtn4 = document.getElementsByTagName("button")[3];
 	var oval = document.getElementsByTagName("textarea")[0];
 	var odel = document.getElementsByClassName("changebg");
 
@@ -54,7 +57,11 @@
 			for(var j=0;j<oli.length;j++){
 				oli[j].index = j;
 				oli[j].onclick = function(){
-					oli[this.index].className = "changebg";
+					if(oli[this.index].className == "changebg"){
+						oli[this.index].className = "";
+					}else{
+						oli[this.index].className = "changebg";
+					};
 				};
 			};
 		},400)
@@ -67,12 +74,17 @@
 
 	};
 	obtn2.onclick = function(){
+		if(oval.value == "留言:"){
+			alert("请输入留言信息");
+			return false;
+		};
 		var ogetval =  oval.value;
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function (){
 			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
 				var text = xhr.responseText;
-				var otext = text.split(" ");
+				var otext = text.split("!@#$");
+				console.log(otext);
 				otext.pop();
 				for(var i=0;i < otext.length;i++){
 					create(otext[i]);
@@ -83,11 +95,14 @@
 		xhr.send(null);
 		create(oval.value);
 		onote.style.display = "none";
-
 		for(var j=0;j<oli.length;j++){
 			oli[j].index = j;
 			oli[j].onclick = function(){
-				oli[this.index].className = "changebg";
+				if(oli[this.index].className == "changebg"){
+					oli[this.index].className = "";
+				}else{
+					oli[this.index].className = "changebg";
+				};
 			};
 		};
 		return false;
@@ -111,12 +126,17 @@
 
 
 
+	obtn4.onclick = function(){
+		onote.style.display = "none";
+	};
+
+
 	function GET(){
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function (){
 			if(xhr.readyState == 4&&(xhr.status >= 200&&xhr.status < 300||xhr.status == 304)){
 				var text = xhr.responseText;
-				var otext = text.split(" ");
+				var otext = text.split("!@#$");
 				otext.pop();
 				// console.log(otext)
 				for(var i=0;i < otext.length;i++){
