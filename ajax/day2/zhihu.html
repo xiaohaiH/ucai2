@@ -9,8 +9,9 @@
 	<button>获取图片</button>
 </body>
 <script type="text/javascript">
+	console.log(window.location.href);
 	$("button").click(function(){
-		getajax("gain.php",function(data){
+		getajax("http://news-at.zhihu.com/api/4/news/latest",function(data){
 			var getdata = JSON.parse(data);
 			console.log(getdata)
 		});
@@ -32,6 +33,7 @@
 				};
 			};
 		};
+		xhr.header('Access-Control-Allow-Origin:*');
 		xhr.open("GET",url,true);
 		xhr.send(null);
 	}

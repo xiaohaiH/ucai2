@@ -1,0 +1,27 @@
+body,ul,li,textarea,button,p,h3{margin:0;padding:0;}
+li{list-style:none;}
+.box{width:458px;height:582px;border: 1px solid violet;margin:0 auto;}
+.box .title{background:orange;margin-bottom:5px;height:36px;line-height:36px;}
+.box .title h3{float:left;margin-left:180px;}
+.box .title p{text-align:center;float: right;width:88px;}
+.box .title p:hover{color:red;float: right;}
+.box ul{height:389px;overflow-y:scroll;}
+.box ul li{line-height:25px;padding:0 10px;border:1px solid greenyellow;background:yellowgreen;border-radius:10px;overflow:hidden;margin-bottom:5px;}
+.box ul li span:nth-child(1){float:left}
+.box ul li span:nth-child(2){float:right}
+.box ul li span:nth-child(2):hover{color:red;}
+.box .import{height:169px;}
+.box .import textarea{resize:none;width:350px;height:150px;padding-left:10px;float:left;}
+.box .import button{padding:11px 20px;font-size: 20px;letter-spacing:6px;float:right;margin-top:50px;}
+
+/*------------------我是可爱的分割线-------------------------------*/
+.login{display:none;width:100%;background:rgba(0,0,0,.5);position: fixed;z-index:3;top:0;left:0;}
+.login div{width:420px;height:222px;background:white;position:absolute;top:0;bottom:222px;left:0;right:0;margin:auto;}
+.login div h3{background:orange;height:40px;line-height: 40px;letter-spacing: 4px;}
+.login div h3 span:nth-child(1){float: left;margin-left:175px;}
+.login div h3 span:nth-child(2){float: right;padding:0 12px;text-align: center;}
+.login div h3 span:nth-child(2):hover{transform:rotate(360deg);transform-origin:50%;transition:all .4s;}
+.login div p input:nth-child(4){padding:10px 20px;}
+.login div p{width:245px;margin:24px auto;}
+.login div p:last-child{width:150px;height:31px;margin: auto;}
+.login div p:last-child input{padding: 5px 10px;margin-left:10px;letter-spacing: 4px;}
