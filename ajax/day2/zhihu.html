@@ -3,23 +3,52 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./css/APIget.css">
 </head>
 <script type="text/javascript" src="js/jquery.js"></script>
 <body>
 	<button>获取图片</button>
+	<div class="box">
+		<figure>
+			<img src="https://pic1.zhimg.com/v2-f4ded37f472d2f708e9b1450a4139064.jpg" />
+			<figcaption>
+				它已经诞生了一年，可「国产主机」却似乎离我们更远了
+			</figcaption>
+		</figure>
+	</div>
 </body>
 <script type="text/javascript">
+	$(".box").css("height",document.body.scrollHeight + "px");
+
 	$("button").click(function(){
 		getajax("gain.php",function(data){
 			var getdata = JSON.parse(data);
-			console.log(getdata)
+			// console.log(getdata["stories"][0]["images"][0])
+			// console.log(getdata);
+			var getdatalength = getdata.stories;
+			create(getdatalength,getdata);
 		});
 		return false;
 	});
 
 
+	function create(len,getdata){//len:数组(figure)的长度;getsrc:图片的地址;jump:跳转页面的链接;otext:获取到的图片内容
+		for(var i=0;i < len.length;i++){
+			var fig = document.createElement("figure");
+			var jump = document.createElement("a");
+			var figimg = document.createElement("img");
+			var figcap = document.createElement("figcaption");
+			var src = getdata["stories"][i]["images"];
+			$(".box").append(fig);
+			$(fig).append(figimg);
+			$(fig).append(figcap);
+		};
+	};
 
-	function getajax(url,fn,getdata){//url发送给服务器的地址;data:获取到的值;fn是回调函数;
+
+
+
+	function getajax(url,fn){//url发送给服务器的地址;fn是回调函数;
 		var xhr = "";
 		window.XMLHttpRequest? xhr = new XMLHttpRequest(): xhr = new ActiveXObject("microsoft.XMLHTTP");//兼容IE6;
 		xhr.onreadystatechange = function(){
@@ -34,6 +63,27 @@
 		};
 		xhr.open("GET",url,true);
 		xhr.send(null);
+	};
+
+
+
+	function postajax(data,fn){//url发送给服务器的地址;fn是回调函数;
+		var xhr = "";
+		window.XMLHttpRequest? xhr = new XMLHttpRequest(): xhr = new ActiveXObject("microsoft.XMLHTTP");//兼容IE6;
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if(xhr.status >= 200&&(xhr.status < 300||xhr.status == 304)){
+					fn(xhr.responseText);//第一个参数代表获取的值;
+					console.log("成功")
+				}else{
+					console.log(xhr.status,xhr.readyState)
+					alert("数据获取失败");
+				};
+			};
+		};
+		xhr.open("POST","post.php",true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send(data);
 	}
 </script>
 </html>

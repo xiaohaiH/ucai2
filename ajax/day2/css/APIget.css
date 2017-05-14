@@ -1,0 +1,7 @@
+body,figure,figcaption,img{margin:0;padding:0;}
+
+.box{background:violet;}
+.box figure{background:white;margin:20px 30px;padding:20px;float: left;position: relative;}
+.box figure a{position: absolute;left:0;top:0;display: block;}
+.box figcaption{margin-top:10px;}
+
