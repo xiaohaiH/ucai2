@@ -18,10 +18,14 @@
 	</div>
 </body>
 <script type="text/javascript">
+<<<<<<< HEAD
 	$(".box").css("height",document.body.scrollHeight + "px");
 
+=======
+	console.log(window.location.href);
+>>>>>>> ceca42bb949a333c41ee2654e07242a5a5bca99b
 	$("button").click(function(){
-		getajax("gain.php",function(data){
+		getajax("http://news-at.zhihu.com/api/4/news/latest",function(data){
 			var getdata = JSON.parse(data);
 			// console.log(getdata["stories"][0]["images"][0])
 			// console.log(getdata);
@@ -61,6 +65,7 @@
 				};
 			};
 		};
+		xhr.header('Access-Control-Allow-Origin:*');
 		xhr.open("GET",url,true);
 		xhr.send(null);
 	};
