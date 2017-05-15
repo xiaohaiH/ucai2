@@ -5,7 +5,7 @@ window.onload = function(){
 		getajax.get({//当页面加载完成时,获取数据库里的留言信息和会话里的用户名
 			"url" : "../js/load.php",
 			"fn" : function(content){
-				if(content.success){//成功获取到时创建li标签
+		 		if(content.success){//成功获取到时创建li标签
 					var lilen = JSON.parse(content.reception);
 					var user = lilen[0];
 					establish(lilen,user);
@@ -80,11 +80,11 @@ window.onload = function(){
 				"url" : "../js/signin.php",
 				"stext" : self.data,
 				"fn" : function(contents){
-					if(content.success){
+					if(contents.success){
 						if(contents.reception == 0){//根据返回的值进行判断.
 							alert("用户已经被注册了");
 						}else{//成功则替换用户名,并关闭登录框
-							var arr = JSON.parse(reception);
+							var arr = JSON.parse(contents.reception);
 							var oname = arr[0]["name"];
 							var oid = arr[0]["id"];
 							$(".title p a").html(self.nameval).attr("data-id",oid);
