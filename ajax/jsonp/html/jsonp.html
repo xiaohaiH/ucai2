@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body>
+	
+      <!--$. ajax({
+        url:'http://www.sina.com/',
+        type: 'get',
+        // dataType:'json',
+        // data: {param1: 'value1'},
+        success: function(data){
+              console.log(data);
+        }
+      }) -->
+
+
+</body>
+<script type="text/javascript">
+	var url = "http://yx.xianjian.com/p/api.php?method=wf&api_key=nimakdkeiLdkfen2lidkdlDLLEKd&page=1&per_page=10&tag=&type=5&order=2&_ksTS=1494846118558_32&jsoncallback=?";
+	// $.get(url,function(data){
+	// 	console.log(data);
+	// });
+
+
+	$.ajax({
+		"type" : "POST",
+		"url" : url,
+		// "data" : "jsonp",
+		jsonpCallback : "xiaohai", //换成自定义的名字
+		"dataType" : "jsonp",
+		"success" : function(data,da){
+			console.log(data,da);
+		}
+	});
+
+
+	$.getJSON(url,function(data,success){ //  通过$.getJSON方式来跨域访问数据 data就是获取到的数据;success是判断结果是否成功.
+		console.log(data,success);
+	});
+
+
+
+
+
+//	 ----------------官网给的方式,网址需要越狱才能访问----------------------
+	// $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?", function(data){
+	//   $.each(data.items, function(i,item){
+	//     $("<img/>").attr("src", item.media.m).appendTo("#images");
+	//     if ( i == 3 ) return false;
+	//   });
+	// });
+</script>
+</html>
