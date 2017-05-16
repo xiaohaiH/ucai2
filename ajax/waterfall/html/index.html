@@ -3,17 +3,44 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<script type="text/templete" id="templete">
+		<li>
+			<img src="<% url %>" alt="图片加载失败" />
+			<p><% tags %></p>
+		</li>
+	</script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/index.js"></script>
 	<style type="text/css">
-		.box{width:;}
+		body,ul,li,p{margin:0px;padding:0px;}
+		.box{width:710px;}
+		.box ul{position: relative;background:violet;height:800px;}
+		.box ul li{width:230px;position: absolute;list-style:none;}
 	</style>
 </head>
 <body>
 	<div class="box">
-		
+		<ul></ul>
 	</div>
-</body><!-- 
+<!-- 	<script type="text/javascript">
+	obj = {
+		url : "aa",
+		tags : "bb"
+	};
+	var templetestr = $("#templete").html();
+	// console.log($("#templete").each(function(){
+
+		function aa(){
+			return templetestr.replace(/\<\%\s(\w+)\s\%\>/g,function(match,$1){
+
+				return obj[$1];
+			});
+		};
+		var ab = aa();
+		console.log(aa());
+	// }))
+	</script> -->
+</body><!--
 <script type="text/javascript">
 	window.onload = function(){
 	var page = 1;
