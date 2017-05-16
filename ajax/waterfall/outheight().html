@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery.js"></script>
+	<style type="text/css">
+		div{width:450px;position:relative;}
+		div p{width:100px;height:200px;background: red;margin-left:50px;float: left;position: absolute;}
+	</style>
+</head>
+<body>
+	<div>
+		<p style="height: 100px;">100</p>
+		<p style="height: 120px;">200</p>
+		<p style="height: 130px;">3</p>
+		<p style="height: 140px;">4</p>
+		<p>5</p>
+		<p>6</p>
+		<p style="height: 210px;">7</p>
+		<p>8</p>
+		<p>9</p>
+	</div>
+</body>
+<script type="text/javascript">
+
+	//将li排版！
+	// $("p").each(function(index,bb){
+	// 	var aa = 0;
+
+	// 	for(var i=$(this).index() -3; i>=0;i-=3){
+	// 		aa += $(this).outerHeight() + 30;
+	// 	};
+	// 	$(this).css({
+	// 		"top" : aa + "px",
+	// 		"left" : ($(this).index() % 3) * 150
+	// 	});
+		// console.log($(this).outerHeight());
+	// });
+
+
+	//获取数组中的最大或最小值,max不支持直接写数组的方式   利用apply的方式来获取数组中的最大或最小值.
+	// var arr = [1,321,3432,432,111,111,1];
+	// console.log(Math.max.apply(null,arr));
+	// console.log(Math.min.apply(null,arr));
+
+
+</script>
+<script type="text/javascript">
+	var min = [0,0,0,0,0,0,0,0,0];
+	$("p").each(function(index,value){
+		var thisheight = 0;
+		var minvalue = Math.min.apply(null,min);
+		var minindex = min.indexOf(minvalue);
+		thisheight += $(this).outerHeight() + 20;
+		$(this).css({
+			"left" : minindex * 150 + "px",
+			"top" : thisheight + 30 + "px"
+		});
+	});
+</script>
+</html>
