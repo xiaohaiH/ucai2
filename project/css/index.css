@@ -2,12 +2,12 @@ body,ul,li,figure,figcaption,p,input{margin:0;padding:0;}
 li{list-style:none;}
 a{text-decoration: none;color:#333333;}
 
-.header,nav{width:1000px;margin:0 auto;}
+.header,nav,.stroe{width:1000px;margin:0 auto;}
 
 
 /*==========================header fixed1=================================*/
-header{positon:fixed;top:0px;left:0px;background:#25292E;height:58px;min-width: 1000px;}
-.header{position: relative;height: 58px;}
+header{position:fixed;top:0px;left:0px;background:#25292E;width:100%;min-width: 1000px;}
+.header{position: relative;height: 58px;background:#25292E;}
 .header div i{float:left;background:url(../img/icon.png) no-repeat 0px 13px;width:96px;height:58px;transition:all .5s;}
 .header div i:hover{opacity:0.7;}
 .header div ul{float: right;}
@@ -30,8 +30,9 @@ header{positon:fixed;top:0px;left:0px;background:#25292E;height:58px;min-width: 
 .messagelist li a span{float:left;}
 .messagelist li a i{font-style: normal;float:right;}
 /*==========================header=================================*/
-/*#262B30*/
-nav{border-bottom:4px solid #EDEDED;height:50px;}
+.navbox{width:100%;background:white;}
+nav{position:relative;background:white;}
+.box2{border-bottom:4px solid #EDEDED;height:50px;}
 .nav li{float:left;cursor:pointer;width:154px;}
 .nav li a{float:left;width:123px;border-bottom:4px solid #EDEDED;padding:17px 0 12px 0;text-align:center;-margin-right:32px;}
 .nav li:first-child a{text-align:left;width:120px;margin:0;}
@@ -40,3 +41,29 @@ nav{border-bottom:4px solid #EDEDED;height:50px;}
 .search .box{-display:none;z-index:2;left:230px;position:absolute;width:230px;border-bottom:4px solid #262B30;}
 .search .box input{border:none;outline:none;background:none;width:190px;height:50px;padding-left:10px;}
 .search>input{position:relative;z-index:3;border:none;outline:none;float:right;background: url(../img/icon.png) no-repeat -164px -156px;width:40px;height:25px;margin-top:17px;margin-bottom:12px;background-color:white;}
+
+
+.stroe,.stroe2{z-index:10000;display:none;background:white;background: white;position:absolute;left:0;top:54px;}
+.stroe .stroeleft{width:750px;height:451px;float: left;}
+.stroe .stroeleft .stroetop{height:380px;}
+.stroe .stroeleft  .shoptop{width:680px;overflow: hidden;-margin:0 35px;margin-top:30px;}
+.stroe .stroeleft  ul{height:70px;cursor:pointer;border-bottom:1px solid white;}
+.stroe .stroeleft .shoptop ul li {-background:green;width:97px;height:70px;float: left;text-align:center;color:#4D4D4D;font-weight:bolder;font-size:14px;}
+.stroe .stroeleft .shoptop ul li  img{display: block;width:40px;height:40px;margin:0 auto;}
+.stroe .stroeleft .shoptop ul li  a{display: block;position:relative;}
+.triangle{position:absolute;top:27px;left:0;right:0;margin:0 auto;width:6px;height:6px;background:white;border:1px solid transparent;border-left:1px solid #C0C0C0;border-top:1px solid #C0C0C0;transform:rotate(45deg);z-index:3;}
+
+.stroe .stroeleft .shoplist{-background:red;width:673px;font-size:12px;display:none;-background:violet;height:72px;text-align:center;padding-right:70px;}
+.stroe .stroeleft .shoplist a{float: left;width:100px;color:#999999;margin:10px 0;}
+.stroe .stroeleft .shoplist a:hover{color:black;}
+
+.stroe .stroeright{float: right;}
+.stroe .stroeright a{display: block;width:232px;height:232px;background:url(../img/315574.jpg) no-repeat center;background-size:232px 232px;margin-top:42px;margin-bottom: 15px;}
+.stroe .stroeright p{text-align:center;}
+
+.stroe2 a{display:inline-block;margin:20px 30px;}
+/*==========================header=================================*/
+/* banner */
+.banner{width:1000px;position: relative;margin-top:112px;}
+.bannerbox{width:8000px;height:475px;position: absolute;z-index:1;}
+.bannerbox li{float: left;}
