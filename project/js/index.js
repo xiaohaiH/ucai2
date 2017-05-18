@@ -9,11 +9,9 @@ window.onload = function(){
 		}
 	);
 	$(".shoppinglist").mouseenter(function(){
-		// console.log("aa")
 		$(".shoppinglist").css("display","block");
 	});
 	$(".shoppinglist").mouseleave(function(){
-		// console.log("aa")
 		$(".shoppinglist").css("display","none");
 	});
 //-----
@@ -26,11 +24,9 @@ window.onload = function(){
 		}
 	);
 	$(".messagelist").mouseenter(function(){
-		// console.log("aa")
 		$(".messagelist").css("display","block");
 	});
 	$(".messagelist").mouseleave(function(){
-		// console.log("aa")
 		$(".messagelist").css("display","none");
 	});
 //-----
@@ -72,6 +68,26 @@ window.onload = function(){
 		}
 	);
 //导航栏
+	$(".stroe").hover(
+		function(){
+			$(this).prev().find("a").eq(1).css("border-bottom","4px solid #262B30");
+			$(this).css("display","block");
+		},
+		function(){
+			$(this).prev().find('a').eq(1).css("border-bottom","4px solid #EDEDED");
+			$(this).css("display","none");
+		}
+	);
+	$(".stroe2").hover(
+		function(){
+			$(this).prevAll(".box2").find('a').eq($(this).index()+1).css("border-bottom","4px solid #262B30");
+			$(this).css("display","block");
+		},
+		function(){
+			$(this).prevAll(".box2").find("a").eq($(this).index()+1).css("border-bottom","4px solid #EDEDED");
+			$(this).css("display","none");
+		}
+	);
 //杂志
 	var list2 = [
 		['趣物','数码','汽车','文化','时尚','美食','建筑','空间','圈子','清单','活动','视频'],
@@ -94,9 +110,6 @@ window.onload = function(){
 			$(".stroe2").css("display","none");
 		}
 	);
-	// for(var i=0;i<){
-
-	// }
 
 //商店
 	var arr = ["家居","家具","文具","数码","玩乐","厨卫","美食","男装","女装","童装","鞋包","配饰","美护","户外","植物","图书","艺术","礼物","推荐"];
@@ -158,7 +171,7 @@ window.onload = function(){
 		},
 		function(){
 			$(this).css("border-color","white");
-		},
+		}
 	);
 	$(".stroeleft li").hover(
 		function(){
@@ -194,7 +207,6 @@ window.onload = function(){
 	$(".stroebottom p a").eq(1).attr("href","javascript:;").html("最新到货&nbsp;>").css({"font-size":"14px","color":"666666"});
 /*==================header结束=======================*/
 // banner
-
 $.ajax({
 	url : "http://lc.shudong.wang/api_ad.php?position_id=1",
 	type : "GET",
