@@ -189,7 +189,6 @@ window.onload = function(){
 		}
 	);
 	$(".shoplist").mouseenter(function() {
-		console.log(index)
 		$(this).css("display","block");
 		$(this).prev().find("li").eq(index).find("span").addClass("triangle");
 		$(this).prev().css("border-color","#C0C0C0");
@@ -207,21 +206,145 @@ window.onload = function(){
 	$(".stroebottom p a").eq(1).attr("href","javascript:;").html("最新到货&nbsp;>").css({"font-size":"14px","color":"666666"});
 /*==================header结束=======================*/
 // banner
+
+!(function(){
+	var i=1;
+	var timer = "";
+
+function bannermove(){
+	$(".smallicon p").each(function(index){
+		$(this).attr("class","");
+	});
+	var obj = document.getElementsByClassName("bannerbox")[0];
+	var objlength = $(".bannerbox").find("li").length;
+	var iconindex = i;
+	$(".smallicon p").eq(iconindex>=objlength-1?iconindex=0:iconindex=iconindex).attr("class","bannerbg");
+	if(i >= objlength-1){
+		i=1;
+		$(".bannerbox").css("left",0);
+	}else{
+		i++;
+	}
+	startmove(obj,{"left": i * -1000});
+
+};
+
 $.ajax({
 	url : "http://lc.shudong.wang/api_ad.php?position_id=1",
 	type : "GET",
 	dataType : "json",
 	success : function(data){
-		console.log(data.data);
 		var bannerImg =  data.data;
+		$("<div></div>").attr("class","smallicon").appendTo(".banner");
+		$("<img/>").attr({"src":bannerImg[bannerImg.length-1].url}).appendTo("<a></a>").parent().attr("href",bannerImg[bannerImg.length-1].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
 		for(var i=0;i<bannerImg.length;i++){
 			$("<img/>").attr({"src":bannerImg[i].url}).appendTo("<a></a>").parent().attr("href",bannerImg[i].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
-			// $("<li></li>").append("a")
-		}
+			$("<p></p>").appendTo(".smallicon").parent().css("width",(i*24)+24+"px");
+		};
+		$(".smallicon p").eq(0).attr("class","bannerbg");
+
+
+		timer = setInterval(bannermove,4000);
+
+		$(".banner").mouseenter(function(){
+			clearInterval(timer);
+		});
+		$(".banner").mouseleave(function(){
+			timer = setInterval(bannermove,4000);
+		});
+		$(".smallicon p").click(function(){
+			$(".smallicon p").each(function(index){
+				$(this).attr("class","");
+			});
+			$(this).attr("class","bannerbg");
+			var aa = $(".bannerbox");
+			var ab = aa[0];
+			startmove(ab,{"left": ($(this).index()+1) * -1000});
+			// $(".bannerbox").css("left",($(this).index()+1) * -1000 + "px");
+			i = $(this).index()+1;
+		});
 	}
 });
 
+}())
+// ---------------banner结束   有bug
 
+$.ajax({
+	url : "http://lc.shudong.wang/api_goods.php",
+	// data : "",
+	type : "GET",
+	dataType : "json",
+	success : function(data){
+		var shopproduct =  data.data;
+		var tostr = $("#templete").html();
+		var compiled = _.template(tostr);
+		$("<div></div>").appendTo(".popularityproduct").attr("class","middle");
+		$(shopproduct).each(function(index){
+			if((index+1)%3==0){
+				$(compiled(this)).appendTo(".middle").attr("class","product clearright");
+			}else{
+				$(compiled(this)).appendTo(".middle");
+			};
+		});
+		$(".product").mouseenter(function(event) {
+			if($(this).find("a:eq(0)").is(":animated")){
+				return false;
+			}
+			$(this).find("a:eq(0)").fadeIn(200);
+		});
+		$(".product").mouseleave(function(event) {
+			$(this).find("a:eq(0)").fadeOut(200);
+		});
+		//
+		$("<a></a>").appendTo(".popularityproduct").attr({"class":"more","href":"javascript:;"}).html("more");
+		$(".more").mouseenter(function(){
+			$(this).css({"background-color":"#25292E","color":"white"});
+		});
+		$(".more").mouseleave(function(){
+			$(this).css({"background-color":"white","color":"#333333"});
+		});
+		$(".dispose a i").mouseenter(function(){
+			$(this).css("animation","hand 2s 3");
+		});
+	}
+});
+
+// footer底部
+$(".footer dl").hover(
+	function(){
+		$(this).find("a").css("color","#999999");
+		$(".code").css("display","block");
+	},
+	function(){
+		$(this).find("a").css("color","#595C5C")
+		$(".code").css("display","none");
+	}
+);
+$(".code").hover(
+	function(){
+		$(this).css("display","block");
+	},
+	function(){
+		$(this).css("display","none");
+	}
+);
+
+$(".footerright li:eq(0)").hover(
+	function(){
+		$(".footerright p").fadeIn(300);
+	},
+	function(){
+		$(".footerright p").css("display","none");
+	}
+);
+$(".footer .footerright p").hover(
+	function(){
+		$(this).css("display","block");
+	},
+	function(){
+		$(this).fadeOut(300);
+	}
+);
 
 
 

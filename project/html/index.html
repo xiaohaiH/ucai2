@@ -3,10 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>良仓</title>
-<!-- 	<script type="text/templete" id="templete">
-		<li><a href=""><img src=""></a></li>
-	</script> -->
+	<script type="text/templete" id="templete">
+		<div class="product">
+			<div>
+				<img src="<%= goods_thumb %>" alt="">
+				<a href="http://www.iliangcang.com/i/goods/?id= <%= goods_id %>">
+					<p><%= price %></p>
+					<p>
+						<span><%= goods_name %></span>
+						<span><%= goods_desc %></span>
+					</p>
+				</a>
+			</div>
+			<p>
+				<a href="javascript:;"></a>
+				<a href="javascript:;"><%= cat_id %></a>
+			</p>
+		</div>
+	</script>
 	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<script type="text/javascript" src="../api/underscore.min.js"></script>
+	<script type="text/javascript" src="../js/bannermove.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/index.js"></script>
 </head>
@@ -74,5 +91,95 @@
 	<div class="banner">
 		<ul class="bannerbox"></ul>
 	</div>
+	<div class="popularityproduct">
+		<p>人气良品</p>
+	</div>
+	<div class="disposebox">
+		<div class="dispose">
+			<a href="javascript:;">
+				<i></i>
+			</a>
+			<div class="slogan">
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>全球精品</p>
+						<p>Global Selections</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>正品保证</p>
+						<p>Authenticity Guaranteed</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>全场包邮</p>
+						<p>Free Delivery</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p></p>
+						<p>工作日 09:00-18:00</p>
+					</figcaption>
+				</figure>
+		</div>
+	</div>
+	<footer>
+		<div class="footer">
+			<div class="footerleft">
+				<div class="code">
+					<p><i></i><span>下载iPhone版</span></p>
+					<p><i></i><span>下载Android版</span></p>
+				</div>
+				<dl>
+					<dt></dt>
+					<dd>
+						<a>iPhone Android</a>
+						<a>客户端下载</a>
+					</dd>
+				</dl>
+				<div class="foot-bottom">
+					<ul>
+						<li><a href="javascript:;">关于良仓</a></li>
+						<li></li>
+						<li><a href="javascript:;">服务协议</a></li>
+						<li></li>
+						<li><a href="javascript:;">隐私保护政策</a></li>
+						<li></li>
+						<li><a href="javascript:;">使用指南</a></li>
+						<li></li>
+						<li><a href="javascript:;">联系我们</a></li>
+						<li></li>
+						<li><a href="javascript:;">加入我们</a></li>
+						<li></li>
+						<li><a href="javascript:;">友情链接</a></li>
+						<li></li>
+						<li><a href="javascript:;">私信良仓</a></li>
+					</ul>
+					<ul>
+						<li>© 2013-2015 北京良仓文化传播有限公司版权所有 京ICP备13010677号-1 京公网安备11010502025627</li>
+						<li>公司名称：北京良仓文化传播有限公司  电话：010-58263516</li>
+						<li>公司地址：北京朝阳区百子湾路32号6号楼1层60号.</li>
+						<li>社会信用统一代码：91110105059231575L  食品许可证：JY11105160159557</li>
+						<li>图书证名称：中华人民共和国出版物经营许可证  图书证编号：新出发京零 字第 朝 150051 号</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footerright">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<p><i></i></p>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
