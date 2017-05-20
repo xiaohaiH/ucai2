@@ -208,27 +208,6 @@ window.onload = function(){
 // banner
 
 !(function(){
-	var i=1;
-	var timer = "";
-
-function bannermove(){
-	$(".smallicon p").each(function(index){
-		$(this).attr("class","");
-	});
-	var obj = document.getElementsByClassName("bannerbox")[0];
-	var objlength = $(".bannerbox").find("li").length;
-	var iconindex = i;
-	$(".smallicon p").eq(iconindex>=objlength-1?iconindex=0:iconindex=iconindex).attr("class","bannerbg");
-	if(i >= objlength-1){
-		i=1;
-		$(".bannerbox").css("left",0);
-	}else{
-		i++;
-	}
-	startmove(obj,{"left": i * -1000});
-
-};
-
 $.ajax({
 	url : "http://lc.shudong.wang/api_ad.php?position_id=1",
 	type : "GET",
@@ -241,26 +220,41 @@ $.ajax({
 			$("<img/>").attr({"src":bannerImg[i].url}).appendTo("<a></a>").parent().attr("href",bannerImg[i].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
 			$("<p></p>").appendTo(".smallicon").parent().css("width",(i*24)+24+"px");
 		};
+
+		var page = 0;
+		var timer = setInterval(bannermove,3000);
+		function bannermove(){
+			var obj = $(".bannerbox");
+			obj = obj[0];
+			page++;
+			if(page >= $(".bannerbox li").length){
+				$(".bannerbox").css("left","0px");
+				page = 1;
+			};
+			startmove(obj,{"left":-page * 1000 + "px"});
+			$(".smallicon p").attr("class","");
+			$(".smallicon p").eq(page-1).attr("class","bannerbg");
+		};
 		$(".smallicon p").eq(0).attr("class","bannerbg");
-
-
-		timer = setInterval(bannermove,4000);
-
 		$(".banner").mouseenter(function(){
 			clearInterval(timer);
 		});
 		$(".banner").mouseleave(function(){
 			timer = setInterval(bannermove,4000);
 		});
+			var dantimer ="";
 		$(".smallicon p").click(function(){
+			// if(parseInt($(".bannerbox").css("left")) % 1000 != Math.abs(0)){
+			// 	return false;
+			// };
+			clearInterval(dantimer);
 			$(".smallicon p").each(function(index){
 				$(this).attr("class","");
 			});
 			$(this).attr("class","bannerbg");
 			var aa = $(".bannerbox");
 			var ab = aa[0];
-			startmove(ab,{"left": ($(this).index()+1) * -1000});
-			// $(".bannerbox").css("left",($(this).index()+1) * -1000 + "px");
+			dantimer = startmove(ab,{"left": ($(this).index()+1) * -1000});
 			i = $(this).index()+1;
 		});
 	}
@@ -346,10 +340,50 @@ $(".footer .footerright p").hover(
 	}
 );
 
-
-
-
-
+//监听滚轮事件
+!(function(){
+	var shang = 0;
+	$(window).scroll(function(e){
+		var top = $(this).scrollTop();
+		if(top >= 166){
+			$(".UpTop").fadeIn();
+		}else{
+			$(".UpTop").fadeOut();
+		};
+		if(top <= shang){
+			if($(".header").is(":animated")){
+				return false;
+			};
+			$(".header").slideDown();
+			return false;
+		};
+		shang = top - 1;
+		if(top >= 133){
+			if($(".header").is(":animated")){
+				return false;
+			};
+			$(".header").slideUp();
+		};
+	});
+}());
+//返回顶部
+!(function(){
+	$(".UpTop").click(function(){
+		var timer = setInterval(function(){
+			var xx = $(window).scrollTop();
+			if(xx<=0){
+				clearInterval(timer);
+				return false;
+			};
+			xx-=returnTop(0.2);
+			$(window).scrollTop(xx);
+		},1);
+	});
+	function returnTop(t){
+		var H = $(document).height();
+		return H/t/1000;
+	};
+}());
 
 
 

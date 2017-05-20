@@ -7,8 +7,9 @@ function getStyle(obj,attr){
 };
 function startmove(obj,attr){
 	var distance = 0;
+	var timer ="";
 	clearInterval(timer);
-	var timer = setInterval(function(){
+	return timer = setInterval(function(){
 		for(var k in attr){
 			var currentposition = parseInt(getStyle(obj,k));//当前位置(left)
 			var targetlocation = parseInt(attr[k]);//目标位置(left)
