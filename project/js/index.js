@@ -1,6 +1,48 @@
 window.onload = function(){//整个页面加载完成后在运行此函数
+	!(function(){//登录获取保存在本地的cookie值  用localStorage做的
+		console.log(localStorage)
+		console.log(localStorage.avatar)
+		var username = localStorage.username;
+		var Img = localStorage.avatar;
+		if(username){
+			$(".header div ul a:eq(0)").html(username);
+			$("<span></span>").prependTo(".header .user ul li:eq(0) a").css({"float":"left","background":"url(http://www.iliangcang.com/images/default/headImgTmp239.png) no-repeat center","width":"30px","height":"30px","background-size":"cover","margin":"14px 5px 0 0"});
+			$(".header div ul a:eq(1)").remove();
+		};
+		$(".header div ul a:eq(0)").hover(
+			function(){
+				if($(".header div ul a:eq(0)").html()!= "登录"){
+					$(".userlist").css("display","block");
+				}else{
+					return false;
+				};
+			},
+			function(){
+				$(".userlist").css("display","none");
+			}
+		);
+		$(".userlist").hover(
+			function(){
+				$(".userlist").css("display","block");
+			},
+			function(){
+				$(".userlist").css("display","none");
+			}
+		);
+		$(".userlist li:eq(3)").click(function(){
+			 localStorage.removeItem('username');
+			$(".userlist").css("display","none");
+			$(".header .user ul li:eq(0) a span").remove();
+			$(".header div ul a:eq(0)").html("登录");
+			$("<a></a>").appendTo(".header .user ul li:eq(0)").html("注册").attr("href","../html/sign.html");
+		});
+	}())
 //-----
-	$("ul li:eq(2)").hover(//放上去购物车显示,离开消失
+	// $(".user ul")
+
+
+//-----
+	$(".header .user ul li:eq(2)").hover(//放上去购物车显示,离开消失
 		function(){
 			$(".shoppinglist").css("display","block");
 		},
@@ -15,7 +57,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		$(".shoppinglist").css("display","none");
 	});
 //-----
-	$("ul li:eq(4)").hover(//放上去消息栏显示,离开消失
+	$(".header .user ul li:eq(4)").hover(//放上去消息栏显示,离开消失
 		function(){
 			$(".messagelist").css("display","block");
 		},

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+		var obj = {};
+		obj.status = "register";
+		obj.username = "abcabc";
+		obj.password = "abcabc";
+$.ajax({
+	url : "http://h6.duchengjiu.top/shop/api_user.php",
+	type : "POST",
+	data : obj,
+	success : function(data){
+		console.log(JSON.parse(data))
+	}
+})
+</script>
+</html>

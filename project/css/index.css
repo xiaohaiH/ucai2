@@ -3,22 +3,32 @@ body,ul,li,figure,figcaption,p,input,dl,dt,dd{margin:0;padding:0;}
 li{list-style:none;}
 a{text-decoration: none;color:#333333;}
 
-.header,nav,.stroe,.banner,.popularityproduct,.dispose,.slogan,.footer{width:1000px;margin:0 auto;}
+.header,nav,.stroe,.banner,.popularityproduct,.dispose,.slogan,.footer,.adv{width:1000px;margin:0 auto;}
 body{position:relative;}
 
 /*==========================header fixed1=================================*/
 header{position:fixed;top:0px;left:0px;background:#25292E;width:100%;min-width: 1000px;z-index: 5;}
 .header{position: relative;height: 58px;background:#25292E;}
-.header div i{float:left;background:url(../img/icon.png) no-repeat 0px 13px;width:96px;height:58px;transition:all .5s;}
-.header div i:hover{opacity:0.7;}
-.header div ul{float: right;}
-.header div ul li{float: left;}
-.header div ul li:nth-child(odd){padding:0 16px;line-height: 58px;font-size:12px;}
-.header div ul li:nth-child(even){height:8px;border:1px solid #525961;margin-top:25px;}
-.header div ul li:nth-child(odd) a{color:#666666;display: block;}
-.header div ul li:nth-child(1) a{color:#CCCCCC;float: right;}
-.header div ul li:nth-child(1) a:nth-child(1){padding-right:8px;float:left;}
-.header div ul li:nth-child(odd) a:hover{color:#CCCCCC;}
+.header .user{-position:relative;overflow: hidden;}
+.header .user i{float:left;background:url(../img/icon.png) no-repeat 0px 13px;width:96px;height:58px;transition:all .5s;}
+.header .user i:hover{opacity:0.7;}
+.header .user>ul{float: right;}
+.header .user>ul li{float: left;}
+.header .user>ul li:nth-child(odd){padding:0 16px;line-height: 58px;font-size:12px;}
+.header .user>ul li:nth-child(even){height:8px;border:1px solid #525961;margin-top:25px;}
+.header .user>ul li:nth-child(odd) a{color:#666666;display: block;}
+.header .user>ul li:nth-child(1) a{color:#CCCCCC;float: right;}
+.header .user>ul li:nth-child(1) a:nth-child(1){padding-right:8px;float:left;}
+.header .user>ul li:nth-child(odd) a:hover{color:#CCCCCC;}
+
+.userlist{display:none;position:absolute;top:58px;right:140px;z-index: 5;background:#292F34;font-size:12px;}
+.userlist ul li{line-height:42px;}
+.userlist a{color:white;display: block;margin:0 15px;border-bottom:1px solid #42474B;width:160px;}
+.userlist ul li:nth-child(3) a{border:none;}
+.userlist ul li:last-child{background:#252B32;width:190px;height:50px;text-align: center;font-size:16px;}
+.userlist ul li:last-child a{border:none;color:white;}
+.userlist ul li:hover{background:#2E353D;}
+
 
 .shoppinglist{display:none;position:absolute;z-index:4;top:58px;right:0px;width:320px;background: #292F34;text-align:center;font-size:14px;}
 .shoppinglist li:nth-child(1){height:70px;line-height: 70px;color:#CCCCCC;}
@@ -75,6 +85,13 @@ nav{position:relative;background:white;}
 
 
 /* =======================有问题的banner==================================== */
+.adv{overflow: hidden;}
+.adv .advleft{width:317px;float: left;}
+.adv .advleft a:first-child{display: block;margin-bottom: 19px;}
+.adv .advcenter{width:317px;float: left;margin:0 20px;}
+.adv .advright{width:317px;float: right;}
+.adv .advright a:first-child{display: block;margin-bottom: 19px;}
+/* =======================adv广告结束==================================== */
 .popularityproduct>p:first-child{height:40px;line-height:40px;font-size:12px;text-align:center;border-bottom:1px solid #CCCCCC;margin-top:20px; margin-bottom:40px;}
 .popularityproduct .middle{overflow: hidden;}
 .popularityproduct .middle .product{float: left;width:316px;overflow: hidden;margin:0 26px 30px 0;position:relative;}

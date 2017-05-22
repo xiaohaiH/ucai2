@@ -1,0 +1,39 @@
+body,ul,li,a,img,input{margin:0;padding:0;}
+li{list-style:none;}
+a{text-decoration:none;color:white;}
+
+
+body{background:#999999;position:relative;height:100%;}
+
+.box{width:385px;position:absolute;left:0;right:0;top:90px;margin:0 auto;}
+.box>img{display: block;margin:0 auto;margin-bottom: 20px;padding-left:100px;}
+.box form>label{display: block;overflow: hidden;margin-top:10px;}
+.box form>label span{float: left;line-height:50px;color:white;font-weight: bolder;letter-spacing:1px;}
+.box form>label input{float:right;font-size:16px;width:285px;height:50px;line-height:50px;border:none;outline:none;padding-left:15px;background:#CCCCCC;color:white;}
+.box form label ::-webkit-input-placeholder{color:white;}/* 给谷歌做兼容 */
+.box form label :-moz-placeholder{color:white;}/* 给火狐4~18做兼容 */
+.box form label ::-moz-placeholder{color:white;}/* 给火狐19+做兼容 */
+.box form label :-ms-input-placeholder{color:white;}/* 给IE10+做兼容 */
+
+.box form p{overflow: hidden;font-size:12px;color:white;margin-left: 105px;}
+.box form p label input{float: left;;}
+.box form p label span{float: left;padding-left:5px;}
+.box form p label span a{padding-left:5px;color:#0C79CC;}
+
+.box form button{float: right;background:#25292E;width:300px;height:50px;font-size:20px;font-weight:bolder;border:none;outline: none;color:white;cursor:pointer;}
+
+.box .way{clear:both;margin-top:30px;overflow: hidden;width:300px;float: right;}
+.box .way .left{float:left;overflow: hidden;}
+.box .way .left a{float:left;width:36px;height:36px;}
+.box .way .left a:nth-child(1) {background:url(../img/qqnormal.png) no-repeat center;}
+.box .way .left a:nth-child(2) {background:url(../img/xinlangnormal.png) no-repeat center;}
+.box .way .left a:nth-child(3) {background:url(../img/doubannormal.png) no-repeat center;}
+.box .way .left a:nth-child(4) {background:url(../img/tengxunnormal.png) no-repeat center;}
+
+.box .way>a{float:right;line-height:36px;text-decoration: underline;}
+
+
+.adv{width:120px;position: fixed;right:30px;bottom:30px;}
+.adv a{display: block;height:40px;line-height:40px;overflow: hidden;}
+.adv a span{float:left;color:white;font-weight:bolder;padding-right:0px;}
+.adv a i{float:right;width:40px;height:40px;background: url(../img/6.jpg) no-repeat center;background-size:cover;}

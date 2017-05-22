@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>良仓</title>
-	<script type="text/templete" id="templete">
+	<title>iliangcang</title>
+	<link rel="shortcur icon" type="image/x-icon" href="../img/favicon.ico" media="screen"><!-- 设置网页右上角小图标 -->
+	<script type="text/templete" id="templete"><!-- 模板 -->
 		<div class="product">
 			<div>
 				<img src="<%= goods_thumb %>" alt="">
@@ -31,16 +32,24 @@
 	<header>
 		<!-- 头部 -->
 		<div class="header">
-			<div>
+			<div class="user">
 				<i></i>
 				<ul>
-					<li><a href="javascript:;">登录</a><a href="javascript:;">注册</a></li>
+					<li><a href="../html/login.html">登录</a><a href="javascript:;">注册</a></li>
 					<li></li>
 					<li><a href="javascript:;">购物车</a></li>
 					<li></li>
 					<li><a href="javascript:;">消息</a></li>
 					<li></li>
 					<li><a href="javascript:;">添加良品</a></li>
+				</ul>
+			</div>
+			<div class="userlist">
+				<ul>
+					<li><a href="javascript:;">个人设置</a></li>
+					<li><a href="javascript:;">收货信息</a></li>
+					<li><a href="javascript:;">我的订单</a></li>
+					<li><a href="javascript:;">退出</a></li>
 				</ul>
 			</div>
 			<ul class="shoppinglist">
@@ -88,14 +97,27 @@
 			</nav>
 		</div>
 	</header>
-	<div class="banner">
+	<div class="banner"><!-- banner图 -->
 		<ul class="bannerbox"></ul>
 	</div>
-	<div class="popularityproduct">
+	<div class="adv">
+		<div class="advleft">
+			<a href="http://www.iliangcang.com/i/topicapp/201705181808"><img src="../img/27176.jpg"></a>
+			<a href="http://www.iliangcang.com/i/topicapp/201705185537"><img src="../img/27175.jpg"></a>
+		</div>
+		<div class="advcenter">
+			<a href="http://www.iliangcang.com/i/topicapp/201705115213"><img src="../img/27178.jpg"></a>
+		</div>
+		<div class="advright">
+			<a href="http://www.iliangcang.com/i/topicapp/201705185227"><img src="../img/27177.jpg"></a>
+			<a href="http://www.iliangcang.com/i/topic/201705183611"><img src="../img/27174.jpg"></a>
+		</div>
+	</div>
+	<div class="popularityproduct"><!-- 人气宝贝 -->
 		<p>人气良品</p>
 		<div class="middle"></div>
 	</div>
-	<div class="disposebox">
+	<div class="disposebox"><!-- 产品流程 -->
 		<div class="dispose">
 			<a href="javascript:;">
 				<i></i>
@@ -131,7 +153,7 @@
 				</figure>
 		</div>
 	</div>
-	<footer>
+	<footer><!-- 底部 -->
 		<div class="footer">
 			<div class="footerleft">
 				<div class="code">
