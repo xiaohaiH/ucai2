@@ -10,12 +10,16 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 		var obj = {};
-		obj.status = "register";
-		obj.username = "abcabc";
-		obj.password = "abcabc";
+		// search_text='小酒杯';
+		obj.search_text='书';
+		obj.page=1;
+		obj.pagesize=1;
+		// obj.status = "register";
+		// obj.username = "abcabc";
+		// obj.password = "abcabc";
 $.ajax({
-	url : "http://h6.duchengjiu.top/shop/api_user.php",
-	type : "POST",
+	url : "http://h6.duchengjiu.top/shop/api_goods.php",
+	type : "get",
 	data : obj,
 	success : function(data){
 		console.log(JSON.parse(data))

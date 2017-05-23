@@ -2,7 +2,6 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 	!(function(){//登录获取保存在本地的cookie值  用localStorage做的
 		var username = localStorage.username;
 		var Img = localStorage.avatar;
-		localStorage.removeItem("search");//每次进入页面清空搜索的值
 		if(username){
 			$(".header div ul a:eq(0)").html(username);
 			$("<span></span>").prependTo(".header .user ul li:eq(0) a").css({"float":"left","background":"url(http://www.iliangcang.com/images/default/headImgTmp239.png) no-repeat center","width":"30px","height":"30px","background-size":"cover","margin":"14px 5px 0 0"});
@@ -91,12 +90,6 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		$(this).animate({"opacity":"1"},200);
 	});
 	$(".search>input").click(function() {//点击搜索框时,判断是否有值或者是否在运动中,是则不产生变化,否则根据判断条件来确定搜索框的显示跟隐藏.
-		var searchval = $(".box input").val();
-		if(searchval){
-			localStorage.search = searchval;
-			$(".box input").val("");
-			location.href = "../html/searchlist.html";
-		};
 		if($(".box").find("input").val()||$(".box").is(":animated")){
 			return false;
 		};
@@ -303,152 +296,55 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 	});
 
 /*==================header结束=======================*/
-/*==================banner底部=======================*/
-// banner
-
 !(function(){
-	$.ajax({
-		url : "http://lc.shudong.wang/api_ad.php?position_id=1",
-		type : "GET",
-		dataType : "json",
-		success : function(data){//将获取到的banner图片添加li标签并显示
-			var bannerImg =  data.data;
-			$("<div></div>").attr("class","smallicon").appendTo(".banner");
-			$("<img/>").attr({"src":bannerImg[bannerImg.length-1].url}).appendTo("<a></a>").parent().attr("href",bannerImg[bannerImg.length-1].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
-			for(var i=0;i<bannerImg.length;i++){
-				$("<img/>").attr({"src":bannerImg[i].url}).appendTo("<a></a>").parent().attr("href",bannerImg[i].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
-				$("<p></p>").appendTo(".smallicon").parent().css("width",(i*24)+24+"px");
-			};
-			$("<p></p>").appendTo(".banner").attr("class","clickpre btn").html("<");
-			$("<p></p>").appendTo(".banner").attr("class","clicknext btn").html(">");
-
-			var page = 1;//起始图片位置为1,第1张为最后一张
-			var obj = $(".bannerbox");
-			obj = obj[0];//将jQuery对象转化为原生的方式(jQuery不支持currentStyle属性).
-			var timer = "";
-			timer = setInterval(bannermove,4000);//运行封装的运动函数
-			$(".smallicon p").eq(0).attr("class","bannerbg");//给第1个p标签添加class,代表此时是第一张图片
-			$(".banner").mouseenter(function(){//鼠标滑入banner时,停止定时器
-				clearInterval(timer);
-			});
-			$(".banner").mouseleave(function(){//鼠标滑出banner时,开启定时器
-				timer = setInterval(bannermove,4000);
-			});
-			$(".banner .btn").on("mouseenter",function(){
-				if(!$(this).is(":animated")){
-					$(this).animate({"opacity":".8"});
-				};
-			});
-			$(".banner .btn").on("mouseleave",function(){
-				$(this).animate({"opacity":".2"});
-			});
-			var dantimer ="";
-			$(".banner .clickpre").on("click",function(){//点击上一张图片时进行切换
-				clearInterval(timer);
-				clearInterval(dantimer);//这个可以不用写,点击按钮时,首先先停止运动插件里的定时器,避免left错乱
-				page--;//更改下一次运动图片的值
-				if(page < 0){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left",($(".bannerbox li").length-1) * -1000 + "px");
-					page = $(".bannerbox li").length-2;
-				};
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": page * -1000});//点击后使用运动插件来进行移动
-			});
-			$(".banner .clicknext").on("click",function(){//点击下一张图片时进行切换
-				clearInterval(timer);
-				clearInterval(dantimer);//这个可以不用写,点击按钮时,首先先停止运动插件里的定时器,避免left错乱
-				page++;//更改下一次运动图片的值
-				if(page >= $(".bannerbox li").length){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left","0px");
-					page = 1;
-				};
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": page * -1000});//点击后使用运动插件来进行移动
-			});
-			$(".smallicon p").click(function(){
-				// if(parseInt($(".bannerbox").css("left")) % 1000 != Math.abs(0)){
-				// 	return false;
-				// };
-				clearInterval(timer);
-				clearInterval(dantimer);//点击p标签时,首先先停止运动插件里的定时器,避免left错乱
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(this).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": ($(this).index()+1) * -1000});//点击后使用运动插件来进行移动
-				page = $(this).index()+1;//给下一次运动的图片赋值
-				timer = setInterval(bannermove,4000);
-			});
-			function bannermove(){//封装运动函数
-				page++;//运动的图片自增1
-				if(page >= $(".bannerbox li").length){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left","0px");
-					page = 1;
-				};
-				startmove(obj,{"left":-page * 1000 + "px"});//让图片开始运动
-				$(".smallicon p").attr("class","");//运动前清空所有p标签的class类名
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给图片对应的p标签添加类名
-			};
-		}
+	$(".contentTop .result div p:eq(0) a").css("color","#A9C7E1").find("i").css("display","block");//默认良品下的倒三角显示
+	$(".contentTop .result div p a").on("click",function(){//点击时先清空所有的倒三角,然后让点击的倒三角显示.
+		$(".contentTop .result div p a").css("color","#666666").find("i").css("display","none");
+		$(this).css("color","#A9C7E1").find("i").css("display","block");
 	});
-}())
-// ---------------banner结束   有bug
-!(function(){//中间的产品 人气良品宝贝
-	page = 1;//给地址赋值
-	function create(i){//封装产品类函数
+	var keywords = localStorage.search;//主页搜索的关键词;
+	$(".contentTop p").find("i").html(keywords);//将关键词赋值给搜索结果
+	var obj = {};
+	obj.search_text = keywords;
+	obj.page=1;
+	obj.pagesize=16;
+	function search(){
 		$.ajax({
-			url : "http://lc.shudong.wang/api_goods.php?page=" + i,
-			// data : "",
+			url : "http://h6.duchengjiu.top/shop/api_goods.php",
 			type : "GET",
-			dataType : "json",
+			data : obj,
 			success : function(data){
-				var shopproduct =  data.data;//获取产品的信息
-				var tostr = $("#templete").html();//获取模板里的内容
-				var compiled = _.template(tostr);//将模板里的内容进行匹配
-				$(shopproduct).each(function(index){//遍历产品的信息
-					if(index == $(shopproduct).length-1){//10张不好布局,所有删减一条;判断等于9时,第十条就不执行了
-						return false;
-					};
-					if((index+1)%3==0){//每逢第三条取消他的margin值;将产品放入到页面中
-						$(compiled(this)).appendTo(".middle").attr("class","product clearright");
-					}else{
-						$(compiled(this)).appendTo(".middle");
-					};
-				});
-				$(".product").mouseenter(function() {//滑入产品的时候让黑色框框显示,并节流
-					if($(this).find("a:eq(0)").is(":animated")){
-						return false;
-					}
-					$(this).find("a:eq(0)").fadeIn(200);
-				});
-				$(".product").mouseleave(function() {
-					$(this).find("a:eq(0)").fadeOut(200);
-				});
+				var getsearchdata = JSON.parse(data);
+				if(getsearchdata.message == "商品数据为空"){
+					alert("数据获取失败或没有此宝贝");
+				}else{
+					var tempval = $("#templete").html();
+					var compiled = _.template(tempval);
+					$.each(getsearchdata.data,function(index){
+						if((index+1)%4 == 0){
+							$(compiled(this)).appendTo(".contentBottom").css("margin","0px");
+						}else{
+							$(compiled(this)).appendTo(".contentBottom");
+						};
+					});
+					$(".productshow").hover(
+						function(){
+							if($(this).find("a").is(":animated")){
+								return false;
+							}
+							$(this).find("a").fadeIn("fast");
+						},
+						function(){
+							$(this).find("a").fadeOut("fast");
+						}
+					);
+				};
 			}
 		});
 	};
-	create(page++);//使用封装的产品函数
-	//更多产品
-	$("<a></a>").appendTo(".popularityproduct").attr({"class":"more","href":"javascript:;"}).html("more");//将点击更多放入到页面中
-	$(".more").click(function(){//当点击更多时,给页面不断增添产品
-		create(page++);
-	});
-	$(".more").mouseenter(function(){//滑入更多时,添加效果
-		$(this).css({"background-color":"#25292E","color":"white"});
-	});
-	$(".more").mouseleave(function(){
-		$(this).css({"background-color":"white","color":"#333333"});
-	});
-	$(".dispose a i").mouseenter(function(){//鼠标触碰到小手时,产生动画,动画在css中已定义好
-		$(this).css("animation","hand 2s 3");
-	});
-}());
+	search();
+}())
+
 /*==================foot底部=======================*/
 // footer底部
 $(".footer dl").hover(//鼠标触碰底部的客户端下载时,显示二维码

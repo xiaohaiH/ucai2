@@ -4,29 +4,28 @@
 	<meta charset="UTF-8">
 	<title>iliangcang</title>
 	<link rel="shortcur icon" type="image/x-icon" href="../img/favicon.ico" media="screen"><!-- 设置网页右上角小图标 -->
-	<script type="text/templete" id="templete"><!-- 模板 -->
+	<!-- 模板 -->
+	<script type="text/templete" id="templete">
 		<div class="product">
-			<div>
-				<img src="<%= goods_thumb %>" alt="">
-				<a href="http://www.iliangcang.com/i/goods/?id= <%= goods_id %>">
-					<p><%= price %></p>
-					<p>
-						<span><%= goods_name %></span>
-						<span><%= goods_desc %></span>
-					</p>
+			<figure>
+				<img src="http://imgs-qn.iliangcang.com/ware/brand/<%= brand_id %>.jpg">
+				<figcaption>
+					<a href="javascript:;"><span> <%= goods_name %> </span><span> <%= star_number %> </span></a>
+				</figcaption>
+			</figure>
+			<div class="productshow">
+				<img src=" <%= goods_thumb %> ">
+				<a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>">
+					<p><span>￥<%= price %></span><i></i></p>
+					<div><%= goods_desc %></div>
 				</a>
 			</div>
-			<p>
-				<a href="javascript:;"></a>
-				<a href="javascript:;"><%= cat_id %></a>
-			</p>
 		</div>
 	</script>
-	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" type="text/css" href="../css/searchlist.css">
 	<script type="text/javascript" src="../api/underscore.min.js"></script>
-	<script type="text/javascript" src="../js/bannermove.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
-	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript" src="../js/searchlist.js"></script>
 </head>
 <body>
 	<header>
@@ -99,25 +98,25 @@
 			</nav>
 		</div>
 	</header>
-	<div class="banner"><!-- banner图 -->
-		<ul class="bannerbox"></ul>
-	</div>
-	<div class="adv"><!-- banner图下的广告 -->
-		<div class="advleft">
-			<a href="http://www.iliangcang.com/i/topicapp/201705181808"><img src="../img/27176.jpg"></a>
-			<a href="http://www.iliangcang.com/i/topicapp/201705185537"><img src="../img/27175.jpg"></a>
+	<div class="content">
+		<div class="contentTop">
+			<p>
+				<a href="../html/index.html">良仓</a>
+				<span>搜索结果&gt;<i></i></span>
+			</p>
+			<div class="result">
+				<div>
+					<p><a href="javascript:;">良品<i></i></a><span></span></p>
+					<span>102</span>
+				</div>
+				<div>
+					<p><a href="javascript:;">用户<i></i></a><span></span></p>
+					<span>69</span>
+				</div>
+			</div>
 		</div>
-		<div class="advcenter">
-			<a href="http://www.iliangcang.com/i/topicapp/201705115213"><img src="../img/27178.jpg"></a>
+		<div class="contentBottom">
 		</div>
-		<div class="advright">
-			<a href="http://www.iliangcang.com/i/topicapp/201705185227"><img src="../img/27177.jpg"></a>
-			<a href="http://www.iliangcang.com/i/topic/201705183611"><img src="../img/27174.jpg"></a>
-		</div>
-	</div>
-	<div class="popularityproduct"><!-- 人气宝贝 -->
-		<p>人气良品</p>
-		<div class="middle"></div>
 	</div>
 	<div class="disposebox"><!-- 产品流程 -->
 		<div class="dispose">

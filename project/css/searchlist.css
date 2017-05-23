@@ -3,7 +3,7 @@ body,ul,li,figure,figcaption,p,input,dl,dt,dd{margin:0;padding:0;}
 li{list-style:none;}
 a{text-decoration: none;color:#333333;}
 
-.header,nav,.stroe,.banner,.popularityproduct,.dispose,.slogan,.footer,.adv{width:1000px;margin:0 auto;}
+.header,nav,.stroe,.contentTop,.contentBottom,.popularityproduct,.dispose,.slogan,.footer{width:1000px;margin:0 auto;}
 body{position:relative;}
 
 /*==========================header fixed1=================================*/
@@ -72,27 +72,35 @@ nav{position:relative;background:white;}
 .stroe .stroeright p{text-align:center;}
 
 .stroe2 a,.stroe3 a{display:inline-block;margin:20px 30px;}
-/*==========================header=================================*/
-/* banner */
-.banner{position: relative;margin-top:142px;z-index:3;overflow:hidden;height:515px;}
-.bannerbox{width:9000px;height:475px;position:absolute;top:0px;left:-1000px;}
-.bannerbox li{float: left;}
-.banner .smallicon{position:absolute;left:0;right:0;bottom:20px;margin:0 auto;overflow: hidden;}
-.banner .smallicon p{float: left;width:20px;height:4px;margin-right:4px;background:#E8E8E8;}
-.bannerbg{background:#45494D!important;}
+/*==========================header结束=================================*/
+.content{margin-top:112px;}
+.content .contentTop>p{font-size:14px;color:#BFBFBF;height:50px;line-height: 50px;}
+.content .contentTop>p span i{font-style: normal;}
+.content .contentTop>p a{color:#666666;margin-right:5px;}
+.content .contentTop .result{overflow: hidden;font-size: 14px;}
+.content .contentTop .result div{float: left;width:60px;height:60px;line-height: 25px;color:#666666;}
+.content .contentTop .result div p{position: relative;width:30px;height:32px;}
+.content .contentTop .result div p a{display: block;position:relative;color:#666666;width:30px;height:26px;text-align: center;padding-bottom: 5px;overflow: hidden;}
+.content .contentTop .result div p a i{display:none;position: absolute;width:10px;height:10px;background:#98B5D5;left:0;right:0;bottom:-6px;margin:0 auto;transform:rotate(45deg);}
+.content .contentTop .result div p span{position: absolute;width:1000px;height:0px;border-bottom:1px solid #CCCCCC;bottom:0;left:0;}
 
-.banner .btn{position:absolute;top:0;bottom:0;margin:auto 0;width:52px;height:52px;border-radius:50%;background:#525255;opacity:.2;font-size:32px;font-weight:bolder;color:white;text-align: center;line-height: 52px;}
-.banner .clickpre{left:20px;}
-.banner .clicknext{right:20px;}
+.content .contentBottom{overflow: hidden;}
+.content .contentBottom .product{float:left;width:235px;height270px;margin:4px 20px 4px 0;}
+.content .contentBottom .product figure{overflow: hidden;font-size:12px;}
+.content .contentBottom .product figure img{float: left;width:34px;height:34px;}
+.content .contentBottom .product figure figcaption{float: right;width:200px;height:34px;line-height:34px;background-image:linear-gradient(to bottom,#F7F7F7,#EAEAEA);}
+.content .contentBottom .product figure figcaption a{display: block;}
+.content .contentBottom .product figure figcaption a span:first-child{float:left;padding-left:10px;width:124px;overflow: hidden;color:#878787;white-space:nowrap;}
+.content .contentBottom .product figure figcaption a span:last-child{float:right;text-align:right;height:34px;padding-right:25px;margin-right:5px;background:url(../img/xin_black.png) no-repeat right;background-size:20px;}
+.content .contentBottom .product .productshow{margin-top:8px;height:230px;position:relative;}
+.content .contentBottom .product .productshow img{width:100%;height:100%;}
+.content .contentBottom .product .productshow a{display:none;position:absolute;z-index:4;width: 100%;color:white;left:0;top:0;background:rgba(0,0,0,.22);}
+.content .contentBottom .product .productshow a p{height:36px;line-height: 36px;background:rgba(132,132,132,.5);}
+.content .contentBottom .product .productshow a p span{float: left;padding-left:10px;}
+.content .contentBottom .product .productshow a p i{float: right;width:30px;height:36px;padding-right:20px;background:url(../img/icon_car_black.png) no-repeat center;}
+.content .contentBottom .product .productshow a div{word-wrap:break-word;font-size:14px;text-align:center;height:146px;padding:50px 20px 0 20px;margin:0 auto;white-space:pre-wrap;}
 
-/* =======================有问题的banner==================================== */
-.adv{overflow: hidden;}
-.adv .advleft{width:317px;float: left;}
-.adv .advleft a:first-child{display: block;margin-bottom: 19px;}
-.adv .advcenter{width:317px;float: left;margin:0 20px;}
-.adv .advright{width:317px;float: right;}
-.adv .advright a:first-child{display: block;margin-bottom: 19px;}
-/* =======================adv广告结束==================================== */
+/*==========================处理流程=================================*/
 .popularityproduct>p:first-child{height:40px;line-height:40px;font-size:12px;text-align:center;border-bottom:1px solid #CCCCCC;margin-top:20px; margin-bottom:40px;}
 .popularityproduct .middle{overflow: hidden;}
 .popularityproduct .middle .product{float: left;width:316px;overflow: hidden;margin:0 26px 30px 0;position:relative;}
