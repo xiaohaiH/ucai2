@@ -2,13 +2,6 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 	!(function(){//登录获取保存在本地的cookie值  用localStorage做的
 		var username = localStorage.username;
 		var Img = localStorage.avatar;
-		// localStorage.clear()//清楚localStorage里所有的键值
-		// sessionStorage.removeItem("*")//删除session中某个值
-		// sessionStorage.clear("*")//删除session中某个值
-		// sessionStorage.setItem("key", "value"); //设置某个键值
-		// sessionStorage.setItem("key", "value"); //设置某个键值
-		// sessionStorage.getItem("key");  //获取某个键值
-		localStorage.removeItem("search");//每次进入页面清空搜索的值
 		if(username){
 			$(".header div ul a:eq(0)").html(username);
 			$("<span></span>").prependTo(".header .user ul li:eq(0) a").css({"float":"left","background":"url(http://www.iliangcang.com/images/default/headImgTmp239.png) no-repeat center","width":"30px","height":"30px","background-size":"cover","margin":"14px 5px 0 0"});
@@ -88,15 +81,6 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			boo = true;
 		});
 	});
-	$(window).keydown(function(e){//判断如果搜索框有内容时,按回车键开始搜索
-		if(!e)e=window.event;
-		var searchval = $(".box").find("input").val();
-		if(searchval && e.keyCode == 13){//判断如果搜索框有内容时,按回车键开始搜索
-			$(".box input").val("");//每次搜索完都清空搜索框的值
-			localStorage.setItem("search",searchval);
-			location.href = "../html/searchlist.html";
-		};
-	});
 	$(".search>input").on("mouseover",function(){
 		if(!$(this).is(":animated")){
 			$(this).animate({"opacity":".5"},200);
@@ -106,12 +90,6 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		$(this).animate({"opacity":"1"},200);
 	});
 	$(".search>input").click(function() {//点击搜索框时,判断是否有值或者是否在运动中,是则不产生变化,否则根据判断条件来确定搜索框的显示跟隐藏.
-		var searchval = $(".box input").val();
-		if(searchval){
-			$(".box input").val("");//每次搜索完都清空搜索框的值
-			localStorage.search = searchval;
-			location.href = "../html/searchlist.html";
-		};
 		if($(".box").find("input").val()||$(".box").is(":animated")){
 			return false;
 		};
@@ -318,152 +296,108 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 	});
 
 /*==================header结束=======================*/
-/*==================banner底部=======================*/
-// banner
-
 !(function(){
-	$.ajax({
-		url : "http://lc.shudong.wang/api_ad.php?position_id=1",
-		type : "GET",
-		dataType : "json",
-		success : function(data){//将获取到的banner图片添加li标签并显示
-			var bannerImg =  data.data;
-			$("<div></div>").attr("class","smallicon").appendTo(".banner");
-			$("<img/>").attr({"src":bannerImg[bannerImg.length-1].url}).appendTo("<a></a>").parent().attr("href",bannerImg[bannerImg.length-1].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
-			for(var i=0;i<bannerImg.length;i++){
-				$("<img/>").attr({"src":bannerImg[i].url}).appendTo("<a></a>").parent().attr("href",bannerImg[i].thumb).css("display","block").appendTo("<li></li>").parent().appendTo(".bannerbox");
-				$("<p></p>").appendTo(".smallicon").parent().css("width",(i*24)+24+"px");
-			};
-			$("<p></p>").appendTo(".banner").attr("class","clickpre btn").html("<");
-			$("<p></p>").appendTo(".banner").attr("class","clicknext btn").html(">");
+	//放大镜效果
+	var pointer = $(".mousepointer");
+	var pointerleft = 0;
+	var pointertop = 0;
+	var maxleft = 0;
+	var maxtop = 0;
+	var magnifyingleft = 0;
+	var magnifyingtop = 0;
+	$(".BigImgBox").on("mousemove",function(e){//
+		if(!e)var e = window.event;
+		pointerleft = e.pageX - (parseInt(pointer.css("width"))/2) - $(this).offset().left;
+		pointertop = e.pageY - (parseInt(pointer.css("height"))/2) - $(this).offset().top;
+		maxleft = $(this).innerWidth() - pointer.innerWidth();
+		maxtop = $(this).innerHeight() - pointer.innerHeight();
+		if(pointerleft <= 0){
+			pointerleft = 0;
+		};
+		if(pointerleft >= maxleft){
+			pointerleft = maxleft;
+		}; 
+		if(pointertop <= 0){
+			pointertop = 0;
+		};
+		if(pointertop >= maxtop){
+			pointertop = maxtop;
+		};
+		magnifyingleft = ($(".MagnifyingGlass").find("img").innerWidth()) / $(this).innerWidth() * pointerleft;
+		magnifyingtop = ($(".MagnifyingGlass").find("img").innerHeight()) / $(this).innerHeight() * pointertop;
+		pointer.css({"left":pointerleft,"top":pointertop});
+		$(".MagnifyingGlass").find("img").css({"left":-magnifyingleft,"top":-magnifyingtop})
+	});
 
-			var page = 1;//起始图片位置为1,第1张为最后一张
-			var obj = $(".bannerbox");
-			obj = obj[0];//将jQuery对象转化为原生的方式(jQuery不支持currentStyle属性).
-			var timer = "";
-			timer = setInterval(bannermove,4000);//运行封装的运动函数
-			$(".smallicon p").eq(0).attr("class","bannerbg");//给第1个p标签添加class,代表此时是第一张图片
-			$(".banner").mouseenter(function(){//鼠标滑入banner时,停止定时器
-				clearInterval(timer);
-			});
-			$(".banner").mouseleave(function(){//鼠标滑出banner时,开启定时器
-				timer = setInterval(bannermove,4000);
-			});
-			$(".banner .btn").on("mouseenter",function(){
-				if(!$(this).is(":animated")){
-					$(this).animate({"opacity":".8"});
-				};
-			});
-			$(".banner .btn").on("mouseleave",function(){
-				$(this).animate({"opacity":".2"});
-			});
-			var dantimer ="";
-			$(".banner .clickpre").on("click",function(){//点击上一张图片时进行切换
-				clearInterval(timer);
-				clearInterval(dantimer);//这个可以不用写,点击按钮时,首先先停止运动插件里的定时器,避免left错乱
-				page--;//更改下一次运动图片的值
-				if(page < 0){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left",($(".bannerbox li").length-1) * -1000 + "px");
-					page = $(".bannerbox li").length-2;
-				};
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": page * -1000});//点击后使用运动插件来进行移动
-			});
-			$(".banner .clicknext").on("click",function(){//点击下一张图片时进行切换
-				clearInterval(timer);
-				clearInterval(dantimer);//这个可以不用写,点击按钮时,首先先停止运动插件里的定时器,避免left错乱
-				page++;//更改下一次运动图片的值
-				if(page >= $(".bannerbox li").length){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left","0px");
-					page = 1;
-				};
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": page * -1000});//点击后使用运动插件来进行移动
-			});
-			$(".smallicon p").click(function(){
-				// if(parseInt($(".bannerbox").css("left")) % 1000 != Math.abs(0)){
-				// 	return false;
-				// };
-				clearInterval(timer);
-				clearInterval(dantimer);//点击p标签时,首先先停止运动插件里的定时器,避免left错乱
-				$(".smallicon p").each(function(index){//清空所有p标签的class名----排他思想
-					$(this).attr("class","");
-				});
-				$(this).attr("class","bannerbg");//给点击的p标签添加类名
-				dantimer = startmove(obj,{"left": ($(this).index()+1) * -1000});//点击后使用运动插件来进行移动
-				page = $(this).index()+1;//给下一次运动的图片赋值
-				timer = setInterval(bannermove,4000);
-			});
-			function bannermove(){//封装运动函数
-				page++;//运动的图片自增1
-				if(page >= $(".bannerbox li").length){//判断如果运动图片的下标大等于图片的数量时,left值,下标归零
-					$(".bannerbox").css("left","0px");
-					page = 1;
-				};
-				startmove(obj,{"left":-page * 1000 + "px"});//让图片开始运动
-				$(".smallicon p").attr("class","");//运动前清空所有p标签的class类名
-				$(".smallicon p").eq(page-1).attr("class","bannerbg");//给图片对应的p标签添加类名
+
+
+
+	var i = 0;//定义图片的left变量
+	var move = $(".BigImg");//将jQuery转换成原生
+	move = move[0];
+	var maxlength = move.children.length;
+	ImgMove();
+	var timer = setInterval(ImgMove,2000);//宝贝的轮播图
+	$(".ImgInfo").on("mouseenter",function(){//鼠标放到宝贝上时,停止轮播图
+		clearInterval(timer);
+		console.log(i)
+		$(".MagnifyingGlass").find("img").attr("src",$(".BigImg").find("li").eq(i).find("img").attr("src"))
+		pointer.css({"display":"block"});
+		$(".MagnifyingGlass").css({"display":"block"});
+	});
+	$(".ImgInfo").on("mouseleave",function(){//鼠标移开时,开始轮播图
+		timer = setInterval(ImgMove,2000);
+		pointer.css({"display":"none"});
+		$(".MagnifyingGlass").css({"display":"none"});
+	});
+	$(".SmallImg li").click(function(){//鼠标点击下面的图片时,跳转到指定的图片
+		i = $(this).index();
+		startmove(move,{"left" : -i * 350})
+	});
+	function ImgMove(){//封装的轮播图
+		i++;
+		i%=maxlength;
+		startmove(move,{"left" : -i * 350});
+	}
+
+
+	//点击关注爱心变红,数字增加
+	$(".TextInfo p:eq(0)").click(function(){
+		var v = $(this).css("background-image");
+		if(v.indexOf("xin_red") == -1){
+			$(this).css("background-image","url(../img/xin_red.png)");
+			$(this).html(Number($(this).html())+1);
+		};
+	});
+	//点击颜色更改边框颜色
+	$(".GoodsColor p").click(function(){
+		console.log($(this))
+		$(this).each(function(){
+			$(".GoodsColor p").css("border-color","white");
+		});
+		$(this).css("border-color","black");
+	});
+	//点击购买数量增加或减少
+	$(".GoodsNum i").click(function(){
+		if($(this).index() == 0){
+			if($(this).next().html() <= 1){
+				alert("最少也要买一个哦");
+				return false;
 			};
-		}
+			$(this).next().html(Number($(this).next().html())-1);
+		}else{
+			if($(this).prev().html() >= 6){
+				alert("最多只能买6个哦");
+				return false;
+			}
+			$(this).prev().html(Number($(this).prev().html())+1);
+		};
 	});
 }())
-// ---------------banner结束   有bug
-!(function(){//中间的产品 人气良品宝贝
-	page = 1;//给地址赋值
-	function create(i){//封装产品类函数
-		$.ajax({
-			url : "http://lc.shudong.wang/api_goods.php?page=" + i,
-			// data : "",
-			type : "GET",
-			dataType : "json",
-			success : function(data){
-				var shopproduct =  data.data;//获取产品的信息
-				var tostr = $("#templete").html();//获取模板里的内容
-				var compiled = _.template(tostr);//将模板里的内容进行匹配
-				$(shopproduct).each(function(index){//遍历产品的信息
-					if(index == $(shopproduct).length-1){//10张不好布局,所有删减一条;判断等于9时,第十条就不执行了
-						return false;
-					};
-					if((index+1)%3==0){//每逢第三条取消他的margin值;将产品放入到页面中
-						$(compiled(this)).appendTo(".middle").attr("class","product clearright");
-					}else{
-						$(compiled(this)).appendTo(".middle");
-					};
-				});
-				$(".product").mouseenter(function() {//滑入产品的时候让黑色框框显示,并节流
-					if($(this).find("a:eq(0)").is(":animated")){
-						return false;
-					}
-					$(this).find("a:eq(0)").fadeIn(200);
-				});
-				$(".product").mouseleave(function() {
-					$(this).find("a:eq(0)").fadeOut(200);
-				});
-			}
-		});
-	};
-	create(page++);//使用封装的产品函数
-	//更多产品
-	$("<a></a>").appendTo(".popularityproduct").attr({"class":"more","href":"javascript:;"}).html("more");//将点击更多放入到页面中
-	$(".more").click(function(){//当点击更多时,给页面不断增添产品
-		create(page++);
-	});
-	$(".more").mouseenter(function(){//滑入更多时,添加效果
-		$(this).css({"background-color":"#25292E","color":"white"});
-	});
-	$(".more").mouseleave(function(){
-		$(this).css({"background-color":"white","color":"#333333"});
-	});
-	$(".dispose a i").mouseenter(function(){//鼠标触碰到小手时,产生动画,动画在css中已定义好
-		$(this).css("animation","hand 2s 3");
-	});
-}());
+
+
+
+
 /*==================foot底部=======================*/
 // footer底部
 $(".footer dl").hover(//鼠标触碰底部的客户端下载时,显示二维码

@@ -5,7 +5,7 @@ function getStyle(obj,attr){
 		return getComputedStyle(obj,false)[attr];
 	};
 };
-	var timer ="";
+var timer ="";
 function startmove(obj,attr){
 	var distance = 0;
 	clearInterval(timer);
