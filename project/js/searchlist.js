@@ -261,8 +261,10 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		url : "http://lc.shudong.wang/api_cat.php",
 		type : "GET",
 		// obj : "",
+		dataType : "json",
 		success : function(data){
-			var getdata = JSON.parse(data);
+			// var getdata = JSON.parse(data);
+			var getdata = data;
 			if(getdata.message == "商品分类数据获取成功"){
 				//数据不全,只到童装。。。。
 				var arr = ["家居","家具","文具","数码","玩乐","厨卫","美食","男装","女装","童装","鞋包","配饰","美护","户外","植物","图书","艺术","礼物","推荐"];

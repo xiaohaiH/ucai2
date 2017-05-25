@@ -96,7 +96,7 @@ nav{position:relative;background:white;}
 .content .ContentLeft .GoodsInfo{overflow:hidden;}
 .content .ContentLeft .GoodsInfo .ImgInfo{float:left;width:350px;height:439px;position:relative;}
 .content .ContentLeft .GoodsInfo .ImgInfo .BigImgBox{width:350px;height:350px;overflow:hidden;position:relative;}
-.content .ContentLeft .GoodsInfo .ImgInfo .BigImg{width:1400px;height:350px;position:absolute;left:0;top:0;z-index:3;}
+.content .ContentLeft .GoodsInfo .ImgInfo .BigImg{width:700px;height:350px;position:absolute;left:0;top:0;z-index:3;}
 .content .ContentLeft .GoodsInfo .ImgInfo .BigImg li{float: left;width:350px;}
 .content .ContentLeft .GoodsInfo .ImgInfo .SmallImg{height:65px;margin-top:24px;}
 .content .ContentLeft .GoodsInfo .ImgInfo .SmallImg li{float:left;width:65px;height:65px;margin-right:8px;cursor:pointer;}
@@ -120,8 +120,8 @@ nav{position:relative;background:white;}
 .content .ContentLeft .TextInfo .GoodsColor{overflow:hidden;margin:15px 0;}
 .content .ContentLeft .TextInfo .GoodsColor>span{float:left;line-height:60px;}
 .content .ContentLeft .TextInfo .GoodsColor p{cursor:pointer;width:45px;height:60px;border:1px solid white;float:left;margin-left:6px;}
-.content .ContentLeft .TextInfo .GoodsColor p:nth-child(2){border:1px solid black;}
 .content .ContentLeft .TextInfo .GoodsColor p img{width:34px;height:34px;margin:2px auto;}
+.content .ContentLeft .TextInfo .GoodsColor p:nth-child(2){border:1px solid black;}
 .content .ContentLeft .TextInfo .GoodsColor p span{display:block;margin-top:4px;text-align:center;font-size:12px;}
 .content .ContentLeft .TextInfo .GoodsNum{overflow:hidden;}
 .content .ContentLeft .TextInfo .GoodsNum span{float:left;line-height:26px;height:26px;}

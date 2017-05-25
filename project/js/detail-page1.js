@@ -263,8 +263,9 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		url : "http://lc.shudong.wang/api_cat.php",
 		type : "GET",
 		// obj : "",
+		dataType : "json",
 		success : function(data){
-			var getdata = JSON.parse(data);
+			var getdata = data;
 			if(getdata.message == "商品分类数据获取成功"){
 				//数据不全,只到童装。。。。
 				var arr = ["家居","家具","文具","数码","玩乐","厨卫","美食","男装","女装","童装","鞋包","配饰","美护","户外","植物","图书","艺术","礼物","推荐"];
@@ -438,7 +439,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 
 
 	//点击关注爱心变红,数字增加
-	$(".TextInfo p:eq(0)").click(function(){
+	$(".33710 p:eq(0)").click(function(){
 		var v = $(this).css("background-image");
 		if(v.indexOf("xin_red") == -1){
 			$(this).css("background-image","url(../img/xin_red.png)");
@@ -479,7 +480,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 	};
 	var self = this;
 	var obj = {};
-	obj.goods_id = $(this).parents(".product").attr("data-goods_id");
+	obj.goods_id = 33704;
 	obj.number = 1;
 	$.ajax({
 		url : "http://lc.shudong.wang/api_cart.php",
@@ -493,9 +494,9 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			if(data.message == "添加到购物车成功"){//第一次添加且成功后将本地数据添加到模板然后添加到购物车中
 				var objdata = {};
 				objdata.goods_id = obj.goods_id;//图片ID
-				objdata.goods_name = $(self).parents(".product").attr("data-goods_name");//宝贝名称
+				objdata.goods_name = "笔记本套装A";//宝贝名称
 				objdata.goods_number = obj.number;//添加的数量
-				objdata.goods_price = $(self).parents(".product").attr("data-price");//宝贝的价格
+				objdata.goods_price = "758.00";//宝贝的价格
 				objdata.goods_thumb = "http://imgs-qn.iliangcang.com/ware/goods/icon/2/"+ parseInt(obj.goods_id / 1000)+"/" + obj.goods_id +".jpg";//这个是图片的地址
 				var compiled = _.template($("#templete2").html());//模板函数
 				if($(".NoneShopping").find(".list")){//判断购物车里有没有添加宝贝,有则直接添加进去
