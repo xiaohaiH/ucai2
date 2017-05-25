@@ -33,7 +33,6 @@ $(window).ready(function(){
 			data : obj,
 			type : "POST",
 			success : function(data){
-				console.log(JSON.parse(data));
 				var getdata = JSON.parse(data);
 				if(getdata.message == "用户名已存在"){
 					alert("用户名已存在");

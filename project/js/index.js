@@ -8,13 +8,19 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		// sessionStorage.setItem("key", "value"); //设置某个键值
 		// sessionStorage.setItem("key", "value"); //设置某个键值
 		// sessionStorage.getItem("key");  //获取某个键值
+		// localStorage.clear();
 		localStorage.removeItem("search");//每次进入页面清空搜索的值
-		if(username){
-			$(".header div ul a:eq(0)").html(username);
+		if(username){//判断本地是否存储了用户名
+			$(".header div ul a:eq(0)").html(username).attr("href","javascript:;");
 			$("<span></span>").prependTo(".header .user ul li:eq(0) a").css({"float":"left","background":"url(http://www.iliangcang.com/images/default/headImgTmp239.png) no-repeat center","width":"30px","height":"30px","background-size":"cover","margin":"14px 5px 0 0"});
 			$(".header div ul a:eq(1)").remove();
 		};
-		$(".header div ul a:eq(0)").hover(
+
+		$(".header div ul li:eq(0) a").click(function(){
+			localStorage.setItem("address",window.location.href)//保存当前页面地址
+		});
+
+		$(".header div ul a:eq(0)").hover(//鼠标放到登录那里时判断是否已经登录,登录了则显示
 			function(){
 				if($(".header div ul a:eq(0)").html()!= "登录"){
 					$(".userlist").css("display","block");
@@ -26,7 +32,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 				$(".userlist").css("display","none");
 			}
 		);
-		$(".userlist").hover(
+		$(".userlist").hover(//鼠标放到登录后的用户菜单上显示
 			function(){
 				$(".userlist").css("display","block");
 			},
@@ -34,17 +40,61 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 				$(".userlist").css("display","none");
 			}
 		);
-		$(".userlist li:eq(3)").click(function(){
-			 localStorage.removeItem('username');
+		$(".userlist li:eq(3)").click(function(){//点击登录后用户菜单上的退出按钮时,保存当前页面地址,并将购物车清零.
+			 localStorage.clear();
 			$(".userlist").css("display","none");
 			$(".header .user ul li:eq(0) a span").remove();
-			$(".header div ul a:eq(0)").html("登录");
+			$(".header div ul a:eq(0)").html("登录").attr("href","../html/login.html");
 			$("<a></a>").appendTo(".header .user ul li:eq(0)").html("注册").attr("href","../html/sign.html");
+			$(".NoneShopping").html("你的购物车暂时没有商品...");
 		});
 	}())
 //-----
+	!(function(){
+		if($(".user ul li a").eq(0).text() != "登录"){
+			$.ajax({//刷新页面时如果登录了则刷新购物车的内容,并将获取到的添加进去
+				url : "http://lc.shudong.wang/api_cart.php",
+				// data : obj,
+				dataType : "json",
+				beforeSend : function(xhr){//在发送数据前将token值添加进去
+					xhr.setRequestHeader("token",localStorage.token);
+				},
+				success : function(data){//判断数据成功后且获取到的数据长度不为0则将数据添加进购物车中.
+					if(data.message == "购物车数据获取成功"&&data.data.length != 0){
+						$(".NoneShopping").html("").append("<ul></ul>").find("ul").attr("class","list");
+						$.each(data.data,function(){
+							var compiled = _.template($("#templete2").html())
+							$(compiled(this)).appendTo(".list").attr({"cart_id":this.cart_id,"cat_id":this.cat_id,"goods_id":this.goods_id,"goods_number":this.goods_number,"user_id":this.user_id});
+						});
+					};
 
+					$(".delshop").click(function(){//点击购物车里的删除按钮时,发送ajax请求,成功则删除该宝贝
+						var self = this;
+						var obj = {};
+						obj.goods_id = $(this).parents(".ShopList").attr("goods_id");
+						obj.number = 0;
+						$.ajax({
+							url : "http://lc.shudong.wang/api_cart.php",
+							type : "POST",
+							data : obj,
+							dataType : "json",
+							beforeSend : function(xhr){
+								xhr.setRequestHeader("token",localStorage.token)
+							},
+							success : function(data){
+								if(data.message == "更新购物车成功"){
+									$(self).parents(".ShopList").remove();
+								}else{
+									alert("数据更新失败,请重试")
+								};
+							}
+						});
+					});
 
+				}
+			});
+		};
+	}());
 //-----
 	$(".header .user ul li:eq(2)").hover(//放上去购物车显示,离开消失
 		function(){
@@ -134,7 +184,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			$(this).find("a").css("border-bottom","4px solid #262B30");
 		},
 		function (){
-			$(this).find("a").css("border-bottom","4px solid #EDEDED");
+			$(this).find("a").css("border-bottom","none");
 		}
 	);
 	$(".nav li").eq(1).hover(//鼠标放到商店上时,商店列表显示,移开消失
@@ -151,7 +201,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			$(this).css("display","block");
 		},
 		function(){
-			$(this).prev().find('a').eq(1).css("border-bottom","4px solid #EDEDED");
+			$(this).prev().find('a').eq(1).css("none");
 			$(this).css("display","none");
 		}
 	);
@@ -193,7 +243,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			$(this).css("display","block");
 		},
 		function(){
-			$(this).prevAll(".box2").find("a").eq($(this).index()).css("border-bottom","4px solid #EDEDED");
+			$(this).prevAll(".box2").find("a").eq($(this).index()).css("border-bottom","none");
 			$(this).css("display","none");
 		}
 	);
@@ -203,17 +253,20 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			$(this).css("display","block");
 		},
 		function(){
-			$(this).prevAll(".box2").find("a").eq($(this).index()).css("border-bottom","4px solid #EDEDED");
+			$(this).prevAll(".box2").find("a").eq($(this).index()).css("border-bottom","none");
 			$(this).css("display","none");
 		}
 	);
 //商店清单
 
 	$.ajax({
-		url : "http://h6.duchengjiu.top/shop/api_cat.php",
+		url : "http://lc.shudong.wang/api_cat.php",
 		type : "GET",
+		// obj : "",
+		dataType : "json",
 		success : function(data){
-			var getdata = JSON.parse(data);
+			// var getdata = JSON.parse(data);
+			var getdata = data;
 			if(getdata.message == "商品分类数据获取成功"){
 				//数据不全,只到童装。。。。
 				var arr = ["家居","家具","文具","数码","玩乐","厨卫","美食","男装","女装","童装","鞋包","配饰","美护","户外","植物","图书","艺术","礼物","推荐"];
@@ -417,9 +470,13 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 !(function(){//中间的产品 人气良品宝贝
 	page = 1;//给地址赋值
 	function create(i){//封装产品类函数
+		var obj = {};
+		obj.page = i;
+		obj.pagesize = 12;//选择每次发送图片的数量
 		$.ajax({
-			url : "http://lc.shudong.wang/api_goods.php?page=" + i,
-			// data : "",
+			// url : "http://lc.shudong.wang/api_goods.php?page=" + i,
+			url : "http://lc.shudong.wang/api_goods.php",
+			data : obj,
 			type : "GET",
 			dataType : "json",
 			success : function(data){
@@ -427,23 +484,66 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 				var tostr = $("#templete").html();//获取模板里的内容
 				var compiled = _.template(tostr);//将模板里的内容进行匹配
 				$(shopproduct).each(function(index){//遍历产品的信息
-					if(index == $(shopproduct).length-1){//10张不好布局,所有删减一条;判断等于9时,第十条就不执行了
-						return false;
-					};
 					if((index+1)%3==0){//每逢第三条取消他的margin值;将产品放入到页面中
-						$(compiled(this)).appendTo(".middle").attr("class","product clearright");
+						$(compiled(this)).appendTo(".middle").attr({"class":"product clearright","data-brand_id":shopproduct[index].brand_id,"data-cat_id":shopproduct[index].cat_id,"data-cat_name":shopproduct[index].cat_name,"data-goods_id":shopproduct[index].goods_id,"data-goods_name":shopproduct[index].goods_name,"data-goods_number":shopproduct[index].goods_number,"data-price":shopproduct[index].price});
 					}else{
-						$(compiled(this)).appendTo(".middle");
+						$(compiled(this)).appendTo(".middle").attr({"data-brand_id":shopproduct[index].brand_id,"data-cat_id":shopproduct[index].cat_id,"data-cat_name":shopproduct[index].cat_name,"data-goods_id":shopproduct[index].goods_id,"data-goods_name":shopproduct[index].goods_name,"data-goods_number":shopproduct[index].goods_number,"data-price":shopproduct[index].price});
 					};
 				});
+				$(".product div").eq(1).find("a").attr("href","../html/detail-page1.html");
 				$(".product").mouseenter(function() {//滑入产品的时候让黑色框框显示,并节流
 					if($(this).find("a:eq(0)").is(":animated")){
-						return false;
+						$(this).find("a:eq(0)").stop(true,true);
 					}
 					$(this).find("a:eq(0)").fadeIn(200);
 				});
 				$(".product").mouseleave(function() {
 					$(this).find("a:eq(0)").fadeOut(200);
+				});
+				$(".product div a").find("i").click(function(e){//点击人气宝贝上购物车按钮时,阻止a链接的跳转,然后将该id和数量发送到服务器,且在发送前添加token头
+					e.preventDefault();
+					if($(".user ul li a").eq(0).text() == "登录"){
+						alert("请先登录");
+						return false;
+					};
+					var self = this;
+					var obj = {};
+					obj.goods_id = $(this).parents(".product").attr("data-goods_id");
+					obj.number = 1;
+					$.ajax({
+						url : "http://lc.shudong.wang/api_cart.php",
+						type : "POST",
+						data : obj,
+						dataType : "json",
+						beforeSend : function(xhr){
+							xhr.setRequestHeader("token",localStorage.token)
+						},
+						success : function(data){//添加成功后,根据返回的message来判断
+							if(data.message == "添加到购物车成功"){//第一次添加且成功后将本地数据添加到模板然后添加到购物车中
+								var objdata = {};
+								objdata.goods_id = obj.goods_id;//图片ID
+								objdata.goods_name = $(self).parents(".product").attr("data-goods_name");//宝贝名称
+								objdata.goods_number = obj.number;//添加的数量
+								objdata.goods_price = $(self).parents(".product").attr("data-price");//宝贝的价格
+								objdata.goods_thumb = "http://imgs-qn.iliangcang.com/ware/goods/icon/2/"+ parseInt(obj.goods_id / 1000)+"/" + obj.goods_id +".jpg";//这个是图片的地址
+								var compiled = _.template($("#templete2").html());//模板函数
+								if($(".NoneShopping").find(".list")){//判断购物车里有没有添加宝贝,有则直接添加进去
+									$(compiled(objdata)).prependTo(".list");//使用模板函数
+								}else{//没有的话则先清空里面的内容,然后创建ul,并将内容添加到ul中
+									$(".NoneShopping").html("");
+									$(compiled(objdata)).prependTo("<ul></ul>").parent().attr("class","list").prependTo(".NoneShopping");
+								};
+							}else if(data.message.indexOf("数据库错误") != -1){//当数据库没有这个宝贝时,
+								alert("数据库没有这个产品,哈哈哈哈哈哈")
+							}else if(data.message == "更新购物车成功"){//这个是判断如果购物车里有这个宝贝的时候,正常来说是添加他的数量,但是这个API有点问题,所以没做了
+								console.log("数据库有问题,这个就不更新了");
+							}else{
+								console.log(data.message)
+								alert("添加失败");
+							};
+
+						}
+					});
 				});
 			}
 		});

@@ -7,7 +7,7 @@ a{text-decoration: none;color:#333333;}
 body{position:relative;}
 
 /*==========================header fixed1=================================*/
-header{position:fixed;top:0px;left:0px;background:#25292E;width:100%;min-width: 1000px;z-index: 5;}
+header{position:fixed;top:0px;left:0px;background:#25292E;max-height:112px;width:100%;min-width: 1000px;z-index: 5;}
 .header{position: relative;height: 58px;background:#25292E;}
 .header .user{-position:relative;overflow: hidden;}
 .header .user i{float:left;background:url(../img/icon.png) no-repeat 0px 13px;width:96px;height:58px;transition:all .5s;}
@@ -30,10 +30,25 @@ header{position:fixed;top:0px;left:0px;background:#25292E;width:100%;min-width: 
 .userlist ul li:hover{background:#2E353D;}
 
 
-.shoppinglist{display:none;position:absolute;z-index:4;top:58px;right:0px;width:320px;background: #292F34;text-align:center;font-size:14px;}
-.shoppinglist li:nth-child(1){height:70px;line-height: 70px;color:#CCCCCC;}
-.shoppinglist li:nth-child(2){background:#7DBFDE;height:50px;line-height: 50px;}
-.shoppinglist li:nth-child(2) a{color:white;}
+.shoppinglist{display:none;max-height:350px;position:absolute;z-index:4;top:58px;right:0px;padding-top:15px;width:320px;background:#292F34;text-align:center;font-size:14px;}
+
+.shoppinglist ul{overflow-y:scroll;max-height:300px;padding:10px 0;}
+.shoppinglist ul .ShopList{padding:10px 15px;overflow:hidden;}
+.shoppinglist ul .ShopList:hover{background:#2E353D;}
+.shoppinglist ul .ShopList img{width:64px;height:64px;float:left;margin-right:7px;}
+.shoppinglist ul .ShopList div{float:right;width:199px;text-align:left;font-size:12px;color:#CCCCCC;line-height:21px;}
+.shoppinglist ul .ShopList div .ShopTitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.shoppinglist ul .ShopList div .ShopTitle a{color:#878787;}
+.shoppinglist ul .ShopList div .ShopNum i{font-style:normal;}
+.shoppinglist ul .ShopList div .ShopNum .Num{float:left;}
+.shoppinglist ul .ShopList div .ShopNum .ShopPrice{float:left;margin-left:20px;}
+.shoppinglist ul .ShopList div .ShopNum .delshop{float:right;font-size:14px;cursor:pointer;color:white;}
+.shoppinglist ul .ShopList div .ShopNum .delshop:hover{color:red;}
+
+
+.shoppinglist .NoneShopping{min-height:70px;line-height: 70px;color:#CCCCCC;}
+.shoppinglist .ShoppingGo{background:#7DBFDE;height:50px;line-height: 50px;}
+.shoppinglist .ShoppingGo a{color:white;}
 
 .messagelist{display:none;position:absolute;z-index:4;top:58px;right:0px;background: #292F34;text-align:center;font-size:12px;}
 .messagelist li a{height:40px;line-height:40px;display: block;width:140px;margin:0 13px;border-bottom:1px solid #3F4449;color:#CCCCCC;padding:0 10px;}
@@ -45,7 +60,7 @@ header{position:fixed;top:0px;left:0px;background:#25292E;width:100%;min-width: 
 nav{position:relative;background:white;}
 .box2{border-bottom:4px solid #EDEDED;height:50px;}
 .nav li{float:left;cursor:pointer;width:154px;}
-.nav li a{float:left;width:123px;-border-bottom:4px solid #EDEDED;padding:17px 0 12px 0;text-align:center;-margin-right:32px;}
+.nav li a{float:left;width:123px;padding:17px 0 12px 0;text-align:center;}
 .nav li:first-child a{text-align:left;width:120px;margin:0;}
 .search{float:right;width:230px;position:relative;overflow: hidden;}
 .search .box{-display:none;z-index:2;left:230px;position:absolute;width:230px;border-bottom:4px solid #262B30;}

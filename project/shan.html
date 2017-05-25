@@ -11,18 +11,23 @@
 <script type="text/javascript">
 		var obj = {};
 		// search_text='小酒杯';
-		obj.search_text='书';
-		obj.page=1;
-		obj.pagesize=1;
+		// obj.token='cd38e6ea24585637c2e312562ef3ef15';
+		// obj.goods_id=34557;
+		// obj.pagesize=20;
+		// obj.number = 0;
 		// obj.status = "register";
 		// obj.username = "abcabc";
 		// obj.password = "abcabc";
 $.ajax({
-	url : "http://h6.duchengjiu.top/shop/api_goods.php",
-	type : "get",
+	url : "http://lc.shudong.wang/api_cart.php",
+	type : "POST",
 	data : obj,
+	dataType : "json",
+	beforeSend : function(xhr){
+		xhr.setRequestHeader("token",obj.token);
+	},
 	success : function(data){
-		console.log(JSON.parse(data))
+		console.log(data)
 	}
 })
 </script>

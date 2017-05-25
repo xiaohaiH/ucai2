@@ -36,8 +36,8 @@ $(window).ready(function(){
 					localStorage.username = mess.data.username;
 					localStorage.avatar = mess.data.avatar;
 					localStorage.token = mess.data.token;
-
-					location.href = "../html/index.html";
+					
+					location.href = localStorage.address;
 				};
 			}
 		});

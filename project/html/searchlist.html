@@ -22,6 +22,16 @@
 			</div>
 		</div>
 	</script>
+	<script type="text/templete" id="templete2">
+		<li class="ShopList">
+			<a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>"><img src="<%= goods_thumb %>"></a>
+			<div>
+				<p class="ShopTitle"><a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>"><%= goods_name %></a></p>
+				<p class="ShopUnits">一套</p>
+				<p class="ShopNum"><span class="Num">数量：<i><%= goods_number %></i>件</span><span class="ShopPrice">￥<i><%= goods_price %></i></span><span class="delshop">删除</span></p>
+			</div>
+		</li>
+	</script>
 	<link rel="stylesheet" type="text/css" href="../css/searchlist.css">
 	<script type="text/javascript" src="../api/underscore.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
@@ -32,7 +42,7 @@
 		<!-- 头部 -->
 		<div class="header">
 			<div class="user">
-				<i></i>
+				<a href="../html/index.html"><i></i></a>
 				<ul>
 					<li><a href="../html/login.html">登录</a><a href="javascript:;">注册</a></li>
 					<li></li>
@@ -52,8 +62,8 @@
 				</ul>
 			</div>
 			<ul class="shoppinglist">
-				<li>你的购物车暂时没有商品...</li>
-				<li><a href="javascript:;">快去抢购良仓商品吧！</a></li>
+				<li class="NoneShopping">你的购物车暂时没有商品...</li>
+				<li class="ShoppingGo"><a href="javascript:;">快去抢购良仓商品吧！</a></li>
 			</ul>
 			<ul class="messagelist">
 				<li><a href="javascript:;"><span>动态</span><i>0</i></a></li>
