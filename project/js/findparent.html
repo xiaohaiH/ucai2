@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		/*div{}*/
+		.e{height:200px;border:1px solid red;}
+		.k{height:200px;border:1px solid red;}
+		.f{height:200px;border:1px solid red;}
+		.g{height:200px;border:1px solid red;}
+		.h{height:200px;border:1px solid red;}
+		#cc{height:20px;background:red;}
+	</style>
+</head>
+<body>
+	<div class="a">
+		<div class="k"></div>
+		<div class="k"></div>
+		<div class="k"></div>
+		<div class="k"></div>
+		<div class="b">
+			<div class="f"></div>
+			<div class="c">
+				<div class="g"></div>
+				<div class="d">
+					<div class="h"></div>
+					<div class="e">
+						<div id="cc"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+
+	var cc = document.getElementById("cc");
+	// console.log(cc.parentNode == document.body);
+	// console.log(cc)
+	cc.onmousemove = function (){
+		var e = window.event;
+		console.log(e.pageY)
+	};
+</script>
+</html>

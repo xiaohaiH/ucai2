@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+		var obj = {};
+		// search_text='小酒杯';
+		// obj.token='cd38e6ea24585637c2e312562ef3ef15';
+		// obj.goods_id=34557;
+		// obj.pagesize=20;
+		// obj.number = 0;
+		// obj.status = "register";
+		// obj.username = "abcabc";
+		// obj.password = "abcabc";
+$.ajax({
+	url : "http://lc.shudong.wang/api_cart.php",
+	type : "POST",
+	data : obj,
+	dataType : "json",
+	beforeSend : function(xhr){
+		xhr.setRequestHeader("token",obj.token);
+	},
+	success : function(data){
+		console.log(data)
+	}
+})
+</script>
+</html>

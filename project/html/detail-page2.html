@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iliangcang</title>
+	<link rel="shortcur icon" type="image/x-icon" href="../img/favicon.ico" media="screen"><!-- 设置网页右上角小图标 -->
+	<!-- 模板 -->
+	<script type="text/templete" id="templete">
+		<div class="product">
+			<figure>
+				<img src="http://imgs-qn.iliangcang.com/ware/brand/<%= brand_id %>.jpg">
+				<figcaption>
+					<a href="javascript:;"><span> <%= goods_name %> </span><span> <%= star_number %> </span></a>
+				</figcaption>
+			</figure>
+			<div class="productshow">
+				<img src=" <%= goods_thumb %> ">
+				<a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>">
+					<p><span>￥<%= price %></span><i></i></p>
+					<div><%= goods_desc %></div>
+				</a>
+			</div>
+		</div>
+	</script>
+	<script type="text/templete" id="templete2">
+		<li class="ShopList">
+			<a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>"><img src="<%= goods_thumb %>"></a>
+			<div>
+				<p class="ShopTitle"><a href="http://www.iliangcang.com/i/goods/?id=<%= goods_id %>"><%= goods_name %></a></p>
+				<p class="ShopUnits">一套</p>
+				<p class="ShopNum"><span class="Num">数量：<i><%= goods_number %></i>件</span><span class="ShopPrice">￥<i><%= goods_price %></i></span><span class="delshop">删除</span></p>
+			</div>
+		</li>
+	</script>
+	<link rel="stylesheet" type="text/css" href="../css/detail-page2.css">
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../api/underscore.min.js"></script>
+	<script type="text/javascript" src="../js/bannermove.js"></script>
+	<script type="text/javascript" src="../js/detail-page2.js"></script>
+</head>
+<body>
+	<header>
+		<!-- 头部 -->
+		<div class="header">
+			<div class="user">
+				<a href="../html/index.html"><i></i></a>
+				<ul>
+					<li><a href="../html/login.html">登录</a><a href="javascript:;">注册</a></li>
+					<li></li>
+					<li><a href="javascript:;">购物车</a></li>
+					<li></li>
+					<li><a href="javascript:;">消息</a></li>
+					<li></li>
+					<li><a href="javascript:;">添加良品</a></li>
+				</ul>
+			</div>
+			<div class="userlist">
+				<ul>
+					<li><a href="javascript:;">个人设置</a></li>
+					<li><a href="javascript:;">收货信息</a></li>
+					<li><a href="javascript:;">我的订单</a></li>
+					<li><a href="javascript:;">退出</a></li>
+				</ul>
+			</div>
+			<ul class="shoppinglist">
+				<li class="NoneShopping">你的购物车暂时没有商品...</li>
+				<li class="ShoppingGo"><a href="javascript:;">快去抢购良仓商品吧！</a></li>
+			</ul>
+			<ul class="messagelist">
+				<li><a href="javascript:;"><span>动态</span><i>0</i></a></li>
+				<li><a href="javascript:;"><span>评论</span><i>0</i></a></li>
+				<li><a href="javascript:;"><span>私信</span><i>0</i></a></li>
+				<li><a href="javascript:;"><span>粉丝</span><i>0</i></a></li>
+				<li><a href="javascript:;"><span>喜欢</span><i>0</i></a></li>
+				<li><a href="javascript:;"><span>通知</span><i>0</i></a></li>
+			</ul>
+		</div>
+		<!-- 导航栏 -->
+		<div class="navbox">
+			<nav>
+				<div class="box2">
+					<ul class="nav">
+						<li><a href="javascript:;">首页</a></li>
+						<li><a href="javascript:;">商店</a></li>
+						<li><a href="javascript:;">杂志</a></li>
+						<li><a href="javascript:;">分享</a></li>
+						<li><a href="javascript:;">达人</a></li>
+					</ul>
+					<div class="search">
+						<div class="box">
+							<input type="text" placeholder="search..." name="">
+						</div>
+						<input type="submit" value="" name="">
+					</div>
+				</div>
+				<!-- 子级菜单 -->
+				<div class="stroe">
+					<div class="stroeleft">
+					</div>
+					<div class="stroeright">
+						<a href="javascript:;"></a>
+						<p>新视线：　2015年7月刊</p>
+					</div>
+				</div>
+				<div class="stroe2">
+				</div>
+				<div class="stroe3">
+				</div>
+			</nav>
+		</div>
+	</header>
+	<div class="content">
+		<div class="ContentLeft">
+			<p class="result">良仓 > 家居 > 镍银香氛蜡烛</p>
+			<div class="GoodsInfo">
+				<div class="ImgInfo">
+					<div class="BigImgBox">
+						<ul class="BigImg">
+							<li><img src="../img/baobei1.jpg" alt="图片加载失败" title="哈哈哈" ></li>
+							<li><img src="../img/baobei2.jpg" alt="图片加载失败" title="哈哈哈" ></li>
+						</ul>
+						<div class="mousepointer"></div>
+					</div>
+					<ul class="SmallImg">
+						<li><img src="../img/baobei1.jpg" alt="图片加载失败" title="哈哈哈" ></li>
+						<li><img src="../img/baobei2.jpg" alt="图片加载失败" title="哈哈哈" ></li>
+					</ul>
+					<div class="MagnifyingGlass">
+						<img src="../img/baobei1.jpg">
+					</div>
+				</div>
+				<div class="TextInfo">
+					<p>517</p>
+					<p><span>MODERNIQUE</span><span>镍银香氛蜡烛</span></p>
+					<p>价格:<span>¥650.00元</span></p>
+					<p><span>免运费</span><span>正品授权</span></p>
+					<div class="GoodsColor">
+						<span>颜色:</span>
+						<p>
+							<img src="../img/baobei1.jpg" alt="图片加载失败" title="哈哈哈">
+							<span>镍银</span>
+						</p>
+					</div>
+					<div class="GoodsNum">
+						<span>数量:</span>
+						<p>
+							<i>-</i>
+							<span>1</span>
+							<i>+</i>
+						</p>
+					</div>
+					<div class="GoodsGift">
+						此商品可选择良仓提供的礼物包装和手写贺卡服务，请在结算页面进行选择。
+					</div>
+					<div class="GoodsBtn">
+						<button type="submit">立即购买</button>
+						<button type="submit">加入购物车</button>
+						<button type="submit">分享</button>
+					</div>
+				</div>
+			</div>
+			<div class="GoodsIntroduce">
+				<img src="../img/44624.jpg" alt="图片加载失败" title="哈哈哈">
+				<img src="../img/44759.jpg" alt="图片加载失败" title="哈哈哈">
+				<div class="GoodsTextIntroduce">
+					<h3>良仓推荐</h3>
+					<p>清新、自然、高品质是MODERNIQUE一贯坚持的品牌精神，此款香氛蜡烛是该品牌家居线的最新产品。流线型的金属容器本身就是一件精美的家居饰品，宽扁的烛芯则能让蜡烛更加充分的燃烧。蜡烛为优质的纯天然原料手工制作，不含任何人工化学添加剂。木质包装盒更为产品增添一份温暖的情怀，亦让它成为一份最诚挚的礼物。</p>
+				</div>
+				<div class="GoodsTextIntroduce">
+					<h3>品牌简介</h3>
+					<p>来自韩国的生活方式品牌MODERNIQUE一直致力于将时髦、独特与高品质结合，这也是品牌名称的来源（MODERN+UNIQUE）。自服装配饰系列产品深受好品后，MODERNIQUE将产品线进一步衍生，内容涉及装饰品、厨具等各个领域，每一件MODERNIQUE的产品都包含了设计师漫长的思考与无数次的实验，并最终呈现给消费者前所未有的使用体验。</p>
+				</div>
+				<div class="GoodsTextIntroduce">
+					<h3>商品描述</h3>
+					<p>
+						<span>材质：镍银容器，木质外盒</span>
+						<span>味道：柠檬+美女樱</span>
+						<span>燃烧时间：22个小时</span>
+					</p>
+				</div>
+				<div class="GoodsTextIntroduce">
+					<h3>购物指南</h3>
+					<p>
+						<span>- 所有商品均为正品保证。</span>
+						<span>- 中国大陆地区免运费，默认商家合作快递。</span>
+						<span>- 蜡烛、液态品、手表等含电池产品无法空运，运输时间相较普通空运件会更久。</span>
+						<span>- 如出现产品质量问题请在签收后72小时内联系客服。</span>
+					</p>
+				</div>
+				<div class="AfterSale">
+					<span>售后须知</span>
+					<div class="AfterSaleText">
+						<p>
+							<span>质量></span>
+							您收到的商品本身如有破损、瑕疵，我们将视为质量问题，因拍摄图片或显示器色差导致的色彩差异问题不属于质量问题。因产品尺码为手工测量，可能存在些许误差，敬请谅解。
+						</p>
+						<p>
+							<span>售后></span>
+							<span>1、无质量问题的商品及良仓打折的商品，恕不予退换货；</span>
+							<span>2、退货说明：良仓承诺商品本身有质量问题时，在商品及吊牌、内包装完整无破损的情况下，您可以办理退货。在快递被签收后72小时内私信客服，并将破损问题拍照上传给客服，并在得到客服退货确认之日起3日内将商品寄出，同时请将快递公司和单号告知客服，由良仓承担来回运费，货款将在良仓收到货物后5个工作日内打到您的付款账户中；</span>
+							<span>3、换货说明：良仓恕不接受出于个人主观喜好原因的换货；如果您收到的服饰配件类商品尺码不合适，良仓愿意为您提供换货，请私信客服办理换货手续。请在快递签收之日起3日内将商品寄出，并将快递公司和单号告知客服，由于尺码不合等原因造成的往返换货费用将由购买客户承担。</span>
+						</p>
+						<p>
+							<span>联系客服></span>
+							<span>客服热线：400-897-6336</span>
+							<span>客服在线时间：工作日 09:00-18:00</span>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="contentRight">
+			a
+		</div>
+	</div>
+	<div class="disposebox"><!-- 产品流程 -->
+		<div class="dispose">
+			<a href="javascript:;">
+				<i></i>
+			</a>
+			<div class="slogan">
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>全球精品</p>
+						<p>Global Selections</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>正品保证</p>
+						<p>Authenticity Guaranteed</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p>全场包邮</p>
+						<p>Free Delivery</p>
+					</figcaption>
+				</figure>
+				<figure>
+					<i></i>
+					<figcaption>
+						<p></p>
+						<p>工作日 09:00-18:00</p>
+					</figcaption>
+				</figure>
+		</div>
+	</div>
+	<footer><!-- 底部 -->
+		<div class="footer">
+			<div class="footerleft">
+				<div class="code">
+					<p><i></i><span>下载iPhone版</span></p>
+					<p><i></i><span>下载Android版</span></p>
+				</div>
+				<dl>
+					<dt></dt>
+					<dd>
+						<a>iPhone Android</a>
+						<a>客户端下载</a>
+					</dd>
+				</dl>
+				<div class="foot-bottom">
+					<ul>
+						<li><a href="javascript:;">关于良仓</a></li>
+						<li></li>
+						<li><a href="javascript:;">服务协议</a></li>
+						<li></li>
+						<li><a href="javascript:;">隐私保护政策</a></li>
+						<li></li>
+						<li><a href="javascript:;">使用指南</a></li>
+						<li></li>
+						<li><a href="javascript:;">联系我们</a></li>
+						<li></li>
+						<li><a href="javascript:;">加入我们</a></li>
+						<li></li>
+						<li><a href="javascript:;">友情链接</a></li>
+						<li></li>
+						<li><a href="javascript:;">私信良仓</a></li>
+					</ul>
+					<ul>
+						<li>© 2013-2015 北京良仓文化传播有限公司版权所有 京ICP备13010677号-1 京公网安备11010502025627</li>
+						<li>公司名称：北京良仓文化传播有限公司  电话：010-58263516</li>
+						<li>公司地址：北京朝阳区百子湾路32号6号楼1层60号.</li>
+						<li>社会信用统一代码：91110105059231575L  食品许可证：JY11105160159557</li>
+						<li>图书证名称：中华人民共和国出版物经营许可证  图书证编号：新出发京零 字第 朝 150051 号</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footerright">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<p><i></i></p>
+			</div>
+		</div>
+	</footer>
+	<div class="UpTop">
+		
+	</div>
+</body>
+</html>
