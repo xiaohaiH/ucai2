@@ -201,7 +201,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 			$(this).css("display","block");
 		},
 		function(){
-			$(this).prev().find('a').eq(1).css("none");
+			$(this).prev().find('a').eq(1).css("border-bottom","none");
 			$(this).css("display","none");
 		}
 	);
