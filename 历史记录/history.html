@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{height:200px;border: 1px solid red;}
+		li{height:20px;border:1px solid violet;}
+	</style>
+	<script src="../jquery-3.2.1.js" ></script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+</body><!-- 
+<script type="text/javascript">
+	//js方法
+	var getclass = document.querySelectorAll("ul>li");
+	var obj = {
+		0:"啊啊啊",
+		1:"12345",
+		2:"1fafd黑呵呵s2345",
+		3:"122嘿嘿嘿343243242345",
+		4:"12a发发发aa345",
+		5:"123fsda45",
+		6:"呃呃呃",
+		7:"范德萨发",
+		8:"12fda45",
+		9:"afdsev",
+	};
+	for(var i=0;i<getclass.length;i++){
+		getclass[i].index = i;
+		//dataset : 设置或更改元素的自定义属性.
+		getclass[i].dataset.val = obj[i];//设置自定义属性
+		getclass[i].addEventListener("mouseover",function(){
+			for(var j=0;j < getclass.length;j++){
+				getclass[j].innerHTML = obj[this.index];
+			};
+			if(window.history && history.pushState){//这里是判断浏览器是否支持history对象和history.pushState这个函数.
+				// pushState(添加一个新的历史记录)三个参数:
+				// 参数一:给事件的状态添加值;
+				// 参数二:历史记录的名字,现在浏览器不支持更改
+				// 参数三:跳转的url
+				history.pushState(this.index,'第二个参数是历史记录的名字,但是现在浏览器不支持','?t='+this.index);
+			};
+		});
+		addEventListener("popstate",function(e){//这个是监听是否有点击后退或者前进按钮时
+			for(var j=0;j < getclass.length;j++){//当点击前进或后退按钮时,li更换里面的内容,e.state就是键(pushState第一个参数就是它的值);
+				getclass[j].innerHTML = obj[e.state];
+			};
+		});
+	};
+</script> -->
+<script type="text/javascript">
+	// jquery方法
+	
+	var getclass = $("ul>li");
+	var obj = {
+		0:"啊啊啊",
+		1:"12345",
+		2:"1fafd黑呵呵s2345",
+		3:"122嘿嘿嘿343243242345",
+		4:"12a发发发aa345",
+		5:"123fsda45",
+		6:"呃呃呃",
+		7:"范德萨发",
+		8:"12fda45",
+		9:"afdsev",
+	};
+	//dataset : 设置或更改元素的自定义属性.
+	for(var i=0;i<getclass.length;i++){
+		getclass.attr("val",obj[i]);//设置自定义属性
+	};
+	getclass.on("mouseover",function(){
+		getclass.html(obj[$(this).index()]);
+		if(window.history && history.pushState){//这里是判断浏览器是否支持history对象和history.pushState这个函数.
+			// pushState(添加一个新的历史记录)三个参数:
+			// 参数一:给事件的状态添加值;
+			// 参数二:历史记录的名字,现在浏览器不支持更改
+			// 参数三:跳转的url
+			history.pushState($(this).index(),'第二个参数是历史记录的名字,但是现在浏览器不支持','?t='+$(this).index());
+		};
+	});
+	window.addEventListener("popstate",function(e){//这个是监听是否有点击后退或者前进按钮时
+		//当点击前进或后退按钮时,li更换里面的内容,e.state就是键(pushState第一个参数就是它的值);
+		getclass.html(obj[e.state]);
+	});
+</script>
+</html>
+
