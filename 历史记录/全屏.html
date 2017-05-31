@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../jquery-3.2.1.js" ></script>
+</head>
+<body>
+	<div class="Full">
+		 你好 你好 你好 你好 你好 你好 你好 你好 你好 你好 你好
+	</div>
+</body>
+<script type="text/javascript">
+	var getfull = document.querySelector(".Full");
+	getfull.addEventListener("click",function(){
+		if(getfull.requestFullScreen){
+			getfull.requestFullScreen();
+		}else if(getfull.webkitRequestFullScreen){
+			getfull.webkitRequestFullScreen();
+		}else if(getfull.mozRequestFullScreen){
+			getfull.mozRequestFullScreen();
+		}else{
+			alert("您的浏览器不支持全屏")
+		};
+		$("*").css("background","white")
+	});
+</script>
+</html>
