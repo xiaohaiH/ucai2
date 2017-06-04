@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	body,ul,li,img{margin: 0;padding: 0;}
+	li{list-style:none}
+	ul{position:relative;width:1000px;height:400px;}
+	ul li{width:1000px;height:400px;margin:0 auto;position:absolute;left:0;top:0;}
+	li img{width: 100%;height: 100%;}
+	@keyframes move{
+		from{width:0;}
+		to{width:100%;}
+	}
+</style>
+<body>
+	<ul id="box">
+		<li id="pic1" class="pic"><img src="./img/img1.jpg" alt="img"></li>
+		<li id="pic2" class="pic"><img src="./img/img2.jpg" alt="img"></li>
+		<li id="pic3" class="pic"><img src="./img/img3.jpg" alt="img"></li>
+	</ul>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var box = document.getElementById("box");
+		
+		var boxwidth = getStyle(box,"width");
+		var boxheight = getStyle(box,"height");
+
+
+		var num = 0;
+		setInterval(function(){
+			num %= 2;
+			num++;
+			moveone(box,boxwidth,boxheight,num);//父元素盒子,盒子宽度,盒子高度,动画的变量;
+		},5000)
+		
+
+
+		function moveone(box,boxwidth,boxheight,sum){//父元素盒子,盒子宽度,盒子高度,动画的变量;
+			console.log(sum)
+			for(var k = 1;k < box.children[sum].children.length;k++){
+				box.children[sum].children[k].remove()
+			};
+			var smallboxImg = box.children[sum].children[0].getAttribute("src");//获取当前动画的图片链接;
+			for(var j = 0;j < box.children.length;j++){
+			box.children[sum].children[0].style.display = "none";//让运动的图片隐藏;
+				box.children[j].style.zIndex = 2;
+			};
+			box.children[sum].style.zIndex = 3;//让其他图片层级低于运动图片的层级;
+
+			// 1.产生随机数,然后创建div,然后让第一张图片产生动画效果;
+
+			var ran = Math.ceil(Math.random() * 10) + 4;//随机数最小也要等于5;
+			ran % 2 ? ran : ran+=1;
+			var smallboxSum = ran * 4;//竖着四个div,横着产生随机数,这个就是总的div数量;
+			var smallboxWidth = parseInt(boxwidth) / ran;//小盒子的宽度;
+			var smallboxHeight = parseInt(boxheight) / 4;//小盒子的高度;
+			var initWidth = 0;//设置盒子x轴定位的初始值;
+			var initHeight = 0;//设置盒子y轴定位的初始值;
+			for(var i = 0;i < smallboxSum;i++){
+				var smallbox = document.createElement("div");
+				smallbox.style.animation = "move 5s ease";//设置盒子动画效果;
+				smallbox.style.animationFillMode = "forwards";//设置盒子动画效果;
+				smallbox.style.width = 0 + "px";//设置盒子的宽度;
+				// smallbox.style.width = smallboxWidth + "px";//设置盒子的宽度;
+				smallbox.style.height = smallboxHeight + "px";//设置盒子的高度;
+				smallbox.style.position = "absolute";//将盒子设为绝对定位;
+				smallbox.style.zIndex = 3;//设置小盒子的层级属性,防止被覆盖;
+				smallbox.style.overflow = "hidden";//超出盒子的范围隐藏;
+				if(i){//这里加个判断是因为第一个盒子的left,top值为0;
+					//定位的值：x轴取余ran(随机数)然后乘以盒子的宽,y轴除以ran(随机数)取整,然后乘以盒子的高;
+					initWidth = parseInt(i % ran) * smallboxWidth;//设置定位的值;
+					initHeight = parseInt(i / ran) * smallboxHeight;;//设置定位的值;
+				};
+				smallbox.style.left = initWidth + "px";//设置盒子的left值;
+				smallbox.style.top = initHeight + "px";//设置盒子的left值;
+				smallbox.style.background = "url(" + smallboxImg + ") no-repeat -" + initWidth + "px -"+ initHeight  + "px";//设置盒子的背景;
+				smallbox.style.backgroundSize = boxwidth + " " + boxheight;//设置盒子的背景大小;
+				box.children[sum].appendChild(smallbox);
+			};
+			for(let j = 1;j < box.children[sum].children.length;j++){
+				box.children[sum].children[j].index = j;
+				if(j % 2 == 0){
+					setTimeout(function(){
+						box.children[sum].children[j].style.width = smallboxWidth + "px";//设置盒子的宽度;
+					},1000)
+				}else{
+					setTimeout(function(){
+						box.children[sum].children[j].style.width = smallboxWidth + "px";//设置盒子的宽度;
+					},3000)
+				};
+			};
+		};
+
+
+		function getStyle(obj,attr){//封装函数获取外部样式表的属性;
+			if(window.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			};
+		};
+	};
+</script>
+<!-- <script type="text/javascript">
+	pic1.style.zIndex = 2;
+	box.addEventListener("click",function(){
+		var ran = Math.ceil(Math.random() * 4)+2;
+		var init = 0;
+			pic2.style.zIndex = 4;
+			b.style.display = "none";
+		for(var i=0;i < ran;i++){
+			var small = document.createElement("div");
+			var OW = parseInt(getComputedStyle(pic1,false)["width"]);
+			var OH = parseInt(getComputedStyle(pic1,false)["height"]);
+			small.classList.add("piece");
+			small.style.width = 0 + "px";
+			// small.style.height = 0 + "px";
+			// small.style.width = OW / ran + "px";
+			small.style.height = OH + "px";
+			if(i!=0){
+				init += parseInt(OW / ran);
+				small.style.left = init + "px";
+			};
+			small.style.background = "url(./img/img2.jpg) no-repeat -" + init + "px 0px"
+			small.style.backgroundSize = OW+"px 100%";
+			pic2.appendChild(small);
+		};
+		a.style.display = "none";
+		var OSmall = document.getElementsByClassName("piece");
+		for(var j=0;j<OSmall.length;j++){
+			OSmall[j].style.width = OW / ran + "px";
+			// small.style.height = OH + "px";
+		};
+	});
+</script> -->
+</html>
