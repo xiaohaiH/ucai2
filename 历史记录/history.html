@@ -86,7 +86,7 @@
 		if(window.history && history.pushState){//这里是判断浏览器是否支持history对象和history.pushState这个函数.
 			// pushState(添加一个新的历史记录)三个参数:
 			// 参数一:给事件的状态添加值;
-			// 参数二:历史记录的名字,现在浏览器不支持更改
+			// 参数二:历史记录的名字,现在浏览 87器不支持更改
 			// 参数三:跳转的url
 			history.pushState($(this).index(),'第二个参数是历史记录的名字,但是现在浏览器不支持','?t='+$(this).index());
 		};

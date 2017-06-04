@@ -9,7 +9,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 		// sessionStorage.setItem("key", "value"); //设置某个键值
 		// sessionStorage.getItem("key");  //获取某个键值
 		// localStorage.clear();
-		localStorage.removeItem("search");//每次进入页面清空搜索的值
+		// localStorage.removeItem("search");//每次进入页面清空搜索的值
 		if(username){//判断本地是否存储了用户名
 			$(".header div ul a:eq(0)").html(username).attr("href","javascript:;");
 			$("<span></span>").prependTo(".header .user ul li:eq(0) a").css({"float":"left","background":"url(http://www.iliangcang.com/images/default/headImgTmp239.png) no-repeat center","width":"30px","height":"30px","background-size":"cover","margin":"14px 5px 0 0"});
