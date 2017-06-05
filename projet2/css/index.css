@@ -1,0 +1,24 @@
+body,ul,li,p,figure,figcaption,img,a{margin:0;padding:0}
+a{text-decoration:none;color:black;}
+li{list-style:none;}
+
+html{font-size:62.5%;}
+
+.header{width:87%;margin:0 auto;}
+@media screen and (max-width: 1000px) {
+    body {
+        width:100%;
+    }
+    .header{
+    	width:100%;
+    }
+}
+
+
+
+// .header{width:87%;margin:0 auto;}
+
+/* ===========================Header头部================================== */
+// header{min-width:87%;background:white;}
+header .header{background:red;height:200px;}
+/* ===========================Header头部================================== */

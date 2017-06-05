@@ -10,8 +10,8 @@
 	ul{position:relative;width:1000px;height:400px;}
 	ul li{width:1000px;height:400px;margin:0 auto;position:absolute;left:0;top:0;}
 	li img{width: 100%;height: 100%;}
-	@keyframes move{
-		from{width:0;}
+	@keyframes oddmove{
+		from{width:0px;}
 		to{width:100%;}
 	}
 </style>
@@ -20,6 +20,8 @@
 		<li id="pic1" class="pic"><img src="./img/img1.jpg" alt="img"></li>
 		<li id="pic2" class="pic"><img src="./img/img2.jpg" alt="img"></li>
 		<li id="pic3" class="pic"><img src="./img/img3.jpg" alt="img"></li>
+		<li id="pic4" class="pic"><img src="./img/img4.jpg" alt="img"></li>
+		<li id="pic5" class="pic"><img src="./img/img5.jpg" alt="img"></li>
 	</ul>
 </body>
 <script type="text/javascript">
@@ -30,45 +32,53 @@
 		var boxheight = getStyle(box,"height");
 
 
-		var num = 0;
+		var num = -1;
 		setInterval(function(){
-			num %= 2;
 			num++;
+			num %= 3;
 			moveone(box,boxwidth,boxheight,num);//父元素盒子,盒子宽度,盒子高度,动画的变量;
 		},5000)
 		
-
-
+		// moveone(box,boxwidth,boxheight,1);
 		function moveone(box,boxwidth,boxheight,sum){//父元素盒子,盒子宽度,盒子高度,动画的变量;
-			console.log(sum)
-			for(var k = 1;k < box.children[sum].children.length;k++){
-				box.children[sum].children[k].remove()
+			var Imgsrc = box.children[sum].getElementsByTagName("img")[0].getAttribute("src");///获取图片的地址.
+			box.children[sum].getElementsByTagName("img")[0].remove();///删除该图片
+			var OLength = box.children.length; ///让图片按照顺序来叠放.
+			var delsum = sum;
+			box.children[delsum].style.zIndex = box.children.length + 1;
+			var boo = true;
+			while(OLength != 1){
+				if(boo){
+					if(delsum == box.children.length - 1){
+						boo = false;
+						delsum = sum;
+						continue;
+					};
+					delsum += 1;
+					box.children[delsum].style.zIndex = OLength;
+				}else{
+					delsum -= 1;
+					box.children[delsum].style.zIndex = OLength;
+				}
+				OLength--;
 			};
-			var smallboxImg = box.children[sum].children[0].getAttribute("src");//获取当前动画的图片链接;
-			for(var j = 0;j < box.children.length;j++){
-			box.children[sum].children[0].style.display = "none";//让运动的图片隐藏;
-				box.children[j].style.zIndex = 2;
-			};
-			box.children[sum].style.zIndex = 3;//让其他图片层级低于运动图片的层级;
-
 			// 1.产生随机数,然后创建div,然后让第一张图片产生动画效果;
 
 			var ran = Math.ceil(Math.random() * 10) + 4;//随机数最小也要等于5;
-			ran % 2 ? ran : ran+=1;
+			ran % 2 ? ran : ran += 1;
 			var smallboxSum = ran * 4;//竖着四个div,横着产生随机数,这个就是总的div数量;
 			var smallboxWidth = parseInt(boxwidth) / ran;//小盒子的宽度;
 			var smallboxHeight = parseInt(boxheight) / 4;//小盒子的高度;
 			var initWidth = 0;//设置盒子x轴定位的初始值;
 			var initHeight = 0;//设置盒子y轴定位的初始值;
 			for(var i = 0;i < smallboxSum;i++){
-				var smallbox = document.createElement("div");
-				smallbox.style.animation = "move 5s ease";//设置盒子动画效果;
-				smallbox.style.animationFillMode = "forwards";//设置盒子动画效果;
-				smallbox.style.width = 0 + "px";//设置盒子的宽度;
-				// smallbox.style.width = smallboxWidth + "px";//设置盒子的宽度;
+				var smallbox = document.createElement("p");
+				var smallImg = document.createElement("i");
+				smallbox.style.margin = "0px";//设置盒子的宽度;
+				smallbox.style.width = smallboxWidth + "px";//设置盒子的宽度;
 				smallbox.style.height = smallboxHeight + "px";//设置盒子的高度;
 				smallbox.style.position = "absolute";//将盒子设为绝对定位;
-				smallbox.style.zIndex = 3;//设置小盒子的层级属性,防止被覆盖;
+				smallbox.style.zIndex = box.children.length + 2;//设置小盒子的层级属性,防止被覆盖;
 				smallbox.style.overflow = "hidden";//超出盒子的范围隐藏;
 				if(i){//这里加个判断是因为第一个盒子的left,top值为0;
 					//定位的值：x轴取余ran(随机数)然后乘以盒子的宽,y轴除以ran(随机数)取整,然后乘以盒子的高;
@@ -77,22 +87,32 @@
 				};
 				smallbox.style.left = initWidth + "px";//设置盒子的left值;
 				smallbox.style.top = initHeight + "px";//设置盒子的left值;
-				smallbox.style.background = "url(" + smallboxImg + ") no-repeat -" + initWidth + "px -"+ initHeight  + "px";//设置盒子的背景;
-				smallbox.style.backgroundSize = boxwidth + " " + boxheight;//设置盒子的背景大小;
+
+				smallImg.style.display = "block";//设置盒子的背景;
+				smallImg.style.width = "0px";//设置盒子的背景;
+				smallImg.style.height = smallboxHeight + "px";//设置盒子的背景;
+				smallImg.style.background = "url(" + Imgsrc + ") no-repeat -" + initWidth + "px -"+ initHeight  + "px";//设置盒子的背景;
+				smallImg.style.backgroundSize = boxwidth + " " + boxheight;//设置盒子的背景大小;
+				smallbox.appendChild(smallImg);
 				box.children[sum].appendChild(smallbox);
 			};
-			for(let j = 1;j < box.children[sum].children.length;j++){
-				box.children[sum].children[j].index = j;
+			for(var j = 0;j < box.children[sum].children.length;j++){
 				if(j % 2 == 0){
-					setTimeout(function(){
-						box.children[sum].children[j].style.width = smallboxWidth + "px";//设置盒子的宽度;
-					},1000)
+					box.children[sum].children[j].children[0].style.animation = "oddmove 1s ease";//设置盒子的宽度;
+					box.children[sum].children[j].children[0].style.animationFillMode = "forwards";//设置盒子的宽度;
 				}else{
-					setTimeout(function(){
-						box.children[sum].children[j].style.width = smallboxWidth + "px";//设置盒子的宽度;
-					},3000)
+					box.children[sum].children[j].children[0].style.animation = "oddmove 1s ease 1s";//设置盒子的宽度;
+					box.children[sum].children[j].children[0].style.animationFillMode = "forwards";//设置盒子的宽度;
 				};
 			};
+			setTimeout(function(){
+				while(box.children[sum].children.length){
+					box.children[sum].children[0].remove();
+				};
+				var OImg = document.createElement("img");
+				OImg.src = Imgsrc;
+				box.children[sum].appendChild(OImg);
+			},2001);
 		};
 
 
