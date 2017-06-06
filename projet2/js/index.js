@@ -27,12 +27,9 @@ window.onload = function(){
 		///顶部li效果
 		!(function(){
 			var OHeaderMiddle = document.getElementsByClassName("headerMiddle")[0].children[0].children;
-			for(var i = 0;i < OHeaderMiddle.length;i++){
-				OHeaderMiddle[i].children[0].addEventListener("click",function(){
-					for(var k = 0;k < OHeaderMiddle.length;k++){
-						OHeaderMiddle[k].children[0].classList.remove("BgGreen");
-					};
-					this.classList.add("BgGreen");
+			for(let i = 0;i < OHeaderMiddle.length-1;i++){
+				OHeaderMiddle[i].children[0].addEventListener("mouseover",function(){
+					document.getElementsByClassName("BgGreen")[0].style.left = i * parseInt(getComputedStyle(this,false).width) + "px";
 				});
 			};
 		}());
