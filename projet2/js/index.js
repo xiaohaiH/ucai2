@@ -6,6 +6,7 @@ window.onload = function(){
 			var DW = document.documentElement.clientWidth;///文档宽度.
 			var DH = document.documentElement.clientHeight;///文档高度.
 			var OEWidth = document.getElementsByClassName("EWidth");///设置自适应宽度的class.
+			var OHeaderMiddle = document.getElementsByClassName("headerMiddle")[0].children[0].children;///获取顶部li.
 			for(var i = 0;i < OEWidth.length;i++){//设置他的最小宽度
 				document.getElementsByClassName("EWidth")[i].style.minWidth = (SW * 0.87) * 0.81 + "px";
 			};
@@ -25,13 +26,19 @@ window.onload = function(){
 						document.getElementsByClassName("EWidth")[i].style.width = "87%";
 					};
 				};
+				///监听窗口改变时li   ----bug 需要调整
+				for(let i = 0;i < OHeaderMiddle.length-1;i++){
+					OHeaderMiddle[i].addEventListener("mouseover",function(){
+						document.getElementsByClassName("BgGreen")[0].style.left = i * parseInt(getComputedStyle(this,false).width) + "px";
+					});
+				};
 			});
 		}());
 		///顶部li效果
 		!(function(){
-			var OHeaderMiddle = document.getElementsByClassName("headerMiddle")[0].children[0].children;
+			var OHeaderMiddle = document.getElementsByClassName("headerMiddle")[0].children[0].children;///获取顶部li.
 			for(let i = 0;i < OHeaderMiddle.length-1;i++){
-				OHeaderMiddle[i].children[0].addEventListener("mouseover",function(){
+				OHeaderMiddle[i].addEventListener("mouseover",function(){
 					document.getElementsByClassName("BgGreen")[0].style.left = i * parseInt(getComputedStyle(this,false).width) + "px";
 				});
 			};
