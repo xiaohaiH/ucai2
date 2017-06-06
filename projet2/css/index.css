@@ -16,7 +16,7 @@ body{-background:url(../img/bg_star.jpg) no-repeat center;}
 
 /* ===========================Header头部================================== */
 header{min-width:87%;background:none;height: 142px;}
-header .header{height:94px;display: flex;border: 1px solid red;}
+header .header{height:94px;display: flex;}
 .header .headerLeft{width:15%;}
 
 .header .headerMiddle{width:60%;text-align:center;}

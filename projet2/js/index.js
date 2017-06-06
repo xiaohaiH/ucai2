@@ -6,6 +6,9 @@ window.onload = function(){
 			var DW = document.documentElement.clientWidth;///文档宽度.
 			var DH = document.documentElement.clientHeight;///文档高度.
 			var OEWidth = document.getElementsByClassName("EWidth");///设置自适应宽度的class.
+			for(var i = 0;i < OEWidth.length;i++){//设置他的最小宽度
+				document.getElementsByClassName("EWidth")[i].style.minWidth = (SW * 0.87) * 0.81 + "px";
+			};
 			if(DW <= SW * 0.87){
 				for(var i = 0;i < OEWidth.length;i++){
 					document.getElementsByClassName("EWidth")[i].style.width = "100%";
