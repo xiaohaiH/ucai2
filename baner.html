@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		body,ul,li,a{margin:0;padding:0;}
+		body{position:relative;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+		ul{position:absolute;left:0;top:0;right:0;bottom:0;margin:auto;transform-style:preserve-3d;perspective:800px;perspective-origin:top;}
+		li{width:400px;height:100px;}
+		li:nth-child(1){background:purple;}
+		li:nth-child(2){background:violet;}
+		li:nth-child(3){background:darkviolet;}
+	</style>
+</head>
+<body>
+	<ul id="box">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</body>
+	<script type="text/javascript">
+		var oBox = document.getElementById("box");
+		document.body.style.height = document.documentElement.clientHeight + "px";
+		oBox.style.height = document.documentElement.clientHeight + "px";
+	</script>
+</html>
