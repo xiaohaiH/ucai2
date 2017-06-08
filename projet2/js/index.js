@@ -7,7 +7,7 @@ window.onload = function(){
 			var DW = document.documentElement.clientWidth;///文档宽度.
 			var DH = document.documentElement.clientHeight;///文档高度.
 			var OHeader = document.getElementsByTagName("header")[0];
-			OHeader.style.height = DH * 0.24 + "px";///设置顶部的高度.
+			OHeader.style.height = DH * 0.21 + "px";///设置顶部的高度.
 			var OEWidth = document.getElementsByClassName("EWidth");///设置自适应宽度的class.
 			var OHeaderMiddle1 = document.getElementsByClassName("headerMiddle")[0];
 			OHeaderMiddle1.style.lineHeight = getComputedStyle(OHeaderMiddle1,false).height;
@@ -66,6 +66,26 @@ window.onload = function(){
 			});
 			OHeaderRight[2].children[0].addEventListener("mouseout",function(){
 				this.style.transform = "translateZ(0px) rotateX(0deg)";
+			});
+			document.getElementsByTagName("nav")[0].getElementsByTagName("ul")[0].style.lineHeight = getComputedStyle(document.getElementsByTagName("nav")[0],false).height;
+
+			///搜索框点击效果 .
+			var oNav = document.getElementsByTagName("nav")[0];
+			var searchdefault = true;
+			oNav.children[1].children[1].addEventListener("click",function(){
+				if(searchdefault){
+					oNav.children[1].style.width = 30 + "%";
+					oNav.children[0].style.width = 65 + "%";
+					this.style.width = 10 + "%";
+					this.previousElementSibling.style.display = "block";
+					searchdefault = false;
+				}else{
+					oNav.children[1].style.width = 4 + "%";
+					oNav.children[0].style.width = 95 + "%";
+					this.style.width = 100 + "%";
+					this.previousElementSibling.style.display = "none";
+					searchdefault = true;
+				};
 			});
 		}());
 	///设置大div的宽度自适应.
