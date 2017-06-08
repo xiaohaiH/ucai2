@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 1300px;
+            height: 600px;
+            margin: 100px auto;
+            perspective: 800px;
+        }
+        
+        ul {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+            position: relative;
+        }
+        
+        li img {
+            width: 600px;
+            height: 400px;
+            border: 3px solid orange;
+        }
+        
+        li:nth-child(1) {
+            transform: translate(-300px) rotateY(30deg) scale(0.9, 0.9);
+        }
+        
+        li:nth-child(2) {
+            z-index: 5;
+        }
+        
+        li:nth-child(3) {
+            transform: translate(300px) rotateY(-30deg) scale(0.9, 0.9);
+        }
+        
+        li {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            float: left;
+            list-style: none;
+            transition: all 1s ease 0s;
+        }
+        
+        input {
+            margin-top: 50px;
+            margin-left: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><img class="img" src="1.jpg" alt="">
+        <input id="bt1" type="button" value="1"></input>
+            
+            </li>
+            <li><img src="2.jpg" alt="">
+        <input id="bt2" type="button" value="2"></input>
+            
+            </li>
+            <li><img src="3.jpg" alt="">
+        <input id="bt3" type="button" value="3"></input>
+            
+            </li>
+
+        </ul>
+
+
+
+
+    </div>
+</body>
+<script src="jquery.js"></script>
+<script>
+    $('#bt1').click(function() {
+        $.each($('li'), function(i) {
+            $('li').eq(0).css({
+                "transform": "none",
+                "z-index": 10,
+            })
+            $('li').eq(1).css({
+                "transform": "translate(300px) rotateY(-30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+            $('li').eq(2).css({
+                "transform": "translate(-300px) rotateY(30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+        })
+    })
+    
+      $('#bt2').click(function() {
+        $.each($('li'), function(i) {
+            $('li').eq(0).css({
+                "transform": "translate(-300px) rotateY(30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+            $('li').eq(1).css({
+            	 "transform": "none",
+                "z-index": 10,
+               
+            })
+            $('li').eq(2).css({
+                "transform": "translate(300px) rotateY(-30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+        })
+    })
+       $('#bt3').click(function() {
+        $.each($('li'), function(i) {
+            $('li').eq(0).css({
+                 "transform": "translate(300px) rotateY(-30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+            $('li').eq(1).css({
+               
+                 "transform": "translate(-300px) rotateY(30deg) scale(0.9, 0.9)",
+                "z-index": 0,
+            })
+            $('li').eq(2).css({
+            	"transform": "none",
+                "z-index": 10,
+               
+            })
+        })
+    })
+</script>
+
+</html>

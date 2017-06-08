@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html{
+				background: #CCCCCC;
+			}
+		.box{
+		 width:140px;
+		 height:200px;
+		 -webkit-transform-style:preserve-3d;
+		 -webkit-transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+		 position:relative;
+		 margin:0 auto;
+		 }
+        .box span{
+        width:140px; 
+        height:200px; 
+        position: absolute;
+        }
+        .s{width:140px; height:200px;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<span><img class="s" src="1.jpg.jpg"/></span>
+			<span><img class="s" src="1306679385695wc3ut8ru6d_medium.jpg"/></span>
+			<span><img class="s" src="1307515619381o2v3xqypte.jpg"/></span>
+			<span><img class="s" src="20110823022702453.png"/></span>
+			<span><img class="s" src="20110829094921537.jpg"/></span>
+			<span><img class="s" src="20120515042036295.png"/></span>
+			<span><img class="s" src="2524281_zhangjiao.png"/></span>
+			<span><img class="s" src="2652884_3.jpg"/></span>
+			<span><img class="s" src="b80c916da2e38c34-98ced589622273a2-ec5f8b1cf8496dd5f395d23c991cf8d7.jpg"/></span>
+			<span><img class="s" src="13680821098316b07e.jpg"/></span>
+			<span><img class="s" src="60-121229104P6.jpg"/></span>
+			<span><img class="s" src="y0503aixxx13s.jpg"/></span>
+        </div>
+	</body>
+	<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var span = document.getElementsByTagName('span');
+		window.onload =function(){
+		for (var i = 0; i < span.length; i++) {
+			span[i].style.WebkitTransition='1s all ease '+(span.length-i)*.1+'s';
+			
+			span[i].style.webkitTransform = "rotateY("+i*360/span.length+"deg) rotateX(-20deg) translateZ(450px)"
+		}
+			}
+
+        var box = $('.box');
+        var nowRotateX = 0;
+        var nowRotateY = 0;
+
+        $(document).mousedown(function(ev) {
+            startX = ev.clientX;
+            startY = ev.clientY;
+
+
+
+            $(document).mousemove(function(ev) {
+                var deltaX = ev.clientX - startX;
+                var deltaY = ev.clientY - startY;
+
+                nowRotateX += -deltaY / 100;
+                nowRotateY += deltaX / 100;
+
+                box.css("transform", "rotateX(" + nowRotateX + "deg) rotateY(" + nowRotateY + "deg)");
+                return false;
+            })
+        })
+
+
+        $(document).mouseup(function() {
+            $(document).off('mousemove');
+            box.css("transition", "all 1s ease 0s");
+        })
+
+	</script>
+</html>
