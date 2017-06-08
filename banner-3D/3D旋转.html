@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"  onselectstart='return false'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		body{-perspective-origin:center;perspective:1000px;perspective-origin:center;}
+		body,ul,li,a{margin:0;padding:0;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+
+		div{height:500px;position:relative;transform-style:preserve-3d;animation:rotate 10s linear infinite;}
+		p{width:100px;height:60px;line-height: 60px;text-align:center;position:absolute;left:0px;top:0px;right:0;bottom:0;margin:auto;transform-style:-transition:all 1s;transform:rotateY(0deg);transform-origin:center;}
+		p:nth-child(1){background:red;}
+		p:nth-child(2){background:blue;}
+		p:nth-child(3){background:violet;}
+		p:nth-child(4){background:purple;}
+		p:nth-child(5){background:darkviolet;}
+		p:nth-child(6){background:orange;}
+		p:nth-child(7){background:yellowgreen;}
+		p:nth-child(8){background:greenyellow;}
+		p:nth-child(9){background:green;}
+		p:nth-child(10){background:black;}
+		@keyframes rotate{
+			0%{transform:rotateX(0deg) rotateY(0deg);}
+			100%{transform:rotateX(360deg) rotateY(360deg);}
+		}
+	</style>
+</head>
+<body  oncontextmenu="return false" onselectstart="return false">
+	<div>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<p>5</p>
+		<p>6</p>
+		<p>7</p>
+		<p>8</p>
+		<p>9</p>
+		<p>10</p>
+	</div>
+</body>
+	<script type="text/javascript">
+		window.onload = function (){
+			var Op = document.getElementsByTagName("p");
+			var OBox = document.getElementsByTagName("div")[0];
+			OBox.style.height = document.documentElement.clientHeight + "px";
+			for(var i = 0;i < Op.length;i++){
+				Op[i].style.transform = 'rotateY('+ i * 36 +'deg) translateZ(360px)';
+			};
+			OBox.onmousedown = function(e){
+				if(!e) var e = window.event;
+				e.preventDefault();
+				this.onmousemove = function(ev){
+					if(!ev) var ev = window.event;
+					var X = ev.clientX - e.clientX;
+					var Y = -((ev.clientY - e.clientY)/6);
+					this.style.transform = "rotateX(" + Y + "deg) rotateY("+ X + "deg)"
+				};
+			};
+			OBox.onmouseup = function(){
+				this.onmousemove = null;
+				// this.style.transform = "rotateX(0deg) rotateY(0deg)"
+			};
+			document.body.onmouseover = function(){
+				OBox.style.animation = "none";
+			};
+			document.body.onmouseout = function(){
+				OBox.style.animation = "rotate 10s linear infinite";
+			};
+		};
+	</script>
+</html>
