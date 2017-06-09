@@ -1,5 +1,5 @@
 window.onload = function(){
-	///设置大div的宽度自适应.
+	///设置大div的宽度自适应开始,顶部.
 	var LiIndex = [0];
 	!(function(){
 			var SW = window.screen.width;///屏幕宽度.
@@ -88,5 +88,21 @@ window.onload = function(){
 				};
 			});
 		}());
-	///设置大div的宽度自适应.
+	///设置大div的宽度自适应结束,顶部.
+
+
+
+
+
+	///footer底部内容.
+	!function(){
+		var oFooter = document.getElementsByTagName("footer")[0];
+		oFooter.style.marginTop = parseInt(document.getElementsByTagName("header")[0].style.height) + 20 + "px";///距离顶部的margin值.
+		oFooter.style.height = document.documentElement.clientHeight * 0.72 + "px";///设置底部footer的高度.
+		var footTitle = oFooter.children[0].getElementsByTagName("h3");///设置底部三个H3的line-height值.
+		for(var i = 0;i < footTitle.length;i++){
+			footTitle[i].style.lineHeight = getComputedStyle(footTitle[i],false).height;
+		};
+	}()
+	///footer底部内容.
 };
