@@ -1,0 +1,59 @@
+body,ul,li,a{margin:0;padding:0;}
+a{text-decoration:none;}
+li{list-style:none;}
+
+html{font-size:62.5%;}
+body{overflow:hidden;position:relative;}
+.floatL{float:left;}
+.floatR{float:right;}
+
+
+#bigBox{position:absolute;top:0;left:0;transition:top .4s cubic-bezier(.15,1.05,.92,.39);width:100%;}
+/* 第一屏 */
+.oneScreen{background:none;position:relative;}
+		/* 顶部 */
+.oneScreen header{background:rgba(0,0,0,.2);overflow:hidden;position:absolute;left:0;top:0;width:100%;height:8rem;font-size:2rem;line-height:8rem;z-index:5;}
+.oneScreen header a{color:white;position:relative;font-weight:bold;}
+.oneScreen header a::before{content:attr(data-val);position:absolute;top:0;left:0;line-height:normal;width:0%;white-space:nowrap;overflow:hidden;color:#31C27C;transition:width 1s ease;}
+.oneScreen header a:hover::before{width:100%;}
+.oneScreen header .headerLeft{width:40%;}
+.oneScreen header .headerLeft .logo{width:30%;}
+.oneScreen header .headerLeft .logo img{width:100%;height:80%;}
+.oneScreen header .headerLeft .menu{width:70%;}
+.oneScreen header .headerLeft .menu li{width:50%;text-align:center;}
+.oneScreen header .headerRight{width:40%;}
+.oneScreen header .headerRight ul li{width:33%;text-align:center;}
+
+
+		/* 底部 */
+.oneScreen footer{position:absolute;bottom:0;left:0;width:100%;height:17rem;background:red;border-top:1px solid rgba(255,255,255,.6);}
+.oneScreen footer ul{height:100%;}
+.oneScreen footer ul li{width:25%;height:100%;}
+.oneScreen footer ul li i{width:10rem;height:100%;margin:0 auto;display:block;background:url(../img/oneScreenbanner.png) 4px -861px no-repeat;}
+.oneScreen footer ul li:nth-child(1) i{background:url(../img/oneScreenbanner.png) -330px -861px no-repeat;}
+.oneScreen footer ul li:nth-child(2) i{background:url(../img/oneScreenbanner.png) -220px -861px no-repeat;}
+.oneScreen footer ul li:nth-child(3) i{background:url(../img/oneScreenbanner.png) -110px -861px no-repeat;}
+/* 第二屏 */
+.twoScreen{background:purple;}
+/* 第三屏 */
+.threeScreen{background:greenyellow;}
+/* 第四屏 */
+.fourScreen{background:yellowgreen;}
+/* 第四屏 */
+
+
+
+
+
+
+
+
+
+
+/* 设置右侧导航 */
+nav{position:fixed;top:0;right:0;width:2%;height:100%;background:none;}
+nav ul{width:100%;height:20%;position:absolute;top:0;bottom:0;right:0;margin:auto;background:none;}
+nav ul li{height:25%;} 
+nav ul li a{display:block;width:.6rem;height:.6rem;border-radius:50%;margin:0 auto;background:#CACACA;}
+.iconBg{background:#1981FF;}
+/* 设置右侧导航 */

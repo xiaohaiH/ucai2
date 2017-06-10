@@ -1,6 +1,62 @@
 window.onload = function(){
+	console.log(document.documentElement.clientWidth);
 	///设置大div的宽度自适应开始,顶部.
 	var LiIndex = [0];
+	///流星.
+	!function(){
+		var oStarbox = document.getElementsByClassName("starBox")[0];///流星的父元素盒子.
+		var dHeight = document.documentElement.clientHeight;///屏幕的高度.
+		var dWidth = document.documentElement.clientWidth;///屏幕的宽度.
+		var starHeight = parseInt(getComputedStyle(oStarbox.children[0],false).height);///流星的高度.
+		var starWidth = parseInt(getComputedStyle(oStarbox.children[0],false).width);///流星的宽度.
+		setInterval(function(){
+			var starNum = Math.ceil(Math.random() * 2);
+			for(var k = 0;k < starNum;k++){
+				var Star = document.createElement("div");
+				var Starimg = document.createElement("img");
+				Star.className = "star";
+				Star.style.top = 0;
+				Starimg.src = "../img/star.png";
+				Star.appendChild(Starimg);
+				oStarbox.appendChild(Star);
+			};
+			for(var i = 0;i < oStarbox.children.length;i++){
+				var initLeft = Math.floor(Math.random() * (dWidth - starWidth)) + dWidth/2;///初始left值.
+				var initTop = Math.ceil(Math.random() * (dHeight - starHeight)) + starHeight;///初始top值.
+				initLeft > dWidth?initLeft = dWidth - starWidth:initLeft;///流星left大于屏幕宽时,等于left等于屏幕宽减去流星的宽度.
+				for(var j = 0;j < oStarbox.children.length;j++){///内判断,当流星之间的left小于流星宽度的一半时,他的left加上流星宽度的一半.
+					if(Math.abs(parseInt(getComputedStyle(oStarbox.children[j],false).left) -  parseInt(getComputedStyle(oStarbox.children[i],false).left)) < starWidth/2){
+						var newLeft = parseInt(getComputedStyle(oStarbox.children[j],false).left)
+						oStarbox.children[j].style.left = newLeft + starWidth/2 + "px";
+					};
+				};
+				oStarbox.children[i].style.left = initLeft + "px";///初始left值.
+				oStarbox.children[i].style.top = -initTop + "px";///初始top值.
+			};
+		},6000);
+		var Top = 0;
+		var Left = 0;
+		if(oStarbox.children.length){
+			clearInterval(timer);///每次运行前先清除定时器.
+			var timer = setInterval(function(){
+				for(var i = 0;i < oStarbox.children.length;i++){///由于有多条流星,所有每次先获取该流星的left和top值,再在原有基础上自减或自增.
+					Left = parseInt(getComputedStyle(oStarbox.children[i],false).left);
+					Top = parseInt(getComputedStyle(oStarbox.children[i],false).top);
+					Left--;
+					Top++;
+					oStarbox.children[i].style.top = Top + "px";
+					oStarbox.children[i].style.left = Left + "px";
+					if((Top + starHeight) > dHeight || Left < 0){///流星大于屏幕高时,设置他的透明度为0.
+						oStarbox.children[i].style.opacity = 0;
+					};
+					if(getComputedStyle(oStarbox.children[i],false).opacity == "0"){///当流星的透明度为0时,删除该流星.
+						oStarbox.children[i].remove();
+					};
+				};
+			},1)
+		};
+	}();
+	///流星结束.
 	!(function(){
 			var SW = window.screen.width;///屏幕宽度.
 			var SH = window.screen.height;///屏幕高度.
@@ -54,9 +110,7 @@ window.onload = function(){
 			};
 			var OHeaderRight = document.getElementsByClassName("headerRight")[0].children;
 			OHeaderRight[1].children[0].addEventListener("mouseover",function(){
-				// this.style.transform = "translateZ(px) rotateY(-90deg)";
 				this.style.transform = "translateZ(-" + getComputedStyle(this,false).width + ") rotateY(-90deg)";
-				console.log(this.style.transform);
 			});
 			OHeaderRight[1].children[0].addEventListener("mouseout",function(){
 				this.style.transform = "translateZ(0px) rotateY(0deg)";
