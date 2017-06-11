@@ -29,6 +29,13 @@
 		icon[numInit].classList.add("iconBg");///设置i对应小图标的类名.
 		obj.style.top = -H * numInit + "px";///给盒子赋值.
 	});
+	/* ----------这段是监听浏览器窗口大小改变时,高度重新赋值,每一屏的top值也要随之更改-------------- */
+	window.addEventListener("resize",function(){
+		H = document.documentElement.clientHeight;///获取屏幕的高度.
+		obj.style.top = -H * numInit + "px";
+	});
+	/* ----------这段是监听浏览器窗口大小改变时,高度重新赋值,每一屏的top值也要随之更改-------------- */
+
 	for(let j = 0;j < icon.length;j++){///点击右侧导航的图标时跳转并重新给numInit赋值.
 		icon[j].onclick = function(){
 			for(var k = 0;k < icon.length;k++){

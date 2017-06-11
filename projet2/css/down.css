@@ -1,20 +1,23 @@
-body,ul,li,a{margin:0;padding:0;}
+body,ul,li,a,p{margin:0;padding:0;}
 a{text-decoration:none;}
 li{list-style:none;}
 
 html{font-size:62.5%;}
-body{overflow:hidden;position:relative;}
+body{overflow:hidden;position:relative;background:black;}
 .floatL{float:left;}
 .floatR{float:right;}
 
 
 #bigBox{position:absolute;top:0;left:0;transition:top .4s cubic-bezier(.15,1.05,.92,.39);width:100%;}
+#bigBox>div{overflow:hidden;}
 /* 第一屏 */
 .oneScreen{background:none;position:relative;}
 		/* 顶部 */
 .oneScreen header{background:rgba(0,0,0,.2);overflow:hidden;position:absolute;left:0;top:0;width:100%;height:8rem;font-size:2rem;line-height:8rem;z-index:5;}
-.oneScreen header a{color:white;position:relative;font-weight:bold;}
+.oneScreen header .header{overflow:hidden;}
+.oneScreen header a{color:white;position:relative;}
 .oneScreen header a::before{content:attr(data-val);position:absolute;top:0;left:0;line-height:normal;width:0%;white-space:nowrap;overflow:hidden;color:#31C27C;transition:width 1s ease;}
+.oneScreen header a:hover{width:100%;font-weight:bold;}
 .oneScreen header a:hover::before{width:100%;}
 .oneScreen header .headerLeft{width:40%;}
 .oneScreen header .headerLeft .logo{width:30%;}
@@ -23,16 +26,86 @@ body{overflow:hidden;position:relative;}
 .oneScreen header .headerLeft .menu li{width:50%;text-align:center;}
 .oneScreen header .headerRight{width:40%;}
 .oneScreen header .headerRight ul li{width:33%;text-align:center;}
+		/* 中间主体第一节 */
+.oneScreen section{height:100%;}
+.oneScreen section .oneSectionBox{height:100%;}
+.oneScreen section>div{opacity:0;position:absolute;top:0;left:0;z-index:2;height:100%;width:100%;transition:opacity .5s linear;}
+.oneScreen section .oneSection{background:url(../img/banner_pc.jpg) center/100% 100% no-repeat;z-index:3;opacity:1;}
+.oneScreen section .oneSection .watch{background:url(../img/watch_bg.png) center/100% 100% no-repeat;width:40rem;height:40rem;margin-top:2rem;position:relative;}
+.oneScreen section .oneSection .watch i{background:url(../img/oneScreenbanner.png) -506px -854px no-repeat;position:absolute;top:6.5rem;left:10rem;right:0;bottom:0;margin:auto;width:13rem;height:10.5rem;z-index:3;transform-origin:15% 19%;transition:transform 2.4s cubic-bezier(.36,.2,1,1.24);transform:rotate(-255deg);}
+ .oneScreen section .oneSection .watch span{position:absolute;left:6rem;right:0;bottom:8rem;margin:0 auto;width:10rem;height:6rem;z-index:3;color:#2895EC;font-size:6rem;font-family:"custom";}
 
+ @font-face{font-family:custom;src:url("../Let's go Digital Regular.ttf");}
+
+.oneScreen section .oneSection .oneSectionText{height:100%;width:36rem;margin-top:12rem;position:relative;}
+.oneScreen section .oneSection .oneSectionText .oneSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
+.oneScreen section .oneSection .oneSectionText .oneSectionTextBox>div{opacity:0;transform:scale(3) translate(0,-100%) rotate(720deg);transition:all 2s linear;transform-origin:left top;}
+.oneScreen section .oneSection .oneSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
+.oneScreen section .oneSection .oneSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
+.oneScreen section .oneSection .oneSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .oneSection .oneSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
+.oneScreen section .oneSection .oneSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
+.oneScreen section .oneSection .oneSectionText p a:hover::before{transform:rotateX(0deg);}
+
+@keyframes down{
+	0%{transform:translate(-310%,0);}
+	25%{transform:translate(150%,0);}
+	50%{transform:translate(-240%,0);}
+	100%{transform:translate(0,0);}
+}
+
+		/* 中间主体第二节 */
+.oneScreen section .twoSection{background:url(../img/banner_mac.jpg) center/100% 100% no-repeat;}
+.oneScreen section .twoSectionBox{height:100%;}
+
+.oneScreen section .twoSection .twoSectionText{height:100%;width:38rem;margin-top:12rem;position:relative;}
+.oneScreen section .twoSection .twoSectionText .twoSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
+.oneScreen section .twoSection .twoSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
+.oneScreen section .twoSection .twoSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
+.oneScreen section .twoSection .twoSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .twoSection .twoSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
+.oneScreen section .twoSection .twoSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
+.oneScreen section .twoSection .twoSectionText p a:hover::before{transform:rotateX(0deg);}
+
+		/* 中间主体第三节 */
+/* .oneScreen section .threeSection{background:url(../img/iphone_play_1.jpg) center/100% 100% no-repeat;} */
+.oneScreen section .threeSection .banner{width:100%;height:100%;position:absolute;z-index:0;}
+.oneScreen section .threeSection .banner li{width:100%;height:100%;position:absolute;z-index:0;}
+.oneScreen section .threeSection .banner li:nth-child(1){z-index:1;}
+.oneScreen section .threeSection .banner li img{width:100%;}
+.oneScreen section .threeSection .threeSectionBox{height:100%;}
+
+.oneScreen section .threeSection .threeSectionText{height:100%;width:36rem;margin-top:12rem;position:relative;}
+.oneScreen section .threeSection .threeSectionText .threeSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
+.oneScreen section .threeSection .threeSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
+.oneScreen section .threeSection .threeSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
+.oneScreen section .threeSection .threeSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .threeSection .threeSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
+.oneScreen section .threeSection .threeSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
+.oneScreen section .threeSection .threeSectionText p a:hover::before{transform:rotateX(0deg);}
+
+		/* 中间主体第四节 */
+.oneScreen section .fourSection{background:url(../img/banner_android.jpg) center/100% 100% no-repeat;}
+.oneScreen section .fourSection{height:100%;}
+
+.oneScreen section .fourSection .fourSectionText{height:100%;width:36rem;margin-top:12rem;position:relative;}
+.oneScreen section .fourSection .fourSectionText .fourSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
+.oneScreen section .fourSection .fourSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
+.oneScreen section .fourSection .fourSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
+.oneScreen section .fourSection .fourSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .fourSection .fourSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
+.oneScreen section .fourSection .fourSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
+.oneScreen section .fourSection .fourSectionText p a:hover::before{transform:rotateX(0deg);}
 
 		/* 底部 */
-.oneScreen footer{position:absolute;bottom:0;left:0;width:100%;height:17rem;background:red;border-top:1px solid rgba(255,255,255,.6);}
+ .oneScreen footer{position:absolute;bottom:0;left:0;width:100%;height:15rem;background:none;border-top:1px solid rgba(255,255,255,.2);z-index:5;}
 .oneScreen footer ul{height:100%;}
 .oneScreen footer ul li{width:25%;height:100%;}
-.oneScreen footer ul li i{width:10rem;height:100%;margin:0 auto;display:block;background:url(../img/oneScreenbanner.png) 4px -861px no-repeat;}
-.oneScreen footer ul li:nth-child(1) i{background:url(../img/oneScreenbanner.png) -330px -861px no-repeat;}
-.oneScreen footer ul li:nth-child(2) i{background:url(../img/oneScreenbanner.png) -220px -861px no-repeat;}
-.oneScreen footer ul li:nth-child(3) i{background:url(../img/oneScreenbanner.png) -110px -861px no-repeat;}
+.oneScreen footer ul li i{width:10rem;height:100%;margin:0 auto;display:block;background:url(../img/oneScreenbanner.png) 4px -823px no-repeat;opacity:.5;cursor:pointer;margin-top:-1px;border-top:1px solid;border-color:transparent;}
+.oneScreen footer ul li:nth-child(1) i{background:url(../img/oneScreenbanner.png) -330px -823px no-repeat;opacity:1;border-top:1px solid rgba(255,255,255,1);}
+.oneScreen footer ul li:nth-child(2) i{background:url(../img/oneScreenbanner.png) -220px -823px no-repeat;}
+.oneScreen footer ul li:nth-child(3) i{background:url(../img/oneScreenbanner.png) -110px -823px no-repeat;}
+.oneScreen footer ul li i:hover{opacity:1!important;}
 /* 第二屏 */
 .twoScreen{background:purple;}
 /* 第三屏 */
@@ -51,7 +124,7 @@ body{overflow:hidden;position:relative;}
 
 
 /* 设置右侧导航 */
-nav{position:fixed;top:0;right:0;width:2%;height:100%;background:none;}
+nav{position:fixed;top:0;right:0;width:2%;height:100%;background:none;z-index:10;}
 nav ul{width:100%;height:20%;position:absolute;top:0;bottom:0;right:0;margin:auto;background:none;}
 nav ul li{height:25%;} 
 nav ul li a{display:block;width:.6rem;height:.6rem;border-radius:50%;margin:0 auto;background:#CACACA;}
