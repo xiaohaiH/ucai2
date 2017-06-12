@@ -32,8 +32,9 @@ window.onload = function(){
 		var oTop = parseInt(getComputedStyle(oBigBox,false)["top"]);
 		var oFoot = document.getElementsByClassName("oneScreen")[0].getElementsByTagName("footer")[0].children[0].children;
 		var oSection = document.getElementsByClassName("oneScreen")[0].getElementsByTagName("section")[0].children;
-		var oTextRotate = document.getElementsByClassName("oneSectionTextBox")[0].children[0];
+		var oTextRotate = document.getElementsByClassName("oneSection")[0].getElementsByClassName("oneSectionTextBox")[0].children[0];
 		var oDown = document.getElementsByClassName("oneSection")[0].getElementsByClassName("oneSectionTextBox")[0].children[1];
+		console.log(oDown);
 
 
 
@@ -42,10 +43,42 @@ window.onload = function(){
 		///这里是点击底部banner导航跳转.
 		for(let i = 0;i < oFoot.length;i++){
 			oFoot[i].addEventListener("click",function(){
-				if(i != 0){
-					oneSectionAnimate("end");
-				}else{
+				if(i == 0){
 					oneSectionAnimate("start",0);
+				}else{
+					oneSectionAnimate("end");
+				};
+				if(i==1){
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "leftMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "rightMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "down 2.4s linear 0s forwards";
+
+				}else{
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("twoSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "none";
+
+				};
+				if(i==2){
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "leftMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "rightMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "down 2.4s linear 0s forwards";
+				}else{
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("threeSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "none";
+
+				};
+				if(i==3){
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "leftMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "rightMove 2.4s linear 0s forwards";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "down 2.4s linear 0s forwards";
+
+				}else{
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("span")[0].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("span")[1].style.animation = "none";
+					document.getElementsByClassName("oneScreen")[0].getElementsByClassName("fourSectionTextBox")[0].getElementsByTagName("p")[0].style.animation = "none";
+
 				};
 				///点击底部的导航跳转到不同banner.
 				for(var j = 0;j < oSection.length;j++){
@@ -87,11 +120,11 @@ window.onload = function(){
 
 		function oneSectionAnimate(state,num){///第一屏第一张banner的动画 参数:判断是否开始运动,钟表的时间跳动.
 			if(state == "start"){
-				oTextRotate.style.transition = "all 2s linear";
-				oTextRotate.style.transform = "scale(1) translate(0,0) rotate(0deg)";
-				oTextRotate.style.opacity = "1";
+				oTextRotate.children[0].style.animation = "leftMove 2.4s linear 0s forwards";
+				oTextRotate.children[1].style.animation = "rightMove 2.4s linear 0s forwards";
+				oTextRotate.children[2].style.animation = "rightMove 2.4s linear 0s forwards";
 
-				oDown.style.animation = "down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards";
+				oDown.style.animation = "down 2.4s linear 0s forwards";
 
 				time.children[0].style.transition = "transform 2.4s cubic-bezier(.36,.2,1,1.24)";
 				time.children[0].style.transform = "rotate(0deg)";
@@ -107,9 +140,9 @@ window.onload = function(){
 				},40);
 			}else{
 				oDown.style.animation = "none";
-				oTextRotate.style.transition = "none";
-				oTextRotate.style.opacity = "0";
-				oTextRotate.style.transform = "scale(3) translate(0,-100%) rotate(720deg)";
+				oTextRotate.children[0].style.animation = "none";
+				oTextRotate.children[1].style.animation = "none";
+				oTextRotate.children[2].style.animation = "none";
 				time.children[1].innerHTML = "0";
 				time.children[0].style.transition = "none";
 				time.children[0].style.transform = "rotate(-255deg)";

@@ -39,20 +39,31 @@ body{overflow:hidden;position:relative;background:black;}
 
 .oneScreen section .oneSection .oneSectionText{height:100%;width:36rem;margin-top:12rem;position:relative;}
 .oneScreen section .oneSection .oneSectionText .oneSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
-.oneScreen section .oneSection .oneSectionText .oneSectionTextBox>div{opacity:0;transform:scale(3) translate(0,-100%) rotate(720deg);transition:all 2s linear;transform-origin:left top;}
+
+@keyframes leftMove{
+	0%{transform:translate(-200%,0);opacity:1;}
+	50%{transform:translate(-100%,0);opacity:0;}
+	100%{transform:translate(0,0);opacity:1;}
+}
+@keyframes rightMove{
+	0%{transform:translate(200%,0);opacity:1;}
+	50%{transform:translate(100%,0);opacity:0;}
+	100%{transform:translate(0,0);opacity:1;}
+}
 .oneScreen section .oneSection .oneSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
 .oneScreen section .oneSection .oneSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
-.oneScreen section .oneSection .oneSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .oneSection .oneSectionText p{width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;}
+
+@keyframes down{
+	0%{transform:translate(0,-500%);opacity:.4;}
+	25%{transform:translate(0,-200%);opacity:1;}
+	50%{transform:translate(0,-300%);opacity:.4;}
+	100%{transform:translate(0,0);opacity:1;}
+}
+
 .oneScreen section .oneSection .oneSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
 .oneScreen section .oneSection .oneSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
 .oneScreen section .oneSection .oneSectionText p a:hover::before{transform:rotateX(0deg);}
-
-@keyframes down{
-	0%{transform:translate(-310%,0);}
-	25%{transform:translate(150%,0);}
-	50%{transform:translate(-240%,0);}
-	100%{transform:translate(0,0);}
-}
 
 		/* 中间主体第二节 */
 .oneScreen section .twoSection{background:url(../img/banner_mac.jpg) center/100% 100% no-repeat;}
@@ -62,7 +73,7 @@ body{overflow:hidden;position:relative;background:black;}
 .oneScreen section .twoSection .twoSectionText .twoSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
 .oneScreen section .twoSection .twoSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
 .oneScreen section .twoSection .twoSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
-.oneScreen section .twoSection .twoSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .twoSection .twoSectionText p{width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;}
 .oneScreen section .twoSection .twoSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
 .oneScreen section .twoSection .twoSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
 .oneScreen section .twoSection .twoSectionText p a:hover::before{transform:rotateX(0deg);}
@@ -79,7 +90,7 @@ body{overflow:hidden;position:relative;background:black;}
 .oneScreen section .threeSection .threeSectionText .threeSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
 .oneScreen section .threeSection .threeSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
 .oneScreen section .threeSection .threeSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
-.oneScreen section .threeSection .threeSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .threeSection .threeSectionText p{width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;}
 .oneScreen section .threeSection .threeSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
 .oneScreen section .threeSection .threeSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
 .oneScreen section .threeSection .threeSectionText p a:hover::before{transform:rotateX(0deg);}
@@ -92,7 +103,7 @@ body{overflow:hidden;position:relative;background:black;}
 .oneScreen section .fourSection .fourSectionText .fourSectionTextBox{position:absolute;top:0;left:0;width:100%;height:100%;}
 .oneScreen section .fourSection .fourSectionText span{display:block;color:white;font-size: 5rem;font-weight:normal;}
 .oneScreen section .fourSection .fourSectionText span:nth-child(3){font-size:2rem;margin-top:1rem;}
-.oneScreen section .fourSection .fourSectionText p{transform:translate(-310%,0);width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;animation:down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards;}
+.oneScreen section .fourSection .fourSectionText p{width:20rem;height:4.4rem;overflow:hidden;line-height:4.4rem;text-align:center;font-size:2.5rem;perspective:1000px;margin-top:1rem;}
 .oneScreen section .fourSection .fourSectionText p a{display:block;color:white;height:100%;border-radius:2.4rem;background:#21985F;transform-style:preserve-3d;position:relative;}
 .oneScreen section .fourSection .fourSectionText p a::before{content:attr(data-val);position:absolute;left:0;top:0%;width:100%;height:100%;background:#31C27C;border-radius:2.4rem;transform-origin:top;transform:rotateX(180deg);transition:transform .9s ease;}
 .oneScreen section .fourSection .fourSectionText p a:hover::before{transform:rotateX(0deg);}
