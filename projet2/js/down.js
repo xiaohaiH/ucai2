@@ -33,6 +33,7 @@ window.onload = function(){
 		var oFoot = document.getElementsByClassName("oneScreen")[0].getElementsByTagName("footer")[0].children[0].children;
 		var oSection = document.getElementsByClassName("oneScreen")[0].getElementsByTagName("section")[0].children;
 		var oTextRotate = document.getElementsByClassName("oneSectionTextBox")[0].children[0];
+		var oDown = document.getElementsByClassName("oneSection")[0].getElementsByClassName("oneSectionTextBox")[0].children[1];
 
 
 
@@ -62,33 +63,35 @@ window.onload = function(){
 		};
 		///这里是点击底部banner导航跳转结束.
 		var OBanner = document.getElementsByClassName("oneScreen")[0].getElementsByClassName("banner")[0];
-		OBanner.style.width = window.screen.width + "px";///这个是设置图片的最小宽度.
+		OBanner.style.minWidth = window.screen.width * 0.9 + "px";///这个是设置图片的最小宽度.
 		///这里是设置banner图片的初始高度.
-		for(var i = 0;i < OBanner.children.length;i++){
-			var OH = parseInt(getComputedStyle(OBanner.children[i].children[0],false).height);
-			if(OH < window.screen.width){
-				OBanner.children[i].children[0].style.height = document.documentElement.clientHeight + "px";console.log(OBanner.children[i].children[0])
-			}else{
-				OBanner.children[i].children[0].style.height = "initial";
-			};
-		};///这里是监听banner图片的初始高度.
-		window.addEventListener("resize",function(){
-			for(var i = 0;i < OBanner.children.length;i++){
-				var OH = parseInt(getComputedStyle(OBanner.children[i].children[0],false).width);
+		// for(var i = 0;i < OBanner.children.length;i++){
+		// 	var OH = parseInt(getComputedStyle(OBanner.children[i].children[0],false).height);
+		// 	if(OH < window.screen.width){
+		// 		OBanner.children[i].children[0].style.height = document.documentElement.clientHeight + "px";console.log(OBanner.children[i].children[0])
+		// 	}else{
+		// 		OBanner.children[i].children[0].style.height = "initial";
+		// 	};
+		// };///这里是监听banner图片的初始高度.
+		// window.addEventListener("resize",function(){
+		// 	for(var i = 0;i < OBanner.children.length;i++){
+		// 		var OH = parseInt(getComputedStyle(OBanner.children[i].children[0],false).width);
 				
-				if(OH < window.screen.width){
-					OBanner.children[i].children[0].style.height = document.documentElement.clientHeight + "px";
-				}else{
-					OBanner.children[i].children[0].style.height = "initial";
-				};
-			};
-		});
+		// 		if(OH < window.screen.width){
+		// 			OBanner.children[i].children[0].style.height = document.documentElement.clientHeight + "px";
+		// 		}else{
+		// 			OBanner.children[i].children[0].style.height = "initial";
+		// 		};
+		// 	};
+		// });
 
 		function oneSectionAnimate(state,num){///第一屏第一张banner的动画 参数:判断是否开始运动,钟表的时间跳动.
 			if(state == "start"){
 				oTextRotate.style.transition = "all 2s linear";
 				oTextRotate.style.transform = "scale(1) translate(0,0) rotate(0deg)";
 				oTextRotate.style.opacity = "1";
+
+				oDown.style.animation = "down 2s cubic-bezier(.46,.04,1,1.23) 0s forwards";
 
 				time.children[0].style.transition = "transform 2.4s cubic-bezier(.36,.2,1,1.24)";
 				time.children[0].style.transform = "rotate(0deg)";
@@ -103,6 +106,7 @@ window.onload = function(){
 					};
 				},40);
 			}else{
+				oDown.style.animation = "none";
 				oTextRotate.style.transition = "none";
 				oTextRotate.style.opacity = "0";
 				oTextRotate.style.transform = "scale(3) translate(0,-100%) rotate(720deg)";
