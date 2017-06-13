@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>canvas</title>
+	<style type="text/css">
+		body,ul,li,a{margin:0;padding:0;}
+		body{background:green;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600px" height="600px" style="background:white;"></canvas>
+</body>
+	<script type="text/javascript">
+
+		var oCanvas = document.getElementById("canvas");
+		var ctx = oCanvas.getContext("2d");
+		ctx.beginPath();
+		ctx.strokeStyle = "violet";
+		ctx.lineWidth = "3";
+		ctx.arc(300,300,200,0,2*Math.PI,false);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.strokeStyle = "darkviolet";
+		ctx.moveTo(300,300);
+		ctx.arc(300,300,1,0,2*Math.PI,false);
+		ctx.stroke();
+
+		ctx.translate(300,300);
+		for(var i = 0;i < 60;i++){
+			if(i!=0)ctx.rotate(6*Math.PI/180);
+			if(i%5 != 0){
+				ctx.beginPath();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "greenyellow";
+				ctx.moveTo(0,-170);
+				ctx.lineTo(0,-190);
+				ctx.stroke();
+			}else{
+				ctx.beginPath();
+				ctx.lineWidth = 3;
+				ctx.strokeStyle = "yellowgreen";
+				ctx.moveTo(0,-160);
+				ctx.lineTo(0,-190);
+				ctx.stroke();
+			};
+		};
+		ctx.closePath();
+		var ODate = new Date();
+		///时钟.
+		ctx.rotate(6 * Math.PI/180);
+		console.log(ODate.getMinutes() * 6);
+		ctx.save()
+		ctx.rotate((ODate.getHours() * 30 + parseInt(ODate.getMinutes() / 10 * 6)) * Math.PI/180);
+		ctx.beginPath();
+		ctx.lineWidth = 3;
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-60);
+		ctx.stroke();
+		ctx.restore();
+		///分钟.
+		ctx.save();
+		ctx.rotate(ODate.getMinutes() * 6 * Math.PI/180);
+		ctx.beginPath();
+		ctx.lineWidth = 2;
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-100);
+		ctx.stroke();
+		ctx.restore();
+		///秒钟.
+		ctx.save();
+		console.log(ODate.getSeconds());
+		ctx.rotate(ODate.getSeconds() * 6 * Math.PI/180);
+		ctx.beginPath();
+		ctx.lineWidth = 1;
+		ctx.moveTo(0,0);
+		ctx.lineTo(0,-140);
+		ctx.stroke();
+		ctx.closePath();
+		ctx.restore();
+		function draw(){
+
+			ODate = new Date();
+			if(ODate.getMinutes() == 0){
+				///时钟.
+				ctx.rotate(6 * Math.PI/180);
+				console.log(ODate.getMinutes() * 6);
+				ctx.save()
+				ctx.rotate((ODate.getHours() * 30 + parseInt(ODate.getMinutes() / 10 * 6)) * Math.PI/180);
+				ctx.beginPath();
+				ctx.lineWidth = 3;
+				ctx.moveTo(0,0);
+				ctx.lineTo(0,-60);
+				ctx.stroke();
+				ctx.restore();
+			};
+			if(ODate.getSeconds() == 0){
+				///分钟.
+				ctx.save();
+				ctx.rotate(ODate.getMinutes() * 6 * Math.PI/180);
+				ctx.beginPath();
+				ctx.lineWidth = 2;
+				ctx.moveTo(0,0);
+				ctx.lineTo(0,-100);
+				ctx.stroke();
+				ctx.restore();
+			};
+			///秒钟.
+			ctx.save();
+			console.log(ODate.getSeconds()* 6);
+			ctx.rotate(ODate.getSeconds() * 6 * Math.PI/180);
+			ctx.beginPath();
+			ctx.lineWidth = 1;
+			ctx.moveTo(0,0);
+			ctx.lineTo(0,-140);
+			ctx.stroke();
+			ctx.closePath();
+			ctx.restore();
+		};
+		setInterval(function(){
+			draw();
+		},1000)
+
+
+console.log(ODate.getHours(),ODate.getMinutes(),ODate.getSeconds());
+	</script>
+</html>

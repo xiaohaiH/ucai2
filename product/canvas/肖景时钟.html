@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type='text/css'>
+        canvas{border:1px solid pink;}
+    </style>
+</head>
+<body>
+    <canvas width=800 height=600 id="canvas"></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas"),
+        ctx = canvas.getContext("2d");
+    
+        ctx.beginPath();
+        ctx.arc(400,300,200,0,Math.PI*2,false);
+        ctx.closePath();
+        ctx.strokeStyle="red";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(400,300,1,0,Math.PI*2,false);
+        ctx.closePath();
+        ctx.strokeStyle="red";
+        ctx.stroke();
+        
+        ctx.translate(400,300);
+
+        var clock={
+            restart:function(){
+                
+                    ctx.beginPath();
+                    ctx.arc(0,0,200,0,Math.PI*2,false);
+                    ctx.closePath();
+                    ctx.strokeStyle="red";
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.arc(0,0,1,0,Math.PI*2,false);
+                    ctx.closePath();
+                    ctx.strokeStyle="red";
+                    ctx.stroke(); 
+
+                ctx.save();
+                for(var i=1;i<=12;i++){
+                    ctx.lineWidth=4;
+                    ctx.rotate(Math.PI/180*30);
+                    ctx.beginPath();   
+                    ctx.moveTo(0,-200);
+                    ctx.lineTo(0,-170);
+                    ctx.closePath();
+                    ctx.strokeStyle="red";
+                    ctx.stroke();
+                }
+                ctx.restore(); 
+
+                ctx.save();
+                for(var i=0;i<60;i++){
+                    ctx.rotate(Math.PI/180*6);
+                    ctx.beginPath();
+                    ctx.moveTo(0,-200);
+                    ctx.lineTo(0,-190);
+                    ctx.closePath();
+                    ctx.strokeStyle="red";
+                    ctx.stroke();
+                }
+                ctx.restore();
+            },
+            hours:function(i,j){
+                ctx.save();
+                ctx.rotate(Math.PI/180*30*i+Math.PI/180*j/2);
+                ctx.beginPath();
+                ctx.moveTo(0,0);
+                ctx.lineTo(0,-100);
+                ctx.closePath();
+                ctx.strokeStyle="orange";
+                ctx.stroke();
+                ctx.restore();
+            },
+            minutes:function(i,j){
+                ctx.save();
+                ctx.rotate(Math.PI/180*6*i+Math.PI/180*j/10);
+                ctx.beginPath();
+                ctx.moveTo(0,0);
+                ctx.lineTo(0,-130);
+                ctx.closePath();
+                ctx.strokeStyle="blue";
+                ctx.stroke();
+                ctx.restore();
+            },
+            second:function(i){
+                ctx.save();
+                ctx.rotate(Math.PI/180*6*i);
+                ctx.beginPath();
+                ctx.moveTo(0,0);
+                ctx.lineTo(0,-150);
+                ctx.closePath();
+                ctx.strokeStyle="green";
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+        
+      
+        setInterval(function(){
+            var time = new Date();
+            ctx.clearRect(-400,-300,canvas.width,canvas.height);
+            clock.restart();
+            clock.hours(time.getHours(),time.getMinutes());
+            clock.minutes(time.getMinutes(),time.getSeconds());
+            clock.second(time.getSeconds());
+        },1000)
+        // console.log(time.getHours(),time.getMinutes(),time.getSeconds());
+      
+</script>
+</html>

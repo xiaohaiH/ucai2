@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas制作图片</title>
+	<style type="text/css">
+		body{margin:0;padding:0;}
+		body{background:darkviolet;}
+		canvas{background:greenyellow;}
+		.box{float:left;}
+		label{display:block;}
+		span{display:inline-block;width:100px;text-align:right;border:1px solid red;margin:0;}
+		p{width:100px;background:#CCC;text-align:center;margin:0 auto;padding:4px 6px;margin-top:20px;cursor:pointer;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<label for=""><span>姓名 :</span><input type="text"></label>
+		<label for=""><span>年龄 :</span> <input type="text"></label>
+		<label for=""><span>王者等级 :</span><input type="text"></label>
+		<p>生成图片</p>
+	</div>
+	<canvas id="canvas" width="300" height="200">您的浏览器版本过低,不支持canvas属性,请升级浏览器</canvas>
+</body>
+<script type="text/javascript">
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	init();
+
+	document.getElementsByTagName("p")[0].addEventListener("click",function(){
+		getImg.apply(this);
+	});
+	function init(){///这个是设置初始值.
+		ctx.strokeStyle = "white";
+		var grd = ctx.createLinearGradient(0,0,200,0);
+		grd.addColorStop(0.5,"#AFE839");
+		grd.addColorStop(1,"#A2D834");
+		ctx.fillStyle = grd;
+
+		ctx.beginPath();
+		ctx.fillRect(0,0,300,200);
+		ctx.translate(80,0);
+		ctx.font = "20px Arial";
+		ctx.textBaseline = "bottom";
+		ctx.strokeText("个人信息",20,50);
+		ctx.textAlign = "right";
+		ctx.font = "16px Arial";
+		ctx.strokeText("姓  名",0,90);
+		ctx.strokeText("年  龄",0,130);
+		ctx.strokeText("王者等级",0,170);
+		ctx.closePath();
+	};
+	function getImg(){///这个是开始写入信息,最后生成一张图片.
+		var parsonname = this.parentNode.children[0].children[1].value;
+		var parsonpassword = this.parentNode.children[1].children[1].value;
+		var parsongrade = this.parentNode.children[2].children[1].value;
+		ctx.translate(-80,0);///.
+		ctx.clearRect(0,0,300,200);
+		init();
+		ctx.beginPath();
+		ctx.textAlign = "left";
+		ctx.strokeText(parsonname,40,90);
+		ctx.strokeText(parsonpassword,40,130);
+		ctx.strokeText(parsongrade,40,170);
+		ctx.closePath();
+
+		window.open(canvas.toDataURL());///这个是生成一张图片.
+	};
+	document.getElementsByTagName("p")[0].addEventListener("touch",function(){
+		getImg.apply(this);
+	});
+</script>
+</html>
