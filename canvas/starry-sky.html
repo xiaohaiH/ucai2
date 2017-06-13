@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>星空旋转</title>
+	<style type="text/css">
+		body,ul,li,a{margin:0;padding:0;}
+		body{background:darkviolet;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+	</style>
+	<script src="./konva.min.js"></script>
+	<script src="https://cdn.rawgit.com/konvajs/konva/1.4.0/konva.min.js"></script>
+</head>
+<body>
+	<div id="canvas"></div>
+</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var owidth = document.documentElement.clientWidth;
+		var oheight = document.documentElement.clientHeight;
+
+		var stage = "";
+		var layer = "";
+
+
+
+		draw();
+		ballrotate(0,100,170,0);
+
+		function draw(){
+			stage = new Konva.Stage({
+				container : canvas,
+				width : owidth,
+				height : oheight
+			});
+			layer = new Konva.Layer();
+			var circle = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 30,
+			    fill: 'yellowgreen',
+			    stroke: '#CCC',
+			    strokeWidth: 1
+		    });
+			var circle2 = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 100,
+			    stroke: '#CCC',
+			    strokeWidth: 1
+		    });
+			var circle3 = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 170,
+			    stroke: '#CCC',
+			    strokeWidth: 1
+		    });
+		    // add the shape to the layer
+		    layer.add(circle);
+		    layer.add(circle2);
+		    layer.add(circle3);
+		    stage.add(layer);///将添加到舞台.
+		};
+		function ballrotate(x0,y0,x1,y1){
+			// var otext = 
+			var circle4 = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 30,
+			    fill : 'yellowgreen',
+			    offset : {
+			    	x : x0,
+			    	y : y0
+			    },
+			    stroke: '#CCC',
+			    strokeWidth: 1
+		    });
+			var circle5 = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 30,
+			    fill : 'orange',
+			    stroke: '#CCC',
+			    rotation : 30,
+			    offset : {
+			    	x : x1,
+			    	y : y1
+			    },
+			    strokeWidth: 1
+		    });
+			var circle6 = new Konva.Circle({
+			    x: stage.getWidth() / 2,
+			    y: stage.getHeight() / 2,
+			    radius: 30,
+			    fill : 'violet',
+			    stroke: '#CCC',
+			    rotation : 180,
+			    text : "fdsafdsafdsfsda",
+			    offset : {
+			    	x : x1,
+			    	y : y1
+			    },
+			    strokeWidth: 1
+		    });
+		    var otext = new Konva.Text({
+		    	x : stage.getWidth() / 2 - 30,
+		    	y : stage.getHeight() / 2,
+		    	lineHeight : 100,
+		    	width : 60,
+		    	// height : 100,
+		    	align : "center",
+		    	victical : 20,
+		    	fill : "black",
+		    	text : "abc",
+		    });
+		    var otext2 = new Konva.Text({
+		    	x : stage.getWidth() / 2,
+		    	y : stage.getHeight() / 2,
+		    	fill : "black",
+		    	width : 60,
+		    	height : 60,
+		    	align : "center",
+		    	text : "嘿嘿嘿",
+		    	offset : {
+		    		x : x0 + 30	,
+		    		y : y0,
+		    	}
+		    });
+		    var otext3 = new Konva.Text({
+		    	x : stage.getWidth() / 2,
+		    	y : stage.getHeight() / 2,
+		    	fill : "black",
+		    	text : "呵呵呵",
+		    	width : 60,
+		    	align : "center",
+			    rotation : 30,
+		    	offset : {
+		    		x : x1 + 30,
+		    		y : y1,
+		    	}
+		    });
+		    var otext4 = new Konva.Text({
+		    	x : stage.getWidth() / 2,
+		    	y : stage.getHeight() / 2,
+			    rotation : 180,
+		    	width : 60,
+		    	align : "center",
+		    	offset : {
+		    		x : x1 + 30,
+		    		y : y1,
+		    	},
+		    	fill : "black",
+		    	text : "哈哈哈",
+		    });
+
+		    layer.add(otext);
+		    layer.add(otext2);
+		    layer.add(otext3);
+		    layer.add(otext4);
+		    layer.add(circle4);
+		    layer.add(circle5);
+		    layer.add(circle6);
+		    stage.add(layer);///将添加到舞台.
+		    circle4.setZIndex(2);
+		    circle5.setZIndex(2);
+		    circle6.setZIndex(2);
+		    otext2.setZIndex(5);
+		    otext3.setZIndex(5);
+		    otext4.setZIndex(5);
+			var anim = new Konva.Animation(function(frame) {
+		    var angleDiff = frame.timeDiff * 60 / 1000;
+		        circle4.rotate(0.9);
+		        otext2.rotate(0.9)
+		        circle5.rotate(1);
+		        otext3.rotate(1)
+		        circle6.rotate(1);
+		        otext4.rotate(1)
+		    }, layer);
+		    anim.start();
+		};
+	</script>
+</html>
