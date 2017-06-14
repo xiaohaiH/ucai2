@@ -1,8 +1,7 @@
 
- window.scrollScreen = function (obj,num,time,icon,fn){//运动的对象,总共有几屏{max:,min}对象的方式书写,节流的时间(毫秒),指向图片的小图标,回调函数传下标.
+ window.scrollScreen = function (obj,num,time,icon){//运动的对象,总共有几屏{max:,min}对象的方式书写,节流的时间(毫秒),指向图片的小图标.
 	var numInit = 0;///初始值.
 	var timelock = false;///锁.
-
 	var H = document.documentElement.clientHeight;///获取屏幕的高度.
 	window.addEventListener("wheel",function(e){
 		if(!e)var e = window.event;
@@ -29,8 +28,6 @@
 		};
 		icon[numInit].classList.add("iconBg");///设置i对应小图标的类名.
 		obj.style.top = -H * numInit + "px";///给盒子赋值.
-
-
 	});
 	/* ----------这段是监听浏览器窗口大小改变时,高度重新赋值,每一屏的top值也要随之更改-------------- */
 	window.addEventListener("resize",function(){

@@ -2,7 +2,7 @@ body,ul,li,a,p{margin:0;padding:0;}
 a{text-decoration:none;}
 li{list-style:none;}
 
-html{font-size:62.5%;}
+html{font-size:10px;}
 body{overflow:hidden;position:relative;background:black;}
 .floatL{float:left;}
 .floatR{float:right;}
@@ -118,12 +118,47 @@ body{overflow:hidden;position:relative;background:black;}
 .oneScreen footer ul li:nth-child(3) i{background:url(../img/oneScreenbanner.png) -110px -823px no-repeat;}
 .oneScreen footer ul li i:hover{opacity:1!important;}
 /* 第二屏 */
-.twoScreen{background:purple;}
+.twoScreen{background:black;position:relative;}
+
+.twoScreen ul{width:1484px;position:absolute;left:-70px;top:0;}
+.twoScreen ul li{float:left;width:212px;transform:scale(1.2);opacity:0;}
+.twoScreen ul li img{display:block;width:100%;height:100%;}
+/* 图片展示的动画 */
+@keyframes showproduct{
+	0%{transform:scale(1.2);opacity:0;}
+	100%{transform:scale(1);opacity:1;}
+}
+.twoScreen .twoScreenText{position:absolute;width:40%;height:40%;left:0;top:0;right:0;bottom:0;margin:auto;color:white;text-align:center;opacity:.8;min-width:80rem;transform:skew(90deg);opacity:0;}
+.twoScreen .twoScreenText h1{font-size:6rem;margin:0;letter-spacing:.4rem;}
+.twoScreen .twoScreenText p{font-size:3rem;}
+.twoScreen .twoScreenText p span{display:block;margin-top:1.5rem;}
 /* 第三屏 */
-.threeScreen{background:greenyellow;}
+.threeScreen{background:url("../img/threeScreen_bg.jpg") center/100% 100% no-repeat;position:relative;opacity:0;}
+.threeScreen .threeScreenText{height:21rem;float: left;position:absolute;top:0;bottom:0;margin:auto 0;transform:skew(90deg);}
+.threeScreen .threeScreenText h1{font-size:6rem;font-family:monospace;margin:0;}
+.threeScreen .threeScreenText span{display:block;color:white;margin-top:0.5rem;}
+.threeScreen .threeScreenText p{font-size: 2.3rem;margin-top:0.4rem;letter-spacing:0.1rem;}
+.threeScreen .mobile{float:right;margin-top:-5.5rem;width:48rem;height:70rem;position:relative;margin-right:-6rem;transform:translate(100%,0);}
+.threeScreen .mobile span{position:absolute;left:-1.4rem;top:-0.8rem;display:block;width:100%;height:100%;z-index:3;transform:rotate(8.3deg);}
+.threeScreen .mobile span:nth-of-type(1){background:url(../img/mobile1.jpg) center/58% 67% no-repeat;}
+.threeScreen .mobile span:nth-of-type(2){background:url(../img/mobile2.jpg) center/58% 67% no-repeat;opacity:0;}
+.threeScreen .mobile p{background:url(../img/threeScreenIphone_bg.png) center/100% 100% no-repeat;position:absolute;top:0;left:0;z-index:5;width:100%;height:100%;}
 /* 第四屏 */
-.fourScreen{background:yellowgreen;}
-/* 第四屏 */
+.fourScreen{background:url("../img/bg_like.jpg") center/100% 100% no-repeat;position:relative;opacity:1;}
+
+.fourScreen .fourScreenBox{min-width:95rem;max-width:105rem;margin:0 auto;height:100%;}
+.fourScreen .fourMobile{float:left;margin-top:-5.5rem;width:48rem;height:70rem;position:relative;margin-right:-6rem;-transform:translate(100%,0);}
+.fourScreen .fourMobile span{position:absolute;left:-1.4rem;top:-0.8rem;display:block;width:100%;height:100%;z-index:3;transform:rotate(8.3deg);}
+.fourScreen .fourMobile span:nth-of-type(1){background:url(../img/fourMobile1.jpg) center/58% 67% no-repeat;}
+.fourScreen .fourMobile span:nth-of-type(2){background:url(../img/fourMobile2.jpg) center/58% 67% no-repeat;opacity:0;}
+.fourScreen .fourMobile p{background:url(../img/fourScreenIphone_bg.png) center/100% 100% no-repeat;position:absolute;top:0;left:0;z-index:5;width:100%;height:100%;}
+
+.fourScreen .fourScreenTextBox{position:relative;width:50rem;height:100%;float:right;}
+.fourScreen .fourScreenText{width:100%;height:21rem;position:absolute;top:0;bottom:0;right:0;margin:auto 0;-transform:skew(90deg);}
+.fourScreen .fourScreenText h1{font-size:6rem;font-family:monospace;margin:0;}
+.fourScreen .fourScreenText span{display:block;color:white;margin-top:1rem;}
+.fourScreen .fourScreenText p{font-size: 2.3rem;margin-top:0.4rem;letter-spacing:0.1rem;font-family: monospace;}
+/* 第五屏 */
 
 
 
