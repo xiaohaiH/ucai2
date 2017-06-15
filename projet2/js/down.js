@@ -58,6 +58,7 @@ window.onload = function(){
 					icon[j].classList.add("iconBg");
 					numInit = j;
 					obj.style.top = -H * j + "px";
+					allAnimate();
 				};
 			};
 		};
@@ -206,68 +207,137 @@ window.onload = function(){
 			arr.push(num2);
 		};
 		window.addEventListener("wheel",function(){///判断滚动到底几屏,然后运行当前屏的动画,停止其他屏的动画.
-			if(numInit == 0){
-				for(var m = 0;m < oUl.children.length;m++){///清空其它屏的动画.
-					oUl.children[m].style.animation = "none";
-				};
-				document.getElementsByClassName("twoScreenText")[0].style.transition = "none";
-				document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
-				document.getElementsByClassName("twoScreenText")[0].style.transform = "skew(90deg)";
-
-				oneSectionAnimate("start",0);///开始第一屏的动画.
-			}else if(numInit == 1){
-				oneSectionAnimate("end");///清空其他屏的动画.
-				for(var m = 0;m < oUl.children.length;m++){///开始当前屏的动画.
-					if(m%2){
-						oUl.children[m].style.animation = "showproduct 1s linear " + arr[m] + "s forwards";
-					}else{
-						oUl.children[m].style.animation = "showproduct 1s linear " + arr[m] + "s forwards";
-					};
-				};
-
-				document.getElementsByClassName("twoScreenText")[0].style.transition = "transform 3s linear";
-				document.getElementsByClassName("twoScreenText")[0].style.opacity = .8;
-				document.getElementsByClassName("twoScreenText")[0].style.transform = "skew(0deg)";///.第二屏结束.
-				threeAnimateEnd();///第三屏结束.
-			}else if(numInit == 2){
-				oneSectionAnimate("end");///清空其他屏的动画.
-				for(var m = 0;m < oUl.children.length;m++){
-					oUl.children[m].style.animation = "none";
-				};
-				document.getElementsByClassName("twoScreenText")[0].style.transition = "none";
-				document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
-				document.getElementsByClassName("twoScreenText")[0].style.transform = "skew(90deg)";
-
-				threeAnimateStart();///开始当前屏的动画.
-			}else if(numInit == 3){
-				oneSectionAnimate("end");///清空其他屏的动画.
-				for(var m = 0;m < oUl.children.length;m++){
-					oUl.children[m].style.animation = "none";
-				};
-				document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
-				document.getElementsByClassName("twoScreenText")[0].style.transform = "skew(90deg)";
-				threeAnimateEnd();///第三屏结束.
-			};
+			allAnimate();
 		});
+		function allAnimate(){///全部动画.
+				if(numInit == 0){
+					for(var m = 0;m < oUl.children.length;m++){///清空其它屏的动画.
+						oUl.children[m].style.animation = "none";
+					};
+					document.getElementsByClassName("twoScreenText")[0].style.transition = "none";
+					document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
+					document.getElementsByClassName("twoScreenText")[0].style.transform = "scale(0)";
+					threeAnimateEnd();///第三屏结束.
+					fourAnimateEnd();///第四屏结束.
+					fiveAnimateEnd();///第五屏结束.
+
+					oneSectionAnimate("start",0);///开始第一屏的动画.
+				}else if(numInit == 1){
+					oneSectionAnimate("end");///清空其他屏的动画.
+					for(var m = 0;m < oUl.children.length;m++){///开始当前屏的动画.
+						if(m%2){
+							oUl.children[m].style.animation = "showproduct 1s linear " + arr[m] + "s forwards";
+						}else{
+							oUl.children[m].style.animation = "showproduct 1s linear " + arr[m] + "s forwards";
+						};
+					};
+
+					document.getElementsByClassName("twoScreenText")[0].style.transition = "transform 3s linear";
+					document.getElementsByClassName("twoScreenText")[0].style.opacity = .8;
+					document.getElementsByClassName("twoScreenText")[0].style.transform = "scale(1)";///.第二屏结束.
+					threeAnimateEnd();///第三屏结束.
+					fourAnimateEnd();///第四屏结束.
+					fiveAnimateEnd();///第五屏结束.
+				}else if(numInit == 2){
+					oneSectionAnimate("end");///清空其他屏的动画.
+					for(var m = 0;m < oUl.children.length;m++){
+						oUl.children[m].style.animation = "none";
+					};
+					document.getElementsByClassName("twoScreenText")[0].style.transition = "none";
+					document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
+					document.getElementsByClassName("twoScreenText")[0].style.transform = "scale(0)";
+					fourAnimateEnd();///第四屏结束.
+					fiveAnimateEnd();///第五屏结束.
+
+					threeAnimateStart();///开始当前屏的动画.
+				}else if(numInit == 3){
+					oneSectionAnimate("end");///清空其他屏的动画.
+					for(var m = 0;m < oUl.children.length;m++){
+						oUl.children[m].style.animation = "none";
+					};
+					document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
+					document.getElementsByClassName("twoScreenText")[0].style.transform = "scale(0)";
+					threeAnimateEnd();///第三屏结束.
+					fiveAnimateEnd();///第五屏结束.
+
+					fourAnimateStart();///开始当前屏动画.
+				}else{
+					oneSectionAnimate("end");///清空其他屏的动画.
+					for(var m = 0;m < oUl.children.length;m++){
+						oUl.children[m].style.animation = "none";
+					};
+					document.getElementsByClassName("twoScreenText")[0].style.opacity = 0;
+					document.getElementsByClassName("twoScreenText")[0].style.transform = "scale(0)";
+					threeAnimateEnd();///第三屏结束.
+					fourAnimateEnd();///第四屏结束.
+
+					fiveAnimateStart();
+				};
+			};
 		function threeAnimateStart(){///第三屏动画.
 			document.getElementsByClassName("threeScreen")[0].style.transition = "all 2s linear";
 			document.getElementsByClassName("threeScreen")[0].style.opacity = "1";
 			document.getElementsByClassName("threeScreenText")[0].style.transition = "all 2s linear";///开始当前屏的动画.
-			document.getElementsByClassName("threeScreenText")[0].style.transform = "skew(0deg)";///开始当前屏的动画.
+			document.getElementsByClassName("threeScreenText")[0].style.transform = "scale(1)";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].style.transition = "all 2s linear";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].style.transform = "translate(0,0)";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].getElementsByTagName("span")[1].style.transition = "all 2s linear 2.4s";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].getElementsByTagName("span")[1].style.opacity = "1";///开始当前屏的动画.
 		};
-		function threeAnimateEnd(){///第三屏动画.
+		function threeAnimateEnd(){///第三屏动画结束.
 			document.getElementsByClassName("threeScreen")[0].style.transition = "none";
 			document.getElementsByClassName("threeScreen")[0].style.opacity = "0";
 			document.getElementsByClassName("threeScreenText")[0].style.transition = "none";///开始当前屏的动画.
-			document.getElementsByClassName("threeScreenText")[0].style.transform = "skew(90deg)";///开始当前屏的动画.
+			document.getElementsByClassName("threeScreenText")[0].style.transform = "scale(0)";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].style.transition = "none";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].style.transform = "translate(100%,0)";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].getElementsByTagName("span")[1].style.transition = "none";///开始当前屏的动画.
 			document.getElementsByClassName("mobile")[0].getElementsByTagName("span")[1].style.opacity = "0";///开始当前屏的动画.
+		};
+		function fourAnimateStart(){///第四屏动画开始.
+			document.getElementsByClassName("fourScreen")[0].style.transition = "opacity 2s linear";
+			document.getElementsByClassName("fourScreen")[0].style.opacity = "1";
+			document.getElementsByClassName("fourScreenText")[0].style.transition = "all 2s linear";///开始当前屏的动画.
+			document.getElementsByClassName("fourScreenText")[0].style.transform = "scale(1)";///开始当前屏的动画.
+			document.getElementsByClassName("fourScreenText")[0].style.opacity = "1";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].style.transition = "transform 2s linear";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].style.transform = "translate(0,0)";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.transition = "all 2s linear 2s";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.left = "-1.3rem";///.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.top = "-7rem";///.
+		};
+		function fourAnimateEnd(){///第四屏动画结束.
+			document.getElementsByClassName("fourScreen")[0].style.transition = "none";
+			document.getElementsByClassName("fourScreen")[0].style.opacity = "0";
+			document.getElementsByClassName("fourScreenText")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fourScreenText")[0].style.transform = "scale(0)";///开始当前屏的动画.
+			document.getElementsByClassName("fourScreenText")[0].style.opacity = "0";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].style.transform = "translate(-100%,0)";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.left = "0.15rem";///.
+			document.getElementsByClassName("fourMobile")[0].getElementsByTagName("span")[0].style.top = "8.5rem";///.
+		};
+		function fiveAnimateStart(){///第五屏动画开始.
+			document.getElementsByClassName("fiveScreen")[0].style.transition = "opacity 2s linear";
+			document.getElementsByClassName("fiveScreen")[0].style.opacity = 1;
+			document.getElementsByClassName("fiveScreenText")[0].style.transition = "all 2s linear";///开始当前屏的动画.
+			document.getElementsByClassName("fiveScreenText")[0].style.width = "45rem";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMobile")[0].style.transition = "transform 2s linear .2s";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMobile")[0].style.transform = "translate(0,0)";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMac")[0].style.transition = "all 2s linear 1s";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMac")[0].style.transform = "scale(1.2) translate(0,0)";///.
+		};
+		function fiveAnimateEnd(){///第五屏动画结束.
+			console.log("console");
+			document.getElementsByClassName("fiveScreen")[0].style.transition = "none";
+			document.getElementsByClassName("fiveScreen")[0].style.opacity = 0;
+			document.getElementsByClassName("fiveScreenText")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fiveScreenText")[0].style.width = "0rem";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMobile")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMobile")[0].style.transform = "translate(-100%,0)";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMac")[0].style.transition = "none";///开始当前屏的动画.
+			document.getElementsByClassName("fiveMac")[0].style.transform = "scale(1.2) translate(120%,0)";///.
 		};
 		window.addEventListener("resize",function(){///监听窗口改变UL往左进去.
 			if(document.documentElement.clientWidth < window.screen.width){

@@ -1,4 +1,4 @@
-body,ul,li,a,p{margin:0;padding:0;}
+body,ul,li,a,p,h1{margin:0;padding:0;}
 a{text-decoration:none;}
 li{list-style:none;}
 
@@ -20,8 +20,8 @@ body{overflow:hidden;position:relative;background:black;}
 .oneScreen header a:hover{width:100%;font-weight:bold;}
 .oneScreen header a:hover::before{width:100%;}
 .oneScreen header .headerLeft{width:40%;}
-.oneScreen header .headerLeft .logo{width:30%;}
-.oneScreen header .headerLeft .logo img{width:100%;height:80%;}
+.oneScreen header .headerLeft .logo{width:30%;height:8rem;position:relative;}
+.oneScreen header .headerLeft .logo img{width:10rem;height:4.3rem;position:absolute;top:0;left:0;bottom:0;margin:auto 0;}
 .oneScreen header .headerLeft .menu{width:70%;}
 .oneScreen header .headerLeft .menu li{width:50%;text-align:center;}
 .oneScreen header .headerRight{width:40%;}
@@ -128,14 +128,14 @@ body{overflow:hidden;position:relative;background:black;}
 	0%{transform:scale(1.2);opacity:0;}
 	100%{transform:scale(1);opacity:1;}
 }
-.twoScreen .twoScreenText{position:absolute;width:40%;height:40%;left:0;top:0;right:0;bottom:0;margin:auto;color:white;text-align:center;opacity:.8;min-width:80rem;transform:skew(90deg);opacity:0;}
+.twoScreen .twoScreenText{position:absolute;width:40%;height:40%;left:0;top:0;right:0;bottom:0;margin:auto;color:white;text-align:center;opacity:.8;min-width:80rem;transform:scale(0);opacity:0;}
 .twoScreen .twoScreenText h1{font-size:6rem;margin:0;letter-spacing:.4rem;}
 .twoScreen .twoScreenText p{font-size:3rem;}
 .twoScreen .twoScreenText p span{display:block;margin-top:1.5rem;}
 /* 第三屏 */
 .threeScreen{background:url("../img/threeScreen_bg.jpg") center/100% 100% no-repeat;position:relative;opacity:0;}
-.threeScreen .threeScreenText{height:21rem;float: left;position:absolute;top:0;bottom:0;margin:auto 0;transform:skew(90deg);}
-.threeScreen .threeScreenText h1{font-size:6rem;font-family:monospace;margin:0;}
+.threeScreen .threeScreenText{height:21rem;float: left;position:absolute;top:0;bottom:0;margin:auto 0;transform:scale(0);}
+.threeScreen .threeScreenText h1{font-size:6rem;font-family:monospace;}
 .threeScreen .threeScreenText span{display:block;color:white;margin-top:0.5rem;}
 .threeScreen .threeScreenText p{font-size: 2.3rem;margin-top:0.4rem;letter-spacing:0.1rem;}
 .threeScreen .mobile{float:right;margin-top:-5.5rem;width:48rem;height:70rem;position:relative;margin-right:-6rem;transform:translate(100%,0);}
@@ -147,20 +147,33 @@ body{overflow:hidden;position:relative;background:black;}
 .fourScreen{background:url("../img/bg_like.jpg") center/100% 100% no-repeat;position:relative;opacity:1;}
 
 .fourScreen .fourScreenBox{min-width:95rem;max-width:105rem;margin:0 auto;height:100%;}
-.fourScreen .fourMobile{float:left;margin-top:-5.5rem;width:48rem;height:70rem;position:relative;margin-right:-6rem;-transform:translate(100%,0);}
-.fourScreen .fourMobile span{position:absolute;left:-1.4rem;top:-0.8rem;display:block;width:100%;height:100%;z-index:3;transform:rotate(8.3deg);}
-.fourScreen .fourMobile span:nth-of-type(1){background:url(../img/fourMobile1.jpg) center/58% 67% no-repeat;}
-.fourScreen .fourMobile span:nth-of-type(2){background:url(../img/fourMobile2.jpg) center/58% 67% no-repeat;opacity:0;}
+.fourScreen .fourMobile{float:left;margin-top:-5.5rem;width:37.5rem;height:65rem;position:relative;margin-right:-6rem;-transform:translate(100%,0);}
+.fourScreen .fourMobile span:nth-of-type(1){display:block;position:absolute;left:0.15rem;top:8.5rem;background:url(../img/fourScreenIphone_content.jpg) center/71% 80% no-repeat;width:100%;height:100%;z-index:3;transition:all 2s linear;transform:rotate(-5.6deg);}
+.fourScreen .fourMobile span:hover{left:-1.3rem;top:-7rem;}
 .fourScreen .fourMobile p{background:url(../img/fourScreenIphone_bg.png) center/100% 100% no-repeat;position:absolute;top:0;left:0;z-index:5;width:100%;height:100%;}
 
 .fourScreen .fourScreenTextBox{position:relative;width:50rem;height:100%;float:right;}
-.fourScreen .fourScreenText{width:100%;height:21rem;position:absolute;top:0;bottom:0;right:0;margin:auto 0;-transform:skew(90deg);}
-.fourScreen .fourScreenText h1{font-size:6rem;font-family:monospace;margin:0;}
+.fourScreen .fourScreenText{width:100%;height:21rem;position:absolute;top:0;bottom:0;right:0;margin:auto 0;}
+.fourScreen .fourScreenText h1{font-size:6rem;font-family:monospace;}
 .fourScreen .fourScreenText span{display:block;color:white;margin-top:1rem;}
 .fourScreen .fourScreenText p{font-size: 2.3rem;margin-top:0.4rem;letter-spacing:0.1rem;font-family: monospace;}
 /* 第五屏 */
+.fiveScreen{background:url(../img/fiveScreen_bg.jpg) center/100% 100% no-repeat;opacity:0;}
+.fiveScreen .fiveScreenBox{width:85rem;height:100%;margin:0 auto;}
+.fiveScreen .fiveScreenTextBox{float:left;width:45rem;}
+.fiveScreen .fiveScreenTextBox .fiveScreenText{width:0rem;overflow:hidden;white-space:nowrap;}
+.fiveScreen .fiveScreenTextBox h1{font-weight:100;font-size:6rem;margin-top:4rem;}
+.fiveScreen .fiveScreenTextBox span{display:block;}
+.fiveScreen .fiveScreenTextBox p{font-size:2.4rem;}
+.fiveScreen .fiveScreenTextBox div{font-size:2.4rem;}
+.fiveScreen .fiveMobile{margin-top:5rem;width:100%;position:relative;transform:translate(-100%,0);}
 
 
+.fiveScreen .fiveMac{float:right;height:100%;width:40rem;transform:scale(1.2) translate(120%,0);position:relative;}
+.fiveScreen .fiveMac p{width:40rem;}
+.fiveScreen .fiveMac p:nth-of-type(1){background:url(../img/five_mac1.png) center/100% 100% no-repeat;height:29rem;}
+.fiveScreen .fiveMac p:nth-of-type(2){background:url(../img/five_mac2.png) center/100% 100% no-repeat;height:31rem;}
+/* 主体结束  */
 
 
 
