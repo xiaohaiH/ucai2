@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		body,ul,li,p,figure,figcaption,input,a{margin:0;padding:0;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+
+		html{font-size:20px;}
+		.floatL{float:left;}
+		.floatR{float:right;}
+
+		/* header */
+		header{background:#F6F6F6;width:100%;height:2.3rem;position:fixed;top:0;left:0;}
+		header div{width:13.5rem;height:100%;position:relative;}
+		header div input{width:95%;height:1.25rem;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;box-shadow:0rem 0rem .25rem black;border:0.05rem solid #999999;border-radius:0.3rem;padding-left:0.8rem;}
+		header p{width:2.5rem;height:100%;text-align:center;vertical-align:bottom;position:relative;font-size:.7rem;color:#2EAAE0;}
+		header p::before{content:"";background:url(../img/personHead.png) center/100% 100% no-repeat;display:block;width:1.2rem;height:1.2rem;margin:0 auto;margin-top:0.1rem;}
+
+		/* banner */
+		.banner{margin-top:2.3rem;width:100%;height:3.2rem;overflow:hidden;}
+		.banner img{width:100%;}
+
+		/* nav导航 */
+		nav{width:100%;}
+		nav>div{border-radius:0.3rem;overflow:hidden;display:flex;width:98%;margin:0 auto;margin-top:0.3rem;font-size:0.75rem;}
+		nav>div>div{flex-grow:1;height:4.5rem;text-align:center;}
+		nav>div>div:nth-of-type(2){margin:0 0.05rem;}
+		nav>a{color:white;}
+		nav .hotel div{background:#FF697A;}
+		nav .ticket div{background:#3D98FF;}
+
+		nav .travel div{background:#44C522;}
+
+		nav .moreNav div{background:#FC9720;}
+		/* moreServe更多服务 */
+		.moreServe{width:98%;height:9.2rem;margin:0 auto;margin-top:0.4rem;border-radius:0.3rem;overflow:hidden;}
+		.moreServe table{width:100%;height:100%;border-collapse:collapse;border-spacing:0;}
+		.moreServe table tr{box-sizing:border-box;width:100%;height:3rem;}
+		.moreServe table tr td{width:25%;border:0.05rem solid #F2F2F2;text-align:center;}
+		/* specialOffer特卖汇 */
+		.specialOffer{width:100%;padding:0 0.4rem;margin:0 auto;border:0.05rem solid #DBDBDB;box-sizing:border-box;}
+
+		.title{width:100%;height:2.25rem;line-height:2.25rem;}
+
+		.specialOffer .commodity{width:100%:height:2.25rem;line-height:2.25rem;display:flex;}
+		.specialOffer .commodity figure{flex:1;}
+		.specialOffer .commodity .commodityRight{flex:1;}
+		/* hotActivity热门活动 */
+		.hotActivity{width:100%;height:14.4rem;border:0.05rem solid #DBDBDB;box-sizing:border-box;}
+		.hotActivity section{display:flex;width:100%;height:12.2rem;}
+		.hotActivity section .hotActivityLeft{flex:1;border-right:0.05rem solid #DBDBDB;border-top:0.05rem solid #DBDBDB;}
+		.hotActivity section .hotActivityRight{flex:1;border-top:0.05rem solid #DBDBDB;}
+		/* userBox */
+		.userBox{display:flex;width:100%;height:2.5rem;}
+		.userBox p{flex:1;text-align:center;}
+		/* footer底部 */
+		footer{background:#F2F2F2;width:100%;height:3rem;font-size:0.6rem;}
+		footer p{width:11rem;margin:0 auto;height:1.4rem;line-height:1.4rem;}
+		/* footer p:nth-of-type(2){width:11rem;margin:0 auto;} */
+
+	</style>
+</head>
+<body>
+	<div class="bigBox">
+		<!-- header头部 -->
+		<header>
+			<div class="floatL"><input type="search" placeholder="搜索:目的地/酒店/景点/航班号" name=""></div>
+			<p class="floatR">我的</p>
+		</header>
+		<!-- banner -->
+		<div class="banner">
+			<ul>
+				<li><img src="../img/banner_one.png"></li>
+				<li><img src="../img/banner_one.png"></li>
+				<li><img src="../img/banner_one.png"></li>
+			</ul>
+		</div>
+		<!-- nav导航 -->
+		<nav>
+			<div class="hotel">
+				<div><a href="javascript:;">1</a></div>
+				<div><a href="javascript:;">2</a></div>
+				<div><a href="javascript:;">3</a></div>
+			</div>
+			<div class="ticket">
+				<div><a href="javascript:;">1</a></div>
+				<div><a href="javascript:;">2</a></div>
+				<div><a href="javascript:;">3</a></div>
+			</div>
+			<div class="travel">
+				<div><a href="javascript:;">1</a></div>
+				<div><a href="javascript:;">2</a></div>
+				<div><a href="javascript:;">3</a></div>
+			</div>
+			<div class="moreNav">
+				<div><a href="javascript:;">1</a></div>
+				<div><a href="javascript:;">2</a></div>
+				<div><a href="javascript:;">3</a></div>
+			</div>
+		</nav>
+		<!-- moreServe更多服务 -->
+		<div class="moreServe">
+			<table>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- specialOffer特卖汇 -->
+		<div class="specialOffer">
+			<div class="title">
+				<span class="floatL">特卖汇</span>
+				<span class="floatR">微信领红包在下单</span>
+			</div>
+			<div class="commodity">
+				<figure class="vfloatL">
+					<img src="">
+					<figcaption>
+						<p>1</p>
+						<p>2</p>
+					</figcaption>
+				</figure>
+				<div class="commodityRight vfloatR">
+					<a href="javascript:;">1</a>
+					<p>
+						<a href="javascript:;">2</a>
+						<a href="javascript:;">3</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- hotActivity 热门活动 -->
+		<div class="hotActivity">
+			<div class="title">
+				<span class="floatL">热门活动</span>
+				<span class="floatR">获取更多福利</span>
+			</div>
+			<section>
+				<div class="hotActivityLeft">1</div>
+				<div class="hotActivityRight">2</div>
+			</section>
+		</div>
+		<!-- userBox -->
+		<div class="userBox">
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+		</div>
+		<!-- footer -->
+		<footer>
+			<p>
+				<a href="javascript:;">网站地图</a>
+				<span>|</span>
+				<a href="javascript:;">Global sites</a>
+				<span>|</span>
+				<a href="javascript:;">电脑版</a>
+			</p>
+			<p>
+				<a href="javascript:;">&copy;2017携程旅行</a>
+				<a href="javascript:;">沪ICP备08023580号</a>
+			</p>
+		</footer>
+	</div>
+</body>
+	<script type="text/javascript">
+		
+	</script>
+</html>
