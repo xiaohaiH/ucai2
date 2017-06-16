@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>muipractice</title>
+	<style type="text/css">
+		body,ul,li,a{margin:0;padding:0;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+		.infinite-scroll-preloader {
+	    	margin-top:-20px;
+	    }
+	    .list-container p{width:50%;margin:0 auto;}
+	    .list-container p span{display:block;}
+	</style>
+	<script src="../api/zepto.js"></script>
+	<link rel="stylesheet" type="text/css" href="../api/mui.css">
+	<script src="../api/mui.js"></script>
+	<script src="http://apps.bdimg.com/libs/mui/2.8.0/js/mui.min.js"></script>
+</head>
+<body>
+      <!-- 添加 class infinite-scroll 和 data-distance  向下无限滚动可不加infinite-scroll-bottom类，这里加上是为了和下面的向上无限滚动区分-->
+      <div class="page">
+      	  <header><h1 class="title">hero</h1></header>
+	      <div class="content infinite-scroll infinite-scroll-bottom" data-distance="100">
+	          <div class="list-block">
+	              <ul class="list-container">
+
+	              </ul>
+	          </div>
+	          <!-- 加载提示符 -->
+	          <div class="infinite-scroll-preloader">
+	              <div class="preloader"></div>
+	          </div>
+	      </div>
+      </div>
+</body>
+<script type="text/javascript">
+	var obj = {
+			hero: [
+			{
+				0: "11",
+				1: "115",
+				2: "高渐离",
+				3: "叛逆吟游",
+				4: "爱情与死亡，是这位叛逆乐师演奏的永恒乐章。",
+				5: "44",
+				6: "3122",
+				7: "远程 ",
+				8: "301150",
+				9: "3600",
+				10: "50",
+				11: "98",
+				id: "11",
+				hero_id: "115",
+				hero_name: "高渐离",
+				hero_title: "叛逆吟游",
+				hero_desc: "爱情与死亡，是这位叛逆乐师演奏的永恒乐章。",
+				hp_per5: "44",
+				max_hp: "3122",
+				atk_range: "远程 ",
+				hero_img_id: "301150",
+				move_speed: "3600",
+				magic_defense: "50",
+				physical_defense: "98",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301150.png"
+			},
+			{
+				0: "12",
+				1: "116",
+				2: "荆轲",
+				3: "死亡之刃",
+				4: "不是你记忆中的荆轲，但致命的程度没两样。",
+				5: "47",
+				6: "3113",
+				7: "近程 ",
+				8: "301160",
+				9: "3800",
+				10: "50",
+				11: "89",
+				id: "12",
+				hero_id: "116",
+				hero_name: "荆轲",
+				hero_title: "死亡之刃",
+				hero_desc: "不是你记忆中的荆轲，但致命的程度没两样。",
+				hp_per5: "47",
+				max_hp: "3113",
+				atk_range: "近程 ",
+				hero_img_id: "301160",
+				move_speed: "3800",
+				magic_defense: "50",
+				physical_defense: "89",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301160.png"
+			},
+			{
+				0: "13",
+				1: "117",
+				2: "钟无艳",
+				3: "钟无艳",
+				4: "霸占！摧毁！破坏！——野蛮女友的爱情，好好享受吧！",
+				5: "56",
+				6: "3666",
+				7: "近程 ",
+				8: "301170",
+				9: "3800",
+				10: "50",
+				11: "125",
+				id: "13",
+				hero_id: "117",
+				hero_name: "钟无艳",
+				hero_title: "钟无艳",
+				hero_desc: "霸占！摧毁！破坏！——野蛮女友的爱情，好好享受吧！",
+				hp_per5: "56",
+				max_hp: "3666",
+				atk_range: "近程 ",
+				hero_img_id: "301170",
+				move_speed: "3800",
+				magic_defense: "50",
+				physical_defense: "125",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301170.png"
+			},
+			{
+				0: "14",
+				1: "118",
+				2: "孙膑",
+				3: "逆流之时",
+				4: "这个画风不一样的家伙，刚刚从时间的旅行中归来。",
+				5: "45",
+				6: "3208",
+				7: "远程 ",
+				8: "301180",
+				9: "3500",
+				10: "50",
+				11: "98",
+				id: "14",
+				hero_id: "118",
+				hero_name: "孙膑",
+				hero_title: "逆流之时",
+				hero_desc: "这个画风不一样的家伙，刚刚从时间的旅行中归来。",
+				hp_per5: "45",
+				max_hp: "3208",
+				atk_range: "远程 ",
+				hero_img_id: "301180",
+				move_speed: "3500",
+				magic_defense: "50",
+				physical_defense: "98",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301180.png"
+			},
+			{
+				0: "15",
+				1: "119",
+				2: "扁鹊",
+				3: "善恶怪医",
+				4: "虽说手术费很昂贵，可别放弃治疗哦！",
+				5: "45",
+				6: "3205",
+				7: "远程 ",
+				8: "301190",
+				9: "3500",
+				10: "50",
+				11: "87",
+				id: "15",
+				hero_id: "119",
+				hero_name: "扁鹊",
+				hero_title: "善恶怪医",
+				hero_desc: "虽说手术费很昂贵，可别放弃治疗哦！",
+				hp_per5: "45",
+				max_hp: "3205",
+				atk_range: "远程 ",
+				hero_img_id: "301190",
+				move_speed: "3500",
+				magic_defense: "50",
+				physical_defense: "87",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301190.png"
+			},
+			{
+				0: "16",
+				1: "120",
+				2: "白起",
+				3: "最终兵器",
+				4: "人间最强的兵器，你手中所向披靡的利剑。",
+				5: "58",
+				6: "3510",
+				7: "近程 ",
+				8: "301200",
+				9: "3900",
+				10: "50",
+				11: "120",
+				id: "16",
+				hero_id: "120",
+				hero_name: "白起",
+				hero_title: "最终兵器",
+				hero_desc: "人间最强的兵器，你手中所向披靡的利剑。",
+				hp_per5: "58",
+				max_hp: "3510",
+				atk_range: "近程 ",
+				hero_img_id: "301200",
+				move_speed: "3900",
+				magic_defense: "50",
+				physical_defense: "120",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301200.png"
+			},
+			{
+				0: "17",
+				1: "121",
+				2: "芈月",
+				3: "欲望之月",
+				4: "整容手术都是骗人的，青春美貌全靠把对手吸干。",
+				5: "46",
+				6: "3285",
+				7: "远程 ",
+				8: "301210",
+				9: "3700",
+				10: "50",
+				11: "88",
+				id: "17",
+				hero_id: "121",
+				hero_name: "芈月",
+				hero_title: "欲望之月",
+				hero_desc: "整容手术都是骗人的，青春美貌全靠把对手吸干。",
+				hp_per5: "46",
+				max_hp: "3285",
+				atk_range: "远程 ",
+				hero_img_id: "301210",
+				move_speed: "3700",
+				magic_defense: "50",
+				physical_defense: "88",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301210.png"
+			},
+			{
+				0: "18",
+				1: "122",
+				2: "诸葛亮",
+				3: "绝代智谋",
+				4: "运筹帷幄之中，决胜千里之外。",
+				5: "44",
+				6: "3092",
+				7: "远程 ",
+				8: "301220",
+				9: "3400",
+				10: "50",
+				11: "87",
+				id: "18",
+				hero_id: "122",
+				hero_name: "诸葛亮",
+				hero_title: "绝代智谋",
+				hero_desc: "运筹帷幄之中，决胜千里之外。",
+				hp_per5: "44",
+				max_hp: "3092",
+				atk_range: "远程 ",
+				hero_img_id: "301220",
+				move_speed: "3400",
+				magic_defense: "50",
+				physical_defense: "87",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301220.png"
+			},
+			{
+				0: "19",
+				1: "123",
+				2: "吕布",
+				3: "无双之魔",
+				4: "我，是这个世界的梦魇！",
+				5: "54",
+				6: "3564",
+				7: "近程 ",
+				8: "301230",
+				9: "3700",
+				10: "50",
+				11: "99",
+				id: "19",
+				hero_id: "123",
+				hero_name: "吕布",
+				hero_title: "无双之魔",
+				hero_desc: "我，是这个世界的梦魇！",
+				hp_per5: "54",
+				max_hp: "3564",
+				atk_range: "近程 ",
+				hero_img_id: "301230",
+				move_speed: "3700",
+				magic_defense: "50",
+				physical_defense: "99",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301230.png"
+			},
+			{
+				0: "20",
+				1: "124",
+				2: "周瑜",
+				3: "铁血都督",
+				4: "身为男人，无法让步的只有两件事：胜利和小乔。",
+				5: "44",
+				6: "3093",
+				7: "远程 ",
+				8: "301240",
+				9: "3500",
+				10: "50",
+				11: "87",
+				id: "20",
+				hero_id: "124",
+				hero_name: "周瑜",
+				hero_title: "铁血都督",
+				hero_desc: "身为男人，无法让步的只有两件事：胜利和小乔。",
+				hp_per5: "44",
+				max_hp: "3093",
+				atk_range: "远程 ",
+				hero_img_id: "301240",
+				move_speed: "3500",
+				magic_defense: "50",
+				physical_defense: "87",
+				img: "http://cdn.tgp.qq.com/kog/v3/images/heroPortrait/301240.png"
+			}
+			]
+		};
+				// 加载flag
+	      var loading = false;
+	      // 最多可加载的条目
+	      var maxItems = 9;
+
+	      // 每次加载添加多少条目
+	      var itemsPerLoad = 2;
+	      function addItems(number, lastIndex) {
+	              // 生成新条目的HTML
+	              var html = '';
+	              for (var i = lastIndex + 1; i <= lastIndex + number; i++) {
+	              	if(i>=9){
+	              		(function () {
+					        $.alert('没有更多了');
+					    }());
+	              		return false
+	              	};
+	                  html += '<li class="item-content"><div class="item-inner"><div class="item-title"><p><img src=' + obj.hero[i].img + '></p><p><span><i>hero name</i>' + obj.hero[i].hero_name + '</span><span><i>hero slogan</i>' + obj.hero[i].hero_desc + '</span></p></div></div></li>';
+	              }
+	              // 添加新条目
+	              $('.infinite-scroll-bottom .list-container').append(html);
+
+	          }
+	          //预先加载20条
+	      addItems(itemsPerLoad, -1);
+
+	      // 上次加载的序号
+	      // $.init();
+	      var lastIndex = 1;
+
+	      // 注册'infinite'事件处理函数
+	      $(document).on('infinite', '.infinite-scroll-bottom',function() {
+	          // 如果正在加载，则退出
+	          if (loading) return;
+
+	          // 设置flag
+	          loading = true;
+
+	          // 模拟1s的加载过程
+	          setTimeout(function() {
+	              // 重置加载flag
+	              loading = false;
+
+	              if (lastIndex >= maxItems) {
+	                  // 加载完毕，则注销无限加载事件，以防不必要的加载
+	                  $.detachInfiniteScroll($('.infinite-scroll'));
+	                  // 删除加载提示符
+	                  $('.infinite-scroll-preloader').remove();
+	                  return;
+	              }
+
+	              // 添加新条目
+	              addItems(itemsPerLoad, lastIndex);
+	              // 更新最后加载的序号
+	              lastIndex = $('.list-container li').length;
+	              //容器发生改变,如果是js滚动，需要刷新滚动
+	              $.refreshScroller();
+	          }, 500);
+	      });
+	      $.init();
+</script>
+	<!-- <script type="text/javascript">
+		// 加载flag
+      var loading = false;
+      // 最多可加载的条目
+      var maxItems = 100;
+
+      // 每次加载添加多少条目
+      var itemsPerLoad = 2;
+
+      function addItems(number, lastIndex) {
+              // 生成新条目的HTML
+              var html = '';
+              for (var i = lastIndex + 1; i <= lastIndex + number; i++) {
+                  html += '<li class="item-content"><div class="item-inner"><div class="item-title">Item ' + i + '</div></div></li>';
+              }
+              // 添加新条目
+              $('.infinite-scroll-bottom .list-container').append(html);
+
+          }
+          //预先加载20条
+      addItems(itemsPerLoad, 0);
+
+      // 上次加载的序号
+      // $.init();
+      var lastIndex = 20;
+
+      // 注册'infinite'事件处理函数
+      $(document).on('infinite', '.infinite-scroll-bottom',function() {
+          // 如果正在加载，则退出
+          if (loading) return;
+
+          // 设置flag
+          loading = true;
+
+          // 模拟1s的加载过程
+          setTimeout(function() {
+              // 重置加载flag
+              loading = false;
+
+              if (lastIndex >= maxItems) {
+                  // 加载完毕，则注销无限加载事件，以防不必要的加载
+                  $.detachInfiniteScroll($('.infinite-scroll'));
+                  // 删除加载提示符
+                  $('.infinite-scroll-preloader').remove();
+                  return;
+              }
+
+              // 添加新条目
+              addItems(itemsPerLoad, lastIndex);
+              // 更新最后加载的序号
+              lastIndex = $('.list-container li').length;
+              //容器发生改变,如果是js滚动，需要刷新滚动
+              $.refreshScroller();
+          }, 1000);
+      });
+      $.init();
+	</script>
+ -->
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>zepto</title>
+	<style type="text/css">
+		body,ul,li,a{margin:0;padding:0;}
+		a{text-decoration:none;}
+		li{list-style:none;}
+		div{height:200px;background:red;}
+	</style>
+
+	<script src="../api/zepto.js"></script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+</body>
+	<script type="text/javascript">
+		$('div').swipe(function(){
+			$(this).remove()
+		})
+	</script>
+</html>
