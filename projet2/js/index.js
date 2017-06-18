@@ -1,4 +1,11 @@
 window.onload = function(){
+	document.oncontextmenu=new Function("event.returnValue=false");///禁止复制.
+	document.onselectstart=new Function("event.returnValue=false");///禁止复制.
+	/* 获取登录信息 */
+	if(localStorage.getItem("username")){
+		// $(".headerRight a",0)[0].innerHTML = localStorage.getItem("username");
+		$(".headerRight a",0)[0].setAttribute("data-val",localStorage.getItem("username"));
+	}
 	///设置大div的宽度自适应开始,顶部.
 	var LiIndex = [0];
 	///流星.
@@ -56,6 +63,13 @@ window.onload = function(){
 		};
 	}();
 	///流星结束.
+	/* 点击登录按钮 */
+	$(".headerRight a",0)[0].addEventListener("click",function(){
+		localStorage.setItem("url",window.location.href);
+		console.log(window.location.href);
+		window.location.href = "../html/sign.html";
+	});
+	/**/
 	!(function(){
 			var SW = window.screen.width;///屏幕宽度.
 			var SH = window.screen.height;///屏幕高度.

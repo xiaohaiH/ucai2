@@ -1,4 +1,6 @@
 window.onload = function(){
+	document.oncontextmenu=new Function("event.returnValue=false");///禁止复制.
+	document.onselectstart=new Function("event.returnValue=false");///禁止复制.
 	///设置分屏.
 	!function(){
 

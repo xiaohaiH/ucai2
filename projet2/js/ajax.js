@@ -52,7 +52,6 @@
 	//get获取方式封装完成
 	//----------我是坚强的分割线-----------
 	var postajax = window.postajax = {};
-	///参数fn:回调函数,postarguments.stext:发送的数据,postarguments.url:发送的链接.
 	postajax.post = function(postarguments){
 		if(window.XMLHttpRequest){ //给IE6做兼容
 			var xhr = new XMLHttpRequest();//ajax第一步,创建超文本传输请求(new XMLHttpRequest());
