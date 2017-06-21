@@ -40,7 +40,7 @@ header .header{height:65%;display: flex;}
 .header .headerRight>a:first-child::after{content:attr(data-val);opacity:0;transition:all .3s;position:absolute;top:0;left:0;width:100%;height: 100%;transform:translate(100%,-100%);color:#2CAF6F;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 .header .headerRight p{float:left;perspective:800px;height:100%;}
-.header .headerRight p:nth-child(2){width:48%;//margin:0 .4rem;}
+.header .headerRight p:nth-child(2){width:48%;margin:0 .4rem;}
 .header .headerRight p>a{float:left;width:80%;height:35%;padding:0 0.8rem;margin:0 auto;transform-style:preserve-3d;transition:all .6s;position:relative;}
 .header .headerRight p:nth-child(2) a{transform-origin:left;background:#31C27C;border-radius:.5rem;color:white;display:block;opacity:1;}
 .header .headerRight p:nth-child(2) a:hover::after{background:#2EAF86;opacity:1;}

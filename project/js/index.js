@@ -79,7 +79,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 							data : obj,
 							dataType : "json",
 							beforeSend : function(xhr){
-								xhr.setRequestHeader("token",localStorage.token)
+								xhr.setRequestHeader("token",localStorage.token);
 							},
 							success : function(data){
 								if(data.message == "更新购物车成功"){
@@ -518,7 +518,7 @@ window.onload = function(){//整个页面加载完成后在运行此函数
 						data : obj,
 						dataType : "json",
 						beforeSend : function(xhr){
-							xhr.setRequestHeader("token",localStorage.token)
+							xhr.setRequestHeader("token",localStorage.token);
 						},
 						success : function(data){//添加成功后,根据返回的message来判断
 							if(data.message == "添加到购物车成功"){//第一次添加且成功后将本地数据添加到模板然后添加到购物车中

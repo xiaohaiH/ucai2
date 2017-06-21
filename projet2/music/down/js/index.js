@@ -1,11 +1,5 @@
 window.onload = function(){
-	// document.oncontextmenu=new Function("event.returnValue=false");///禁止右键.
-	document.onselectstart=new Function("event.returnValue=false");///禁止复制.
-	/* 获取登录信息 */
-	if(localStorage.getItem("username")){
-		// $(".headerRight a",0)[0].innerHTML = localStorage.getItem("username");
-		$(".headerRight a",0)[0].setAttribute("data-val",localStorage.getItem("username"));
-	}
+	console.log(document.documentElement.clientWidth);
 	///设置大div的宽度自适应开始,顶部.
 	var LiIndex = [0];
 	///流星.
@@ -28,7 +22,7 @@ window.onload = function(){
 			};
 			for(var i = 0;i < oStarbox.children.length;i++){
 				var initLeft = Math.floor(Math.random() * (dWidth - starWidth)) + dWidth/2;///初始left值.
-				var initTop = Math.ceil(Math.random() * starHeight);///初始top值.
+				var initTop = Math.ceil(Math.random() * (dHeight - starHeight)) + starHeight;///初始top值.
 				initLeft > dWidth?initLeft = dWidth - starWidth:initLeft;///流星left大于屏幕宽时,等于left等于屏幕宽减去流星的宽度.
 				for(var j = 0;j < oStarbox.children.length;j++){///内判断,当流星之间的left小于流星宽度的一半时,他的left加上流星宽度的一半.
 					if(Math.abs(parseInt(getComputedStyle(oStarbox.children[j],false).left) -  parseInt(getComputedStyle(oStarbox.children[i],false).left)) < starWidth/2){
@@ -52,7 +46,7 @@ window.onload = function(){
 					Top++;
 					oStarbox.children[i].style.top = Top + "px";
 					oStarbox.children[i].style.left = Left + "px";
-					if((Top + starHeight) > dHeight || Left < 0 ){///流星大于屏幕高时,设置他的透明度为0.
+					if((Top + starHeight) > dHeight || Left < 0){///流星大于屏幕高时,设置他的透明度为0.
 						oStarbox.children[i].style.opacity = 0;
 					};
 					if(getComputedStyle(oStarbox.children[i],false).opacity == "0"){///当流星的透明度为0时,删除该流星.
@@ -63,17 +57,6 @@ window.onload = function(){
 		};
 	}();
 	///流星结束.
-	/* 点击登录按钮 */
-	$(".headerRight a",0)[0].addEventListener("click",function(){
-		var Boo = this.getAttribute("data-val");
-		if(Boo == "登陆"){
-			return ;
-		};
-		localStorage.setItem("url",window.location.href);
-		// console.log(window.location.href);
-		window.location.href = "../html/sign.html";
-	});
-	/**/
 	!(function(){
 			var SW = window.screen.width;///屏幕宽度.
 			var SH = window.screen.height;///屏幕高度.
