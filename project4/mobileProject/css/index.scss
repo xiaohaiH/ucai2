@@ -1,0 +1,124 @@
+body,
+ul,
+li,
+figcaption,
+figure,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 20px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .form-group {
+        width: 80%;
+    }
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+.bigBox {
+    >nav {
+        background: none;
+        border: none;
+        // .dropdown-menu {
+        // width: 20rem;
+        // }
+        .dropdown-menu .list {
+            width: 10rem;
+            float: left;
+        }
+        form {
+            overflow: hidden;
+            input,
+            .searchBtn {
+                outline: none!important;
+                box-shadow: none !important;
+            }
+            .form-group {
+                float: left;
+                margin-right: .2rem;
+            }
+            .searchBtn {
+                float: left;
+            }
+        }
+    }
+    .banner {
+        overflow: hidden;
+        height: 18rem;
+        .row {
+            width: 120%;
+        }
+        .bannerList {
+            $max-width: 9rem;
+            $min-width: 4.25rem;
+            max-width: $max-width;
+            min-width: $min-width;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            margin-right: 1rem;
+            float: left;
+            .thumbnail {
+                margin-bottom: 0rem;
+            }
+            img {
+                width: $max-width;
+                height: $max-width / 0.72;
+            }
+            p:nth-of-type(1) {
+                font-size: .8rem;
+                padding: .2rem 0 .1rem 0;
+            }
+            p:last-of-type {
+                width: 55%;
+                margin: 0 auto;
+                overflow: hidden;
+                height: 1rem;
+                line-height: 1rem;
+                margin-bottom: .2rem;
+                i {
+                    float: left;
+                    $width: 2.75rem;
+                    width: $width;
+                    height: $width / 5;
+                    margin-top: 0.22rem;
+                    background: url(../img/starScore.png) 0 0 no-repeat;
+                }
+                span {
+                    float: right;
+                    width: 1rem;
+                    color: #FFAC2D;
+                    font-size: .5rem;
+                }
+            }
+            button {
+                width: 70%;
+                background: #268DCD;
+                color: white;
+                font-size: 0.7rem;
+                margin: 0px auto;
+                display: block;
+                border: none;
+                outline: none;
+                border-radius: .2rem;
+                padding: .2rem 0;
+            }
+        }
+    }
+}
