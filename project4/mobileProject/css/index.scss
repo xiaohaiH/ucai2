@@ -61,14 +61,46 @@ a {
     .banner {
         overflow: hidden;
         height: 18rem;
+        position: relative;
+        .direction{
+            position:absolute;
+            display: block;
+            text-align:center;
+            top:0;
+            bottom:0;
+            margin:auto 0;
+            width:1.5rem;
+            height:1.5rem;
+            line-height: 1.5rem;
+            border-radius:50%;
+            background:rgba(0,0,0,.5);
+            transition:all 1s linear;
+            z-index: 10;
+        }
+        .direction:hover{
+            color:white;
+            background:rgba(0,0,0,1);
+        };
+        .bannerLeft{
+            left:1rem;
+        }
+        .bannerRight{
+            right:1rem;
+        }
         .row {
             width: 120%;
+            transition:all .3s linear;
+            position:relative;
+            left:0;
+            right:0;
+            z-index: 5;
         }
         .bannerList {
             $max-width: 9rem;
             $min-width: 4.25rem;
-            max-width: $max-width;
-            min-width: $min-width;
+            width : $max-width;
+            // max-width: $max-width;
+            // min-width: $min-width;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -84,6 +116,10 @@ a {
             p:nth-of-type(1) {
                 font-size: .8rem;
                 padding: .2rem 0 .1rem 0;
+                width:100%;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+                overflow: hidden;
             }
             p:last-of-type {
                 width: 55%;

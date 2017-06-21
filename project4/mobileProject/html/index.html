@@ -8,12 +8,12 @@
     <script type="text/templete" id="templete">
         <div class="bannerList">
             <div class="thumbnail">
-                <img src="<%= src %>" class="img-responsive" alt="<%= title %>">
+                <img src="<%= images.large %>" class="img-responsive" alt="<%= title %>">
                 <div class="caption">
                     <p>
-                        <%= title %>
+                        <%= ttle.title %>
                     </p>
-                    <p><i class="grade"></i><span><%= score %></span></p>
+                    <p><i class="grade"></i><span><%= rating.average %></span></p>
                     <button>选座购票</button>
                 </div>
             </div>
@@ -78,33 +78,10 @@
         <!--导航条结束-->
         <!--bannerStart-->
         <div class="container-fluid banner">
+    		<span class="bannerLeft direction">&lt;</span>
+    		<span class="bannerRight direction">&gt;</span>
             <div class="row">
-                <!--<div class="bannerList">
-                    <div class="thumbnail">
-                        <img src="../img/1.webp" class="img-responsive" alt="...">
-                        <div class="caption">
-                            <p>雄狮</p>
-                            <p><i></i><span>7.1</span></p>
-                            <button>选座购票</button>
-                        </div>
-                    </div>
-                </div>-->
             </div>
-            <!--<div class="row">
-                <figure class="col-md-3 bannerList">
-                    <img src="../img/1.webp" alt="">
-                    <figcaption>
-                        <p>雄狮</p>
-                        <p><i></i><span>7.1</span></p>
-                        <button>选座购票</button>
-                    </figcaption>
-                </figure>
-                <figure class="col-md-3 bannerList">2</figure>
-                <figure class="col-md-3 bannerList">3</figure>
-                <figure class="col-md-3 bannerList">4</figure>
-                </figure>
-            </div>-->
-            <!--bannerEnd-->
         </div>
 </body>
 <script src="../js/jquery.js"></script>
