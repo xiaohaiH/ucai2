@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body,ul{margin:0;padding:0;}
+		ul li{list-style:none;width:200px;height:400px;opacity:0;margin:0;padding:0;float:left;}
+		ul li:nth-child(even){background:red;}
+		ul li:nth-child(odd){background:blue;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var oLi = document.getElementsByTagName("li");
+	document.addEventListener("scroll",showImg);
+	showImg();
+	console.log(oLi[1].offsetHeight);
+	function showImg(){
+		for(var i = 0;i < oLi.length;i++){
+			///判断图片的高度偏移量低于滚动的距离+文档高度(保证在可视区域的中间),(且图片的高度偏移量要大于滚动的距离---这句话加上当初始位置在底部时,头部和中间的区域不会加载--这里没写).
+			if(!oLi[i].boo&&oLi[i].offsetTop < (document.documentElement.clientHeight + document.body.scrollTop)){
+				oLi[i].style.transition = "opacity .5s linear";
+				oLi[i].style.opacity = "1";
+				oLi[i].boo = true;///防止加载过的图片继续加载.
+			}
+		};
+	}
+</script>
+</html>
