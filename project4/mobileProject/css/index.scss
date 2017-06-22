@@ -1,3 +1,4 @@
+@charset "utf-8";
 body,
 ul,
 li,
@@ -24,23 +25,29 @@ a {
     .form-group {
         width: 80%;
     }
+    .direction{
+        display:none!important;
+    }
 }
 
 .row {
     margin: 0;
     padding: 0;
 }
-
+    // /* 顶部 */
 .bigBox {
+    >.navbar>.container-fluid{
+        padding-right:0;
+    };
     >nav {
         background: none;
         border: none;
-        // .dropdown-menu {
-        // width: 20rem;
-        // }
         .dropdown-menu .list {
             width: 10rem;
             float: left;
+        }
+        .navbar-form{
+            padding-right:0;
         }
         form {
             overflow: hidden;
@@ -58,10 +65,69 @@ a {
             }
         }
     }
-    .banner {
+    // /* 顶部 */
+    // /* 分类导航 */
+    .movieType{
+        margin-bottom:1rem;
+        .row{
+            background:none;
+            color:#268DCD;
+            font-size:.6rem;
+            .movieText{
+                border:0.05rem solid #EEEEEE;
+                border-radius:.2rem;
+                height:1.5rem;
+                line-height:1.5rem;
+            }
+        }
+    }
+    .movieType h3{
+        font-size:.9rem;
+        font-weight: bold;
+    }
+    // /* 分类导航 */
+    // /* 影院热映和新片榜 */
+    .banner,.newMovies {
         overflow: hidden;
-        height: 18rem;
-        position: relative;
+        height: 20.3rem;
+        padding:0rem;
+        .title{
+            height:1.25rem;
+            margin-bottom:1rem;
+            p:nth-of-type(1){
+                float: left;
+                font-size:.9rem;
+                font-weight: bold;
+                margin-left:1rem;
+            }
+            p:last-of-type{
+                float: right;
+                font-size:.6rem;
+                margin-top:0.125rem;
+                span{
+                    background:#268DCD;
+                    border-radius:50%;
+                    color:white;
+                    width:1rem;
+                    height:1rem;
+                    line-height:1rem;
+                    text-align:center;
+                    cursor:pointer;
+                }
+                span:nth-of-type(1){
+                    float: left;
+                    margin-right:.5rem;
+                }
+                span:last-of-type{
+                    float: right;
+                }
+            }
+        }
+        .content{
+            clear:both;
+            height:18rem;
+            position: relative;
+        }
         .direction{
             position:absolute;
             display: block;
@@ -76,9 +142,10 @@ a {
             background:rgba(0,0,0,.5);
             transition:all 1s linear;
             z-index: 10;
+            color:white;
+            cursor:pointer;
         }
         .direction:hover{
-            color:white;
             background:rgba(0,0,0,1);
         };
         .bannerLeft{
@@ -134,7 +201,7 @@ a {
                     width: $width;
                     height: $width / 5;
                     margin-top: 0.22rem;
-                    background: url(../img/starScore.png) 0 0 no-repeat;
+                    background: url(../img/starScore.png) no-repeat;
                 }
                 span {
                     float: right;
@@ -156,5 +223,9 @@ a {
                 padding: .2rem 0;
             }
         }
+    }
+    // /* 影院热映和新片榜 */
+    .newMovies{
+        margin-top:1.5rem;
     }
 }
