@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <!-- 搜索内容模板 -->
+   <!--
+   	large : images.large
+   	title : title;
+    name : directors.name;
+    genresValue : genres[];
+    year : year;
+	average : rating.average;
+     -->
+    <script type="text/templete" id="templete">
+		<div class="bannerList">
+            <div class="thumbnail">
+                <img src="<%= large %>" class="img-responsive" alt="<%= title %>">
+                <div class="caption">
+                    <div>
+                        <p><span>title：</span><a href="javascript:;"><%= title %></a></p>
+                        <p><span>导演：</span><a href="javascript:;"><%= name %></a></p>
+                        <p><span>类型：</span><a href="javascript:;"><%= genres %></a></p>
+                        <p><span>上映时期：</span><a href="javascript:;"><%= year %>年</a></p>
+                    </div>
+                    <p class="pingfeng"><i class="grade"></i><span><%= average %></span></p>
+                </div>
+            </div>
+        </div>
+    </script>
+</head>
+<body>
+	
+    <div class="container bigBox">
+        <!--导航条-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+                    <a class="navbar-brand" href="#">星空影评</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">榜单 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类 <span class="caret"></span></a>
+                            <div class="dropdown-menu">
+                                <div class="row">
+                                    <div class="col-md-1 list">abc</div>
+                                    <div class="col-md-1 list">abc</div>
+                                    <div class="col-md-1 list">abc</div>
+                                    <div class="col-md-1 list">abc</div>
+                                    <div class="col-md-1 list">abc</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input type="text" class="form-control searchText" placeholder="电影、影人、影院、电视剧">
+                        </div>
+                        <button type="submit" class="btn btn-default searchBtn">搜索</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!--导航条结束-->
+        <div class="container-fluid searchContent">
+            <div class="searchTitle"><a href="javascript:;">搜索结果：</a></div>
+			<!-- <div class="bannerList">
+	            <div class="thumbnail">
+	                <img src="../img/1.webp" class="img-responsive" alt="<%= title %>">
+	                <div class="caption">
+	                    <div>
+	                        <p><span>title：</span><a href="javascript:;">喜剧</a></p>
+	                        <p><span>导演：</span><a href="javascript:;">中泽一登</a></p>
+	                        <p><span>类型：</span><a href="javascript:;">动画/短片/动作</a></p>
+	                        <p><span>上映时期：</span><a href="javascript:;">2002年</a></p>
+	                    </div>
+	                    <p class="pingfeng"><i class="grade"></i><span>评分</span></p>
+	                </div>
+	            </div>
+	        </div> -->
+        </div>
+    </div>
+</body>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/search.js"></script>
+</html>

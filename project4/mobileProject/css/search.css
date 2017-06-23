@@ -1,0 +1,148 @@
+@charset "UTF-8";
+body,
+ul,
+li,
+figcaption,
+figure,
+p {
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 20px; }
+
+li {
+  list-style: none; }
+
+a {
+  color: black;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none; }
+
+a:visited {
+  text-decoration: none; }
+
+a:active {
+  text-decoration: none; }
+
+a:focus {
+  text-decoration: none; }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px; }
+
+  .form-group {
+    width: 80%; }
+
+  .direction {
+    display: none !important; }
+
+  .bigBox .searchContent {
+    width: 100% !important; }
+    .bigBox .searchContent .bannerList:nth-child(odd) {
+      margin-right: 0 !important; }
+    .bigBox .searchContent .pingfeng {
+      width: 70% !important; }
+      .bigBox .searchContent .pingfeng i {
+        height: 11px !important;
+        width: 55px !important;
+        margin: 0.1rem !important; } }
+.row {
+  margin: 0;
+  padding: 0; }
+
+/* 顶部 */
+.bigBox {
+  /* 顶部End */
+  /* 搜索的内容Start */
+  /* 搜索的内容End */ }
+  .bigBox > .navbar > .container-fluid {
+    padding-right: 0; }
+  .bigBox > nav {
+    background: none;
+    border: none; }
+    .bigBox > nav .dropdown-menu .list {
+      width: 10rem;
+      float: left; }
+    .bigBox > nav .navbar-form {
+      padding-right: 0; }
+    .bigBox > nav form {
+      overflow: hidden; }
+      .bigBox > nav form input,
+      .bigBox > nav form .searchBtn {
+        outline: none !important;
+        box-shadow: none !important; }
+      .bigBox > nav form .form-group {
+        float: left;
+        margin-right: .2rem; }
+      .bigBox > nav form .searchBtn {
+        float: left; }
+  .bigBox .searchContent {
+    /* 搜索标题 */
+    /* 搜索标题 */
+    /* 搜索的内容 */ }
+    .bigBox .searchContent .searchTitle {
+      height: 1.25rem;
+      font-size: 0.8rem;
+      margin: 1rem 0 .5rem 0;
+      font-weight: bold; }
+      .bigBox .searchContent .searchTitle a {
+        color: #333; }
+        .bigBox .searchContent .searchTitle a:hover {
+          color: #268DCD; }
+    .bigBox .searchContent .bannerList {
+      width: 9rem;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      float: left; }
+      .bigBox .searchContent .bannerList .thumbnail {
+        margin-bottom: 0rem; }
+      .bigBox .searchContent .bannerList img {
+        width: 9rem;
+        height: 12.5rem; }
+      .bigBox .searchContent .bannerList div {
+        font-size: .8rem;
+        padding: .2rem 0 .1rem 0; }
+        .bigBox .searchContent .bannerList div p {
+          font-size: .8rem;
+          width: 100%;
+          overflow: hidden; }
+          .bigBox .searchContent .bannerList div p span {
+            float: left;
+            text-align: right;
+            width: 50%; }
+          .bigBox .searchContent .bannerList div p a {
+            width: 50%;
+            font-size: 0.7rem;
+            text-align: left;
+            float: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; }
+      .bigBox .searchContent .bannerList .caption > p {
+        width: 55%;
+        margin: 0 auto;
+        overflow: hidden;
+        height: 1rem;
+        line-height: 1rem;
+        margin-bottom: .2rem; }
+        .bigBox .searchContent .bannerList .caption > p i {
+          float: left;
+          width: 2.75rem;
+          height: 0.55rem;
+          margin-top: 0.22rem;
+          background: url(../img/starScore.png) no-repeat; }
+        .bigBox .searchContent .bannerList .caption > p span {
+          float: right;
+          width: 2rem;
+          color: #FFAC2D;
+          font-size: .5rem;
+          text-align: center; }
+
+/*# sourceMappingURL=search.css.map */

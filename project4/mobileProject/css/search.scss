@@ -1,0 +1,181 @@
+body,
+ul,
+li,
+figcaption,
+figure,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 20px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color:black;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:focus{
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    html{
+        font-size:15px;
+    }
+    .form-group {
+        width: 80%;
+    }
+    .direction{
+        display:none!important;
+    }
+    .bigBox .searchContent{
+        width:100%!important;
+        .bannerList:nth-child(odd){
+            margin-right:0!important;
+        }
+        .pingfeng{
+            width:70%!important;
+            i{
+                height: 11px!important;
+                width:55px!important;
+                margin:0.1rem!important;
+            }
+        }
+    }
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+    /* 顶部 */
+.bigBox {
+    >.navbar>.container-fluid{
+        padding-right:0;
+    };
+    >nav {
+        background: none;
+        border: none;
+        .dropdown-menu .list {
+            width: 10rem;
+            float: left;
+        }
+        .navbar-form{
+            padding-right:0;
+        }
+        form {
+            overflow: hidden;
+            input,
+            .searchBtn {
+                outline: none!important;
+                box-shadow: none !important;
+            }
+            .form-group {
+                float: left;
+                margin-right: .2rem;
+            }
+            .searchBtn {
+                float: left;
+            }
+        }
+    }
+    /* 顶部End */
+    /* 搜索的内容Start */
+    .searchContent{
+        /* 搜索标题 */
+        .searchTitle{
+            height:1.25rem;
+            font-size:0.8rem;
+            margin:1rem 0 .5rem 0;
+            font-weight: bold;
+            a{
+                color:#333;
+                &:hover{
+                    color:#268DCD;
+                }
+            }
+        }
+        /* 搜索标题 */
+        /* 搜索的内容 */
+        .bannerList {
+            $max-width: 9rem;
+            $min-width: 4.25rem;
+            width : $max-width;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            margin-right: 1rem;
+            margin-bottom:1rem;
+            float: left;
+            .thumbnail {
+                margin-bottom: 0rem;
+            }
+            img {
+                width: $max-width;
+                height: $max-width / 0.72;
+            }
+            div {
+                font-size: .8rem;
+                padding: .2rem 0 .1rem 0;
+                p{
+                    font-size:.8rem;
+                    width:100%;
+                    overflow: hidden;
+                    span{
+                        float: left;
+                        text-align: right;
+                        width:50%;
+                    }
+                    a{
+                        width:50%;
+                        font-size:0.7rem;
+                        text-align:left;
+                        float: right;
+                        overflow: hidden;
+                        text-overflow:ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            }
+            .caption>p {
+                width: 55%;
+                margin: 0 auto;
+                overflow: hidden;
+                height: 1rem;
+                line-height: 1rem;
+                margin-bottom: .2rem;
+                i {
+                    float: left;
+                    $width: 2.75rem;
+                    width: $width;
+                    height: $width / 5;
+                    margin-top: 0.22rem;
+                    background: url(../img/starScore.png) no-repeat;
+                }
+                span {
+                    float: right;
+                    width: 2rem;
+                    color: #FFAC2D;
+                    font-size: .5rem;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    /* 搜索的内容End */
+}

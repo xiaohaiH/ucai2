@@ -20,6 +20,18 @@ li {
 a {
     text-decoration: none;
 }
+a:hover{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:focus{
+    text-decoration: none;
+}
 
 @media (max-width: 768px) {
     .form-group {
@@ -34,7 +46,7 @@ a {
     margin: 0;
     padding: 0;
 }
-    // /* 顶部 */
+    /* 顶部 */
 .bigBox {
     >.navbar>.container-fluid{
         padding-right:0;
@@ -65,8 +77,8 @@ a {
             }
         }
     }
-    // /* 顶部 */
-    // /* 分类导航 */
+    /* 顶部 */
+    /* 分类导航 */
     .movieType{
         margin-bottom:1rem;
         .row{
@@ -84,10 +96,20 @@ a {
     .movieType h3{
         font-size:.9rem;
         font-weight: bold;
+        color:#333333;
+        .toggleKind{
+            display: inline-block;
+            margin:0;
+            padding:0 .4rem;
+            border:.025rem solid #EEEEEE;
+            font-weight:100;
+            font-size:.8rem;
+            cursor:pointer;
+        }
     }
-    // /* 分类导航 */
-    // /* 影院热映和新片榜 */
-    .banner,.newMovies {
+     /* 分类导航 */
+     /* 影院热映和新片榜 */
+    .banner,.newMovies,.moviePraise {
         overflow: hidden;
         height: 20.3rem;
         padding:0rem;
@@ -224,8 +246,71 @@ a {
             }
         }
     }
-    // /* 影院热映和新片榜 */
+    /* 影院热映和新片榜 */
     .newMovies{
-        margin-top:1.5rem;
+        margin:1.5rem 0;
     }
+    /* 影评Start */
+    // .movieComment{
+    //     h1{
+    //         color:#333;
+    //         font-size:0.9rem;
+    //         font-weight: bold;
+    //     }
+    //     .movieCommentList{
+    //         padding-top:1rem;
+    //         overflow: hidden;
+    //         margin-bottom:1rem;
+    //         img{
+    //             $width:5rem;
+    //             float: left;
+    //             margin:0;
+    //             padding:0;
+    //             width:$width;
+    //             $height:$width * 0.66;
+    //         }
+    //         figcaption{
+    //             float:left;
+    //             padding-left:4%;
+    //             width:70%;
+    //             .movieCommentTitle{
+    //                 color:#268DCD;
+    //                 font-size:.8rem;
+    //                 width:100%;
+    //                 overflow: hidden;
+    //                 text-overflow:ellipsis;
+    //                 white-space: nowrap;
+    //             }
+    //             .movieCommentUser{
+    //                 margin:.2rem 0;
+    //                 width:100%;
+    //                 overflow: hidden;
+    //                 text-overflow:ellipsis;
+    //                 white-space: nowrap;
+    //                 a:first-of-type{
+    //                     padding-right:.2rem;
+    //                 }
+    //                 a:last-of-type{
+    //                     padding-left:.2rem;
+    //                 }
+    //                 a{
+    //                     color:#666666;
+    //                 }
+    //                 a:hover{
+    //                     color:#268DCD;
+    //                 }
+    //             }
+    //             .movieCommentContent{
+    //                 width:100%;
+    //                 line-height: 1.1rem;
+    //                 margin-top: 0.7rem;
+    //                 overflow: hidden;
+    //                 a:hover{
+    //                     text-decoration:underline;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    /* 影评End */
 }

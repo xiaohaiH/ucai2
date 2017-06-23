@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <title>Document</title>
+    <!-- banner模板 -->
     <script type="text/templete" id="templete">
         <div class="bannerList">
             <div class="thumbnail">
@@ -18,6 +19,19 @@
                 </div>
             </div>
         </div>
+    </script>
+    <!-- 影评模板 -->
+    <script type="text/templete" id="commentTemplete">
+        <figure class="movieCommentList">
+            <img src="https://img3.doubanio.com/view/photo/photo/public/p1596085504.webp" class="img-responsive">
+            <figcaption>
+                <p class="movieCommentTitle"><a href="javascript:;"><%= title %></a></p>
+                <p class="movieCommentUser"><a href="javascript:;"><%= name %></a>评论<a href="javascript:;">《<%= title %>》</a></p>
+                <div class="movieCommentContent">
+                    <a href="javascript:;"><%= content %></a>
+                </div>
+            </figcaption>
+        </figure>
     </script>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/index.css">
@@ -67,7 +81,7 @@
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="电影、影人、影院、电视剧">
+                            <input type="text" class="form-control searchText" placeholder="电影、影人、影院、电视剧">
                         </div>
                         <button type="submit" class="btn btn-default searchBtn">搜索</button>
                     </form>
@@ -78,10 +92,10 @@
         <!--导航条结束-->
         <!-- 分类浏览Start -->
         <div class="container-fluid movieType">
-			<h3>分类浏览</h3>
+			<h3>分类浏览 <span class="toggleKind">-</span></h3>
 			<div class="row">
 				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">纪录片</a></div>
-				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">高分</a></div>
+				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">战争</a></div>
 				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">经典</a></div>
 				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">动作</a></div>
 				<div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">喜剧</a></div>
@@ -117,6 +131,7 @@
             </div>
         </div>
         <!-- bannerEnd -->
+        <!-- 新片榜Start -->
          <div class="container-fluid newMovies">
 	        <div class="title">
 				<p>新片榜</p>
@@ -131,6 +146,39 @@
 	            <div class="row"></div>
             </div>
         </div>
+        <!-- 新片榜End -->
+
+        <!-- 口碑榜Start -->
+         <div class="container-fluid moviePraise">
+            <div class="title">
+                <p>口碑榜</p>
+                <p>
+                    <span>&lt;</span>
+                    <span>&gt;</span>
+                </p>
+            </div>
+            <div class="content">
+                <span class="bannerLeft direction">&lt;</span>
+                <span class="bannerRight direction">&gt;</span>
+                <div class="row"></div>
+            </div>
+        </div>
+        <!-- 口碑榜End -->
+        <!-- 影评Start -->
+       <!--   <div class="container-fluid movieComment">
+            <h1>最受欢迎的影评</h1>
+            <figure class="movieCommentList">
+                <img src="../img/1.webp" class="img-responsive">
+                <figcaption>
+                    <p class="movieCommentTitle"><a href="javascript:;">海边的曼彻斯特</a></p>
+                    <p class="movieCommentUser"><a href="javascript:;">用户</a>评论<a href="javascript:;">《海边的曼彻斯特》</a></p>
+                    <div class="movieCommentContent">
+                        <a href="javascript:;">abc</a>
+                    </div>
+                </figcaption>
+            </figure>
+         </div> -->
+        <!-- 影评End -->
 </body>
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
