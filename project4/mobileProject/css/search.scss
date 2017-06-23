@@ -112,70 +112,96 @@ a:focus{
         }
         /* 搜索标题 */
         /* 搜索的内容 */
-        .bannerList {
-            $max-width: 9rem;
-            $min-width: 4.25rem;
-            width : $max-width;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            margin-right: 1rem;
-            margin-bottom:1rem;
-            float: left;
-            .thumbnail {
-                margin-bottom: 0rem;
-            }
-            img {
-                width: $max-width;
-                height: $max-width / 0.72;
-            }
-            div {
-                font-size: .8rem;
-                padding: .2rem 0 .1rem 0;
-                p{
-                    font-size:.8rem;
-                    width:100%;
-                    overflow: hidden;
-                    span{
-                        float: left;
-                        text-align: right;
-                        width:50%;
-                    }
-                    a{
-                        width:50%;
-                        font-size:0.7rem;
-                        text-align:left;
-                        float: right;
+        .content{
+            overflow: hidden;
+            .bannerList {
+                $max-width: 9rem;
+                $min-width: 4.25rem;
+                width : $max-width;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                margin-right: 1rem;
+                margin-bottom:1rem;
+                float: left;
+                .thumbnail {
+                    margin-bottom: 0rem;
+                }
+                img {
+                    width: $max-width;
+                    height: $max-width / 0.72;
+                }
+                div {
+                    font-size: .8rem;
+                    padding: .2rem 0 .1rem 0;
+                    p{
+                        font-size:.8rem;
+                        width:100%;
                         overflow: hidden;
-                        text-overflow:ellipsis;
-                        white-space: nowrap;
+                        span{
+                            float: left;
+                            text-align: right;
+                            width:50%;
+                        }
+                        a{
+                            width:50%;
+                            font-size:0.7rem;
+                            text-align:left;
+                            float: right;
+                            overflow: hidden;
+                            text-overflow:ellipsis;
+                            white-space: nowrap;
+                        }
                     }
                 }
-            }
-            .caption>p {
-                width: 55%;
-                margin: 0 auto;
-                overflow: hidden;
-                height: 1rem;
-                line-height: 1rem;
-                margin-bottom: .2rem;
-                i {
-                    float: left;
-                    $width: 2.75rem;
-                    width: $width;
-                    height: $width / 5;
-                    margin-top: 0.22rem;
-                    background: url(../img/starScore.png) no-repeat;
-                }
-                span {
-                    float: right;
-                    width: 2rem;
-                    color: #FFAC2D;
-                    font-size: .5rem;
-                    text-align: center;
+                .caption>p {
+                    width: 55%;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    height: 1rem;
+                    line-height: 1rem;
+                    margin-bottom: .2rem;
+                    i {
+                        float: left;
+                        $width: 2.75rem;
+                        width: $width;
+                        height: $width / 5;
+                        margin-top: 0.22rem;
+                        background: url(../img/starScore.png) no-repeat;
+                    }
+                    span {
+                        float: right;
+                        width: 2rem;
+                        color: #FFAC2D;
+                        font-size: .5rem;
+                        text-align: center;
+                    }
                 }
             }
         }
     }
     /* 搜索的内容End */
+    /* 更多按钮Start */
+    .moreBtn{
+        width:10rem;
+        height:2.5rem;
+        line-height:2.5rem;
+        border:.1rem solid #268DCD;
+        text-align:center;
+        transition:background 1s ease;
+        cursor:pointer;
+        margin:0 auto;
+        &:hover{
+            background:#268DCD;
+            a{
+                color:white;
+            }
+        }
+        a{
+            color:black;
+            font-size:.9rem;
+            transition:color 1s ease;
+        }
+    }
+    /* 更多按钮End */
 }

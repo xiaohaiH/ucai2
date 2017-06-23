@@ -19,6 +19,8 @@
                     if(data.subjects.length){
                         localStorage.setItem("searchText",JSON.stringify(data));
                         localStorage.setItem("searchHTML",window.location.href);
+                        localStorage.setItem("searchHref",JSON.stringify([url,sendData]));
+                        // console.log(localStorage.getItem("searchHref"));
                         // console.log(JSON.parse(localStorage.getItem("searchText")));
                         window.location.href = "../html/search.html";
                     };
