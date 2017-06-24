@@ -1,15 +1,75 @@
 (function() {
     localStorage.clear();///每次进入首页清空左右的localStorage.
 
+    var $closeBox = $(".closeBox");///弹出框盒子.
+
+
     ///搜素框.
+    var $navbarForm = $(".navbar-form");///文本框最大的盒子.
     var $searchBtn = $(".searchBtn");///搜索按钮.
+    var $input = $navbarForm.find("input");///搜索框.
+    var $searchResult = $navbarForm.find(".searchResult");///搜索类型选择盒子.
+    $input.on("focus",function(){///当文本框获取到焦点时,改变高度.
+        if((document.documentElement.clientWidth||document.body.clientWidth) < 768){
+            $navbarForm.css("height","5.4rem")
+        }
+        $searchResult.fadeIn();
+    });
+    $input.on("blur",function(){///当文本框失去到焦点时,改变高度.
+        if((document.documentElement.clientWidth||document.body.clientWidth) < 768){
+            $navbarForm.css("height","2.7rem")
+        }
+        $searchResult.fadeOut();
+    });
+    $input.on("input",function(){///将输入的值添加到搜索类型框中.
+       $searchResult.find("p span:eq(0)").html($input.val());
+       $searchResult.find("p span:eq(2)").html($input.val());
+    });
+    $searchResult.find("p:eq(0)").on("click",function(){///将输入的值添加到搜索类型框中.
+        if($input.val()){///搜索电影名称.
+            if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                jumpResult({q : $input.val()});
+            }else{
+                $closeBox.fadeIn().find("strong").html("请正确输入电影名称");
+                setTimeout(function(){
+                    $closeBox.fadeOut(2000);
+                },1000);
+            }
+        }else{
+            $closeBox.fadeIn().find("strong").html("请输入电影名称");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
+        };
+    });
+    $searchResult.find("p:eq(1)").on("click",function(){///将输入的值添加到搜索类型框中.
+        if($input.val()){///搜索电影的类型.
+            if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                jumpResult({tag : $input.val()})
+            }else{
+                $closeBox.fadeIn().find("strong").html("请正确输入电影名称");
+                setTimeout(function(){
+                    $closeBox.fadeOut(2000);
+                },1000);
+            }
+        }else{
+            $closeBox.fadeIn().find("strong").html("请输入电影名称");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
+        };
+    });
     $searchBtn.on("click",function(e){
         var $searchText = $(".searchText").val();///搜索的文本.
         if(!e) var e = window.event;
         e.preventDefault();
         if($searchText){
-            var url = "https://api.douban.com/v2/movie/search";
-            var sendData = {q : $searchText};
+            jumpResult({q : $input.val()})
+        };
+    });
+    function jumpResult(sendVal){
+        var url = "https://api.douban.com/v2/movie/search";
+            var sendData = sendVal;
             $.ajax({
                 url : url,
                 type : "GET",
@@ -23,11 +83,15 @@
                         // console.log(localStorage.getItem("searchHref"));
                         // console.log(JSON.parse(localStorage.getItem("searchText")));
                         window.location.href = "../html/search.html";
+                    }else{
+                        $closeBox.fadeIn().find("strong").html("没有搜索到该影片");
+                        setTimeout(function(){
+                            $closeBox.fadeOut(2000);
+                        },1000);
                     };
                 }
             });
-        };
-    });
+    };
     ///搜素框.
     var start = 0;
     var count = 10;
@@ -58,6 +122,12 @@
         };
         $getMovieRow.slideToggle();
     });
+    /* 点击分类下的类型节点时 */
+    $getMovieRow.find("a").on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        jumpResult({tag : $(this).html()});
+    });
     /* 分类浏览End */
     /* 屏幕刷新后banner初始获得的数据Start */
     var resizeMaxLeft = false;///在屏幕边缘时为真.
@@ -77,11 +147,11 @@
                 num = index;
                 var that = this;
                 var pingfen = data.subjects[index].rating.average;
+                that.large = that.images.large;
+                that.average = that.rating.average;
                 function getTitle(){
-                    that.ttle = {};
-                    that.ttle.title = that.title;
                     if(!pingfen){///判断评分是否为0.
-                        data.subjects[index].rating.average = "暂无评分";
+                        data.subjects[index].average = "暂无评分";
                     }else{
                         if(pingfen > 0 && pingfen <= 2){
                             pingfen = 8;
@@ -95,9 +165,9 @@
                             pingfen = 0;
                         };
                     };
-                    var reg = /\<\%\=\s+(\w+)[\.|](\w+)\s+\%\>/g;
-                    return tagText.replace(reg,function(index,$1,$2){
-                        return that[$1][$2];
+                    var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
+                    return tagText.replace(reg,function(index,$1){
+                        return that[$1];
                     });
                 };
                 $box.append(getTitle());
@@ -108,6 +178,9 @@
                     $box.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
                 }
             });
+            /* 页面上榜单下的a链接点击后Start */
+            jumpIntroduce();
+            /* 页面上榜单下的a链接点击后End */
             $box.css({"width":++num * 10 + "rem"});
             $leftBtn.on("click",function(){
                 toLeft($box);
@@ -145,7 +218,10 @@
     /* 点击更多热映电影Start */
     $moreRight.on("click",function (){
         if((start + 10) >= total){///当起始值大于最大的热映数量时.
-            console.log("没有更多了");
+            $closeBox.fadeIn().find("strong").html("没有更多了");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
             return false;
         };
         start += 10;
@@ -155,6 +231,10 @@
     });
     $moreLeft.on("click",function(){///当起始值小于0时.
         if(start == 0){///当起始值小于0时.
+            $closeBox.fadeIn().find("strong").html("已经到最开始了");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
             return false;
         };
         start -= 10;
@@ -167,12 +247,13 @@
             "type" : "GET",
             "dataType" : "jsonp",
             "success" : function(data){
-                console.log(data);
                 $.each(id,function(index,val){
                     if(index >= count){
                         return false;
                     };
                     var pingfen = data.subjects[index].rating.average;
+                    data.subjects[index].large = data.subjects[index].images.large;
+                    data.subjects[index].average = data.subjects[index].rating.average;
                     $(this).find("img").attr("src",data.subjects[index].images.large);
                     $(this).find("p:eq(0)").html(data.subjects[index].title);
                     if(pingfen){///判断评分是否为0.
@@ -194,6 +275,14 @@
                         $(this).find("i").css({"width":"0rem"});
                     };
                 });
+
+                /* 页面上榜单下的a链接点击后Start */
+                var $movieIntroduce = $(".thumbnail").find("a");
+                console.log($movieIntroduce);
+                $movieIntroduce.on("click",function(){
+                    console.log($(this).attr("data-val"));
+                });
+                /* 页面上榜单下的a链接点击后End */
             }
         });
     };
@@ -254,11 +343,11 @@
                     num = index;
                     var that = this;
                     var pingfen = data.subjects[index].rating.average;
+                    that.large = that.images.large;
+                    that.average = that.rating.average;
                     function getTitle(){
-                        that.ttle = {};
-                        that.ttle.title = that.title;
                         if(!pingfen){///判断评分是否为0.
-                            data.subjects[index].rating.average = "暂无评分";
+                            data.subjects[index].average = "暂无评分";
                         }else{
                             if(pingfen > 0 && pingfen <= 2){
                                 pingfen = 8;
@@ -272,9 +361,9 @@
                                 pingfen = 0;
                             };
                         };
-                        var reg = /\<\%\=\s+(\w+)[\.|](\w+)\s+\%\>/g;
-                        return tagText.replace(reg,function(index,$1,$2){
-                            return that[$1][$2];
+                        var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
+                        return tagText.replace(reg,function(index,$1){
+                            return that[$1];
                         });
                     };
                     $newMovies.append(getTitle());
@@ -285,6 +374,9 @@
                         $newMovies.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
                     }
                 });
+                /* 页面上榜单下的a链接点击后Start */
+                jumpIntroduce();
+                /* 页面上榜单下的a链接点击后End */
                 $newMovies.css({"width":++num * 10 + "rem"});
                 $movieLeftBtn.on("click",function(){
                     toLeft($newMovies);
@@ -304,6 +396,10 @@
      moblieMove($newMovies);
      $movieMoreLeft.on("click",function(){
         if(start == 0){///当起始值小于0时.
+            $closeBox.fadeIn().find("strong").html("已经到最开始了");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
             return false;
         };
         start -= 10;
@@ -345,12 +441,12 @@
                 $.each(data.subjects, function(index, val) {
                     num = index;
                     var that = this;
-                    var pingfen = data.subjects[index].subject.rating.average;
+                    var pingfen = that.subject.rating.average;
+                    that.subject.large = that.subject.images.large;
+                    that.subject.average = that.subject.rating.average;
                     function getTitle(){
-                        that.subject.ttle = {};
-                        that.subject.ttle.title = that.subject.title;
                         if(!pingfen){///判断评分是否为0.
-                            data.subjects[index].subject.rating.average = "暂无评分";
+                            data.subjects[index].average = "暂无评分";
                         }else{
                             if(pingfen > 0 && pingfen <= 2){
                                 pingfen = 8;
@@ -364,9 +460,9 @@
                                 pingfen = 0;
                             };
                         };
-                        var reg = /\<\%\=\s+(\w+)[\.|](\w+)\s+\%\>/g;
-                        return tagText.replace(reg,function(index,$1,$2){
-                            return that.subject[$1][$2];
+                        var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
+                        return tagText.replace(reg,function(index,$1){
+                            return that.subject[$1];
                         });
                     };
                     $moviePraise.append(getTitle());
@@ -377,6 +473,9 @@
                         $moviePraise.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
                     }
                 });
+                /* 页面上榜单下的a链接点击后Start */
+                jumpIntroduce();
+                /* 页面上榜单下的a链接点击后End */
                 $moviePraise.css({"width":++num * 10 + "rem"});
                 $movieLeftBtn.on("click",function(){
                     toLeft($moviePraise);
@@ -396,6 +495,10 @@
      moblieMove($moviePraise);
      $movieMoreLeft.on("click",function(){
         if(start == 0){///当起始值小于0时.
+            $closeBox.fadeIn().find("strong").html("已经到最开始了");
+            setTimeout(function(){
+                $closeBox.fadeOut(2000);
+            },1000);
             return false;
         };
         start -= 10;
@@ -406,10 +509,33 @@
         start += 10;
         url = "http://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
         moreMovie(url,$moviePraise.find(".bannerList"));
-     })
+     });
     }());
+/* 页面上榜单下的a链接点击后Start */
+function jumpIntroduce(){
+    var $movieIntroduce = $(".thumbnail").find("a");
+    $movieIntroduce.on("click",function(){
+        $.ajax({
+            url : "https://api.douban.com/v2/movie/subject/" + this.dataset.id,
+            type : "GET",
+            data : {apikey:"0b2bdeda43b5688921839c8ecb20399b"},
+            dataType : "jsonp",
+            success : function(data){
+                if(data.mobile_url){
+                    localStorage.setItem("movieIntroduce",JSON.stringify(data));
+                    window.location.href = "../html/movieIntroduce.html";
+                }else{
+                    $closeBox.fadeIn().find("strong").html("获取信息失败,请稍后再试!");
+                    setTimeout(function(){
+                        $closeBox.fadeOut(2000);
+                    },1000);
+                };
+            }
+        });
+    });
+};
+/* 页面上榜单下的a链接点击后End */
     /* 口碑榜End */
-
     // /* 影评Start */
     // (function(){
     //     var $getComment = $(".movieComment");///影评的盒子.

@@ -3,39 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<title>Document</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/search.css">
-    <!-- 搜索内容模板 -->
-   <!--
-   	large : images.large
-   	title : title;
-    name : directors.name;
-    genresValue : genres[];
-    year : year;
-	average : rating.average;
-     -->
-    <script type="text/templete" id="templete">
-		<div class="bannerList">
-            <div class="thumbnail">
-                <a href="javascript:;" data-id="<%= movieId %>" class="movieJump"><img src="<%= large %>" class="img-responsive" alt="<%= title %>"></a>
-                <div class="caption">
-                    <div>
-                        <p><span>title：</span><a href="javascript:;" data-id="<%= movieId %>" class="movieJump"><%= title %></a></p>
-                        <p><span>导演：</span><a href="javascript:;" data-id="<%= directorId %>" class="director"><%= name %></a></p>
-                        <p><span>主演：</span><a href="javascript:;" data-id="<%= actorId %>" class="director"><%= actorName %></a></p>
-                        <p><span>类型：</span><a href="javascript:;"><%= genres %></a></p>
-                        <p><span>上映时间：</span><a href="javascript:;" data-id="<%= movieId %>"><%= year %>年</a></p>
-                    </div>
-                    <p class="pingfeng"><i class="grade"></i><span><%= average %></span></p>
-                </div>
-            </div>
-        </div>
-    </script>
+	<title>电影介绍</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/movieIntroduce.css">
 </head>
 <body>
-	
-    <div class="container bigBox">
+	 <div class="container bigBox">
         <!--导航条-->
         <!-- 弹出框(成功or关闭)Start -->
         <div class="closeBox">
@@ -45,6 +18,7 @@
             </div>
         </div>
         <!-- 弹出框(成功or关闭)End -->
+        <!-- 导航条开始 -->
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -99,43 +73,9 @@
             <!-- /.container-fluid -->
         </nav>
         <!--导航条结束-->
-        <!-- 分类浏览Start -->
-        <div class="container-fluid movieType">
-            <h3>分类浏览 <span class="toggleKind">-</span></h3>
-            <div class="row">
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">纪录片</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">战争</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">经典</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">动作</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">喜剧</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">爱情</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">悬疑</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">恐怖</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">科幻</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">治愈</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">文艺</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">成长</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">动画</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">华语</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">欧美</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">韩国</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">日本</a></div>
-                <div class="col-xs-6 col-md-2 movieText"><a href="javascript:;">冒险</a></div>
-            </div>
-        </div>
-        <!-- 分类浏览End -->
-        <!-- 搜索结果 -->
-        <div class="container-fluid searchContent">
-            <div class="searchTitle"><a href="javascript:;">搜索结果：</a></div>
-            <div class="content">
-            </div>
-	        <div class="moreBtn"><a href="javascript:;">更多电影</a></div>
-        </div>
-        <!-- 搜索结果 -->
     </div>
-
 </body>
 	<script src="../js/jquery.js"></script>
+	<script src="../js/movieIntroduce.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/search.js"></script>
 </html>

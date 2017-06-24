@@ -30,33 +30,113 @@ a:active {
 a:focus {
   text-decoration: none; }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1000px) {
   html {
-    font-size: 15px; }
-
-  .form-group {
-    width: 80%; }
+    font-size: 20px; }
 
   .direction {
     display: none !important; }
 
   .bigBox .searchContent {
     width: 100% !important; }
-    .bigBox .searchContent .bannerList:nth-child(odd) {
-      margin-right: 0 !important; }
     .bigBox .searchContent .pingfeng {
       width: 70% !important; }
       .bigBox .searchContent .pingfeng i {
         height: 11px !important;
         width: 55px !important;
         margin: 0.1rem !important; } }
+@media screen and (min-width: 320px) and (max-width: 374px) {
+  html {
+    font-size: 15px; }
+
+  .bigBox .searchContent {
+    width: 100% !important; }
+    .bigBox .searchContent .pingfeng {
+      width: 70% !important; }
+      .bigBox .searchContent .pingfeng i {
+        height: 11px !important;
+        width: 55px !important;
+        margin: 0.1rem !important; }
+
+  .bannerList:nth-child(odd) {
+    margin-right: 1rem !important; }
+
+  .bannerList:nth-child(even) {
+    background: red;
+    margin-right: 0 !important; } }
+@media screen and (min-width: 375px) and (max-width: 375px) {
+  html {
+    font-size: 18px; }
+
+  .bigBox .searchContent {
+    width: 100% !important; }
+    .bigBox .searchContent .pingfeng {
+      width: 70% !important; }
+      .bigBox .searchContent .pingfeng i {
+        height: 11px !important;
+        width: 55px !important;
+        margin: 0.1rem !important; }
+
+  .bannerList:nth-child(odd) {
+    margin-right: 1rem !important; }
+
+  .bannerList:nth-child(even) {
+    margin-right: 0 !important; } }
+@media screen and (min-width: 376px) and (max-width: 414px) {
+  html {
+    font-size: 18px; }
+
+  .bigBox .searchContent {
+    width: 100% !important; }
+    .bigBox .searchContent .pingfeng {
+      width: 70% !important; }
+      .bigBox .searchContent .pingfeng i {
+        height: 11px !important;
+        width: 55px !important;
+        margin: 0.1rem !important; }
+    .bigBox .searchContent .content {
+      margin-left: 1.2rem; }
+
+  .bannerList:nth-child(odd) {
+    margin-right: 1rem !important; }
+
+  .bannerList:nth-child(even) {
+    margin-right: 0 !important; } }
 .row {
   margin: 0;
   padding: 0; }
 
+/* 提示框Start */
+.closeBox {
+  display: none; }
+  .closeBox .alert-warning {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 12rem;
+    height: 2.5rem;
+    text-align: center;
+    color: white;
+    background: #268DCD;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-size: .7rem;
+    line-height: 2.7rem; }
+  .closeBox .close {
+    color: white;
+    padding-top: 0.7rem; }
+
+/* 提示框End */
 /* 顶部 */
 .bigBox {
   /* 顶部End */
+  /* 分类导航 */
+  /* 分类导航 */
   /* 搜索的内容Start */
   /* 搜索的内容End */
   /* 更多按钮Start */
@@ -72,17 +152,69 @@ a:focus {
     .bigBox > nav .navbar-form {
       padding-right: 0; }
     .bigBox > nav form {
-      overflow: hidden; }
+      padding-right: 0;
+      height: 2.7rem; }
       .bigBox > nav form input,
       .bigBox > nav form .searchBtn {
         outline: none !important;
         box-shadow: none !important; }
       .bigBox > nav form .form-group {
         float: left;
-        margin-right: .2rem; }
+        margin-right: .2rem;
+        position: relative; }
+        .bigBox > nav form .form-group .searchResult {
+          display: none;
+          position: absolute;
+          top: 1.7rem;
+          left: 0;
+          width: 100%;
+          height: 3rem;
+          line-height: 1.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+          .bigBox > nav form .form-group .searchResult p {
+            height: 1.5rem; }
+            .bigBox > nav form .form-group .searchResult p span {
+              float: left;
+              cursor: pointer; }
+            .bigBox > nav form .form-group .searchResult p span:first-of-type {
+              margin-right: .5rem; }
+            .bigBox > nav form .form-group .searchResult p span:last-of-type {
+              color: #268DCD; }
+            .bigBox > nav form .form-group .searchResult p:hover {
+              background: rgba(0, 0, 0, 0.4); }
       .bigBox > nav form .searchBtn {
         float: left; }
+  .bigBox .movieType {
+    margin-bottom: 1rem; }
+    .bigBox .movieType .row {
+      background: none;
+      color: #268DCD;
+      font-size: .6rem; }
+      .bigBox .movieType .row .movieText {
+        border: 0.05rem solid #EEEEEE;
+        border-radius: .2rem;
+        height: 1.5rem;
+        line-height: 1.5rem; }
+        .bigBox .movieType .row .movieText a {
+          color: #268DCD; }
+          .bigBox .movieType .row .movieText a:hover {
+            color: #23527C; }
+  .bigBox .movieType h3 {
+    font-size: .9rem;
+    font-weight: bold;
+    color: #333333; }
+    .bigBox .movieType h3 .toggleKind {
+      display: inline-block;
+      margin: 0;
+      padding: 0 .4rem;
+      border: .025rem solid #EEEEEE;
+      font-weight: 100;
+      font-size: .8rem;
+      cursor: pointer; }
   .bigBox .searchContent {
+    padding: 0;
     /* 搜索标题 */
     /* 搜索标题 */
     /* 搜索的内容 */ }
@@ -102,7 +234,7 @@ a:focus {
         text-align: center;
         margin: 0;
         padding: 0;
-        margin-right: 1rem;
+        margin-right: 2.5rem;
         margin-bottom: 1rem;
         float: left; }
         .bigBox .searchContent .content .bannerList .thumbnail {

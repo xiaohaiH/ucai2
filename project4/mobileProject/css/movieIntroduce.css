@@ -1,0 +1,91 @@
+@charset "UTF-8";
+body, ul, p {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+a {
+  color: black;
+  text-decoration: none; }
+
+html {
+  font-size: 20px; }
+
+/* 提示框Start */
+.closeBox {
+  display: none; }
+  .closeBox .alert-warning {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 12rem;
+    height: 2.5rem;
+    text-align: center;
+    color: white;
+    background: #268DCD;
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    font-size: .7rem;
+    line-height: 2.7rem; }
+  .closeBox .close {
+    color: white;
+    padding-top: 0.7rem; }
+
+/* 提示框End */
+/* 顶部 */
+.bigBox {
+  /* 顶部 */ }
+  .bigBox > .navbar > .container-fluid {
+    padding-right: 0; }
+  .bigBox > nav {
+    background: none;
+    border: none; }
+    .bigBox > nav .dropdown-menu .list {
+      width: 10rem;
+      float: left; }
+    .bigBox > nav .navbar-form {
+      padding-right: 0;
+      height: 2.7rem; }
+    .bigBox > nav form {
+      transition: height .6s linear; }
+      .bigBox > nav form input,
+      .bigBox > nav form .searchBtn {
+        outline: none !important;
+        box-shadow: none !important; }
+      .bigBox > nav form .form-group {
+        float: left;
+        margin-right: .2rem;
+        position: relative; }
+        .bigBox > nav form .form-group .searchResult {
+          display: none;
+          position: absolute;
+          top: 1.7rem;
+          left: 0;
+          width: 100%;
+          height: 3rem;
+          line-height: 1.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+          .bigBox > nav form .form-group .searchResult p {
+            height: 1.5rem; }
+            .bigBox > nav form .form-group .searchResult p span {
+              float: left;
+              cursor: pointer; }
+            .bigBox > nav form .form-group .searchResult p span:first-of-type {
+              margin-right: .5rem; }
+            .bigBox > nav form .form-group .searchResult p span:last-of-type {
+              color: #268DCD; }
+            .bigBox > nav form .form-group .searchResult p:hover {
+              background: rgba(0, 0, 0, 0.4); }
+      .bigBox > nav form .searchBtn {
+        float: left; }
+
+/*# sourceMappingURL=movieIntroduce.css.map */

@@ -11,7 +11,6 @@ p {
 html {
     font-size: 20px;
 }
-
 li {
     list-style: none;
 }
@@ -33,21 +32,15 @@ a:focus{
     text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1000px) {
     html{
-        font-size:15px;
-    }
-    .form-group {
-        width: 80%;
+        font-size:20px;
     }
     .direction{
         display:none!important;
     }
     .bigBox .searchContent{
         width:100%!important;
-        .bannerList:nth-child(odd){
-            margin-right:0!important;
-        }
         .pingfeng{
             width:70%!important;
             i{
@@ -59,10 +52,108 @@ a:focus{
     }
 }
 
+@media screen and (min-width: 320px) and (max-width: 374px) {///iPhone5.
+    html{
+        font-size:15px;
+    }
+    .bigBox .searchContent{
+        width:100%!important;
+        .pingfeng{
+            width:70%!important;
+            i{
+                height: 11px!important;
+                width:55px!important;
+                margin:0.1rem!important;
+            }
+        }
+    }
+    .bannerList:nth-child(odd){
+        margin-right:1rem !important;
+    }
+    .bannerList:nth-child(even){
+        background : red;
+        margin-right:0 !important;
+    }
+}
+@media screen and (min-width: 375px) and (max-width: 375px) {///iPhone6.
+    html{
+        font-size:18px;
+    }
+    .bigBox .searchContent{
+        width:100%!important;
+        .pingfeng{
+            width:70%!important;
+            i{
+                height: 11px!important;
+                width:55px!important;
+                margin:0.1rem!important;
+            }
+        }
+    }
+    .bannerList:nth-child(odd){
+        margin-right:1rem !important;
+    }
+    .bannerList:nth-child(even){
+        margin-right:0 !important;
+    }
+}
+@media screen and (min-width: 376px) and (max-width: 414px) {///iPhone6s及其他.
+    html{
+        font-size:18px;
+    }
+    .bigBox .searchContent{
+        width:100%!important;
+        .pingfeng{
+            width:70%!important;
+            i{
+                height: 11px!important;
+                width:55px!important;
+                margin:0.1rem!important;
+            }
+        }
+        .content{
+            margin-left:1.2rem;
+        }
+    }
+    .bannerList:nth-child(odd){
+        margin-right:1rem !important;
+    }
+    .bannerList:nth-child(even){
+        margin-right:0 !important;
+    }
+}
 .row {
     margin: 0;
     padding: 0;
 }
+/* 提示框Start */
+.closeBox{
+    display:none;
+    .alert-warning{
+        padding-top:0;
+        padding-bottom:0;
+        padding-left:0;
+        width:12rem;
+        height:2.5rem;
+        text-align:center;
+        color:white;
+        background:#268DCD;
+        position:fixed;
+        z-index: 9999;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:auto;
+        font-size:.7rem;
+        line-height: 2.7rem;
+    }
+    .close{
+        color:white;
+        padding-top:0.7rem;
+    }
+}
+/* 提示框End */
     /* 顶部 */
 .bigBox {
     >.navbar>.container-fluid{
@@ -79,7 +170,8 @@ a:focus{
             padding-right:0;
         }
         form {
-            overflow: hidden;
+            padding-right:0;
+            height:2.7rem;
             input,
             .searchBtn {
                 outline: none!important;
@@ -88,6 +180,35 @@ a:focus{
             .form-group {
                 float: left;
                 margin-right: .2rem;
+                position: relative;
+                .searchResult{
+                    display: none;
+                    position:absolute;
+                    top:1.7rem;
+                    left:0;
+                    width:100%;
+                    height:3rem;
+                    line-height:1.5rem;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    p{
+                        height:1.5rem;
+                        span{
+                            float: left;
+                            cursor:pointer;
+                        }
+                        span:first-of-type{
+                            margin-right:.5rem;
+                        }
+                        span:last-of-type{
+                            color:#268DCD;
+                        }
+                        &:hover{
+                            background:rgba(0,0,0,.4);
+                        }
+                    }
+                }
             }
             .searchBtn {
                 float: left;
@@ -95,8 +216,45 @@ a:focus{
         }
     }
     /* 顶部End */
+    /* 分类导航 */
+    .movieType{
+        margin-bottom:1rem;
+        .row{
+            background:none;
+            color:#268DCD;
+            font-size:.6rem;
+            .movieText{
+                border:0.05rem solid #EEEEEE;
+                border-radius:.2rem;
+                height:1.5rem;
+                line-height:1.5rem;
+                a{
+                    color:#268DCD;
+                    &:hover{
+                        color:#23527C;
+                    }
+                }
+            }
+        }
+    }
+    .movieType h3{
+        font-size:.9rem;
+        font-weight: bold;
+        color:#333333;
+        .toggleKind{
+            display: inline-block;
+            margin:0;
+            padding:0 .4rem;
+            border:.025rem solid #EEEEEE;
+            font-weight:100;
+            font-size:.8rem;
+            cursor:pointer;
+        }
+    }
+     /* 分类导航 */
     /* 搜索的内容Start */
     .searchContent{
+        padding:0;
         /* 搜索标题 */
         .searchTitle{
             height:1.25rem;
@@ -121,7 +279,7 @@ a:focus{
                 text-align: center;
                 margin: 0;
                 padding: 0;
-                margin-right: 1rem;
+                margin-right: 2.5rem;
                 margin-bottom:1rem;
                 float: left;
                 .thumbnail {
