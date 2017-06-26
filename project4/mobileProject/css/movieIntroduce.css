@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body, ul, p {
+body, ul, p, h1, figure, figcaption {
   margin: 0;
   padding: 0; }
 
@@ -10,9 +10,16 @@ a {
   color: black;
   text-decoration: none; }
 
+a:hover {
+  color: #268DCD;
+  text-decoration: none; }
+
 html {
   font-size: 20px; }
 
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 14px; } }
 /* 提示框Start */
 .closeBox {
   display: none; }
@@ -41,7 +48,9 @@ html {
 /* 提示框End */
 /* 顶部 */
 .bigBox {
-  /* 顶部 */ }
+  /* 顶部 */
+  /* 电影详情介绍Start */
+  /* 电影详情介绍End */ }
   .bigBox > .navbar > .container-fluid {
     padding-right: 0; }
   .bigBox > nav {
@@ -87,5 +96,140 @@ html {
               background: rgba(0, 0, 0, 0.4); }
       .bigBox > nav form .searchBtn {
         float: left; }
+  .bigBox .details {
+    max-width: 43rem; }
+    .bigBox .details .box {
+      margin-bottom: 2rem; }
+    .bigBox .details h1 {
+      font-size: 1.4rem; }
+    .bigBox .details .movieContent {
+      margin: .8rem 0; }
+      .bigBox .details .movieContent .movieText {
+        padding: 0; }
+        .bigBox .details .movieContent .movieText .movieEvaluate {
+          overflow: hidden;
+          padding-bottom: .4rem; }
+          .bigBox .details .movieContent .movieText .movieEvaluate i {
+            float: left;
+            width: 55px;
+            height: 11px;
+            background: url(../img/starScore.png) left top no-repeat;
+            margin-top: 0.2rem; }
+          .bigBox .details .movieContent .movieText .movieEvaluate p {
+            float: left;
+            margin: 0 .4rem;
+            color: black; }
+          .bigBox .details .movieContent .movieText .movieEvaluate span {
+            float: left;
+            color: #AAAAAA; }
+        .bigBox .details .movieContent .movieText .movieActor {
+          clear: both;
+          font-size: 1rem;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 7;
+          -webkit-box-orient: vertical; }
+      .bigBox .details .movieContent > p {
+        padding-right: 0; }
+    .bigBox .details .movieBtn button {
+      width: 46%;
+      float: left;
+      border-color: #FFB712;
+      color: #FFB712;
+      outline: none; }
+    .bigBox .details .movieBtn button:focus {
+      background: none; }
+    .bigBox .details .movieBtn button:first-of-type {
+      margin-right: 8%; }
+    .bigBox .details .movieBtn button:hover {
+      background: none; }
+    .bigBox .details .juqing > p:first-of-type, .bigBox .details .movieTag > p:first-of-type {
+      color: #AAAAAA;
+      margin: 1.5rem 0 .7rem 0;
+      font-size: .7rem; }
+    .bigBox .details .juqing > p:nth-child(2), .bigBox .details .movieTag > p:nth-child(2) {
+      font-size: .8rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      margin-bottom: 1.5rem; }
+    .bigBox .details .movieTag {
+      overflow: hidden; }
+      .bigBox .details .movieTag p {
+        margin-top: 0 !important; }
+      .bigBox .details .movieTag span {
+        float: left;
+        padding: .4rem .8rem;
+        border-radius: 50%;
+        background: #E3E3E3;
+        color: black;
+        margin-right: .8rem;
+        margin-bottom: 1rem; }
+    .bigBox .details .shortEvaluate {
+      /* 评论内容Start */
+      /* 评论内容End */
+      /* 点击更多评论 */
+      /* 点击更多评论 */ }
+      .bigBox .details .shortEvaluate > p {
+        color: #AAAAAA;
+        margin: 0rem 0 .7rem 0;
+        font-size: .7rem; }
+      .bigBox .details .shortEvaluate .commentBox {
+        margin-bottom: 1rem; }
+        .bigBox .details .shortEvaluate .commentBox figure > img {
+          float: left;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%; }
+        .bigBox .details .shortEvaluate .commentBox figure figcaption {
+          float: left;
+          margin-left: 10px; }
+          .bigBox .details .shortEvaluate .commentBox figure figcaption p {
+            clear: both; }
+            .bigBox .details .shortEvaluate .commentBox figure figcaption p a {
+              font-size: .8rem;
+              font-weight: bold;
+              margin-right: .5rem;
+              float: left; }
+            .bigBox .details .shortEvaluate .commentBox figure figcaption p i {
+              height: 11px;
+              width: 70px;
+              float: left;
+              background: url(../img/starScore.png) no-repeat; }
+          .bigBox .details .shortEvaluate .commentBox figure figcaption p:last-child {
+            color: #AAAAAA; }
+        .bigBox .details .shortEvaluate .commentBox .comment {
+          clear: both;
+          margin-left: 46px; }
+          .bigBox .details .shortEvaluate .commentBox .comment p:nth-child(1) {
+            margin: .5rem 0;
+            color: #494949; }
+          .bigBox .details .shortEvaluate .commentBox .comment p:nth-child(2) {
+            color: #B7B7BF;
+            overflow: hidden;
+            line-height: 20px;
+            margin: 0; }
+            .bigBox .details .shortEvaluate .commentBox .comment p:nth-child(2) i {
+              cursor: pointer;
+              width: 20px;
+              height: 20px;
+              margin: 0;
+              margin-right: .4rem;
+              float: left;
+              background: url(../img/like.svg) center/20px 20px no-repeat; }
+      .bigBox .details .shortEvaluate .moreComment {
+        border: .2rem solid #171717;
+        color: #171717;
+        font-weight: bold;
+        text-align: center;
+        padding: .3rem .6rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-bottom: 1rem; }
 
 /*# sourceMappingURL=movieIntroduce.css.map */

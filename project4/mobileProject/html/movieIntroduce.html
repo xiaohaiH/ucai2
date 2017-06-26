@@ -6,6 +6,69 @@
 	<title>电影介绍</title>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/movieIntroduce.css">
+<!-- 	photos : 剧照;
+
+
+	title : "明日的我与昨日的你约会";
+	rating.average : 评分;
+	comments_count : 评价人数;
+	images.large : 图片;
+	person : 人物名字;
+	durations [0] : 影片时间;(countries:国家);directors : 导演;writers : 编剧;casts : 演员;pubdates:上映日期 -->
+<!-- 150分钟(中国大陆) / 动作 / 科幻 / 迈克尔·贝(导演) / 马克·沃尔伯格 / 伊莎贝拉·莫奈 / 劳拉·哈德克 / 安东尼·霍普金斯 / 乔什·杜哈明 / 彼特·库伦 / 泰瑞斯·吉布森 / 约翰·古德曼 / 斯坦利·图齐 / 桑地亚哥·卡布瑞拉 / 吉尔·伯明翰 / 让·杜雅尔丹 / 渡边谦 / 约翰·迪·玛吉欧 / 弗兰克·维尔克 / 米彻·佩勒吉 / 2017-06-23(中国大陆) 上映 -->
+	<script type="text/templete" id="templete">
+		<h1><%= title %></h1>
+		<div class="row movieContent">
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-8 movieText">
+				<div class="movieEvaluate">
+					<i></i>
+					<p><%= average %></p>
+					<span><%= ratings_count %>人评价</span>
+				</div>
+				<div class="movieActor"><%= person %></div>
+			</div>
+			<p class="col-lg-2 col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" src="<%= large %>"></p>
+		</div>
+		<div class="row movieBtn">
+			<p class="col-md-12">
+				<button class="btn btn-default" type="submit">想看</button>
+				<button class="btn btn-default" type="submit">看过</button>
+			</p>
+		</div>
+	</script>
+	<!-- 剧情简介模板 -->
+	<script type="text/templete" id="templete2">
+		<p><%= title %>的剧情简介</p>
+		<p><%= summary %></p>
+	</script>
+	<!-- 影视标签模板 -->
+	<script type="text/templete" id="templete3">
+		<p>关于<%= title %>的标签</p>
+		<div>
+			<%= tag %>
+		</div>
+	</script>
+	<!-- 短评模板 -->
+	<!-- username : comments.author.name;评论者用户名
+	userId : comments.author.id;评论者Id
+	usersrc : comments.author.avatar;评论者图片
+	content : comments.content;评论内容
+	created_at : comments.created_at;评论时间 -->
+	<script type="text/templete" id="templete4">
+		<div class="commentBox">
+			<figure>
+				<img data-id="id" class="userId" src="<%= usersrc %>">
+				<figcaption>
+					<p><a data-id="id" class="userId" href="javascript:;"><%= username %></a><i></i></p>
+					<p><%= created_at %></p>
+				</figcaption>
+			</figure>
+			<div class="comment">
+				<p><%= content %></p>
+				<p><i class="like"></i><span><%= useful_count %></span></p>
+			</div>
+    	</div>
+	</script>
 </head>
 <body>
 	 <div class="container bigBox">
@@ -73,7 +136,63 @@
             <!-- /.container-fluid -->
         </nav>
         <!--导航条结束-->
+        <div class="container-fluid details">
+	        <div class="box">
+			<!-- 	<h1>变形金刚5：最后的骑士</h1>
+				<div class="row movieContent">
+					<div class="col-lg-11 col-md-10 col-sm-10 col-xs-8 movieText">
+						<div class="movieEvaluate">
+							<i></i>
+							<p>4.8</p>
+							<span>52220人评价</span>
+						</div>
+						<div class="movieActor">
+							150分钟(中国大陆) / 动作 / 科幻 / 迈克尔·贝(导演) / 马克·沃尔伯格 / 伊莎贝拉·莫奈 / 劳拉·哈德克 / 安东尼·霍普金斯 / 乔什·杜哈明 / 彼特·库伦 / 泰瑞斯·吉布森 / 约翰·古德曼 / 斯坦利·图齐 / 桑地亚哥·卡布瑞拉 / 吉尔·伯明翰 / 让·杜雅尔丹 / 渡边谦 / 约翰·迪·玛吉欧 / 弗兰克·维尔克 / 米彻·佩勒吉 / 2017-06-23(中国大陆) 上映
+						</div>
+					</div>
+					<p class="col-lg-1 col-md-2 col-sm-2 col-xs-4"><img class="img-responsive" src="../img/1.webp"></p>
+				</div>
+				<div class="row movieBtn">
+					<p class="col-md-12">
+						<button class="btn btn-default" type="submit">想看</button>
+						<button class="btn btn-default" type="submit">看过</button>
+					</p>
+				</div> -->
+        	</div>
+        	<div class="juqing">
+				<!-- <p>变形金刚5：最后的骑士的剧情简介</p>
+				<p>金刚5：最后的骑士》打破了《变形金刚》系列的核心故事，重新定义了人们心目中的英雄形象。人类和变形金刚开战，擎天柱失踪，拯救未来的关键就埋藏在历</p> -->
+        	</div>
+        	<div class="movieTag">
+				<!-- <p>变形金刚5：最后的骑士的预告片(41)和图片(300)</p>
+				<div>
+					<span>科幻</span><span>科幻</span><span>科幻</span><span>科幻</span><span>科幻</span>
+				</div> -->
+        	</div>
+        	<div class="shortEvaluate">
+				<p>短评加载中……</p>
+				<div class="commentBigBox">
+					<!-- <div class="commentBox">
+						<figure>
+							<img data-id="id" class="userId" src="../img/1.webp">
+							<figcaption>
+								<p><a data-id="id" class="userId" href="javascript:;">30天才能改名哼</a><i></i></p>
+								<p>2017-06-13 23:23:44</p>
+							</figcaption>
+						</figure>
+						<div class="comment">
+							<p>三星半吧 视觉高潮很爽 爽完脑子里也没留下些什么 犹如很有职业道德的性工作者</p>
+							<p><i></i>4255</p>
+						</div>
+		        	</div> -->
+				</div>
+				<div class="moreComment">
+					更多影评
+				</div>
+			</div>
+        </div>
     </div>
+
 </body>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/movieIntroduce.js"></script>

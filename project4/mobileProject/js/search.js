@@ -21,8 +21,9 @@
     if(localStorage.getItem("searchText")){///判断跳转过来后本地有没有值.
         var searchText = JSON.parse(localStorage.getItem("searchText"));///搜索的数据.
         totle = searchText.total;///搜索内容总数量.
-
-        appendEle(searchText.subjects);
+        boo = true;
+        appendEle(searchText);
+        movieJump();
         /* 点击更多按钮 */
         $moreBtn.on("click",clickHref);
     };
@@ -66,6 +67,7 @@
                                 $(".content").children().remove();
                             };
                             appendEle(data);
+                            movieJump();
                             boo = true;
                             $(".moreBtn")[0].onclick = function(){
                                 clickNew(sendData);
@@ -110,6 +112,7 @@
                             $(".content").children().remove();
                         };
                         appendEle(data);
+                        movieJump();
                         $(".moreBtn")[0].onclick = function(){
                             clickNew(sendData);
                         };
@@ -138,7 +141,7 @@
     function clickHref(){///点击更多按钮以后判断总数是否大于起始值.
         if(boo){
             boo = false;
-            if(totle > contentStart){
+            if(totle >= contentStart){
                 var sendData = JSON.parse(localStorage.getItem("searchHref"))["1"];
                 sendData.start = contentStart;
                 sendData.count = 20;
@@ -150,9 +153,10 @@
                     dataType : "jsonp",
                     success : function(data){
                         appendEle(data);
+                        movieJump();
                         boo = true;
                     }
-                })
+                });
             }else{
                 $closeBox.fadeIn().find("strong").html("没有更多了");
                 setTimeout(function(){
@@ -169,7 +173,6 @@
     function appendEle(reception){///data:要遍历的数据;将获取到的元素添加到页面上.
         data = reception.subjects;
         contentStart += data.length;///每次起始点自增.
-        console.log(reception);
         $.each(data,function(index,val){
             var arr = [];///导演名字.
             for(var i = 0;i < this.directors.length;i++){
@@ -234,6 +237,7 @@
                             $(".content").children().remove();
                         };
                         appendEle(data);
+                        movieJump();
                         boo = true;
                         $(".moreBtn")[0].onclick = function(){
                             clickNew(sendData);
@@ -261,6 +265,7 @@
                     dataType : "jsonp",
                     success : function(data){
                         appendEle(data);
+                        movieJump();
                         boo = true;
                     }
                 })
@@ -313,6 +318,7 @@
                     $(".content").children().remove();
                 };
                 appendEle(data);
+                movieJump();
                 $(".moreBtn")[0].onclick = function(){
                     clickNew(sendData);
                 };
@@ -327,26 +333,28 @@
     /* 分类浏览End */
 
     /* a链接点击跳转 */
-    $(".movieJump").on("click",function(){///点击电影图片和标题.
-        console.log("console");
-        $.ajax({
-            url : "https://api.douban.com/v2/movie/subject/" + this.setdata.id,
-            type : "GET",
-            data : {"apikey" : "0b2bdeda43b5688921839c8ecb20399b"},
-            dataType : "jsonp",
-            success : function(data){
-                if(data.mobile_url){
-                    localStorage.setItem("movieIntroduce",JSON.stringify(data));
-                    window.location.href = "../html/movieIntroduce.html";
-                }else{
-                    $closeBox.fadeIn().find("strong").html("数据获取失败,请稍后再试");
-                    setTimeout(function(){
-                        $closeBox.fadeOut(2000);
-                    },1000);
-                };
-            }
+    function movieJump(){///点击图片或标题跳转到电影详情介绍.
+        $(".movieJump").on("click",function(){///点击电影图片和标题.
+            console.log("console");
+            $.ajax({
+                url : "https://api.douban.com/v2/movie/subject/" + this.dataset.id,
+                type : "GET",
+                data : {"apikey" : "0b2bdeda43b5688921839c8ecb20399b"},
+                dataType : "jsonp",
+                success : function(data){
+                    if(data.mobile_url){
+                        localStorage.setItem("movieIntroduce",JSON.stringify(data));
+                        window.location.href = "../html/movieIntroduce.html";
+                    }else{
+                        $closeBox.fadeIn().find("strong").html("数据获取失败,请稍后再试");
+                        setTimeout(function(){
+                            $closeBox.fadeOut(2000);
+                        },1000);
+                    };
+                }
+            });
         });
-    });
+    };
     $(".director").on("click",function(){///点击导演或主演.
         $.ajax({
             url : "https://api.douban.com/v2/movie/celebrity/" + this.setdata.id,
