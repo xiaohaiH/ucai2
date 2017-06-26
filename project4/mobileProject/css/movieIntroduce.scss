@@ -53,8 +53,8 @@ html{
     /* 顶部 */
 .bigBox {
     >.navbar>.container-fluid{
-        padding-right:0;
-    };
+        max-width:860px;
+    }
     >nav {
         background: none;
         border: none;
