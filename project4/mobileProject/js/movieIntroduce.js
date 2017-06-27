@@ -115,7 +115,11 @@
     if (movie){
         movie = JSON.parse(movie);
         var arr = [];
-        arr[0] = movie.durations[0];///影片时长.
+        if(movie.durations[0]){
+            arr[0] = movie.durations[0];///影片时长.
+        }else{
+            arr[0] = "该剧时长:未知";///影片时长.
+        };
         arr[1] = "(" + movie.countries + ")";
         if(movie.directors.length > 1){///根据导演的数量来选择添加方式.
             var s = "";
@@ -161,9 +165,13 @@
         }else if(movie.casts.length == 1){
             arr[4] = movie.casts[0].name + "(主演)";
         }else{
-            arr[4] = "演员:无";
+            arr[4] = "演员:未知";
         };
-        arr[5] = movie.pubdates[0] + "上映";
+        if(movie.pubdates[0]){
+            arr[5] = movie.pubdates[0] + "上映";
+        }else{
+            arr[5] = "上映时间:未知";
+        };
         movie.average = movie.rating.average;///评分.
         movie.large = movie.images.large;///电影图片.
         movie.person = arr.join(" / ");
@@ -253,12 +261,11 @@
             };
         });
         /* 设置短评End */
-        function clickLike(){
-            var stopBack = "";
+        function clickLike(){///点击like小手图标时,评论数自增.
             $oShortEvaluate.find(".like").on("click",function(){
-                if(stopBack)return false;
+                if(this.index == $(this).next("span").html() - 1) return false;
+                this.index = $(this).next("span").html();
                 $(this).next("span").html(Number($(this).next("span").html()) + 1);
-                stopBack = true;
             });
         };
     }else{

@@ -152,18 +152,6 @@
                 function getTitle(){
                     if(!pingfen){///判断评分是否为0.
                         data.subjects[index].average = "暂无评分";
-                    }else{
-                        if(pingfen > 0 && pingfen <= 2){
-                            pingfen = 8;
-                        }else if(pingfen > 2 && pingfen <= 4){
-                            pingfen = 6;
-                        }else if(pingfen > 4 && pingfen <= 6){
-                            pingfen = 4;
-                        }else if(pingfen > 6 && pingfen <= 8){
-                            pingfen = 2;
-                        }else{
-                            pingfen = 0;
-                        };
                     };
                     var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
                     return tagText.replace(reg,function(index,$1){
@@ -175,7 +163,9 @@
                     $box.find(".bannerList:eq("+ index +") span").css("width","100%");
                     $box.find(".bannerList:eq("+ index +") i").css({"width":"0rem"});
                 }else{
-                    $box.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
+                    /* 根据分数来设置星星数量 */
+                    $box.find(".bannerList:eq("+ index +") i").css("background-positionY",parseInt(10 - Math.round(that.average)) * -11 + "px");
+                    /* 根据分数来设置星星数量 */
                 }
             });
             /* 页面上榜单下的a链接点击后Start */
@@ -251,38 +241,22 @@
                     if(index >= count){
                         return false;
                     };
+                    $(this).find(".thumbnail a").attr("data-id",data.subjects[index].id);///点击加载更多时,更换电影图片和其所属的ID.
                     var pingfen = data.subjects[index].rating.average;
                     data.subjects[index].large = data.subjects[index].images.large;
                     data.subjects[index].average = data.subjects[index].rating.average;
                     $(this).find("img").attr("src",data.subjects[index].images.large);
-                    $(this).find("p:eq(0)").html(data.subjects[index].title);
+                    $(this).find("p:eq(0) a").html(data.subjects[index].title);
                     if(pingfen){///判断评分是否为0.
-                        if(pingfen > 0 && pingfen <= 2){
-                            pingfen = 8;
-                        }else if(pingfen > 2 && pingfen <= 4){
-                            pingfen = 6;
-                        }else if(pingfen > 4 && pingfen <= 6){
-                            pingfen = 4;
-                        }else if(pingfen > 6 && pingfen <= 8){
-                            pingfen = 2;
-                        }else{
-                            pingfen = 0;
-                        };
                         $(this).find("span").css({"width":"1rem"}).html(data.subjects[index].rating.average);
-                        $(this).find("i").css({"width":"2.75rem","background-positionY": -pingfen * 11 / 20 + "rem"});
+                        /* 根据分数来设置星星数量 */
+                        $(this).find("i").css({"background-positionY":parseInt(10 - Math.round(pingfen)) * -11 +"px","width":"2.75rem"});
+                        /* 根据分数来设置星星数量 */
                     }else{
                         $(this).find("span").css({"width":"100%"}).html("暂无评分");
                         $(this).find("i").css({"width":"0rem"});
                     };
                 });
-
-                /* 页面上榜单下的a链接点击后Start */
-                var $movieIntroduce = $(".thumbnail").find("a");
-                console.log($movieIntroduce);
-                $movieIntroduce.on("click",function(){
-                    console.log($(this).attr("data-val"));
-                });
-                /* 页面上榜单下的a链接点击后End */
             }
         });
     };
@@ -348,18 +322,6 @@
                     function getTitle(){
                         if(!pingfen){///判断评分是否为0.
                             data.subjects[index].average = "暂无评分";
-                        }else{
-                            if(pingfen > 0 && pingfen <= 2){
-                                pingfen = 8;
-                            }else if(pingfen > 2 && pingfen <= 4){
-                                pingfen = 6;
-                            }else if(pingfen > 4 && pingfen <= 6){
-                                pingfen = 4;
-                            }else if(pingfen > 6 && pingfen <= 8){
-                                pingfen = 2;
-                            }else{
-                                pingfen = 0;
-                            };
                         };
                         var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
                         return tagText.replace(reg,function(index,$1){
@@ -371,7 +333,9 @@
                         $newMovies.find(".bannerList:eq("+ index +") span").css("width","100%");
                         $newMovies.find(".bannerList:eq("+ index +") i").css({"width":"0rem"});
                     }else{
-                        $newMovies.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
+                        /* 根据分数来设置星星数量 */
+                        $newMovies.find(".bannerList:eq("+ index +") i").css("background-positionY",parseInt(10 - Math.round(that.average)) * -11 + "px");
+                        /* 根据分数来设置星星数量 */
                     }
                 });
                 /* 页面上榜单下的a链接点击后Start */
@@ -447,18 +411,6 @@
                     function getTitle(){
                         if(!pingfen){///判断评分是否为0.
                             data.subjects[index].average = "暂无评分";
-                        }else{
-                            if(pingfen > 0 && pingfen <= 2){
-                                pingfen = 8;
-                            }else if(pingfen > 2 && pingfen <= 4){
-                                pingfen = 6;
-                            }else if(pingfen > 4 && pingfen <= 6){
-                                pingfen = 4;
-                            }else if(pingfen > 6 && pingfen <= 8){
-                                pingfen = 2;
-                            }else{
-                                pingfen = 0;
-                            };
                         };
                         var reg = /\<\%\=\s+(\w+)\s+\%\>/g;
                         return tagText.replace(reg,function(index,$1){
@@ -470,7 +422,9 @@
                         $moviePraise.find(".bannerList:eq("+ index +") span").css("width","100%");
                         $moviePraise.find(".bannerList:eq("+ index +") i").css({"width":"0rem"});
                     }else{
-                        $moviePraise.find(".bannerList:eq("+ index +") i").css({"background-positionY": -pingfen * 11 + "px"});
+                        /* 根据分数来设置星星数量 */
+                        $moviePraise.find(".bannerList:eq("+ index +") i").css("background-positionY",parseInt(10 - Math.round(that.subject.average)) * -11 + "px");
+                        /* 根据分数来设置星星数量 */
                     }
                 });
                 /* 页面上榜单下的a链接点击后Start */

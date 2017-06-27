@@ -52,7 +52,7 @@ html {
   /* 电影详情介绍Start */
   /* 电影详情介绍End */ }
   .bigBox > .navbar > .container-fluid {
-    padding-right: 0; }
+    max-width: 860px; }
   .bigBox > nav {
     background: none;
     border: none; }
