@@ -106,6 +106,12 @@ a:focus {
   margin: 0;
   padding: 0; }
 
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  html {
+    font-size: 20px; }
+
+  .bannerList:nth-child(odd) {
+    margin-right: 2.2rem !important; } }
 /* 提示框Start */
 .closeBox {
   display: none; }

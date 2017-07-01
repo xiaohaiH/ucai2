@@ -155,6 +155,9 @@
                         appendEle(data);
                         movieJump();
                         boo = true;
+                    },
+                    error : function(){
+                        console.log(fail);
                     }
                 });
             }else{
@@ -209,7 +212,7 @@
                 $searchContent.find(".pingfeng:eq(" + index + ") i").css({"display":"none"});
                 $searchContent.find(".pingfeng:eq(" + index + ") span").css({"width":"100%"}).html("暂无评分");
             }else{
-                $searchContent.find(".pingfeng:eq(" + index + ") i").css("width","55px");
+                $searchContent.find(".pingfeng:eq(" + (reception.start + index) + ") i").css({"width":"55px","background-positionY":parseInt(10 - Math.round(this.average)) * -11});
             };
         });
     };
@@ -335,7 +338,6 @@
     /* a链接点击跳转 */
     function movieJump(){///点击图片或标题跳转到电影详情介绍.
         $(".movieJump").on("click",function(){///点击电影图片和标题.
-            console.log("console");
             $.ajax({
                 url : "https://api.douban.com/v2/movie/subject/" + this.dataset.id,
                 type : "GET",
