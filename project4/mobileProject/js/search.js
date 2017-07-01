@@ -12,6 +12,20 @@
     var boo = false;///搜索结果内容截流.
     var total = 0;
 
+    /* 加载条 */
+    var $body = $("body");
+    var $coverBox = $(".coverBox");
+    function loadStart(){
+        $coverBox.css("display","block");///设置加载时显示加载条.
+        $body.css("overflow","hidden");///设置加载时显示加载条.
+    };
+    function loadFinish(){
+        $coverBox.css("display","none");///设置当运行加载完成后加载条隐藏.
+        $body.css("overflow","initial");///设置当运行加载完成后加载条隐藏.
+    };
+    /* 加载条 */
+
+    /* 初始显示跳转过来的内容Start */
     var $searchContent = $(".searchContent");///搜索内容最大的盒子.
     var $content = $(".content");///添加进内容的盒子.
     var $moreBtn = $searchContent.find(".moreBtn");///搜索内容点击更多按钮.
@@ -23,11 +37,19 @@
         totle = searchText.total;///搜索内容总数量.
         boo = true;
         appendEle(searchText);
+        loadFinish();///隐藏加载条.
         movieJump();
         /* 点击更多按钮 */
         $moreBtn.on("click",clickHref);
+    }else{
+        loadFinish();///隐藏加载条.
+        $closeBox.fadeIn().find("strong").html("请搜索影片");
+        setTimeout(function(){
+            $closeBox.fadeOut(2000);
+        },1000);
     };
 
+    /* 初始显示跳转过来的内容End */
     var $navbarForm = $(".navbar-form");///文本框最大的盒子.
     var $searchBtn = $(".searchBtn");///搜索按钮.
     var $input = $navbarForm.find("input");///搜索框.
@@ -35,7 +57,8 @@
     $input.on("focus",function(){///当文本框获取到焦点时,改变高度.
         if((document.documentElement.clientWidth||document.body.clientWidth) < 768){
             $navbarForm.css("height","5.4rem")
-        }
+        };
+        $(this).select();
         $searchResult.fadeIn();
     });
     $input.on("blur",function(){///当文本框失去到焦点时,改变高度.
@@ -51,6 +74,7 @@
     $searchResult.find("p:eq(0)").on("click",function(){///将输入的值添加到搜索类型框中.
         if($input.val()){///搜索电影名称.
             if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                loadStart();///显示加载条.
                 var url = "https://api.douban.com/v2/movie/search";
                 var count = 20;
                 var contentStart = 0;
@@ -67,12 +91,14 @@
                                 $(".content").children().remove();
                             };
                             appendEle(data);
+                            loadFinish();///隐藏加载条.
                             movieJump();
                             boo = true;
                             $(".moreBtn")[0].onclick = function(){
                                 clickNew(sendData);
                             };
                         }else{
+                            loadFinish();///隐藏加载条.
                             $closeBox.fadeIn().find("strong").html("没有搜索到该影片");
                             setTimeout(function(){
                                 $closeBox.fadeOut(2000);
@@ -96,6 +122,7 @@
     $searchResult.find("p:eq(1)").on("click",function(){///将输入的值添加到搜索类型框中.
         if($input.val()){///搜索电影的类型.
             if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                loadStart();///显示加载条.
                 var url = "https://api.douban.com/v2/movie/search";
                 var count = 20;
                 var contentStart = 0;
@@ -113,11 +140,13 @@
                         };
                         appendEle(data);
                         movieJump();
+                        loadFinish();///隐藏加载条.
                         $(".moreBtn")[0].onclick = function(){
                             clickNew(sendData);
                         };
                     },
                     error : function(data1,data2,data3){
+                        loadFinish();///隐藏加载条.
                         console.log("error1:"+ data1);
                         console.log("error2:"+ data2);
                         console.log("error3:"+ data3);
@@ -141,6 +170,7 @@
     function clickHref(){///点击更多按钮以后判断总数是否大于起始值.
         if(boo){
             boo = false;
+            loadStart();///显示加载条.
             if(totle >= contentStart){
                 var sendData = JSON.parse(localStorage.getItem("searchHref"))["1"];
                 sendData.start = contentStart;
@@ -153,15 +183,18 @@
                     dataType : "jsonp",
                     success : function(data){
                         appendEle(data);
+                        loadFinish();///隐藏加载条.
                         movieJump();
                         boo = true;
                     },
-                    error : function(){
-                        console.log(fail);
+                    error : function(a,b,c,d){
+                        loadFinish();///隐藏加载条.
+                        console.log(a,b,c,d);
                     }
                 });
             }else{
                 $closeBox.fadeIn().find("strong").html("没有更多了");
+                boo = true;
                 setTimeout(function(){
                     $(".closeBox").fadeOut(2000);
                 },1000);
@@ -218,12 +251,13 @@
     };
     ///搜素框.
     $searchBtn.on("click",function(e){
+        if(!e) var e = window.event;
         e.preventDefault();
         var $searchText = $(".searchText").val();///搜索的文本.
         localStorage.clear();///搜索前先清空本地的值.
-        $(".moreBtn").off("click",clickHref);///清空跳转过来的点击更多事件.
-        if(!e) var e = window.event;
+        $(".moreBtn").off("click",clickHref);///清空跳转过来的(点击更多)事件.
         if($searchText){
+            loadStart();///显示加载条.
             var url = "https://api.douban.com/v2/movie/search";
             var count = 20;
             var contentStart = 0;
@@ -240,12 +274,15 @@
                             $(".content").children().remove();
                         };
                         appendEle(data);
+                        loadFinish();///显示加载条.
                         movieJump();
                         boo = true;
                         $(".moreBtn")[0].onclick = function(){
+                            loadStart();///显示加载条.
                             clickNew(sendData);
                         };
                     }else{
+                        loadFinish();///隐藏加载条.
                         $closeBox.fadeIn().find("strong").html("没有搜索到该影片");
                         setTimeout(function(){
                             $closeBox.fadeOut(2000);
@@ -260,6 +297,7 @@
         if(boo){
             boo = false;
             sendData.start += 20;
+            loadStart();///隐藏加载条.
             if(total > sendData.start){
                 $.ajax({
                     url : "https://api.douban.com/v2/movie/search",
@@ -268,17 +306,25 @@
                     dataType : "jsonp",
                     success : function(data){
                         appendEle(data);
+                        loadFinish();///隐藏加载条.
                         movieJump();
                         boo = true;
+                    },
+                    error : function(a,b,c,d){
+                        loadFinish();///隐藏加载条.
+                        console.log(a,b,c,d);
                     }
-                })
+                });
             }else{
+                loadFinish();///隐藏加载条.
                 $closeBox.fadeIn().find("strong").html("没有更多了");
+                boo = true;
                 setTimeout(function(){
                     $closeBox.fadeOut(2000);
                 },1000);
             };
         }else{
+            loadFinish();///隐藏加载条.
             $closeBox.fadeIn().find("strong").html("您已经点击过了,请稍后再试");
             setTimeout(function(){
                 $closeBox.fadeOut(2000);
@@ -304,6 +350,7 @@
         event.preventDefault();
         var count = 20;
         var contentStart = 0;
+        loadStart();///显示加载条.
         searchType({tag : $(this).html(),count : count ,start : contentStart,apikey : "0b2bdeda43b5688921839c8ecb20399b"});
     });
     function searchType(sendVal){
@@ -315,6 +362,7 @@
             data : sendData,
             dataType : "jsonp",
             success : function(data){
+                loadFinish();///隐藏加载条.
                 boo = true;
                 total = data.total;///该类型或该电影的总数.
                 if($(".content").children()){
@@ -327,6 +375,7 @@
                 };
             },
             error : function(data1,data2,data3){
+                loadFinish();///隐藏加载条.
                 console.log("error1:"+ data1);
                 console.log("error2:"+ data2);
                 console.log("error3:"+ data3);
@@ -338,6 +387,7 @@
     /* a链接点击跳转 */
     function movieJump(){///点击图片或标题跳转到电影详情介绍.
         $(".movieJump").on("click",function(){///点击电影图片和标题.
+            loadStart();///显示加载条.
             $.ajax({
                 url : "https://api.douban.com/v2/movie/subject/" + this.dataset.id,
                 type : "GET",
@@ -348,18 +398,25 @@
                         localStorage.setItem("movieIntroduce",JSON.stringify(data));
                         window.location.href = "../html/movieIntroduce.html";
                     }else{
+                        loadFinish();///隐藏加载条.
                         $closeBox.fadeIn().find("strong").html("数据获取失败,请稍后再试");
                         setTimeout(function(){
                             $closeBox.fadeOut(2000);
                         },1000);
                     };
+                },
+                error : function(a,b,c,d){
+                    console.log(a,b,c,d);
+                    loadFinish();///隐藏加载条.
                 }
             });
         });
     };
     $(".director").on("click",function(){///点击导演或主演.
+        var that = this;
+        loadStart();///显示加载条.
         $.ajax({
-            url : "https://api.douban.com/v2/movie/celebrity/" + this.setdata.id,
+            url : "https://api.douban.com/v2/movie/celebrity/" + that.dataset.id,
             type : "GET",
             data : {"apikey" : "0b2bdeda43b5688921839c8ecb20399b"},
             dataType : "jsonp",
@@ -368,11 +425,16 @@
                     localStorage.setItem("movieIntroduce",JSON.stringify(data));
                     window.location.href = "../html/movieIntroduce.html";
                 }else{
+                    loadFinish();///隐藏加载条.
                     $closeBox.fadeIn().find("strong").html("数据获取失败,请稍后再试");
                     setTimeout(function(){
                         $closeBox.fadeOut(2000);
                     },1000);
                 };
+            },
+            error : function(a,b,c,d){
+                console.log(a,b,c,d);
+                loadFinish();///隐藏加载条.
             }
         });
     });

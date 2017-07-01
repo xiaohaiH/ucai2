@@ -20,6 +20,33 @@ html {
 @media screen and (max-width: 500px) {
   html {
     font-size: 14px; } }
+/* 加载中 */
+body {
+  overflow: hidden;
+  /* body默认超出隐藏,禁止用户在加载时滚动 */ }
+
+.coverBox {
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); }
+  .coverBox p {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto; }
+    .coverBox p img {
+      width: 100%;
+      height: 100%; }
+
+/* 加载中 */
 /* 提示框Start */
 .closeBox {
   display: none; }
@@ -84,16 +111,24 @@ html {
           text-overflow: ellipsis;
           white-space: nowrap; }
           .bigBox > nav form .form-group .searchResult p {
-            height: 1.5rem; }
+            height: 1.5rem;
+            text-align: center; }
             .bigBox > nav form .form-group .searchResult p span {
               float: left;
               cursor: pointer; }
             .bigBox > nav form .form-group .searchResult p span:first-of-type {
+              box-sizing: border-box;
+              padding-left: .5rem;
+              max-width: 5rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               margin-right: .5rem; }
             .bigBox > nav form .form-group .searchResult p span:last-of-type {
               color: #268DCD; }
             .bigBox > nav form .form-group .searchResult p:hover {
-              background: rgba(0, 0, 0, 0.4); }
+              background: rgba(0, 0, 0, 0.1);
+              border-radius: .6rem; }
       .bigBox > nav form .searchBtn {
         float: left; }
   .bigBox .details {

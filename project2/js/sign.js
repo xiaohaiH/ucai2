@@ -1,5 +1,5 @@
 window.onload = function(){
-	document.oncontextmenu=new Function("event.returnValue=false");///禁止复制.
+	document.oncontextmenu=new Function("event.returnValue=false");///禁止右键.
 	document.onselectstart=new Function("event.returnValue=false");///禁止复制.
 	document.body.style.height = document.documentElement.clientHeight + "px";
 	/* 左侧 */

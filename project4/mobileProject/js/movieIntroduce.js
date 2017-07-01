@@ -2,6 +2,20 @@
     var $closeBox = $(".closeBox");///弹出框盒子.
 
 
+    /* 加载条 */
+    var $body = $("body");
+    var $coverBox = $(".coverBox");
+    function loadStart(){
+        $coverBox.css("display","block");///设置加载时显示加载条.
+        $body.css("overflow","hidden");///设置加载时显示加载条.
+    };
+    function loadFinish(){
+        $coverBox.css("display","none");///设置当运行加载完成后加载条隐藏.
+        $body.css("overflow","initial");///设置当运行加载完成后加载条隐藏.
+    };
+    /* 加载条 */
+
+
     ///搜素框.
     var $navbarForm = $(".navbar-form");///文本框最大的盒子.
     var $searchBtn = $(".searchBtn");///搜索按钮.
@@ -10,7 +24,8 @@
     $input.on("focus",function(){///当文本框获取到焦点时,改变高度.
         if((document.documentElement.clientWidth||document.body.clientWidth) < 768){
             $navbarForm.css("height","5.4rem")
-        }
+        };
+        $(this).select();
         $searchResult.fadeIn();
     });
     $input.on("blur",function(){///当文本框失去到焦点时,改变高度.
@@ -26,6 +41,7 @@
     $searchResult.find("p:eq(0)").on("click",function(){///将输入的值添加到搜索类型框中.
         if($input.val()){///搜索电影名称.
             if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                loadStart();///显示加载条.
                 jumpResult({q : $input.val()});
             }else{
                 $closeBox.fadeIn().find("strong").html("请正确输入电影名称");
@@ -43,6 +59,7 @@
     $searchResult.find("p:eq(1)").on("click",function(){///将输入的值添加到搜索类型框中.
         if($input.val()){///搜索电影的类型.
             if(/[\u4E00-\u9FA5]+|\w+/g.test($input.val())){
+                loadStart();///显示加载条.
                 jumpResult({tag : $input.val()})
             }else{
                 $closeBox.fadeIn().find("strong").html("请正确输入电影名称");
@@ -62,7 +79,8 @@
         if(!e) var e = window.event;
         e.preventDefault();
         if($searchText){
-            jumpResult({q : $input.val()})
+            loadStart();///显示加载条.
+            jumpResult({q : $input.val()});
         };
     });
     function jumpResult(sendVal){///跳转到搜索界面.
@@ -82,11 +100,16 @@
                     // console.log(JSON.parse(localStorage.getItem("searchText")));
                     window.location.href = "../html/search.html";
                 }else{
+                    loadFinish();///隐藏加载条.
                     $closeBox.fadeIn().find("strong").html("没有搜索到该影片");
                     setTimeout(function(){
                         $closeBox.fadeOut(2000);
                     },1000);
                 };
+            },
+            error : function(a,b,c,d){
+                console.log(a,b,c,d);
+                loadFinish();///隐藏加载条.
             }
         });
     };
@@ -106,9 +129,6 @@
 
     var $oDetails = $(".details");///获取详情页最大的盒子.
     var $oBtn = $oDetails.find("button");///获取详情页最大的盒子.
-    $oBtn.on("click",function(){
-        // $(this).css({"background-color":"","color":"white"});
-    });
     /* 检测是否由其他页面跳转过来的 */
     var $template = $("#templete").html();
     var movie = localStorage.getItem("movieIntroduce");
@@ -176,6 +196,7 @@
         movie.large = movie.images.large;///电影图片.
         movie.person = arr.join(" / ");
         $oDetails.find(".box").append(appendEle(movie,$template));
+        loadFinish();///隐藏加载条.
         var actorHidden = true;///演员简介变量.
         /* 设置文字超出是否显示省略号 */
         $oDetails.find(".movieContent .movieActor").on("click",function(){
@@ -233,11 +254,15 @@
             },
             bigBox : $oShortEvaluate.find('.commentBigBox')
         });
+        /* 点击更多评论Start */
         $oShortEvaluate.find(".moreComment").on("click",function(){
+            loadStart();///显示加载条.
             if(moreBoo){
                 moreBoo = false;
                 start += 5;
                 if(start >= moreTotal){
+                    loadFinish();///隐藏加载条.
+                    moreBoo = true;
                     $closeBox.fadeIn().find("strong").html("没有更多评论了哦！");
                     setTimeout(function(){
                         $closeBox.fadeOut(2000);
@@ -260,6 +285,7 @@
                 },1000);
             };
         });
+        /* 点击更多评论End */
         /* 设置短评End */
         function clickLike(){///点击like小手图标时,评论数自增.
             $oShortEvaluate.find(".like").on("click",function(){
@@ -290,6 +316,7 @@
                     this.usersrc = this.author.avatar;
                     obj.bigBox.append(appendEle(this,$template4));
                 });
+                loadFinish();///隐藏加载条.
                 /* 根据分数来设置星星数量 */
                 obj.bigBox.find("figure i").css("background-positionY",parseInt(10 - Math.round(movie.average)) * -11);
                 /* 根据分数来设置星星数量 */
@@ -297,6 +324,7 @@
                 clickLike();///点赞后本地数量增加.
             },
             error : function(error1,error2,error3){
+                loadFinish();///隐藏加载条.
                 moreBoo = true;
                 $closeBox.fadeIn().find("strong").html("加载失败，请重试！");
                 setTimeout(function(){

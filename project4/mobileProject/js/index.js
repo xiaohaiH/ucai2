@@ -2,8 +2,19 @@
     localStorage.clear();///每次进入首页清空左右的localStorage.
 
     var $closeBox = $(".closeBox");///弹出框盒子.
-
-
+    /* 加载条 */
+    var loadsuccess = 0;///页面加载进度条.
+    var $body = $("body");
+    var $coverBox = $(".coverBox");
+    function loadStart(){
+        $coverBox.css("display","block");///设置加载时显示加载条.
+        $body.css("overflow","hidden");///设置加载时显示加载条.
+    };
+    function loadFinish(){
+        $coverBox.css("display","none");///设置当运行加载完成后加载条隐藏.
+        $body.css("overflow","initial");///设置当运行加载完成后加载条隐藏.
+    };
+    /* 加载条 */
     ///搜素框.
     var $navbarForm = $(".navbar-form");///文本框最大的盒子.
     var $searchBtn = $(".searchBtn");///搜索按钮.
@@ -84,11 +95,16 @@
                         // console.log(JSON.parse(localStorage.getItem("searchText")));
                         window.location.href = "../html/search.html";
                     }else{
+                        loadFinish();///显示加载条.
                         $closeBox.fadeIn().find("strong").html("没有搜索到该影片");
                         setTimeout(function(){
                             $closeBox.fadeOut(2000);
                         },1000);
                     };
+                },
+                error : function(a,b,c,d){
+                    console.log(a,b,c,d);
+                    loadFinish();///显示加载条.
                 }
             });
     };
@@ -126,6 +142,7 @@
     $getMovieRow.find("a").on('click', function(event) {
         event.preventDefault();
         /* Act on the event */
+        loadStart();///显示加载条.
         jumpResult({tag : $(this).html()});
     });
     /* 分类浏览End */
@@ -136,6 +153,12 @@
         "type": "GET",
         "dataType": "jsonp",
         "success": function(data) {
+
+            ++loadsuccess;///这个是每次完成一个自增一,监听当三个全部加载完成时隐藏加载条,并让body显示进度条.
+            if(loadsuccess == 3){
+                $coverBox.css("display","none");
+                $body.css("overflow","initial");
+            };
             // console.log(data);
             // console.log(data.subjects[0].title) ///标题.
             // console.log(data.subjects[0].images.large) ///图片地址.
@@ -214,6 +237,9 @@
             },1000);
             return false;
         };
+
+        loadStart();///显示加载条.
+
         start += 10;
         if(start + count >= total)count = total % 10;///当起始加上请求的数量大于总数时,请求的数量等于总数的余数.
         url = "https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
@@ -227,6 +253,9 @@
             },1000);
             return false;
         };
+
+        loadStart();///显示加载条.
+
         start -= 10;
         url = "https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
         moreMovie(url,$box.find(".bannerList"));
@@ -237,6 +266,7 @@
             "type" : "GET",
             "dataType" : "jsonp",
             "success" : function(data){
+                loadFinish();///隐藏加载条.
                 $.each(id,function(index,val){
                     if(index >= count){
                         return false;
@@ -257,6 +287,10 @@
                         $(this).find("i").css({"width":"0rem"});
                     };
                 });
+            },
+            "error" :function(a,b,c,d){
+                loadFinish();///隐藏加载条.
+                console.log(a,b,c,d);
             }
         });
     };
@@ -310,6 +344,10 @@
             "data" : sendData,
             "dataType" : "jsonp",
             "success" : function(data){
+                ++loadsuccess;///这个是每次完成一个自增一,监听当三个全部加载完成时隐藏加载条,并让body显示进度条.
+                if(loadsuccess == 3){
+                    loadFinish();///隐藏加载条.
+                };
                 // total = data.total;
                 var num = 0;
                 var init = 0;
@@ -354,6 +392,10 @@
                         $newMovies.css("left",-(parseInt($newMovies.css("width")) / 20 - boxWidth) + "rem");
                     }
                 });
+            },
+            "error" : function(a,b,c,d){
+                console.log(a,b,c,d);
+                loadFinish();///隐藏加载条.
             }
         });
 
@@ -368,11 +410,13 @@
         };
         start -= 10;
         url = "http://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
+        loadStart();///显示加载条.
         moreMovie(url,$newMovies.find(".bannerList"));
      })
      $movieMoreRight.on("click",function(){
         start += 10;
         url = "http://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
+        loadStart();///显示加载条.
         moreMovie(url,$newMovies.find(".bannerList"));
      })
     }());
@@ -400,6 +444,10 @@
             "data" : sendData,
             "dataType" : "jsonp",
             "success" : function(data){
+                ++loadsuccess;///这个是每次完成一个自增一,监听当三个全部加载完成时隐藏加载条,并让body显示进度条.
+                if(loadsuccess == 3){
+                    loadFinish();///隐藏加载条.
+                };
                 var num = 0;
                 var init = 0;
                 $.each(data.subjects, function(index, val) {
@@ -443,6 +491,9 @@
                         $moviePraise.css("left",-(parseInt($moviePraise.css("width")) / 20 - boxWidth) + "rem");
                     }
                 });
+            },
+            "error" : function(a,b,c,d){
+                loadFinish();///隐藏加载条.
             }
         });
 
@@ -456,11 +507,13 @@
             return false;
         };
         start -= 10;
+        loadStart();///显示加载条.
         url = "http://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
         moreMovie(url,$moviePraise.find(".bannerList"));
      })
      $movieMoreRight.on("click",function(){
         start += 10;
+        loadStart();///显示加载条.
         url = "http://api.douban.com/v2/movie/new_movies?apikey=0b2bdeda43b5688921839c8ecb20399b&city=" + city + "&start=" + start + "&count=" + count;
         moreMovie(url,$moviePraise.find(".bannerList"));
      });
@@ -469,6 +522,7 @@
 function jumpIntroduce(){
     var $movieIntroduce = $(".thumbnail").find("a");
     $movieIntroduce.on("click",function(){
+        loadStart();///显示加载条.
         $.ajax({
             url : "https://api.douban.com/v2/movie/subject/" + this.dataset.id,
             type : "GET",
@@ -480,10 +534,15 @@ function jumpIntroduce(){
                     window.location.href = "../html/movieIntroduce.html";
                 }else{
                     $closeBox.fadeIn().find("strong").html("获取信息失败,请稍后再试!");
+                    loadFinish();///显示加载条.
                     setTimeout(function(){
                         $closeBox.fadeOut(2000);
                     },1000);
                 };
+            },
+            error : function(a,b,c,d){
+                console.log(a,b,c,d);
+                loadFinish();///显示加载条.
             }
         });
     });
