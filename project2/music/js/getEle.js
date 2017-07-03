@@ -24,7 +24,6 @@ function $(sendId,num){///获取类名,父元素的下标.
 		if(parentIsId){
 			if(childId){
 				return "禁止ID内获取ID";
-				return document.getElementById(parentClass).getElementById(childName);
 			}else if(childClass){
 				return document.getElementById(parentClass).getElementsByClassName(childName);
 			}else{
@@ -37,7 +36,6 @@ function $(sendId,num){///获取类名,父元素的下标.
 		}else if(parentIsClass){
 			if(childId){
 				return "禁止class内获取ID";
-				return document.getElementsByClassName(parentClass)[num].getElementById(childName);
 			}else if(childClass){
 				return document.getElementsByClassName(parentClass)[num].getElementsByClassName(childName);
 			}else{
@@ -52,7 +50,6 @@ function $(sendId,num){///获取类名,父元素的下标.
 			});
 			if(childId){
 				return "禁止通过获取元素来获取ID";
-				return document.getElementsByTagName(parentClass)[num].getElementById(childName);
 			}else if(childClass){
 				return document.getElementsByTagName(parentClass)[num].getElementsByClassName(childName);
 			}else{

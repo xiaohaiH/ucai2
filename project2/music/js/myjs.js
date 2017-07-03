@@ -17,7 +17,7 @@ window.onload = function() {
         var starHeight = parseInt(getComputedStyle(oStarbox.children[0], false).height); ///流星的高度.
         var starWidth = parseInt(getComputedStyle(oStarbox.children[0], false).width); ///流星的宽度.
         setInterval(function() {
-            var starNum = Math.ceil(Math.random() * 2);
+            var starNum = Math.ceil(Math.random() * 5);
             for (var k = 0; k < starNum; k++) {
                 var Star = document.createElement("div");
                 var Starimg = document.createElement("img");
@@ -32,7 +32,7 @@ window.onload = function() {
                 var initTop = Math.ceil(Math.random() * (dHeight - starHeight)) + starHeight; ///初始top值.
                 initLeft > dWidth ? initLeft = dWidth - starWidth : initLeft; ///流星left大于屏幕宽时,等于left等于屏幕宽减去流星的宽度.
                 for (var j = 0; j < oStarbox.children.length; j++) { ///内判断,当流星之间的left小于流星宽度的一半时,他的left加上流星宽度的一半.
-                    if (Math.abs(parseInt(getComputedStyle(oStarbox.children[j], false).left) - parseInt(getComputedStyle(oStarbox.children[i], false).left)) < starWidth / 2) {
+                    if (Math.abs(parseInt(getComputedStyle(oStarbox.children[j], false).left) - parseInt(getComputedStyle(oStarbox.children[i], false).left)) < starWidth ) {
                         var newLeft = parseInt(getComputedStyle(oStarbox.children[j], false).left)
                         oStarbox.children[j].style.left = newLeft + starWidth / 2 + "px";
                     };
@@ -40,7 +40,7 @@ window.onload = function() {
                 oStarbox.children[i].style.left = initLeft + "px"; ///初始left值.
                 oStarbox.children[i].style.top = -initTop + "px"; ///初始top值.
             };
-        }, 6000);
+        }, 5000);
         var Top = 0;
         var Left = 0;
         if (oStarbox.children.length) {
@@ -68,15 +68,11 @@ window.onload = function() {
     /* 点击登录按钮 */
 	$(".headerRight a",0)[0].addEventListener("click",function(){
         var Boo = this.getAttribute("data-val");
-        if(Boo != "登陆"){
-            return ;
-        };
-        localStorage.setItem("url",window.location.href);
-        window.location.href = "sign.html";
-    });
-    $(".headerRight a",0)[1].addEventListener("click",function(){
-        localStorage.removeItem("username");
-        this.parentNode.firstElementChild.setAttribute("data-val","登陆");
+		if(Boo == "登陆"){
+			return ;
+		};
+		localStorage.setItem("url",window.location.href);
+		window.location.href = "sign.html";
 	});
 	/**/
 
@@ -433,4 +429,6 @@ window.onload = function() {
         };
     }()
     ///footer底部内容.
+
+
 };

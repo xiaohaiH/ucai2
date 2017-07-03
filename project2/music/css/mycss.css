@@ -37,6 +37,7 @@ body {
     background: url(../img/bg_star.jpg) top left no-repeat;
     background-size: cover;
     position: relative;
+    overflow-x:hidden; 
 }
 
 .EWidth {
