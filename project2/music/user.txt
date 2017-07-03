@@ -1,4 +1,0 @@
-id	name	password
-1	xxxxxxx	hhhhhhh
-2	qqqqqqqqq	ae0469e4ce1f53a2e95399bf2333d7eb
-3	iiiiiiiiiiiiiiiiiiiiiiii	c5b696acee03e35b568868db1c6f2627
