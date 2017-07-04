@@ -117,8 +117,12 @@
 ///状态一旦改变，状态就凝固了,不会在发生改变.
 
 ///缺点：  建立则会立即执行,无法中途取消  如果不设置回调函数,会抛出错误异常  .
+
+
+/* assign:合并对象 */
 let obj1 = { a: 1 };
 let obj2 = { a: 2, b: 2 };
 let obj3 = { c: 2 };
 Object.assign(obj1, obj2, obj3)
-console.log(obj2)
+console.log(obj2);
+console.log("hahaha")

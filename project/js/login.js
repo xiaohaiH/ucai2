@@ -26,7 +26,12 @@ $(window).ready(function(){
 			type : "POST",
 			data : obj,
 			success : function(data){
-				var mess = JSON.parse(data);
+				console.log(data);
+				if(data instanceof Object){
+					var mess = data;
+				}else{
+					var mess = JSON.parse(data);
+				}
 				if(mess.message == "用户名不存在"){
 					alert("用户名不存在,请重新输入");
 				}else if(mess.message == "密码错误"){
