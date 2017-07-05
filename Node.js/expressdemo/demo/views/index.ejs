@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    这讲的都是啥玩意哦------贼恶心！！！------
+    <ul>
+        <%
+            for(var i=0;i<xuesheng.length;i++){
+            %>
+            <li>
+                <%= xuesheng[i] %> 说这是用node模板引擎创建第
+                    <%= i+1 %>个li
+            </li>
+            <%
+            }
+            %>
+    </ul>
+
+</body>
+
+</html>
