@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>angularPractice</title>
+    <script src="./angular.min.js"></script>
+    <style>
+        .one {
+            background: red;
+            height: 100px;
+        }
+        
+        .two {
+            background: blue;
+            height: 100px;
+        }
+        
+        .three {
+            background: yellow;
+            height: 100px;
+        }
+        
+        .four {
+            background: violet;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-app="app">
+        <div ng-controller="main">{{aaa}}
+            <ul>
+                <li ng-repeat="List in arr" class="{{List}}"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var app = angular.module("app", []);
+    app.controller("main", ['$scope', function($scope) {
+        $scope.aaa = '这是一个列表';
+        $scope.arr = ['one', 'two', 'three', 'four'];
+        console.log($scope);
+    }]);
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ngShowPractice</title>
+    <script src="./angular.min.js"></script>
+</head>
+
+<body>
+    <!-- 表单验证，给form一个name属性 -->
+    <div ng-app="app">
+        <form ng-controller="main" name="formName">
+            <p><input type="text" name="tel" ng-model="uname" value="" ng-pattern="/^[0-9]{5,}$/"></p>
+            <!--加上正则判断 然后找form表单(name名)下的input(name名)下的$invalid值  $invalid值代表正则的值-->
+            <span ng-show="formName.tel.$invalid">输入格式错误!</span>
+        </form>
+        <!-- ng-model和ng-show的值要相等，ng-model内的值随鼠标的勾选而更改！   -->
+        <form ng-controller="multiple" name="Box">
+            <p><input type="checkbox" ng-model="judge" name="multipleBox"></p>
+            <span ng-show="judge">当复选框被勾选时，我会出现</span>
+        </form>
+    </div>
+</body>
+<script>
+    var app = angular.module('app', []);
+    ///input的控制器.
+    app.controller('main', ['$scope', function($scope) {}]);
+
+    ///多选框的控制器.
+    app.controller('multiple', ['$scope', function($scope) {
+        // if ($scope.judge) {
+        //     $scope.judge = true;
+        // } else {
+        //     $scope.judge = false;
+        // };
+    }]);
+</script>
+
+</html>
