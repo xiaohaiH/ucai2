@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .font {
+            color: red;
+        }
+        
+        .bg {
+            background: darkviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- v-bind数据绑定：可以给class追加类名，利用数据v-bind函数，内部内容要用{}括起来 -->
+
+    <!-- v-bind:thisId 可简写成 :thisId -->
+    <div id="box">
+        <p v-bind:thisId="id">{{msg}} </p>
+    </div>
+    <!-- v-bind:thisId 可简写成 :thisId -->
+    <div id="box2">
+        <p :thisId="id" class="font" :class="{bg:addCl}">{{msg}} </p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            msg: "留言",
+            id: 123
+        }
+    });
+    var vm = new Vue({
+        el: "#box2",
+        data: {
+            msg: "留言2",
+            id: 456,
+            addCl: true
+        }
+    });
+</script>
+
+</html>

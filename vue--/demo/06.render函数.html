@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .bg {
+            margin-left: 200px;
+        }
+        
+        .childBg {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        render函数可以用来创建新的dom元素，
+        内部createElement(a,b,c)有三个参数
+        a:要创建的元素,字符串方式 p.s"ul";
+        b:要写入的样式或自定义属性,对象方式 p.s{attrs:{myName:"xiaohai"}};
+        c:要创建的子元素,数组方式 p.s[create("li",2)];  p.s:也可以书写字符串,不过是当做内容处理-二者选其一.
+         -->
+    <div id="box">
+
+    </div>
+    <div id="box2">
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {},
+        render: function(createElement) {
+            console.log(createElement)
+            return createElement(
+                "ul", [
+                    createElement("li", 2),
+                    createElement("li", 3),
+                    createElement("li", 1),
+                ]
+            )
+        }
+
+    });
+
+    var vm = new Vue({
+        el: "#box2",
+        data: {},
+        render: function(createElement) {
+            return createElement("ul", {
+                class: {
+                    bg: true
+                },
+                style: {
+                    background: "violet",
+                    color: "white"
+                },
+                attrs: {
+                    names: "xiaohai"
+                }
+            }, [
+                createElement("li", {
+                    class: {
+                        childBg: true
+                    },
+                    style: {
+                        height: "200px",
+                        paddingTop: "200px"
+                    }
+                }, 111),
+            ]);
+        }
+    });
+</script>
+
+</html>

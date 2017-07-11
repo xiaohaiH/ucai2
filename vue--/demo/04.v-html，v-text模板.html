@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <!-- v-html能识别标签 -->
+    <!-- v-text不能识别标签，全部当成字符串处理 -->
+    <div id="box">
+        <div v-html="html" :id="Id"></div>
+        <div v-text="xiaohai" :id="thisId"></div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            html: "<div><h1>helloXiaoHai</h1></div>",
+            xiaohai: "<p>555</p>",
+            thisId: 12345
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <!-- template会替换该元素内的内容 -->
+    <div id="box">
+        <span>hello aaa</span>
+        <!-- js运行后，该元素会消失 -->
+    </div>
+</body>
+<script type="x-template" id="tem">
+    <div>
+        hello {{username}},
+        <span>呃呃呃</span>
+    </div>
+</script>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            username: "xiaohai",
+        },
+        template: "#tem"
+    });
+</script>
+
+</html>
