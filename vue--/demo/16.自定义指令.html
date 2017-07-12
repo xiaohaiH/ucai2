@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <!-- 
+        bind内有三个参数：
+        参数一：绑定的该元素，
+        参数二：该参数的各种属性，
+        参数三：。。。。
+     -->
+    <div id="box">
+        <span v-color>{{name}}</span>
+    </div>
+    <script>
+        Vue.directive('color', {
+            bind: function(el, binding, vnode) {
+                console.log(vnode)
+                el.style.color = "violet";
+            }
+        });
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                name: "helloWorld"
+            }
+        });
+    </script>
+</body>
+
+</html>

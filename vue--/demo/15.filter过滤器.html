@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <!-- 高版本弃用这种方法了 -->
+    <div id="box">
+        {{xiaoHai | uppercase}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                xiaoHai: "xiaoHai"
+            }
+        });
+    </script>
+</body>
+
+</html>

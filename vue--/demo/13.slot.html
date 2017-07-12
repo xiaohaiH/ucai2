@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+
+</head>
+
+<body>
+    <!-- 组件只有当该模板内不存在任何标签,元素时  模板内容会替换掉该元素的内容 -->
+    <!-- slot是自定义标签内的内容,起一个占位符作用 -->
+    <div id="box">
+        <xiaohai>
+
+        </xiaohai>
+        <xiaohai></xiaohai>
+    </div>
+</body>
+<script>
+    Vue.component("xiaohai", {
+        template: `
+            <div>
+                <slot>
+                    <p>aaa</p>
+                    <p>aaa</p>
+                    <p>aaa</p>
+                    <p>aaa</p>
+                </slot>
+            </div>
+        `
+    });
+    new Vue({
+        el: "#box"
+    });
+</script>
+
+</html>

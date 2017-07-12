@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div id="box">
+        {{obj.a}}<br/>{{obj.b}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                obj: {
+                    a: 111,
+                    b: 222
+                }
+            }
+        });
+        document.onclick = function() {
+            vm.a = 1;
+        };
+        vm.$watch('a', function() {
+            vm.b = vm.a + 1;
+            alert("完成了")
+        });
+    </script>
+</body>
+<!--
+<body>
+    <div id="box">
+        {{a}}<br/>{{b}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                a: 111,
+                b: 222
+            }
+        });
+        document.onclick = function() {
+            vm.a = 1;
+            vm.b = vm.a + 1;
+        }
+    </script>
+</body>-->
+
+</html>
