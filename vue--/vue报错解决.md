@@ -35,3 +35,19 @@
         ]
     }
     ```
+
+四：jsonp指定回调名的键值 
+    写法
+    jsonp:
+        第一个参数URL加上传递的值；
+        第二个参数是对象方式，param--> 指定回调函数的键值 ; name--> 指定回调函数的名称(p.s这个不重要) ; prefix -->这个指定jsonp响应的全局回调函数；
+        第三个参数是成功或失败后的函数 --- 参数一:代表失败后返回的值，-参数二代表成功后返回的值！
+    ```
+        jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=123',{param:'cb'}, function (err, data) {
+            if (err) {
+                console.error(err.message);
+            } else {
+                console.log(data);
+            }
+        });
+    ```

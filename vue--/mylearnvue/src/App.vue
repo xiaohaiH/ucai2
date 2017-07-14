@@ -66,9 +66,11 @@
     <!-- 加个tag='指定标签'，设置成指定的标签 -->
     <router-link to="/introduce" tag="li">three</router-link>
     <!-- 设置事件 -->
-    <router-link to="/introduce" tag="li" event="mouseover">three</router-link>
+    <!-- <router-link to="/introduce" tag="li" event="mouseover">three</router-link> -->
+    <router-link to="/introduce" tag="li">three</router-link>
     <!-- 显示的位置 -->
     <router-view></router-view>
+     <router-view name="test" style="margin-top:100px;"></router-view> 
   </div>
 </template>
 
