@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<child text="按钮1"></child>
+		<child text="按钮2"></child>
+		<child text="按钮3"></child>
+		<child text="按钮4"></child>
+		<child text="按钮5"></child>
+	</div>
+</body>
+	<script type="x-template" id="tem">
+		<div>
+			<p><button>{{text}}</button></p>
+		</div>
+	</script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el : "#box",
+			components : {
+				"child" : {
+					props : ['text'],
+					template : tem
+				}
+			}
+		});
+	</script>
+</html>

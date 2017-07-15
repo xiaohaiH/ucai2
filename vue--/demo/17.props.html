@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>props</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<!-- <p>{{msg}}</p> -->
+		<child msg="aaa" hai="bbb"></child>
+	</div>
+</body>
+	<script type="x-template" id="tem">
+		<div>
+			<p>数据一：{{msg}}</p>
+			<p>数据二：{{hai}}</p>
+		</div>
+	</script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el : "#box",
+			// data : {
+			// 	msg : "这是一点数据",
+			// 	hai : "这串数据是定义在模板里面的"
+			// },
+			components : {
+				"child" :{
+				props : ['msg','hai'],
+					template : tem
+				}
+			}
+		});
+	</script>
+</html>

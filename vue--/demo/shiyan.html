@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+
+
+	 <div id="demo">
+        <child message="hello!">{{msg}}</child>
+    </div>
+
+
+
+</body>
+<script type="text/javascript">
+var vm = new Vue({
+	el : "#demo",
+	data : {
+		msg : "嘿嘿嘿"
+	},
+	components : {
+		'child' : {
+		  props: ['msg'],
+		  template: '<span>{{message}} {{msg}} </span>'
+		}
+	}
+});
+
+// Vue.component('child', {
+//   // 声明 props
+//   props: ['message'],
+//   // 就像 data 一样，prop 可以用在模板内
+//   // 同样也可以在 vm 实例中像 “this.message” 这样使用
+//   template: '<span>{{ message }}</span>'
+// })
+//     var vm = new Vue({
+
+//         el: "#demo"
+
+//     })
+
+
+
+ Vue.component('child', {
+ props: ['msg','nihao','nisha'],
+ template: '<span>{{ msg }}{{nihao}}{{nisha}}</span>',
+ data: function() {
+ return {
+ mssage: 'boy'
+ }
+ }
+ });
+ var vm = new Vue({
+ el: '#app1'
+ })
+
+
+
+ Vue.component('child', {
+ props: ['msg','nihao','nisha'],
+ template: '<span>{{ msg }}{{nihao}}{{nisha}}</span>'
+ });
+ var vm = new Vue({
+ el: '#app1'
+ })
+
+
+
+
+</script>
+</html>

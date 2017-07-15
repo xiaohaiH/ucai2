@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue.js-动态组件</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" @click="msg='动态组件'" value="动态组件" name="">
+		<input type="button" @click="msg='动态jump'" value="动态jump" name="">
+		<p>{{msg}}</p>
+	</div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el : '#box',
+		data : {
+			msg : '动态组件'
+		},
+		conponents : {
+			'动态组件' : {
+				msg : '动态组件'
+			},
+			'动态jump' :{
+				msg : '动态jump'
+			}
+
+		}
+	});
+</script>
+</html>
