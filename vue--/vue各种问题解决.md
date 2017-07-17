@@ -51,3 +51,36 @@
             }
         });
     ```
+
+五：更改服务器端口
+
+在config/index.js文件内
+``` 
+port: 端口号
+
+```
+
+
+六：API的跨域问题
+在config/index.js中配置
+dev对象下写
+```
+proxyTable: {
+  '/api/**': {
+    target: 'http://127.0.0.1:8089',///API接口的域    .
+    secure: false,///如果是https接口,需要配置这个参数.
+    changeOrigin: true,///如果接口跨域,需要进行这个    数配置.
+  },
+  '/users/*':{
+    target: 'http://127.0.0.1:8089'
+  }
+},
+
+```
+
+ 七：省略引入文件的后缀名
+ 在build/webpack.base.conf.js文件内找到module.exports对象内的resolve并设置extensions数组
+```
+extensions: ['.js', '.vue', '.json']
+```
+
