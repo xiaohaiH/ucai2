@@ -14,12 +14,8 @@ export default {
   name: 'home',
   data(){
       return {
-          username : 'xiaohai'
+        username : 'xiaohai'
       }
-  },
-  components: {
-    swipe : Swipe,
-
   }
 }
 </script>

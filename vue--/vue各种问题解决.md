@@ -62,6 +62,7 @@ port: 端口号
 
 
 六：API的跨域问题
+https://segmentfault.com/a/1190000008629361 可以参考这个
 在config/index.js中配置
 dev对象下写
 ```

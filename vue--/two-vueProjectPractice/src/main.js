@@ -1,15 +1,12 @@
-
-
 import Vue from 'vue'
 import Router from '@/router/router'
-import bbb from '@/App'
-
+import App from './App'
 
 new Vue({
-    el: '#app',
+    el: '#box',
     router: Router,
-    template: '<App />',
+    template: "<App />",
     components: {
-        App: bbb
+        App: App
     }
 })

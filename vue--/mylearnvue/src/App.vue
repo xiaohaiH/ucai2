@@ -70,7 +70,7 @@
     <router-link to="/introduce" tag="li">three</router-link>
     <!-- 显示的位置 -->
     <router-view></router-view>
-     <router-view name="test" style="margin-top:100px;"></router-view> 
+    <router-view name="test" style="margin-top:100px;"></router-view> 
   </div>
 </template>
 
