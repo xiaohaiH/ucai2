@@ -1,0 +1,23 @@
+/* .router-link-exact-active{
+  color:red!important;
+} */
+#logo{
+   font-weight: bold; 
+  font-size:2rem;
+  color:#05B512;
+}
+.navKind{
+  font-size:1.5rem;
+}
+.movie{
+  color:#2384E8;
+}
+.book{
+  color:#9F7860;
+}
+.broadcast{
+  color:#E4A813;
+}
+.group{
+  color:#2AB8CC;
+}

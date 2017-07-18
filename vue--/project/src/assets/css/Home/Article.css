@@ -1,0 +1,9 @@
+section>article{
+  padding:25px 0;
+  border-bottom:1px solid #F2F2F2;
+}
+section>article .articleLeft .articleContent,section>article .articleLeft .articleAuthor{
+  color:#AAAAAA;
+}
+section>article .articleRight img{
+}

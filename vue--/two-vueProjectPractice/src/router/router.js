@@ -1,30 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
-
-
-import Home from '@/components/Home/index'
-import Introduce from '@/components/Introduce/index'
-import IntroduceName from '@/components/Introduce/IntroduceName'
+import Home from '@/view/Home/Home'
+import Introduce from '@/view/Introduce/Introduce'
+import Follow from '@/components/Home/Follow'
+import TellMe from '@/components/Introduce/TellMe'
 
 let router = new VueRouter({
     mode: 'history',
     routes: [{
             path: '/',
-            name: 'Home',
+            name: 'home',
             components: {
-                default: Home
+                default: Home,
+                follow: Follow
             }
         },
         {
             path: '/introduce',
-            name: 'Intorduce',
+            name: 'introduce',
             components: {
                 default: Introduce,
-                IntroduceName: IntroduceName
+                details: TellMe
             }
         }
     ]
 })
+
 export default router

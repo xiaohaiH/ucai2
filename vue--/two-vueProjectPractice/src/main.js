@@ -1,11 +1,11 @@
 import Vue from 'vue'
+import App from '@/App'
 import Router from '@/router/router'
-import App from './App'
 
 new Vue({
     el: '#box',
     router: Router,
-    template: "<App />",
+    template: '<App />',
     components: {
         App: App
     }
