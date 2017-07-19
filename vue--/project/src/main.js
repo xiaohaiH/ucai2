@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from '@/router/router'
-import Jsonp from 'jsonp'
 
 import App from '@/App'
 

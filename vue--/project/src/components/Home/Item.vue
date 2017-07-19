@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import '@/assets/css/App.css'
+  import '@/assets/css/Home/App.css'
   export default {
     name: 'item'
   }
