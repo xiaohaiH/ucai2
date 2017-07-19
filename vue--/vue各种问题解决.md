@@ -85,3 +85,14 @@ proxyTable: {
 extensions: ['.js', '.vue', '.json']
 ```
 
+
+ 七：当模板中的某些元素还未渲染时，会导致某些函数中的属性获取不到，可用this.$nextTick来解决；
+ 示例：
+ ```
+created(){
+  this.$nextTick(function(){       将需要渲染后才执行的函数放入此函数中即可
+    this.commentJsonp();
+  });
+  // this.commentJsonp();
+},
+ ```
