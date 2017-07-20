@@ -14,11 +14,11 @@
 import Banner from '@/components/Home/Banner'
 export default {
     name: 'app',
-    // data(){
-    //   return {
-    //     msg : ''
-    //   }
-    // },
+    data(){
+      return {
+        msg : ''
+      }
+    },
     components: {
         Banner: Banner
     }

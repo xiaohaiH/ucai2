@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="articleTitle">
-       <h3>{{msg.title}}</h3> 
+       <h3>{{msg.title}}</h3>
        <p><router-link :to="'/author/' + msg.author.id" tag="a">{{msg.author.name}}</router-link><span>{{msg.publish_time}}</span></p>
     </div>
     <div class="articleContent">
@@ -21,6 +21,7 @@
         </div>
       </div>
     </div>
+    <!-- 评论 -->
     <div class="articleMessageBox">
       <div class="articleMessage">
         <h3 class="articleMessageTitle">全部评论{{comments.total}}条</h3>
@@ -67,12 +68,11 @@
         messageStart: 0,
         messageTotal: 10,
         lock: false
-        
       }
     },
     created(){
-      this.sendJsonp();
       this.$nextTick(function(){
+        this.sendJsonp();
         this.commentJsonp();        
       });
       // this.commentJsonp();
@@ -80,7 +80,7 @@
     methods: {
       sendJsonp(){
         let getId = window.location.pathname.match(/([0-9]+)/g)[0];
-        let url = 'https://api.douban.com/v2/note/' + getId;
+        let url = 'https://api.douban.com/v2/note/' + getId + "?apikey=0b2bdeda43b5688921839c8ecb20399b";
         Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data)=>{
           if(err){
             console.log(err);
@@ -91,26 +91,13 @@
         });
       },
       commentJsonp(start,count){
-        /* 这种是通过js控制按钮控件是否禁用 */
-        // if(this.$refs.prevPage){
-        //   console.log(this.$refs.prevPage)
-        //   this.$refs.prevPage.removeAttr('disabled');
-        // };
-        //  if(this.messageStart == 0){
-        //   this.$refs.prevPage.disabled = true;
-        // }else{
-        //   this.$refs.prevPage.disabled = false;
-        // }; 
-        if(this.lock){
+        if(this.lock){///截流.
           return;
         };
+        /* 这种是通过js控制按钮控件是否禁用 */
         this.lock = true;
-        console.log(start)
-        if(start||count){
-          console.log('上一页')
-          console.log(this.messageStart)
+        if(start||count){///检测点击是上一页还是下一页.
           this.messageStart -= 10;
-          console.log(this.messageStart)
           this.messageCount = count;
           if(this.messageStart<=0){
             this.messageStart = 0;
@@ -129,11 +116,8 @@
           this.$refs.nextPage.disabled = false;
         };
 
-        console.log(this.messageStart , this.messageTotal,this.messageStart >= this.messageTotal)
-
         let getId = window.location.pathname.match(/([0-9]+)/g)[0];
-        let url = "https://api.douban.com/v2/note/" + getId + "/comments?start=" + this.messageStart + "&count=" + this.messageCount;
-        console.log(url)
+        let url = "https://api.douban.com/v2/note/" + getId + "/comments?start=" + this.messageStart + "&count=" + this.messageCount + "&apikey=0b2bdeda43b5688921839c8ecb20399b";
         Jsonp(url,{param:'callback',prefix:'cm',name:'cm'},(err,data)=>{
           this.lock = false;
           if(err){
@@ -142,10 +126,10 @@
           };
           this.comments = data;
           this.messageTotal = data.total
-          console.log(this.comments)
         });
-        
-        this.messageStart += 10;
+        if(!(start||count)){
+          this.messageStart += 10;
+        }
       }
     }
   }

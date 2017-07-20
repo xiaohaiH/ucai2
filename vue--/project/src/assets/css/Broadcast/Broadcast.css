@@ -1,0 +1,70 @@
+.Box{
+  margin:2rem 0;
+}
+/* 广播标题样式 */
+.Box .broadcastBox{
+  margin-bottom:2rem;
+  border-bottom:.2rem solid #F4F4F4;
+}
+
+.Box .broadcastBox .broadcastTitle{
+  margin-bottom:1.5rem;
+}
+
+.Box .broadcastBox .broadcastTitle>.media-left{
+  max-width:85px;
+}
+.Box .broadcastBox .boradcastContent h4{
+  float:left;
+  color:#05CB12;
+  font-weight: bold;
+  margin:0 1rem 0 0;
+}
+.Box .broadcastBox .boradcastContent div>span{
+  color:#AAAAAA;
+}
+.Box .broadcastBox .boradcastContent>p{
+  margin-top:.4rem;
+}
+
+
+/* 广播内容样式 */
+.Box .broadcastBox .panel-body p{
+  color:#AAAAAA;
+}
+
+/* 底部样式 */
+.broadcastFooterBox {
+  text-align: center;
+}
+.broadcastFooter{
+  overflow: hidden;
+  text-align:center;
+  display: inline-block;
+}
+.broadcastFooterBox .broadcastFooter>p{
+  float: left;
+  max-width:80px;
+  margin-right:2rem;
+}
+.broadcastFooterBox .broadcastFooter>p img{
+  max-width:80px;
+}
+.broadcastFooterBox .broadcastFooter>div{
+  float: left; 
+}
+.broadcastFooterBox .broadcastFooter>div h4{
+  font-size:3rem;
+  margin:0;
+  margin-top:.8rem;
+  text-align:left;
+}
+.broadcastFooterBox .broadcastFooter>div p{
+  margin-top:.5rem;
+}
+ .broadcastFooterBox .down{
+  color:#05AF10;
+  font-size:2rem;
+  text-align:center;
+  margin-bottom:4rem;
+}
