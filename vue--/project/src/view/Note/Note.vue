@@ -72,13 +72,17 @@
     },
     created(){
       this.$nextTick(function(){
-        this.sendJsonp();
-        this.commentJsonp();        
+        this.sendJsonp(true);
+        this.commentJsonp("","",true);        
       });
-      // this.commentJsonp();
     },
     methods: {
-      sendJsonp(){
+      sendJsonp(res){
+        let noteCookie = localStorage.getItem('note');
+        // if(res && noteCookie){
+        //   this.msg = JSON.parse(noteCookie);
+        //   return;
+        // }
         let getId = window.location.pathname.match(/([0-9]+)/g)[0];
         let url = 'https://api.douban.com/v2/note/' + getId + "?apikey=0b2bdeda43b5688921839c8ecb20399b";
         Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data)=>{
@@ -88,14 +92,24 @@
           };
           this.msg = data;
           this.msg.content = JSON.parse(data.content);
+          // if(res){
+          //   localStorage.setItem('note',JSON.stringify(this.msg));
+          // };
         });
       },
-      commentJsonp(start,count){
+      commentJsonp(start,count,res){
         if(this.lock){///截流.
           return;
         };
         /* 这种是通过js控制按钮控件是否禁用 */
         this.lock = true;
+        let noteCommentCookie = localStorage.getItem('noteComment');
+        if(res && noteCommentCookie){
+          noteCommentCookie = JSON.parse(noteCommentCookie);
+          this.comments = noteCommentCookie.comments;
+          this.messageTotal = noteCommentCookie.messageTotal;
+          return;
+        };
         if(start||count){///检测点击是上一页还是下一页.
           this.messageStart -= 10;
           this.messageCount = count;
@@ -125,7 +139,10 @@
             return;
           };
           this.comments = data;
-          this.messageTotal = data.total
+          this.messageTotal = data.total;
+          // if(res){
+          //   localStorage.setItem('noteComment',JSON.stringify({comments:this.comments,messageTotal:this.messageTotal}));
+          // };
         });
         if(!(start||count)){
           this.messageStart += 10;

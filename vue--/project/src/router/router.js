@@ -9,6 +9,8 @@ import Home from '@/view/Home/Home'
 // import Movie from '@/view/Movie/Movie.vue'
 /* 广播 */
 import Broadcast from '@/view/Broadcast/Broadcast.vue'
+/* Book页面 */
+import Book from '@/view/Book/Book.vue'
 /* note页面 */
 import Note from '@/view/Note/Note.vue'
 
@@ -45,6 +47,13 @@ let Router = new VueRouter({
       name: 'note',
       components: {
         default: Note
+      }
+    },
+    {
+      path: '/book',
+      name: 'book',
+      components: {
+        default: Book
       }
     }
   ]

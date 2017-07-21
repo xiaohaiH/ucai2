@@ -39,10 +39,10 @@
     },
     created () {
       const getNewDate = new Date();///获取日期的初始值.
-      this.getArticle(getNewDate.getFullYear(),getNewDate.getMonth() + 1,getNewDate.getDate());
+      this.getArticle(getNewDate.getFullYear(),getNewDate.getMonth() + 1,getNewDate.getDate(),true);
     },
     methods: {
-      getArticle(year,month,data){///获取数据.
+      getArticle(year,month,data,res){///获取数据.
       /* 这个是判断日期月份年是否在标准内  */
         if(data||month){
           this.page.year = year;
@@ -68,16 +68,24 @@
           };
         };
         /* 这个是判断日期月份年是否在标准内End */
-        let url = "https://m.douban.com/rexxar/api/v2/recommend_feed?alt=json&next_date=" + this.page.year + "-"+ this.page.month +"-" + this.page.date + "&loc_id=108288&gender=&birthday=&udid=9fcefbf2acf1dfc991054ac40ca5114be7cd092f&for_mobile=1";
-        Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data) => {
-          if(err){
-            console.log(err);
+        if(res && localStorage.getItem('homeData')){
+          this.data = JSON.parse(localStorage.getItem('homeData'));
+          return;
+        }else{
+          let url = "https://m.douban.com/rexxar/api/v2/recommend_feed?alt=json&next_date=" + this.page.year + "-"+ this.page.month +"-" + this.page.date + "&loc_id=108288&gender=&birthday=&udid=9fcefbf2acf1dfc991054ac40ca5114be7cd092f&for_mobile=1";
+          Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data) => {
+            if(err){
+              console.log(err);
+              this.page.lock = false;
+              return false;
+            };
+            this.data = this.data.concat(data.recommend_feeds);
+            if(res){
+              localStorage.setItem('homeData',JSON.stringify(this.data));
+            };
             this.page.lock = false;
-            return false;
-          };
-          this.data = this.data.concat(data.recommend_feeds);
-          this.page.lock = false;
-        });
+          });
+        }
       },
       ListenerScroll(){///监听滚动事件.
         /* 截流 */

@@ -96,3 +96,28 @@ created(){
   // this.commentJsonp();
 },
  ```
+
+八：从js中控制路由的跳转
+path: 代表要跳转的路径
+query: 代表后面要传的参数
+```
+this.$router.push({
+        path:'/index',
+        query:{name:'aabbcc'}
+    })
+
+```
+八：axios请求数据
+post,get方式请求数据
+```
+cnpm i -D vue-axios
+cnpm i -D axios
+
+import Vue from 'vue'
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios,Axios)
+```
+使用：
+

@@ -1,0 +1,98 @@
+<template>
+  <div>
+    <swiper :options="swiperOption">
+      <swiper-slide class="col-xs-3 col-sm-3 col-md-2 col-lg-1" style="width:100px;" v-for="(item,index) in this.msg.subject_collection_items" :key="item.id">
+        <img ref='iimg' class="img-responsive" :src="item.cover.url" />
+        <div>
+          <p>{{item.title}}</p>
+          <p><i>分数</i>{{item.rating.value}}</p>
+        </div>
+      </swiper-slide>
+    </swiper>
+  </div>
+</template>
+
+
+<script>
+/* 引入Swipe */
+import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
+
+import '@/assets/css/Book/BookSwipe.css'
+
+import Jsonp from 'jsonp'
+
+
+
+  export default {
+    name: 'swipe',
+    data() {
+      return {
+        swiperOption: {
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          slidesPerView: 6,
+          spaceBetween: 0,
+          breakpoints: {
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 0
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 0
+            },
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 0
+            },
+            320: {
+              slidesPerView: 3,
+              spaceBetween: 0
+            }
+          }
+        },
+        msg: ""
+      }
+    },
+    props: ['sendJson'], 
+    created(){
+      this.fiction();
+      this.$nextTick(()=>{///单独渲染图片的高度.
+        this.setImgHeight();
+      });
+    },
+    methods: {
+      fiction(){
+        this.msg = JSON.parse(localStorage.getItem('bookFiction'));
+        console.log(this.$refs)
+        return ;
+        let url = this.sendJson;
+        console.log(url)
+        let callback = {
+          param: 'callback',
+          prefix: 'jsonp1',
+          name: 'jsonp1'
+        };
+        Jsonp(url,callback,(err,data)=>{
+          if(err){
+            console.log(err);
+            return;
+          };
+          localStorage.setItem('bookFiction',JSON.stringify(data));
+          this.msg = data;
+          console.log(data)
+        });
+      },
+      setImgHeight(){
+        for(var k=0;k < this.$refs.iimg.length;k++){
+          console.log(this.$refs.iimg[k].width)
+          // console.log(parseInt(this.$refs.iimg[k].style.width) * 0.69)
+          // this.$refs.iimg[k].style.height =  this.$refs.iimg[k].width / 0.69 + "px";
+        }
+        return ;
+      }
+    }
+  }
+</script>
