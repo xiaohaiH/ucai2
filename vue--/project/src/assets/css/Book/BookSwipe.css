@@ -1,11 +1,21 @@
+
+
+.swiper-slide{
+  margin: 1.4rem 0;
+}
 .swiper-slide div{
   text-align:center;
   margin-top:.5rem;
+  cursor:pointer;
 }
 .swiper-slide p:nth-of-type(1){
   font-size:1.6rem;
   margin:0;
   line-height:2.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width:100%;
+  white-space:nowrap;
 }
 .swiper-slide p:nth-of-type(2){
   font-size:1.4rem;
@@ -15,4 +25,8 @@
   font-style:normal;
   display:inline-block;
   margin-right:.5rem;
+  height:11px;
+  width: 55px;
 }
+
+

@@ -1,0 +1,39 @@
+/* 头部样式 */
+.bookshopHeader .bookshopInfo{
+  margin-top:1.5rem;
+}
+.bookshopHeader .bookshopInfo > .bookshopTitle {
+  margin-bottom:2rem;
+}
+.bookshopHeader .bookshopInfo > .bookshopTitle > h4{
+  margin:0;
+  font-size:2.4rem;
+  line-height:2.5rem;
+}
+.bookshopHeader .bookshopInfo > .bookshopTitle > p{
+  color:#E96648;
+  font-size:1.8rem;
+  margin: 0;
+}
+.bookshopHeader .bookshopInfo > p{
+  color:#9B9B9B;
+}
+
+/* 主体样式 */
+.bookshopContent .bookProduct{
+  cursor:pointer;
+}
+.bookshopContent .bookProduct > p:nth-of-type(2){
+  margin-top:1.4rem;
+}
+.bookshopContent .bookProduct > p:nth-of-type(2) span{
+  display:block;
+}
+.bookshopContent .bookProduct > p:nth-of-type(2) span:nth-of-type(1){
+  color:black;
+  width:100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin:.4rem 0;
+}

@@ -1,0 +1,32 @@
+.BooksList figure{
+  margin:2rem 15px;
+  padding:0;
+  margin-top:1rem;
+  border-bottom:1px solid blanchedalmond;
+  cursor:pointer;
+}
+.BooksList figure figcaption > div{
+  margin-bottom:1rem;
+}
+.BooksList figure figcaption > div h4{
+  margin:0;
+  font-weight: bolder;
+  margin-right:1rem;
+  padding:.6rem 0;
+}
+.BooksList figure figcaption > div span{
+  color:#F5A623;
+  padding:.4rem .8rem; 
+  border:1px solid #F5A623;
+  border-radius:.3rem;
+}
+.BooksList figure figcaption p i{
+  font-style:normal;
+  width:55px;
+  height:11px;
+  display: inline-block;
+  margin-right:1rem;
+}
+.BooksList figure figcaption p:nth-of-type(2){
+  color:#AAAAAA;
+}

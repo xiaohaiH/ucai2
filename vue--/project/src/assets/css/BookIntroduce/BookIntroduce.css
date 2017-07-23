@@ -1,0 +1,76 @@
+.bookInfoBox .bookGrade p{
+ display: inline-block;
+ margin-right:.5rem;
+}
+.bookInfoBox .bookGrade p i{
+  display:inline-block;
+  height:11px;
+  width:55px;
+  margin:0;
+  margin-right:.4rem;
+}
+.bookInfoBox .bookGrade span{
+  color:#AAAAAA;
+}
+
+
+/* 是否阅读btn样式 */
+.bookInfoBox .BookBtn{
+  padding:0 15px;
+}
+.bookInfoBox .BookBtn button{
+  width:100%;
+}
+
+/* 标题公共样式 */
+.bookAbstractTitle{
+  margin:1rem 0;
+  font-weight: 600;
+}
+/* 内容样式 */
+.bookAbstractAndTag .bookAbstract,.bookAbstractAndTag .bookTag{
+  margin-bottom:2rem;
+}
+.bookAbstractAndTag .bookTag p{
+ padding:.4rem 1rem;
+ border-radius:.6rem;
+ background:#EDEDED;
+ margin:1rem;
+}
+
+/* 书籍短评样式 */
+.bookShortCommentBox{
+  margin-bottom:2rem;
+}
+.bookShortCommentBox .bookShortComment .articleMessage{
+  margin:1rem 0;
+}
+.bookShortCommentBox .bookShortComment .articleMessage img{
+  border-radius:50%;
+}
+.bookShortCommentBox .bookShortComment .articleMessage .media-body .commentTitleAnthor{
+  margin-top:.7rem;
+}
+.bookShortCommentBox .bookShortComment .articleMessage .media-body .commentTitleAnthor h4{
+  font-size:1.5rem;
+  font-weight: bold;
+}
+.bookShortCommentBox .bookShortComment .articleMessage .media-body .commentTitleAnthor > i{
+  width:55px;
+  height:11px;
+  margin-left:1rem;
+}
+
+.bookShortCommentBox .bookShortComment .articleMessage .media-body p:nth-of-type(1){
+  color:#AAAAAA;
+  font-size:1rem;
+  margin:0;
+}
+
+
+
+
+/* 短评翻页按钮 */
+.articleMessagebtn button{
+  width:100%;
+}

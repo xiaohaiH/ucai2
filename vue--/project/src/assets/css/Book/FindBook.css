@@ -1,0 +1,11 @@
+.FindbookBox .FindbookTitle{
+  font-size:1.8rem;
+  font-weight:500;
+}
+.FindbookBox .FindbookContent .FindbookProduct{
+  text-align: center;
+  border:1px solid transparent; 
+  border-radius:1rem;
+  padding:.5rem 0;
+  cursor:pointer;
+}

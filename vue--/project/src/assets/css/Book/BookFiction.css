@@ -1,0 +1,15 @@
+.fictionTitle{
+  height:53px;
+  line-height: 53px;
+}
+.fictionTitle h4{
+  margin:0;
+  line-height: 53px;
+}
+.fictionTitle>a{
+  font-size:1.5rem;
+}
+.fictionTitle>a:hover{
+  text-decoration:none;
+  color:#07D213;
+}

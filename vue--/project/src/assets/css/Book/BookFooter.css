@@ -1,0 +1,37 @@
+
+/* 底部样式 */
+.ClassifyFooterBox {
+  margin-top:4rem;
+  text-align: center;
+}
+.ClassifyFooter{
+  overflow: hidden;
+  text-align:center;
+  display: inline-block;
+}
+.ClassifyFooterBox .ClassifyFooter>p{
+  float: left;
+  max-width:80px;
+  margin-right:2rem;
+}
+.ClassifyFooterBox .ClassifyFooter>p img{
+  max-width:80px;
+}
+.ClassifyFooterBox .ClassifyFooter>div{
+  float: left; 
+}
+.ClassifyFooterBox .ClassifyFooter>div h4{
+  font-size:3rem;
+  margin:0;
+  margin-top:.8rem;
+  text-align:left;
+}
+.ClassifyFooterBox .ClassifyFooter>div p{
+  margin-top:.5rem;
+}
+ .ClassifyFooterBox .down{
+  color:#05AF10;
+  font-size:2rem;
+  text-align:center;
+  margin-bottom:4rem;
+}
