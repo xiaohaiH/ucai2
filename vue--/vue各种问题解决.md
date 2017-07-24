@@ -120,4 +120,57 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios,Axios)
 ```
 使用：
+```
+get方法：
+    axios.get('/user?ID=12345')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+      或者
+      axios.get('/user', {
+        params: {
+          ID: 12345
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
 
+post方法：
+    axios.post('/user', {
+        firstName: 'Fred',
+        lastName: 'Flintstone'
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+
+当有多个数据请求时：
+function getUserAccount() {
+  return axios.get('/user/12345');
+}
+
+function getUserPermissions() {
+  return axios.get('/user/12345/permissions');
+}
+
+axios.all([getUserAccount(), getUserPermissions()])
+  .then(axios.spread(function (acct, perms) {
+    // Both requests are now complete
+  }));
+```
+
+九：插值中怎么识别其中的HTML标签
+
+```
+<p v-html="含有HTML元素的变量"></p>           p.s：<p v-html="essay.text"></p>
+```
