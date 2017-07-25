@@ -34,19 +34,10 @@ export default {
       total: 20,
       lock: false,
       scrollRoll: null
-      // IsShow: false
     }
   },
   created(){ 
     this.SendJsonp();
-  },
-  filters: {
-    // readShow(data){
-    //   console.log(vm.readShow)
-    //   if(data){
-    //     IsShow = true;
-    //   };
-    // }
   },
   mounted(){
     window.addEventListener('scroll',this.FallsFlow);
@@ -77,12 +68,14 @@ export default {
       let callbackData = {
         param: 'callback',
         prefix: 'cb',
-        name: 'cb'
+        name: 'cb',
+        timeout: 1000
       };
       Jsonp(url,callbackData,(err,data)=>{
         this.lock = false;
         if(err){
           console.log(err);
+          this.SendJsonp();
           return ;
         };
         // console.log(data);
@@ -108,7 +101,7 @@ export default {
         if(!(this.$route.path.match(/bookRankList/g))){
           window.removeEventListener('scroll',this.FallsFlow);
         }
-        console.log('运行了')
+        // console.log('运行了')
         this.SendJsonp(true)
       };
     }

@@ -85,7 +85,10 @@ export default {
   name: 'bookIntroduce',
   data(){
     return {
-      data: '',
+      data: {
+        rating: {},
+        images: {}
+      },
       comments: {
         // total: 7
       },

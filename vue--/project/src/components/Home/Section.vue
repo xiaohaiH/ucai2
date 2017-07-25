@@ -86,6 +86,7 @@
             if(err){
               console.log(err);
               if(err == 'Error: Timeout'){
+                const getNewDate = new Date();///获取日期的初始值.
                 this.getArticle(getNewDate.getFullYear(),getNewDate.getMonth() + 1,getNewDate.getDate(),true);
               }
               return false;
