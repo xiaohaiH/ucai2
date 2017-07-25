@@ -54,7 +54,7 @@
              <div class="media-body">
               <div class="clearfix commentTitleAnthor">
                  <h4 class="media-heading pull-left">{{comment.user.name}}</h4> 
-                  <i class="pull-left" :style="'background:url(/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(comment.rating.value)) * -11 + 'px'"></i>  
+                  <i class="pull-left" :style="'background:url(/vueProject/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(comment.rating.value)) * -11 + 'px'"></i>  
               </div>
                 <p>{{comment.create_time}}</p>  
                 <p>{{comment.comment}}</p>     
