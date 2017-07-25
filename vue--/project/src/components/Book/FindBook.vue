@@ -4,28 +4,28 @@
     <div class="FindbookContent">
        <swiper :options="swiperOption">
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">小波看书</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">小波看书</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">村上春树周边</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">村上春树周边</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">我凭名字认定了你</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">我凭名字认定了你</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">不可饶恕的女人们</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">不可饶恕的女人们</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">爱欲书</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">爱欲书</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">他们还写侦探小说</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">他们还写侦探小说</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">人生识字始忧患</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">人生识字始忧患</router-link>
         </swiper-slide>
         <swiper-slide  class="FindbookProduct">
-          <router-link to="/API有问题" tag="p">詩歌書店</router-link>
+          <router-link to="/vueProject/API有问题" tag="p">詩歌書店</router-link>
         </swiper-slide>
       </swiper>
     </div>

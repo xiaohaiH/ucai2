@@ -3,7 +3,7 @@
 
     <div class="fictionTitle">
       <h4 class="pull-left">最受关注图书｜非虚构类</h4>
-      <router-link to="/book/subject/bookRankList/hotNonFiction/" tag="a" class="pull-right">更多</router-link>
+      <router-link to="/vueProject/book/subject/bookRankList/hotNonFiction/" tag="a" class="pull-right">更多</router-link>
     </div>
 
     <div>

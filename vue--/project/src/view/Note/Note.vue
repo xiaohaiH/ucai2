@@ -2,12 +2,10 @@
   <div class="container-fluid">
     <div class="articleTitle">
        <h3>{{msg.title}}</h3>
-       <p><router-link :to="'/author/' + msg.author.id" tag="a">{{msg.author.name}}</router-link><span>{{msg.publish_time}}</span></p>
+       <p><router-link :to="'/vueProject/author/' + msg.author.id" tag="a">{{msg.author.name}}</router-link><span>{{msg.publish_time}}</span></p>
     </div>
     <div class="articleContent">
-      <p v-for="(essay,i) in msg.content.blocks" :key="essay.id"> 
-      {{essay.text}} 
-      </p>  
+      <p v-html="essay.text" v-for="(essay,i) in msg.content.blocks" :key="essay.id"></p>  
     </div>
     <div class="articleAuthor">
       <div class="media">
@@ -27,7 +25,7 @@
         <h3 class="articleMessageTitle">全部评论{{comments.total}}条</h3>
         <div class="media articleMessageContent" v-for="(comment,j) in comments.comments" :key="comment.id">
           <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1">
-            <router-link :to="'/' + comment.id" tag="a">
+            <router-link :to="'/vueProject/' + comment.id" tag="a">
               <img class="media-object img-responsive" :src="comment.author.large_avatar" alt="">
             </router-link>
           </div>
@@ -79,22 +77,36 @@
     methods: {
       sendJsonp(res){
         let noteCookie = localStorage.getItem('note');
-        // if(res && noteCookie){
-        //   this.msg = JSON.parse(noteCookie);
-        //   return;
-        // }
         let getId = window.location.pathname.match(/([0-9]+)/g)[0];
         let url = 'https://api.douban.com/v2/note/' + getId + "?apikey=0b2bdeda43b5688921839c8ecb20399b";
-        Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data)=>{
+        Jsonp(url,{param:'callback',prefix:'cb',name:'cb',timeout: 1000},(err,data)=>{
           if(err){
             console.log(err);
-            return;
+            if(err == 'Error: Timeout'){
+              this.sendJsonp();
+            };
+            return; 
           };
           this.msg = data;
-          this.msg.content = JSON.parse(data.content);
-          // if(res){
-          //   localStorage.setItem('note',JSON.stringify(this.msg));
-          // };
+          if(this.msg.content.match(/^[\{|\"]\"\w+\"\:/)){
+            this.msg.content = JSON.parse(data.content);
+          }else{
+            this.msg.content = {blocks: [{text: data.content}]}; 
+            var getImg = this.msg.content.blocks[0].text.match(/\[img=[0-9]:C\]\[\/img\]/g);
+            if(getImg){
+              let arr = [],ImgNum = 0;
+              for(let k in this.msg.photos){
+                arr[ImgNum] = this.msg.photos[k];
+                ImgNum++;
+              };
+              ImgNum = -1;
+              this.msg.content.blocks[0].text = this.msg.content.blocks[0].text.replace(/(\[img=[0-9]+:C\]\[\/img\])/g,function(value,$1){
+                ImgNum++;
+                return '<img src="' + arr[ImgNum] + '" />';
+                return $('<img />').attr('src',arr[ImgNum]);
+              })
+            }
+          };
         });
       },
       commentJsonp(start,count,res){
@@ -140,9 +152,6 @@
           };
           this.comments = data;
           this.messageTotal = data.total;
-          // if(res){
-          //   localStorage.setItem('noteComment',JSON.stringify({comments:this.comments,messageTotal:this.messageTotal}));
-          // };
         });
         if(!(start||count)){
           this.messageStart += 10;

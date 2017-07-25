@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <h3>最受关注图书 | {{bookType}}</h3>
     <div class="row BooksList">
-      <router-link :to="'/book/subject/' + item.id" tag="figure" class="clearfix" v-for="(item,index) in bookInfo.subject_collection_items" :key="item.id">
+      <router-link :to="'/vueProject/book/subject/' + item.id" tag="figure" class="clearfix" v-for="(item,index) in bookInfo.subject_collection_items" :key="item.id">
         <p class="pull-left col-xs-3 col-sm-2 col-md-2 col-lg-1">
           <img :src="item.cover.url" class="img-responsive" />
         </p>
@@ -11,7 +11,7 @@
             <h4 class="pull-left">{{item.title}}</h4>
             <span v-show="item.actions[0]" class="pull-left">{{item.actions[0]}} </span>
           </div>
-          <p><i :style="'background:url(/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(item.rating.value)) * -11 + 'px'"></i>{{item.rating.value}}</p>
+          <p><i :style="'background:url(/vueProject/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(item.rating.value)) * -11 + 'px'"></i>{{item.rating.value}}</p>
           <p>{{item.info}}</p>
         </figcaption>
       </router-link>

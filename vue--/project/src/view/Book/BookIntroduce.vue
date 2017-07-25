@@ -7,7 +7,7 @@
       <!-- 书籍作者评分信息 -->
         <div class="col-xs-7 col-sm-8 col-md-10 col-lg-11">
           <div class="bookGrade">
-             <p><i :style="'background:url(/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(data.rating.average)) * -11 + 'px'"></i>{{data.rating.average}}</p> 
+             <p><i :style="'background:url(/vueProject/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(data.rating.average)) * -11 + 'px'"></i>{{data.rating.average}}</p> 
              <span>{{data.rating.numRaters}}人评价</span> 
           </div>
           <div class="bookInfo">
@@ -47,7 +47,7 @@
         <div class="articleMessage" v-for="(comment,index) in comments.interests" :key="comment.id">
            <div class="media articleMessageContent">
             <div class="col-xs-3 col-sm-3 col-md-1 col-lg-1">
-                <router-link :to="'/author/' + comment.user.id" tag="a">
+                <router-link :to="'/vueProject/author/' + comment.user.id" tag="a">
                   <img class="media-object img-responsive" :src="comment.user.avatar" alt="">  
               </router-link>
             </div>

@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <!-- content 内容 -->
     <div class="Box">
-      <router-link tag="div" :to="'/note/'+ item.boradcastId" class="broadcastBox" v-for="(item,index) in msg" :key="item.id">
+      <router-link tag="div" :to="'/vueProject/note/'+ item.boradcastId" class="broadcastBox" v-for="(item,index) in msg" :key="item.id">
         <!-- title -->
         <div class="media row broadcastTitle"> 
           <div class="media-left col-xs-2 col-sm-2 col-md-1 col-lg-1">
-            <router-link to="/id" tag="a">
+            <router-link to="/vueProject/id" tag="a">
               <img class="img-responsive" :src="item.status.author.avatar" alt="">
             </router-link>
           </div>
@@ -25,7 +25,7 @@
               <div class="panel-heading">{{item.status | prot('title')}}</div>  
             <div class="panel-body row">
               <p class="col-xs-8 col-sm-8 col-md-9 col-lg-11">{{item.status | prot('subtitle')}}</p>
-              <router-link :to="'/note/'+ item.boradcastId" tag="a" class="col-xs-4 col-sm-4 col-md-3 col-lg-1">
+              <router-link :to="'/vueProject/note/'+ item.boradcastId" tag="a" class="col-xs-4 col-sm-4 col-md-3 col-lg-1">
                 <img :src="item.status | prot('large')" class="img-responsive" />
                 </router-link>
             </div>
@@ -51,7 +51,7 @@
           <p>在App中刷广播更愉快</p>
         </div>
       </div>
-      <router-link class="down" to="/xiazai" tag="div">
+      <router-link class="down" to="/vueProject/xiazai" tag="div">
         免费下载Android客户端
       </router-link>
     </div>
@@ -124,11 +124,7 @@ import '@/assets/css/Broadcast/Broadcast.css'
             }
           };
         });
-      },
-      // moreJsonp(){
-      //   let url = ""
-      //   Jsonp();
-      // }
+      }
     }
   }
 </script>

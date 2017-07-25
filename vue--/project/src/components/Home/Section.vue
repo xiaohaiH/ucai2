@@ -1,6 +1,6 @@
 <template>
   <section  class="container-fluid">
-       <router-link tag="article" class="row" v-for="(item,index) in data"  :key="item.id" :to="'/note/'+data[index].target.id" :aa="data[index].id">
+       <router-link tag="article" class="row" v-for="(item,index) in data"  :key="item.id" :to="'/vueProject/note/'+data[index].target.id" :aa="data[index].id">
        <!-- <v class="row" v-for="(item,index) in page.sum" :key="item.id"> -->
        <div class="articleLeft col-xs-8 col-md-8">
         <p class="articleTitle">{{data[index].title}}</p>
@@ -49,41 +49,52 @@
           this.page.month = month;
           this.page.date = data;
         }else{
-          this.page.date-=1;
+          this.page.date -= 1;
           if(this.page.date <= 0){
             if(--this.page.month == 1|3|5|7|8|10|12){
-              this.page.month-=1;
+              this.page.month -= 1;
               this.page.date = 31;
             }else if(--this.page.month == 4|6|9|11){
-              this.page.month-=1;
+              this.page.month -= 1;
               this.page.date = 30;
             }else if(--this.page.month == 2){
-              this.page.month-=1;
+              this.page.month -= 1;
               this.page.date = 28;
             }else{
-              this.page.year-=1;
+              this.page.year -= 1;
               this.page.month = 12;
               this.page.date = 31;
             };
           };
         };
+        /* 判断存储的值是否过期 */
+        if(localStorage.getItem('homeData')){
+          let nowDate = new Date().getDate();
+          let formerly =  JSON.parse(localStorage.getItem('homeData')).timer;
+          if(nowDate > formerly || nowDate == 1 && formerly != 1){
+            localStorage.removeItem('homeData');
+          };
+        };
         /* 这个是判断日期月份年是否在标准内End */
-        if(res && localStorage.getItem('homeData')){
+        if(res && localStorage.getItem('homeData') && false){
           this.data = JSON.parse(localStorage.getItem('homeData'));
           return;
         }else{
           let url = "https://m.douban.com/rexxar/api/v2/recommend_feed?alt=json&next_date=" + this.page.year + "-"+ this.page.month +"-" + this.page.date + "&loc_id=108288&gender=&birthday=&udid=9fcefbf2acf1dfc991054ac40ca5114be7cd092f&for_mobile=1";
-          Jsonp(url,{param:'callback',prefix:'cb',name:'cb'},(err,data) => {
+          Jsonp(url,{param:'callback',prefix:'cb',timeout: 1000,name:'cb'},(err,data) => {
+            this.page.lock = false;
             if(err){
               console.log(err);
-              this.page.lock = false;
+              if(err == 'Error: Timeout'){
+                this.getArticle(getNewDate.getFullYear(),getNewDate.getMonth() + 1,getNewDate.getDate(),true);
+              }
               return false;
             };
             this.data = this.data.concat(data.recommend_feeds);
             if(res){
+              this.data[0].timer = new Date().getDay();
               localStorage.setItem('homeData',JSON.stringify(this.data));
             };
-            this.page.lock = false;
           });
         }
       },

@@ -2,11 +2,11 @@
   <div>
     <swiper :options="swiperOption">
       <swiper-slide class="col-xs-3 col-sm-3 col-md-2 col-lg-1" style="width:100px;" v-for="(item,index) in this.msg.subject_collection_items" :key="item.id">
-         <router-link :to="'/book/subject/'+item.id" tag="div"> 
+         <router-link :to="'/vueProject/book/subject/'+item.id" tag="div"> 
           <img ref='iimg' class="img-responsive" :src="item.cover.url" />
           <div>
             <p>{{item.title}}</p>
-            <p><i :style="'background:url(/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(item.rating.value)) * -11 + 'px'"></i>{{item.rating.value}}</p>
+            <p><i :style="'background:url(/vueProject/static/img/starScore.png) no-repeat 0 ' + parseInt(10 - Math.round(item.rating.value)) * -11 + 'px'"></i>{{item.rating.value}}</p>
           </div>
         </router-link>  
       </swiper-slide>
@@ -61,16 +61,9 @@ import Jsonp from 'jsonp'
     props: ['sendJson','callback'], 
     created(){
       this.fiction();
-      this.$nextTick(()=>{///单独渲染图片的高度.
-        // this.setImgHeight();
-        // window.addEventListener('resize',this.setImgHeight)
-      });
     },
     methods: {
       fiction(){
-        // this.msg = JSON.parse(localStorage.getItem('bookFiction'));
-        // console.log(this.msg)
-        // return ;
         let url = this.sendJson;
         let callback = {
           param: 'callback',
@@ -82,18 +75,8 @@ import Jsonp from 'jsonp'
             console.log(err);
             return;
           };
-          // localStorage.setItem('bookFiction',JSON.stringify(data));
           this.msg = data;
-          // console.log(this.msg)
         });
-      },
-      setImgHeight(){
-        for(var k=0;k < this.$refs.iimg.length;k++){
-          // console.log(this.$refs.iimg[k].width)
-          // console.log(parseInt(this.$refs.iimg[k].style.width) * 0.69)
-          // this.$refs.iimg[k].style.height =  this.$refs.iimg[k].width / 0.69 + "px";
-        }
-        return ;
       }
     }
   }

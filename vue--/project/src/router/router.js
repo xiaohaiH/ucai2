@@ -18,6 +18,9 @@ import BookIntroduce from '@/view/Book/BookIntroduce.vue'
 /* BookRankList页面  书籍排行榜 */
 import BookRankList from '@/view/Book/BookRankList.vue'
 
+
+
+
 /*  */
 
 import '@/assets/bootstrap/css/bootstrap.css'
@@ -26,14 +29,14 @@ let Router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/vueProject/',
       name: 'home',
       components: {
         default: Home
       }
     },
     {
-      path: '/note/:id',
+      path: '/vueProject/note/:id',
       name: 'note',
       components: {
         default: Note
@@ -47,28 +50,28 @@ let Router = new VueRouter({
     //   }
     // },
     {
-      path: '/broadcast',
+      path: '/vueProject/broadcast',
       name: 'broadcast',
       components: {
         default: Broadcast
       }
     },
     {
-      path: '/book',
+      path: '/vueProject/book',
       name: 'book',
       components: {
         default: Book
       }
     },
     {
-      path: '/book/subject/:id',
+      path: '/vueProject/book/subject/:id',
       name: 'bookIntroduce',
       components: {
         default: BookIntroduce
       }
     },
     {
-      path: '/book/subject/bookRankList/:type',
+      path: '/vueProject/book/subject/bookRankList/:type',
       name: 'bookRankList',
       components: {
         default: BookRankList
