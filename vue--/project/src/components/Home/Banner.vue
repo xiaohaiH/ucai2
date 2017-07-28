@@ -14,8 +14,9 @@
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-left">
+        <div class="collapse navbar-collapse navbar-right" id="navList">
+        <!-- <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1"> -->
+          <ul class="nav navbar-nav navbar-left homeBanner">
             <li><router-link class="movie navKind" exact to="/vueProject/movie" tag="a">电影 <span class="sr-only">(current)</span></router-link></li>
             <li><router-link class="book navKind" exact to="/vueProject/book" tag="a">图书</router-link></li>
             <li><router-link class="broadcast navKind" exact to="/vueProject/broadcast" tag="a">广播</router-link></li>
@@ -36,6 +37,25 @@
 <script>
   import '@/assets/css/Home/App.css'
   export default {
-    name: "banner"
+    name: "banner",
+    mounted(){
+      this.navToggle();
+    },
+    methods: {
+      navToggle(){
+        let $navList = $('#navList');
+        let $navButton = $('.navbar-header').find('button:eq(0)');
+        let $logo = $('#logo');
+        $logo.on('click',function(){
+           $navList.slideUp();
+        })
+        $navButton.on('click',function(){
+           $navList.slideToggle();
+        })
+        $navList.find('li').on("click",function(){
+          $navList.slideToggle();
+        });
+      }
+    }
   }
 </script>

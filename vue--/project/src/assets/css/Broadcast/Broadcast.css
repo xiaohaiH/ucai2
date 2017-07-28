@@ -32,6 +32,10 @@
 .Box .broadcastBox .panel-body p{
   color:#AAAAAA;
 }
+/* 按钮样式 */
+.pager li{
+  margin-right:2rem;
+}
 
 /* 底部样式 */
 .broadcastFooterBox {

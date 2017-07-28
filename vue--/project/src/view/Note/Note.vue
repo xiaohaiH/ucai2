@@ -25,7 +25,7 @@
         <h3 class="articleMessageTitle">全部评论{{comments.total}}条</h3>
         <div class="media articleMessageContent" v-for="(comment,j) in comments.comments" :key="comment.id">
           <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1">
-            <router-link :to="'/vueProject/' + comment.id" tag="a">
+            <router-link id="noteCommentImg" :to="'/vueProject/' + comment.id" tag="a">
               <img class="media-object img-responsive" :src="comment.author.large_avatar" alt="">
             </router-link>
           </div>
@@ -65,7 +65,8 @@
         messageCount: 10,
         messageStart: 0,
         messageTotal: 10,
-        lock: false
+        lock: false,
+        timeoutSum: 0
       }
     },
     created(){
@@ -82,7 +83,8 @@
         Jsonp(url,{param:'callback',prefix:'cb',name:'cb',timeout: 1000},(err,data)=>{
           if(err){
             console.log(err);
-            if(err == 'Error: Timeout'){
+            this.timeoutSum++;
+            if(err == 'Error: Timeout'&&this.timeoutSum < 3){///判断是否超时且超时后是否超过最高请求次数.
               this.sendJsonp();
             };
             return; 

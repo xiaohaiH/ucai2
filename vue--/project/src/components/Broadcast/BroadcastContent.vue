@@ -34,10 +34,10 @@
       </router-link>
     </div>
     <!-- 分页按钮 -->
-    <nav aria-label="...">
+    <nav>
       <ul class="pager">
-        <li><router-link @click="sendJsonp(10)" to="" tag="a">上一页</router-link></li>
-        <li><router-link @click="sendJsonp()" to="" tag="a">下一页</router-link></li>
+        <li><button class="btn-info btn" @click="sendJsonp(10)">上一页</button></li>
+        <li><button class="btn-info btn" @click="sendJsonp()">下一页</button></li>
       </ul>
     </nav>
     <!-- 分页按钮 -->
@@ -55,11 +55,7 @@
         免费下载Android客户端
       </router-link>
     </div>
-    
-    <!-- <div style="text-align:center;">
-      <div style="display:inline-block;">12</div>
-      <div style="display:inline-block;">32</div>
-    </div> -->
+
   </div>
 </template>
 <script>
