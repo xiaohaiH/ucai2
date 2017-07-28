@@ -12,6 +12,9 @@
 .bookInfoBox .bookGrade span{
   color:#AAAAAA;
 }
+.bookImg{
+   max-width:170px; 
+}
 
 
 /* 是否阅读btn样式 */
@@ -45,6 +48,11 @@
 .bookShortCommentBox .bookShortComment .articleMessage{
   margin:1rem 0;
 }
+
+.bookShortCommentBox .bookShortComment .articleMessage .articleMessageContent > div:nth-of-type(1){
+   max-width:140px; 
+}
+
 .bookShortCommentBox .bookShortComment .articleMessage img{
   border-radius:50%;
 }

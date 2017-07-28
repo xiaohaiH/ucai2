@@ -104,7 +104,6 @@
       },
       ListenerScroll(){///监听滚动事件.
         /* 截流 */
-        console.log(123)
         this.scroll = document.body.scrollTop;
         let getHeight = document.body.clientHeight - window.screen.availHeight - 400;
         if(!(this.$route.path.match(/^\/vueProject\/$/))){///判断是否在首页,防止多次请求.

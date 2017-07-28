@@ -14,7 +14,7 @@
              {{data.authors}} / {{data.translators}} / {{data.publisher}} / {{data.pages}}页 / {{data.binding}} / {{data.price}} / {{data.pubdate}} 
           </div>
         </div>
-        <p class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
+        <p class="col-xs-4 col-sm-2 col-md-2 col-lg-1 bookImg">
            <img :src="data.images.large" class="img-responsive" /> 
         </p>
 

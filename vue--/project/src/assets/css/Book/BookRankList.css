@@ -30,3 +30,20 @@
 .BooksList figure figcaption p:nth-of-type(2){
   color:#AAAAAA;
 }
+
+/* 警告框样式 */
+.warnBox{
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,.5);
+  height:100%;
+  width:100%;
+  z-index: 999999;
+}
+.warnBox > div{
+  position: absolute;
+  top:40%;
+  left:45%;
+}

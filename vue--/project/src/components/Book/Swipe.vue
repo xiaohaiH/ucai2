@@ -94,6 +94,9 @@ import Jsonp from 'jsonp'
         },500);
       },
       ImgResize(){
+        if(!(this.$route.path.match(/^\/vueProject\/book$/))){
+          return;
+        }
         let VbookListImgBox = this.$refs.bookListImgBox;
         let VbookListImgWidth = this.$refs.bookListImg[0].width;
         for(let i = 0;i < VbookListImgBox.length;i++){
