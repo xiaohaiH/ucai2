@@ -1,4 +1,7 @@
-
+```
+npm run dev : 开启服务器
+npm run build : 将项目打包
+```
 报错一：no-new
         Do not use 'new' for side effects
 
