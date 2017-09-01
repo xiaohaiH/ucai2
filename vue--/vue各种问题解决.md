@@ -177,3 +177,17 @@ axios.all([getUserAccount(), getUserPermissions()])
 ```
 <p v-html="含有HTML元素的变量"></p>           p.s：<p v-html="essay.text"></p>
 ```
+十：取消 Eslint 风格
+
+```
+找到 build\webpack.base.conf.js 文件
+删除这一段话即可
+{
+  test: /\.(js|vue)$/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: [resolve('src'), resolve('test')],
+  options: {
+  formatter: require('eslint-friendly-formatter')
+}
+```
